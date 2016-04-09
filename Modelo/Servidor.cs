@@ -2,7 +2,7 @@
 
 namespace Modelo
 {
-    public class Servidor:IEntidad
+    public class Servidor
     {
         public string Nombre { get; set; }
         public string HostSMTP { get; set; }

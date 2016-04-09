@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class Cuenta:IEntidad
+    public class Cuenta
     {
         //nombre de la cuenta
         public string CuentaId { get; set; }

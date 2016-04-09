@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Net.Mail;
 
 namespace Modelo
 {
-    public abstract class Mensaje : IEntidad
+    public abstract class Mensaje
     {
         public string MensajeId { get; set; }
         public string Fecha { get; set; }

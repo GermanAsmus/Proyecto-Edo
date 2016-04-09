@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class DireccionCorreo :IEntidad
+    public class DireccionCorreo
     {
         /// <summary>
         /// Direccion de Correo

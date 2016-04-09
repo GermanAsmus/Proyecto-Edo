@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class Adjunto : IEntidad
+    public class Adjunto
     {
         public string AdjuntoId { get; set; }
 

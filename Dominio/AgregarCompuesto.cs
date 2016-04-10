@@ -10,7 +10,7 @@ namespace Dominio
 {
     public abstract class AgregarCompuesto<T1, T2> : ServicioAbstracto<T1>, IAgregarCompuesto<T1, T2> where T1 : class where T2 : class
     {
-        public AgregarCompuesto(IRepositorio<T1> pRepositorio) : base(pRepositorio)
+        public AgregarCompuesto(IRepositorio<T1> pRepositorio,IGestor pGestor) : base(pRepositorio,pGestor)
         {
 
         }

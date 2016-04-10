@@ -10,7 +10,7 @@ namespace Dominio
 {
     public class RepositorioBaseAdjunto : AgregarCompuesto<Adjunto,Completo>
     {
-        public RepositorioBaseAdjunto(IRepositorio<Adjunto> iRepositorio) : base(iRepositorio)
+        public RepositorioBaseAdjunto(IRepositorio<Adjunto> iRepositorio,IGestor pGestor) : base(iRepositorio,pGestor)
         {
             //Constructor
         }

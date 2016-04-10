@@ -11,7 +11,7 @@ namespace Dominio
 {
     public class RepositorioBaseServidor : AgregarSimple<Servidor>
     {
-        public RepositorioBaseServidor(IRepositorio<Servidor> pRepositorio) : base(pRepositorio)
+        public RepositorioBaseServidor(IRepositorio<Servidor> pRepositorio,IGestor pGestor) : base(pRepositorio,pGestor)
         {
             //Constructor
         }

@@ -12,7 +12,7 @@ namespace Dominio
 {
     public class RepositorioBaseMensaje : AgregarCompuesto<Completo,Cuenta>
     {
-        public RepositorioBaseMensaje(IRepositorio<Completo> pRepositorio) : base(pRepositorio)
+        public RepositorioBaseMensaje(IRepositorio<Completo> pRepositorio,IGestor pGestor) : base(pRepositorio, pGestor)
         {
             //Constructor
         }

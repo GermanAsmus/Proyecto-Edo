@@ -13,7 +13,7 @@ namespace Dominio
 {
     public class RepositorioBaseDireccion : AgregarSimple<DireccionCorreo>
     {
-        public RepositorioBaseDireccion(IRepositorio<DireccionCorreo> iRepositorio) : base(iRepositorio)
+        public RepositorioBaseDireccion(IRepositorio<DireccionCorreo> iRepositorio,IGestor pGestor) : base(iRepositorio,pGestor)
         {
             //Constructor
         }

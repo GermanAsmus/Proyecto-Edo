@@ -9,7 +9,7 @@ using ControlDependencia;
 
 namespace Servicio
 {
-    public class Servicio : IConexion
+    public class Conexion : IConexion
     {
         public Buzon BuzonServicio
         {

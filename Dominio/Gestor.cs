@@ -14,23 +14,20 @@ namespace Dominio
 
         public IList<IValidar> Validadores { get; set; }
 
-        public Gestor(IUnitOfWork pUoW, IList<IValidar> pValidadores)
+        public Gestor(IUnitOfWork pUoW)
         {
             Servicios = new Dictionary<Type, IServicioRaiz>();
+            Validadores = new List<IValidar>();
 
-            Servicios.Add(typeof(Adjunto), new RepositorioBaseAdjunto(pUoW.RepositorioAdjunto) { /*EstrategiaAgregar = ...*/});
-            Servicios.Add(typeof(Cuenta), new RepositorioBaseCuenta(pUoW.RepositorioCuenta));
-            Servicios.Add(typeof(DireccionCorreo), new RepositorioBaseDireccion(pUoW.RepositorioDireccionCorreo));
-            Servicios.Add(typeof(Completo), new RepositorioBaseMensaje(pUoW.RepositorioMensaje));
-            Servicios.Add(typeof(Servidor), new RepositorioBaseServidor(pUoW.RepositorioServidor));
+            Servicios.Add(typeof(Adjunto), new RepositorioBaseAdjunto(pUoW.RepositorioAdjunto,this) { /*EstrategiaAgregar = ...*/});
+            Servicios.Add(typeof(Cuenta), new RepositorioBaseCuenta(pUoW.RepositorioCuenta,this));
+            Servicios.Add(typeof(DireccionCorreo), new RepositorioBaseDireccion(pUoW.RepositorioDireccionCorreo,this));
+            Servicios.Add(typeof(Completo), new RepositorioBaseMensaje(pUoW.RepositorioMensaje,this));
+            Servicios.Add(typeof(Servidor), new RepositorioBaseServidor(pUoW.RepositorioServidor,this));
 
-            Validadores = new List<IValidar>(pValidadores.Count);
-            
-            pValidadores.ToList().ForEach(x => Validadores.Add(x));
-
-            //Validadores.Add(typeof(Adjunto),new ValidarAdjunto((IServicio<Adjunto>)Servicios[typeof(Adjunto)]));
-            //Validadores.Add(typeof(DireccionCorreo), new ValidarDireccionCorreo((IServicio<DireccionCorreo>)Servicios[typeof(DireccionCorreo)]));
-            //Validadores.Add(typeof(Servidor), new ValidarServidor((IServicio<Servidor>)Servicios[typeof(Servidor)]));
+            Validadores.Add(new ValidarAdjunto((IServicio<Adjunto>)Servicios[typeof(Adjunto)]));
+            Validadores.Add(new ValidarDireccionCorreo((IServicio<DireccionCorreo>)Servicios[typeof(DireccionCorreo)]));
+            Validadores.Add(new ValidarServidor((IServicio<Servidor>)Servicios[typeof(Servidor)]));
 
 
         }

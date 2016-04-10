@@ -46,7 +46,7 @@
     <Compile Include="Descargar.cs" />
     <Compile Include="InfoAdjunto.cs" />
     <Compile Include="Pop3.cs" />
-    <Compile Include="Servicio.cs" />
+    <Compile Include="Conexion.cs" />
     <Compile Include="Smtp.cs" />
   </ItemGroup>
   <ItemGroup>

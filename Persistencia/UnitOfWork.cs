@@ -26,7 +26,14 @@ namespace Persistencia
 
         public UnitOfWork()
         {
-            iContext = new EntityFrameworkDBContext();
+            this.iContext = new EntityFrameworkDBContext();
+            this.RepositorioAdjunto = new Repositorio<Adjunto>(iContext);
+            this.RepositorioCuenta = new Repositorio<Cuenta>(iContext);
+            this.RepositorioDireccionCorreo = new Repositorio<DireccionCorreo>(iContext);
+            this.RepositorioMensaje = new Repositorio<Completo>(iContext);
+            this.RepositorioServidor = new Repositorio<Servidor>(iContext);
+
+
         }
 
         public async Task<int> CommitAsync(CancellationToken token)

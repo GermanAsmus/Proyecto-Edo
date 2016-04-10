@@ -178,9 +178,21 @@
       <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
       <Name>ControlDependencia</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{7444c050-a853-4222-a41c-59d04ae23617}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modelo\Modelo.csproj">
       <Project>{c7f74b31-7843-4997-82e0-0e9d00b3df1b}</Project>
       <Name>Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistencia\Persistencia.csproj">
+      <Project>{274f7ca7-58c2-4caa-9232-cc370c9e9271}</Project>
+      <Name>Persistencia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servicio\Servicio.csproj">
+      <Project>{3fa000c1-478d-4b59-b1f0-076427d48ffc}</Project>
+      <Name>Servicio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

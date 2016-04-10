@@ -13,9 +13,10 @@ namespace Dominio
         public IRepositorio<T> Repositorio { get;}
 
     
-        public ServicioAbstracto(IRepositorio<T> iRepositorio)
+        public ServicioAbstracto(IRepositorio<T> iRepositorio, IGestor pGestor)
         {
             this.Repositorio = iRepositorio;
+            this.GestorServicio = pGestor;
         }
 
         public virtual IServicioRaiz Editar(T entidad)
@@ -62,31 +63,6 @@ namespace Dominio
                 throw new ApplicationException("Obtener Todos");
             else
                 return obtenerTodosTask.Result;
-        }
-
-        IServicioRaiz IServicio<T>.Editar(T entidad)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IServicio<T>.Eliminar(Expression<Func<T, bool>> criterio)
-        {
-            throw new NotImplementedException();
-        }
-
-        T IServicio<T>.Obtener(Expression<Func<T, bool>> criterio)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<T> IServicio<T>.ObtenerTodos()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<T> IServicio<T>.Encontrar(Expression<Func<T, bool>> criterio)
-        {
-            throw new NotImplementedException();
         }
     }
 }

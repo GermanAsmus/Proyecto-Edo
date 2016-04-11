@@ -14,6 +14,6 @@ namespace Dominio
         {
 
         }
-        public abstract void Agregar(T1 hijo, T2 padre);
+        public abstract Task Agregar(T1 hijo, T2 padre);
     }
 }

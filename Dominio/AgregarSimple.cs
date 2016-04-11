@@ -14,6 +14,6 @@ namespace Dominio
         {
 
         }
-        public abstract void Agregar(T entidad);
+        public abstract Task Agregar(T entidad);
     }
 }

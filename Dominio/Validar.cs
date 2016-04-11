@@ -14,6 +14,6 @@ namespace Dominio
         {
             Servicio = pServicio;
         }
-        public abstract T Evaluar(T entidad);
+        public abstract Task<T> Evaluar(T entidad);
     }
 }

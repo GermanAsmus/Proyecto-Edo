@@ -93,6 +93,7 @@
             this.textBoxContrasenia2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxContrasenia2.Location = new System.Drawing.Point(3, 158);
             this.textBoxContrasenia2.Name = "textBoxContrasenia2";
+            this.textBoxContrasenia2.PasswordChar = '*';
             this.textBoxContrasenia2.Size = new System.Drawing.Size(244, 20);
             this.textBoxContrasenia2.TabIndex = 8;
             this.textBoxContrasenia2.TextChanged += new System.EventHandler(this.textBoxContrasenia2_TextChanged);
@@ -112,6 +113,7 @@
             this.textBoxContrasenia.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxContrasenia.Location = new System.Drawing.Point(3, 119);
             this.textBoxContrasenia.Name = "textBoxContrasenia";
+            this.textBoxContrasenia.PasswordChar = '*';
             this.textBoxContrasenia.Size = new System.Drawing.Size(244, 20);
             this.textBoxContrasenia.TabIndex = 6;
             // 

@@ -11,14 +11,14 @@ namespace Dominio
 {
     public class RepositorioBaseServidor : AgregarSimple<Servidor>
     {
-        public RepositorioBaseServidor(IRepositorio<Servidor> pRepositorio,IGestor pGestor) : base(pRepositorio,pGestor)
+        public RepositorioBaseServidor(IRepositorio<Servidor> pRepositorio, IGestor pGestor) : base(pRepositorio, pGestor)
         {
             //Constructor
         }
 
-        public override void Agregar(Servidor entidad)
+        public override async Task Agregar(Servidor entidad)
         {
-            //
+            await Task.Yield();
         }
     }
 }

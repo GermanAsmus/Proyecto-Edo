@@ -17,7 +17,7 @@ namespace Dominio
             //Constructor
         }
 
-        public override void Agregar(Completo hijo, Cuenta padre)
+        public override async Task Agregar(Completo hijo, Cuenta padre)
         {
             //verifica que los string no sean nulos o vacios
             if (string.IsNullOrEmpty(hijo.Asunto) || string.IsNullOrEmpty(hijo.MensajeId))
@@ -31,19 +31,28 @@ namespace Dominio
 
             while (destinatarios.MoveNext())
             {
-                destinatariosValidos.Add(validarCorreo.Evaluar(destinatarios.Current));
+                destinatariosValidos.Add(await validarCorreo.Evaluar(destinatarios.Current));
             }
             hijo.Destinatario = destinatariosValidos;
 
             IServicio<Cuenta> Servicio2 = (IServicio<Cuenta>)this.GestorServicio.ObtenerServicio(typeof(Cuenta));
 
-            Cuenta cuenta = Servicio2.Obtener(x => x.CuentaId == padre.CuentaId);
+            // Cuenta cuenta = 
+            await Servicio2.Obtener(x => x.CuentaId == padre.CuentaId).ContinueWith(async (cuenta) =>
+            {
+                Cuenta cuentaResult = cuenta.Result;
+                cuentaResult.Mensajes.Add(hijo);
+                //Se completa la propiedad requerida del entidadHija, respectiva al id de la cuenta.
+                hijo.CuentaId = cuentaResult.CuentaId;
+                //Se actualiza la cuenta, que mantiene una colección de mensajes.
+                await Servicio2.Editar(cuentaResult);
+            });
 
-            cuenta.Mensajes.Add(hijo);
-            //Se completa la propiedad requerida del entidadHija, respectiva al id de la cuenta.
-            hijo.CuentaId = cuenta.CuentaId;
-            //Se actualiza la cuenta, que mantiene una colección de mensajes.
-            Servicio2.Editar(cuenta);
+            //cuenta.Mensajes.Add(hijo);
+            ////Se completa la propiedad requerida del entidadHija, respectiva al id de la cuenta.
+            //hijo.CuentaId = cuenta.CuentaId;
+            ////Se actualiza la cuenta, que mantiene una colección de mensajes.
+            //Servicio2.Editar(cuenta);
         }
     }
 }

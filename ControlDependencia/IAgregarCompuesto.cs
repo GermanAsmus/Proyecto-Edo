@@ -1,4 +1,4 @@
-﻿using Modelo;
+﻿using System.Threading.Tasks;
 
 namespace ControlDependencia
 {
@@ -6,6 +6,6 @@ namespace ControlDependencia
         where T1 : class
         where T2 : class
     {
-        void Agregar(T1 hijo, T2 padre);
+        Task Agregar(T1 hijo, T2 padre);
     }
 }

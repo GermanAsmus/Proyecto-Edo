@@ -13,19 +13,20 @@ namespace Dominio
 {
     public class RepositorioBaseDireccion : AgregarSimple<DireccionCorreo>
     {
-        public RepositorioBaseDireccion(IRepositorio<DireccionCorreo> iRepositorio,IGestor pGestor) : base(iRepositorio,pGestor)
+        public RepositorioBaseDireccion(IRepositorio<DireccionCorreo> iRepositorio, IGestor pGestor) : base(iRepositorio, pGestor)
         {
             //Constructor
         }
 
-        public override void Agregar(DireccionCorreo entidad)
+        public override async Task Agregar(DireccionCorreo entidad)
         {
-            DireccionCorreo direccionResidente = this.Obtener(x => x.DireccionId == entidad.DireccionId);
+            DireccionCorreo direccionResidente = await this.Obtener(x => x.DireccionId == entidad.DireccionId);
+            await this.Repositorio.Agregar(entidad);
 
-            var taskAgregar = this.Repositorio.Agregar(entidad);
-            Task.WaitAll(taskAgregar);
-            if (taskAgregar.Result == 0)
-                throw new ApplicationException("Agregar");
+            //var taskAgregar = this.Repositorio.Agregar(entidad);
+            //Task.WaitAll(taskAgregar);
+            //if (taskAgregar.Result == 0)
+            //    throw new ApplicationException("Agregar");
         }
     }
 }

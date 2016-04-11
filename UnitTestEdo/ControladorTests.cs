@@ -1,14 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dominio;
+using ControlDependencia;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Modelo;
-using ControlDependencia;
+//using ControlDependencia;
 
-namespace Dominio.Tests
+namespace ControlDependencia.Tests
 {
     [TestClass()]
     public class ControladorTests

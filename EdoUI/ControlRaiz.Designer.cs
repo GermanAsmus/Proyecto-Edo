@@ -32,9 +32,9 @@
             this.tableLayoutPanelControlCuentas = new System.Windows.Forms.TableLayoutPanel();
             this.toolStripCabecera = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNuevaCuenta = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonRedactar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBoxCuenta = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tabControlContenedor = new System.Windows.Forms.TabControl();
             this.tableLayoutPanelControlCuentas.SuspendLayout();
             this.toolStripCabecera.SuspendLayout();
             this.SuspendLayout();
@@ -45,6 +45,7 @@
             this.tableLayoutPanelControlCuentas.ColumnCount = 1;
             this.tableLayoutPanelControlCuentas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelControlCuentas.Controls.Add(this.toolStripCabecera, 0, 0);
+            this.tableLayoutPanelControlCuentas.Controls.Add(this.tabControlContenedor, 0, 1);
             this.tableLayoutPanelControlCuentas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelControlCuentas.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelControlCuentas.Name = "tableLayoutPanelControlCuentas";
@@ -61,8 +62,7 @@
             this.toolStripCabecera.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripCabecera.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonNuevaCuenta,
-            this.toolStripButtonRedactar,
-            this.toolStripComboBox1,
+            this.toolStripComboBoxCuenta,
             this.toolStripLabel1});
             this.toolStripCabecera.Location = new System.Drawing.Point(0, 0);
             this.toolStripCabecera.Name = "toolStripCabecera";
@@ -80,23 +80,15 @@
             this.toolStripButtonNuevaCuenta.Text = "Nueva Cuenta";
             this.toolStripButtonNuevaCuenta.Click += new System.EventHandler(this.toolStripButtonNuevaCuenta_Click);
             // 
-            // toolStripButtonRedactar
+            // toolStripComboBoxCuenta
             // 
-            this.toolStripButtonRedactar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonRedactar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRedactar.Image")));
-            this.toolStripButtonRedactar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRedactar.Name = "toolStripButtonRedactar";
-            this.toolStripButtonRedactar.Size = new System.Drawing.Size(57, 22);
-            this.toolStripButtonRedactar.Text = "Redactar";
-            this.toolStripButtonRedactar.Click += new System.EventHandler(this.toolStripButtonRedactar_Click);
-            // 
-            // toolStripComboBox1
-            // 
-            this.toolStripComboBox1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripComboBox1.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+            this.toolStripComboBoxCuenta.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripComboBoxCuenta.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.toolStripComboBoxCuenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxCuenta.Name = "toolStripComboBoxCuenta";
+            this.toolStripComboBoxCuenta.Size = new System.Drawing.Size(121, 25);
+            this.toolStripComboBoxCuenta.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxCuenta_SelectedIndexChanged);
+            this.toolStripComboBoxCuenta.Click += new System.EventHandler(this.toolStripComboBoxCuenta_Click);
             // 
             // toolStripLabel1
             // 
@@ -104,6 +96,15 @@
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(39, 22);
             this.toolStripLabel1.Text = "Abrir: ";
+            // 
+            // tabControlContenedor
+            // 
+            this.tabControlContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlContenedor.Location = new System.Drawing.Point(3, 28);
+            this.tabControlContenedor.Name = "tabControlContenedor";
+            this.tabControlContenedor.SelectedIndex = 0;
+            this.tabControlContenedor.Size = new System.Drawing.Size(360, 119);
+            this.tabControlContenedor.TabIndex = 1;
             // 
             // ControlRaiz
             // 
@@ -125,8 +126,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelControlCuentas;
         private System.Windows.Forms.ToolStrip toolStripCabecera;
         private System.Windows.Forms.ToolStripButton toolStripButtonNuevaCuenta;
-        private System.Windows.Forms.ToolStripButton toolStripButtonRedactar;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxCuenta;
+        public System.Windows.Forms.TabControl tabControlContenedor;
     }
 }

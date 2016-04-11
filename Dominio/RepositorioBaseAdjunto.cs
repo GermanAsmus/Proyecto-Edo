@@ -8,22 +8,25 @@ using System.Threading;
 
 namespace Dominio
 {
-    public class RepositorioBaseAdjunto : AgregarCompuesto<Adjunto,Completo>
+    public class RepositorioBaseAdjunto : AgregarCompuesto<Adjunto, Completo>
     {
-        public RepositorioBaseAdjunto(IRepositorio<Adjunto> iRepositorio,IGestor pGestor) : base(iRepositorio,pGestor)
+        public RepositorioBaseAdjunto(IRepositorio<Adjunto> iRepositorio, IGestor pGestor) : base(iRepositorio, pGestor)
         {
             //Constructor
         }
 
-        public override void Agregar(Adjunto hijo, Completo padre)
+        public override async Task Agregar(Adjunto hijo, Completo padre)
         {
-            Adjunto hijoResidente = this.Obtener(x => x.AdjuntoId == hijo.AdjuntoId);
+            //Adjunto hijoResidente = 
 
-            IServicio<Completo> Servicio2 = (IServicio<Completo>)this.GestorServicio.ObtenerServicio(typeof(Completo));
-            Completo padreResidente = Servicio2.Obtener(x => x.MensajeId == padre.MensajeId);
-            padreResidente.Adjuntos.Add(hijoResidente);
-
-            Servicio2.Editar(padre);
+            await Obtener(x => x.AdjuntoId == hijo.AdjuntoId).ContinueWith(async (hijoResidente) =>
+              {
+                  IServicio<Completo> Servicio2 = (IServicio<Completo>)GestorServicio.ObtenerServicio(typeof(Completo));
+                  await Servicio2.Obtener(x => x.MensajeId == padre.MensajeId)
+                  .ContinueWith((padreResidente) => { padreResidente.Result.Adjuntos.Add(hijoResidente.Result); })
+                  .ContinueWith(async (x) =>
+                  { await Servicio2.Editar(padre); });
+              });
         }
     }
 }

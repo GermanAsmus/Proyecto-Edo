@@ -1,11 +1,13 @@
-﻿namespace EdoUI
+﻿using System.ComponentModel;
+
+namespace EdoUI
 {
     partial class BloqueCuenta
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -28,10 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BloqueCuenta));
             this.tableLayoutPanelContenedorBandeja = new System.Windows.Forms.TableLayoutPanel();
             this.toolStripCabecera = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonDesplegar = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabelNombre = new System.Windows.Forms.ToolStripLabel();
             this.tableLayoutPanelMensajes = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelContenedorBandeja.SuspendLayout();
@@ -60,25 +60,12 @@
             this.toolStripCabecera.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripCabecera.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripCabecera.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonDesplegar,
             this.toolStripLabelNombre});
             this.toolStripCabecera.Location = new System.Drawing.Point(0, 0);
             this.toolStripCabecera.Name = "toolStripCabecera";
             this.toolStripCabecera.Size = new System.Drawing.Size(200, 25);
             this.toolStripCabecera.TabIndex = 0;
             this.toolStripCabecera.Text = "toolStrip1";
-            // 
-            // toolStripButtonDesplegar
-            // 
-            this.toolStripButtonDesplegar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButtonDesplegar.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripButtonDesplegar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonDesplegar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDesplegar.Image")));
-            this.toolStripButtonDesplegar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonDesplegar.Name = "toolStripButtonDesplegar";
-            this.toolStripButtonDesplegar.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonDesplegar.Text = "x";
-            this.toolStripButtonDesplegar.Click += new System.EventHandler(this.toolStripButtonDesplegar_Click);
             // 
             // toolStripLabelNombre
             // 
@@ -119,7 +106,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelContenedorBandeja;
         private System.Windows.Forms.ToolStrip toolStripCabecera;
-        private System.Windows.Forms.ToolStripButton toolStripButtonDesplegar;
         private System.Windows.Forms.ToolStripLabel toolStripLabelNombre;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMensajes;
     }

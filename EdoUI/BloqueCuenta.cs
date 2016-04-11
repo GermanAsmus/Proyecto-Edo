@@ -18,7 +18,6 @@ namespace EdoUI
         {
             InitializeComponent();
             toolStripLabelNombre.Text = pCuenta.CuentaId;
-
             bandeja = new BandejaMensajes(new Buzon());
 
         }

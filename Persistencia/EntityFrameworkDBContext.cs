@@ -26,7 +26,8 @@ namespace Persistencia
         {
 
             //Database.SetInitializer<EntityFrameworkDBContext>(null);
-            //this.Database.CreateIfNotExists();
+            if (!this.Database.Exists())
+                this.Database.CreateIfNotExists();
 
             var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
             this.Configuration.AutoDetectChangesEnabled = true;
@@ -60,7 +61,7 @@ namespace Persistencia
             modelBuilder.Entity<Cuenta>().Property(x => x.DireccionId).IsRequired();
             modelBuilder.Entity<Cuenta>().Property(x => x.Contraseña).IsRequired();
             modelBuilder.Entity<Cuenta>().HasRequired(x => x.Servidor).WithMany(y => y.Cuenta).HasForeignKey<string>(z => z.ServidorId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<Cuenta>().HasRequired(x => x.DireccionCorreo).WithOptional(y=> y.Cuenta);
+            modelBuilder.Entity<Cuenta>().HasRequired(x => x.DireccionCorreo).WithOptional(y => y.Cuenta);
 
             modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionCorreo");
             modelBuilder.Entity<DireccionCorreo>().HasKey<String>(x => x.DireccionId);

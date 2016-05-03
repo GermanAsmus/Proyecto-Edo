@@ -43,20 +43,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregarCompuesto.cs" />
-    <Compile Include="AgregarSimple.cs" />
     <Compile Include="Controlador.cs" />
-    <Compile Include="Gestor.cs" />
-    <Compile Include="RepositorioBaseAdjunto.cs" />
-    <Compile Include="RepositorioBaseCuenta.cs" />
-    <Compile Include="RepositorioBaseDireccion.cs" />
-    <Compile Include="RepositorioBaseMensaje.cs" />
-    <Compile Include="RepositorioBaseServidor.cs" />
-    <Compile Include="ServicioAbstracto.cs" />
-    <Compile Include="Validar.cs" />
-    <Compile Include="ValidarAdjunto.cs" />
-    <Compile Include="ValidarDireccionCorreo.cs" />
-    <Compile Include="ValidarServidor.cs" />
+    <Compile Include="GestorRepositorios.cs" />
+    <Compile Include="IEstrategiaAgregar.cs" />
+    <Compile Include="IEstrategiaAgregarComplejo.cs" />
+    <Compile Include="IEstrategiaAgregarSimple.cs" />
+    <Compile Include="RepositorioAdjunto.cs" />
+    <Compile Include="RepositorioCuenta.cs" />
+    <Compile Include="RepositorioDireccion.cs" />
+    <Compile Include="RepositorioMensaje.cs" />
+    <Compile Include="RepositorioServidor.cs" />
+    <Compile Include="RepositorioAbstracto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -69,6 +66,10 @@
     <ProjectReference Include="..\Modelo\Modelo.csproj">
       <Project>{c7f74b31-7843-4997-82e0-0e9d00b3df1b}</Project>
       <Name>Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{a815539c-52f2-4d68-8759-ac6cbd74905c}</Project>
+      <Name>Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

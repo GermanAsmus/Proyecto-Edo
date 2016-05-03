@@ -9,9 +9,9 @@ using ControlDependencia;
 
 namespace Servicio
 {
-    public class Conexion : IConexion
+    public class Conexion : IServicio
     {
-        public Buzon BuzonServicio
+        public IBuzon BuzonServicio
         {
             get { return BuzonServicio; }
         }
@@ -21,23 +21,23 @@ namespace Servicio
             get { return CuentaServicio; }
         }
 
-        public void Descargar(int cantidad)
+        public void Descargar(int pCantidad)
         {
             Pop3 pop = new Pop3(CuentaServicio,BuzonServicio);
-            Task.Factory.StartNew(()=> pop.DescargarCabeceras(cantidad));
-            Task.Factory.StartNew(() => pop.DescargarMensaje(cantidad));
+            pop.DescargarCabeceras(pCantidad);
+            pop.DescargarMensaje(pCantidad);
         }
 
         public void Eliminar(int pUid)
         {
             Pop3 pop = new Pop3(CuentaServicio, BuzonServicio);
-            Task.Factory.StartNew(()=> pop.EliminarMensaje(pUid));
+            pop.EliminarMensaje(pUid);
         }
 
-        public void Enviar(Completo mensaje)
+        public void Enviar(Mensaje pMensaje)
         {
             Smtp smtp = new Smtp(CuentaServicio);
-            Task.Factory.StartNew(() => smtp.Enviar(mensaje));
+            smtp.Enviar(pMensaje);
         }
     }
 }

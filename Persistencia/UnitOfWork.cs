@@ -20,7 +20,7 @@ namespace Persistencia
 
         public IRepositorio<DireccionCorreo> RepositorioDireccionCorreo { get; set; }
 
-        public IRepositorio<Completo> RepositorioMensaje { get; set; }
+        public IRepositorio<Mensaje> RepositorioMensaje { get; set; }
 
         public IRepositorio<Servidor> RepositorioServidor { get; set; }
 
@@ -30,16 +30,17 @@ namespace Persistencia
             this.RepositorioAdjunto = new Repositorio<Adjunto>(iContext);
             this.RepositorioCuenta = new Repositorio<Cuenta>(iContext);
             this.RepositorioDireccionCorreo = new Repositorio<DireccionCorreo>(iContext);
-            this.RepositorioMensaje = new Repositorio<Completo>(iContext);
+            this.RepositorioMensaje = new Repositorio<Mensaje>(iContext);
             this.RepositorioServidor = new Repositorio<Servidor>(iContext);
 
 
         }
 
-        public async Task<int> CommitAsync(CancellationToken token)
+        public int Commit()
         {
-            return await iContext.CommitAsync();
+            return iContext.Commit();
         }
+
         public void Dispose()
         {
             Dispose(true);

@@ -22,6 +22,11 @@ namespace Servicio
         }
         public void Enviar(Completo pMensaje)
         {
+            if (pMensaje == null)
+            {
+                throw new ArgumentNullException(nameof(pMensaje));
+            }
+
             if (this.iSmtp == null)
                 throw new ApplicationException("El cliente SMTP no está inicializado");
 

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OpenPop.Mime;
 using System.IO;
 using System.Collections.Concurrent;
 using Modelo;
 using System.Net.Mail;
 
-namespace Servicio
+namespace Utilidades
 {
     public class Descargar
     {
@@ -65,9 +64,9 @@ namespace Servicio
                 DirectoryInfo info = Directory.CreateDirectory(pathString);
                 return info.Name;
             }
-            catch(IOException)
+            catch(IOException bEx)
             {
-                throw new ApplicationException("Problemas creando el Directorio");
+                throw new ApplicationException("Problemas creando el Directorio", bEx);
             }
             catch(UnauthorizedAccessException)
             {
@@ -109,17 +108,17 @@ namespace Servicio
             //devolver todos los nombres que no sean string.Empty
             return nombres.SkipWhile(x => !string.IsNullOrEmpty(x)).ToList();
         }
-        public static string DescargarTextoPlano(Completo pMensaje)
+        public static string DescargarTextoPlano(Mensaje pMensaje)
         {
 
             string destinatario = string.Empty;
 
-            pMensaje.Destinatario.ToList().ForEach(x => destinatario += string.Format("> {0}{1}", x.DireccionId, Environment.NewLine));
+            pMensaje.Destinatario.ToList().ForEach(x => destinatario += string.Format("> {0}{1}", x.DireccionDeCorreo, Environment.NewLine));
 
             object[] param =
            {
                 Environment.NewLine,
-                pMensaje.Remitente,
+                pMensaje.DireccionCorreo.DireccionDeCorreo,
                 pMensaje.Fecha,
                 destinatario,
                 pMensaje.Asunto,
@@ -129,17 +128,17 @@ namespace Servicio
 
             return DescargarArchivo(textoPlano, Path.Combine(DireccionRaiz,"Edo",param[4].ToString()+".txt"));
         }
-        public static string DescargarMensaje(Completo pMensaje)
+        public static string DescargarMensaje(Mensaje pMensaje)
         {
             MailMessage message = new MailMessage()
             {
-                From = new MailAddress(pMensaje.Remitente),
+                From = new MailAddress(pMensaje.DireccionCorreo.DireccionDeCorreo),
                 Subject = pMensaje.Asunto,
                 Body = pMensaje.Contenido
             };
             foreach (var item in pMensaje.Destinatario)
             {
-                message.To.Add(item.DireccionId);
+                message.To.Add(item.DireccionDeCorreo);
             }
             try
             {

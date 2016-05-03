@@ -7,6 +7,8 @@ using System.Text;
 using OpenPop.Pop3;
 using System.Threading.Tasks;
 using Modelo;
+using ControlDependencia;
+using Utilidades;
 
 namespace Servicio
 {
@@ -14,9 +16,9 @@ namespace Servicio
     public class Pop3
     {
         private Cuenta iCuenta;
-        private Buzon iBuzon;
+        private IBuzon iBuzon;
 
-        public Pop3(Cuenta cuentaUsuario, Buzon buzon)
+        public Pop3(Cuenta cuentaUsuario, IBuzon buzon)
         {
             iCuenta = cuentaUsuario;
             iBuzon = buzon;
@@ -31,7 +33,7 @@ namespace Servicio
             var client = new Pop3Client();
             //Conexion y Autorizacion del servidor
             client.Connect(iCuenta.Servidor.HostPOP, iCuenta.Servidor.PuertoPOP, iCuenta.Servidor.SSL);
-            client.Authenticate(iCuenta.DireccionId, iCuenta.Contraseña);
+            client.Authenticate(iCuenta.DireccionCorreo.DireccionDeCorreo, iCuenta.Contraseña);
             client.Reset();
 
             if (i > client.GetMessageCount())
@@ -45,17 +47,17 @@ namespace Servicio
             // Se convierte MessageHeader (entidad del paquete OpenPop.Net), 
             // a Cabecera (entidad propia del modelo)
 
-            Mensaje cabecera = new Cabecera()
+            Mensaje cabecera = new Mensaje()
             {
                 Fecha = t.Date,
                 Asunto = t.Subject,
-                DireccionCorreo = new DireccionCorreo() { DireccionId = t.From.Address },
-                MensajeId = t.MessageId
+                DireccionCorreo = new DireccionCorreo() { DireccionDeCorreo = t.From.Address },
+                CodigoMensaje = t.MessageId
             };
-            t.To.ForEach(x => cabecera.Destinatario.Add(new DireccionCorreo() { DireccionId = x.Address }));
+            t.To.ForEach(x => cabecera.Destinatario.Add(new DireccionCorreo() { DireccionDeCorreo = x.Address }));
 
             // Se agrega la cabecera al buzon
-            iBuzon.agregarCabecera(cabecera);
+            iBuzon.AgregarCabecera(cabecera);
         }
         /// <summary>
         /// Se descarga la n <paramref name="cantiad"/> de cabeceras de la cuenta asociada.
@@ -65,7 +67,8 @@ namespace Servicio
         {
             try
             {
-                Parallel.For(0, cantidad, new ParallelOptions() { MaxDegreeOfParallelism = 1 }, i => doGetMessageHeader(i));
+                //revisar
+                Parallel.For(0, cantidad, i => doGetMessageHeader(i));
             }
             catch (Exception)
             {
@@ -81,7 +84,7 @@ namespace Servicio
             var client = new Pop3Client();
             //Conexion y Autorizacion del servidor
             client.Connect(iCuenta.Servidor.HostPOP, iCuenta.Servidor.PuertoPOP, iCuenta.Servidor.SSL);
-            client.Authenticate(iCuenta.DireccionId, iCuenta.Contraseña);
+            client.Authenticate(iCuenta.DireccionCorreo.DireccionDeCorreo, iCuenta.Contraseña);
             client.Reset();
 
             if (i > client.GetMessageCount())
@@ -91,21 +94,21 @@ namespace Servicio
 
             //Desconexion del servidor
             client.Disconnect();
-            Mensaje mensaje = new Completo()
+            Mensaje mensaje = new Mensaje()
             {
                 Fecha = t.Headers.Date,
                 Asunto = t.Headers.Subject,
-                DireccionCorreo = new DireccionCorreo() { DireccionId = t.Headers.From.Address },
-                MensajeId = t.Headers.MessageId,
+                DireccionCorreo = new DireccionCorreo() { DireccionDeCorreo = t.Headers.From.Address },
+                CodigoMensaje = t.Headers.MessageId,
                 Contenido = t.MessagePart.GetBodyAsText()
             };
-            t.Headers.To.ForEach(x => mensaje.Destinatario.Add(new DireccionCorreo() { DireccionId = x.Address }));
+            t.Headers.To.ForEach(x => mensaje.Destinatario.Add(new DireccionCorreo() { DireccionDeCorreo = x.Address }));
             List<InfoAdjunto> listaAdjuntos = new List<InfoAdjunto>();
             t.FindAllAttachments().ForEach(x => listaAdjuntos.Add(new InfoAdjunto() { Nombre = x.FileName, Contenido = x.Body }));
-            Descargar.DescargarAdjunto(listaAdjuntos).ForEach(x => ((Completo)mensaje).Adjuntos.Add(new Adjunto() { AdjuntoId = x}));
+            Descargar.DescargarAdjunto(listaAdjuntos).ForEach(x => mensaje.Adjuntos.Add(new Adjunto() { CodigoAdjunto = x}));
 
             //Se agrega el mensaje al buzon
-            iBuzon.agregarMensaje(mensaje);
+            iBuzon.AgregarMensaje(mensaje);
         }
         /// <summary>
         /// Se descarga la n <paramref name="cantiad"/> de mensajes de la cuenta asociada.
@@ -115,7 +118,7 @@ namespace Servicio
         {
             try
             {
-                Parallel.For(0, pCantidad, new ParallelOptions() { MaxDegreeOfParallelism = 2 }, i => doGetMessage(i));
+                Parallel.For(0, pCantidad, i => doGetMessage(i));
             }
             catch (Exception)
             {
@@ -134,7 +137,7 @@ namespace Servicio
                 var client = new Pop3Client();
                 //Conexion y Autorizacion del servidor
                 client.Connect(iCuenta.Servidor.HostPOP, iCuenta.Servidor.PuertoPOP, iCuenta.Servidor.SSL);
-                client.Authenticate(iCuenta.DireccionId, iCuenta.Contraseña);
+                client.Authenticate(iCuenta.DireccionCorreo.DireccionDeCorreo, iCuenta.Contraseña);
                 client.Reset();
                 //Eliminacion del mensaje en el servidor
                 client.DeleteMessage(id);

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class DireccionCorreo
+    public class DireccionCorreo : IEntidadModelo
     {
-        /// <summary>
-        /// Direccion de Correo
-        /// </summary>
-        public string DireccionId { get; set; }
+        public int Id { get; set; }
 
-        public string CuentaId { get; set; }
+        public string DireccionDeCorreo { get; set; }
+
+        public int CuentaId { get; set; }
         public Cuenta Cuenta { get; set; }
     
         public virtual ICollection<Mensaje> MensajesDestinatario { get; set; }

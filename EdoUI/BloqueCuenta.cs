@@ -8,18 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelo;
+using ControlDependencia;
 
 namespace EdoUI
 {
     public partial class BloqueCuenta : UserControl
     {
+        private IControlador controlador;
         private BandejaMensajes bandeja;
-        public BloqueCuenta(Cuenta pCuenta)
+        public BloqueCuenta(Cuenta pCuenta, ref IControlador pControlador)
         {
             InitializeComponent();
-            toolStripLabelNombre.Text = pCuenta.CuentaId;
+            this.controlador = pControlador;
             bandeja = new BandejaMensajes(new Buzon());
-
         }
 
         private void toolStripButtonDesplegar_Click(object sender, EventArgs e)
@@ -27,5 +28,11 @@ namespace EdoUI
             this.Dispose(true);
         }
 
+        private void toolStripButtonRedactar_Click(object sender, EventArgs e)
+        {
+            TabPage tab = new TabPage("Nuevo Mensaje");
+            tab.Controls.Add(new ControlMensaje(ref controlador) { Dock = DockStyle.Fill });
+            tabControlMensajes.TabPages.Add(tab);
+        }
     }
 }

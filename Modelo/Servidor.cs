@@ -2,8 +2,9 @@
 
 namespace Modelo
 {
-    public class Servidor
+    public class Servidor : IEntidadModelo
     {
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public string HostSMTP { get; set; }
         public string HostPOP { get; set; }
@@ -16,6 +17,5 @@ namespace Modelo
         {
             Cuenta = new List<Cuenta>();
         }
-
     }
 }

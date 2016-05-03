@@ -47,7 +47,7 @@ namespace EdoUI
             else
             {
                 nuevaCuenta.ServidorId = comboBoxServidores.SelectedItem.ToString();
-                var servicioCuenta = (RepositorioBaseCuenta)controlador.iGestor.ObtenerServicio(typeof(Cuenta));
+                var servicioCuenta = (RepositorioCuenta)controlador.iGestor.ObtenerServicio(typeof(Cuenta));
                 await servicioCuenta.Agregar(nuevaCuenta, servidores.First(x => x.Nombre == nuevaCuenta.ServidorId));
                 Parent.Dispose();
             }

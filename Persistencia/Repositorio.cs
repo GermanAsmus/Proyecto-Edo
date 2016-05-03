@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using ControlDependencia;
 using System.Data.Entity;
 
@@ -22,37 +19,37 @@ namespace Persistencia
             iDbSet = context.Set<TEntity>();
         }
 
-        public Task<int> Agregar(TEntity entity)
+        public int Agregar(TEntity entity)
         {
             iDbSet.Add(entity);
-            return iEntities.SaveChangesAsync();
+            return iEntities.SaveChanges();
         }
 
-        public Task<int> Editar(TEntity entity)
+        public int Editar(TEntity entity)
         {
             iEntities.Entry(entity).State = EntityState.Modified;
-            return iEntities.SaveChangesAsync();
+            return iEntities.SaveChanges();
         }
 
-        public Task<int> Eliminar(TEntity entity)
+        public int Eliminar(TEntity entity)
         {
             iDbSet.Remove(entity);
-            return iEntities.SaveChangesAsync();
+            return iEntities.SaveChanges();
         }
 
-        public async Task<IEnumerable<TEntity>> EncontrarAsync(Expression<Func<TEntity, bool>> criterio, CancellationToken token)
+        public IEnumerable<TEntity> Encontrar(Expression<Func<TEntity, bool>> criterio)
         {
-            return await iDbSet.Where(criterio).ToListAsync(token);
+            return iDbSet.Where(criterio).ToList();
         }
 
-        public async Task<TEntity> ObtenerAsync(Expression<Func<TEntity, bool>> criterio, CancellationToken token)
+        public TEntity Obtener(Expression<Func<TEntity, bool>> criterio)
         {
-           return await iDbSet.SingleOrDefaultAsync(criterio, token);
+           return iDbSet.SingleOrDefault(criterio);
         }
 
-        public async Task<IEnumerable<TEntity>> ObtenerTodosAsync(CancellationToken token)
+        public IEnumerable<TEntity> ObtenerTodos()
         {
-            return await iDbSet.ToListAsync(token);
+            return iDbSet.ToList();
         }
     }
 }

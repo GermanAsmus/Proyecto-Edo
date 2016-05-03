@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
+﻿using Modelo;
 
 namespace ControlDependencia
 {
-    public interface IServicio<T> : IServicioRaiz where T : class
+    public interface IServicio
     {
-        IRepositorio<T> Repositorio { get; }
+        Cuenta CuentaServicio { get; }
+        IBuzon BuzonServicio { get; }
 
-        Task<int> Editar(T entidad);
-        Task Eliminar(Expression<Func<T, bool>> criterio);
-        Task<T> Obtener(Expression<Func<T, bool>> criterio);
-        Task<IEnumerable<T>> ObtenerTodos();
-        Task<IEnumerable<T>> Encontrar(Expression<Func<T, bool>> criterio);
+        void Enviar(Mensaje mensaje);
+        void Descargar(int cantidad);
+        void Eliminar(int pUid);
     }
 }

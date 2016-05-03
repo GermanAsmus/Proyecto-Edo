@@ -44,11 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adjunto.cs" />
-    <Compile Include="Buzon.cs" />
-    <Compile Include="Cabecera.cs" />
-    <Compile Include="Completo.cs" />
     <Compile Include="Cuenta.cs" />
     <Compile Include="DireccionCorreo.cs" />
+    <Compile Include="IEntidadModelo.cs" />
     <Compile Include="Mensaje.cs" />
     <Compile Include="Servidor.cs" />
   </ItemGroup>

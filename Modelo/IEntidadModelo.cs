@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class Cabecera : Mensaje
+    public interface IEntidadModelo
     {
+        int Id { get; set; }
     }
 }

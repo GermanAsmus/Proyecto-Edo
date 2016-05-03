@@ -30,10 +30,11 @@ namespace EdoUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BloqueCuenta));
             this.tableLayoutPanelContenedorBandeja = new System.Windows.Forms.TableLayoutPanel();
             this.toolStripCabecera = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabelNombre = new System.Windows.Forms.ToolStripLabel();
-            this.tableLayoutPanelMensajes = new System.Windows.Forms.TableLayoutPanel();
+            this.toolStripButtonRedactar = new System.Windows.Forms.ToolStripButton();
+            this.tabControlMensajes = new System.Windows.Forms.TabControl();
             this.tableLayoutPanelContenedorBandeja.SuspendLayout();
             this.toolStripCabecera.SuspendLayout();
             this.SuspendLayout();
@@ -43,7 +44,7 @@ namespace EdoUI
             this.tableLayoutPanelContenedorBandeja.ColumnCount = 1;
             this.tableLayoutPanelContenedorBandeja.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelContenedorBandeja.Controls.Add(this.toolStripCabecera, 0, 0);
-            this.tableLayoutPanelContenedorBandeja.Controls.Add(this.tableLayoutPanelMensajes, 0, 1);
+            this.tableLayoutPanelContenedorBandeja.Controls.Add(this.tabControlMensajes, 0, 1);
             this.tableLayoutPanelContenedorBandeja.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelContenedorBandeja.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelContenedorBandeja.Name = "tableLayoutPanelContenedorBandeja";
@@ -60,32 +61,31 @@ namespace EdoUI
             this.toolStripCabecera.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripCabecera.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripCabecera.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabelNombre});
+            this.toolStripButtonRedactar});
             this.toolStripCabecera.Location = new System.Drawing.Point(0, 0);
             this.toolStripCabecera.Name = "toolStripCabecera";
             this.toolStripCabecera.Size = new System.Drawing.Size(200, 25);
             this.toolStripCabecera.TabIndex = 0;
             this.toolStripCabecera.Text = "toolStrip1";
             // 
-            // toolStripLabelNombre
+            // toolStripButtonRedactar
             // 
-            this.toolStripLabelNombre.Name = "toolStripLabelNombre";
-            this.toolStripLabelNombre.Size = new System.Drawing.Size(92, 22);
-            this.toolStripLabelNombre.Text = "Nombre Cuenta";
+            this.toolStripButtonRedactar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonRedactar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRedactar.Image")));
+            this.toolStripButtonRedactar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRedactar.Name = "toolStripButtonRedactar";
+            this.toolStripButtonRedactar.Size = new System.Drawing.Size(57, 22);
+            this.toolStripButtonRedactar.Text = "Redactar";
+            this.toolStripButtonRedactar.Click += new System.EventHandler(this.toolStripButtonRedactar_Click);
             // 
-            // tableLayoutPanelMensajes
+            // tabControlMensajes
             // 
-            this.tableLayoutPanelMensajes.AutoScroll = true;
-            this.tableLayoutPanelMensajes.BackColor = System.Drawing.Color.DimGray;
-            this.tableLayoutPanelMensajes.ColumnCount = 1;
-            this.tableLayoutPanelMensajes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanelMensajes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMensajes.Location = new System.Drawing.Point(3, 28);
-            this.tableLayoutPanelMensajes.Name = "tableLayoutPanelMensajes";
-            this.tableLayoutPanelMensajes.RowCount = 1;
-            this.tableLayoutPanelMensajes.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelMensajes.Size = new System.Drawing.Size(194, 129);
-            this.tableLayoutPanelMensajes.TabIndex = 1;
+            this.tabControlMensajes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlMensajes.Location = new System.Drawing.Point(3, 28);
+            this.tabControlMensajes.Name = "tabControlMensajes";
+            this.tabControlMensajes.SelectedIndex = 0;
+            this.tabControlMensajes.Size = new System.Drawing.Size(194, 129);
+            this.tabControlMensajes.TabIndex = 1;
             // 
             // BloqueCuenta
             // 
@@ -106,7 +106,7 @@ namespace EdoUI
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelContenedorBandeja;
         private System.Windows.Forms.ToolStrip toolStripCabecera;
-        private System.Windows.Forms.ToolStripLabel toolStripLabelNombre;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMensajes;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRedactar;
+        private System.Windows.Forms.TabControl tabControlMensajes;
     }
 }

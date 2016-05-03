@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class Cuenta
+    public class Cuenta : IEntidadModelo
     {
+        public int Id { get; set; }
         //nombre de la cuenta
-        public string CuentaId { get; set; }
-
+        public string Nombre { get; set; }
         public string Contraseña { get; set; }
 
-        public string ServidorId { get; set; }
+        public int ServidorId { get; set; }
         public Servidor Servidor { get; set; }
 
         //direccion de correo de la cuenta
-        public string DireccionId { get; set; }
+        public int DireccionId { get; set; }
         public DireccionCorreo DireccionCorreo { get; set; }
 
         public virtual ICollection<Mensaje> Mensajes { get; set; }

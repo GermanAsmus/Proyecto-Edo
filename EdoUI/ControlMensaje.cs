@@ -14,11 +14,20 @@ namespace EdoUI
 {
     public partial class ControlMensaje : UserControl
     {
-        IServicio<Completo> servicioMensaje;
-        public ControlMensaje(IServicio<Completo> servicio)
+        private IControlador controlador;
+        IRepositorioBase<Completo> servicioMensaje;
+        public ControlMensaje(ref IControlador pControlador)
         {
             InitializeComponent();
-            servicioMensaje = servicio;
+            controlador = pControlador;
+            servicioMensaje = (IRepositorioBase<Completo>)controlador.iGestor.ObtenerServicio(typeof(Completo));
+        }
+
+        private void toolStripButtonCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(this, "¿Está seguro de que quiere cerrar esta ventana?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.OK)
+                Parent.Dispose();
         }
     }
 }

@@ -11,9 +11,9 @@ using ControlDependencia;
 
 namespace EdoUI
 {
-    public delegate void ContainerChangedEventHandler(object sender, EventArgs e);
+    //public delegate void ContainerChangedEventHandler(object sender, EventArgs e);
 
-    public delegate void ContainerDisposedEventHandler(object sender, EventArgs e);
+    //public delegate void ContainerDisposedEventHandler(object sender, EventArgs e);
 
 
     public partial class PanelPrincipal : UserControl

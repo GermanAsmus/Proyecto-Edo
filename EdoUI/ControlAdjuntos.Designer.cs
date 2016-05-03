@@ -90,6 +90,7 @@
             this.toolStripButtonImportar.Name = "toolStripButtonImportar";
             this.toolStripButtonImportar.Size = new System.Drawing.Size(57, 22);
             this.toolStripButtonImportar.Text = "Importar";
+            this.toolStripButtonImportar.Click += new System.EventHandler(this.toolStripButtonImportar_Click);
             // 
             // toolStripButtonEliminar
             // 
@@ -100,6 +101,7 @@
             this.toolStripButtonEliminar.Name = "toolStripButtonEliminar";
             this.toolStripButtonEliminar.Size = new System.Drawing.Size(54, 22);
             this.toolStripButtonEliminar.Text = "Eliminar";
+            this.toolStripButtonEliminar.Click += new System.EventHandler(this.toolStripButtonEliminar_Click);
             // 
             // checkedListBoxAdjuntos
             // 
@@ -110,6 +112,7 @@
             this.checkedListBoxAdjuntos.Name = "checkedListBoxAdjuntos";
             this.checkedListBoxAdjuntos.Size = new System.Drawing.Size(240, 219);
             this.checkedListBoxAdjuntos.TabIndex = 11;
+            this.checkedListBoxAdjuntos.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxAdjuntos_SelectedIndexChanged);
             // 
             // ControlAdjuntos
             // 

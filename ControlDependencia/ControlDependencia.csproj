@@ -43,15 +43,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAgregarCompuesto.cs" />
-    <Compile Include="IAgregar.cs" />
-    <Compile Include="IAgregarSimple.cs" />
+    <Compile Include="IBuzon.cs" />
     <Compile Include="IControlador.cs" />
-    <Compile Include="IGestor.cs" />
+    <Compile Include="ICriterio.cs" />
+    <Compile Include="IGestorRespositorios.cs" />
     <Compile Include="IRepositorio.cs" />
-    <Compile Include="IConexion.cs" />
     <Compile Include="IServicio.cs" />
-    <Compile Include="IServicioRaiz.cs" />
+    <Compile Include="IRepositorioRaiz.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="IValidar.cs" />
   </ItemGroup>

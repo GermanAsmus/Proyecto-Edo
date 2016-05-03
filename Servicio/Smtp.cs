@@ -4,40 +4,32 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
+using ControlDependencia;
 
 namespace Servicio
 {
-    public class Smtp
+    public sealed class Smtp : IProtocoloTransmision
     {
-        private SmtpClient iSmtp;
-
-        public Smtp(Cuenta cuenta)
-        {
-            iSmtp = new SmtpClient(cuenta.Servidor.HostSMTP, cuenta.Servidor.PuertoSMTP);
-            iSmtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            iSmtp.EnableSsl = cuenta.Servidor.SSL;
-            iSmtp.UseDefaultCredentials = false;
-            iSmtp.Credentials = new NetworkCredential(cuenta.DireccionId, cuenta.Contraseña);
-
-        }
-        public void Enviar(Completo pMensaje)
+        public void Enviar(Mensaje pMensaje, Cuenta pCuenta)
         {
             if (pMensaje == null)
-            {
                 throw new ArgumentNullException(nameof(pMensaje));
-            }
 
-            if (this.iSmtp == null)
-                throw new ApplicationException("El cliente SMTP no está inicializado");
+            SmtpClient iSmtp = new SmtpClient(pCuenta.Servidor.HostSMTP, pCuenta.Servidor.PuertoSMTP);
+            iSmtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            iSmtp.EnableSsl = pCuenta.Servidor.SSL;
+            iSmtp.UseDefaultCredentials = false;
+            iSmtp.Credentials = new NetworkCredential(pCuenta.DireccionCorreo.DireccionDeCorreo, pCuenta.Contraseña);
+
 
             MailMessage mensaje = new MailMessage()
             {
-                From = new MailAddress(pMensaje.Remitente),
+                From = new MailAddress(pMensaje.DireccionCorreo.DireccionDeCorreo),
                 Subject = pMensaje.Asunto,
                 Body = pMensaje.Contenido,
             };
-            pMensaje.Adjuntos.ToList().ForEach(x => mensaje.Attachments.Add(new Attachment(x.AdjuntoId)));
-            pMensaje.Destinatario.ToList().ForEach(x => mensaje.To.Add(x.DireccionId));
+            pMensaje.Adjuntos.ToList().ForEach(x => mensaje.Attachments.Add(new Attachment(x.CodigoAdjunto)));
+            pMensaje.Destinatario.ToList().ForEach(x => mensaje.To.Add(x.DireccionDeCorreo));
 
             iSmtp.Send(mensaje);
         }

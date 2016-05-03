@@ -20,7 +20,7 @@ namespace EdoUI
         {
             InitializeComponent();
             this.controlador = pControlador;
-            bandeja = new BandejaMensajes(new Buzon());
+            //bandeja = new BandejaMensajes(new Buzon());
         }
 
         private void toolStripButtonDesplegar_Click(object sender, EventArgs e)

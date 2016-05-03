@@ -19,7 +19,7 @@ namespace Utilidades
             if (string.IsNullOrWhiteSpace(pathString))
                 throw new ArgumentException("PathString");
 
-            if (stream==Stream.Null)
+            if (stream == Stream.Null)
                 throw new ArgumentException("Stream");
 
             string fileName = string.Empty;
@@ -64,11 +64,11 @@ namespace Utilidades
                 DirectoryInfo info = Directory.CreateDirectory(pathString);
                 return info.Name;
             }
-            catch(IOException bEx)
+            catch (IOException bEx)
             {
                 throw new ApplicationException("Problemas creando el Directorio", bEx);
             }
-            catch(UnauthorizedAccessException)
+            catch (UnauthorizedAccessException)
             {
                 throw new ApplicationException("La creacion del directorio fue cancelada por falta de permisos");
             }
@@ -80,33 +80,33 @@ namespace Utilidades
         public static List<string> DescargarAdjunto(List<InfoAdjunto> pAdjuntos)
         {
             //solo si existen adjuntos
-            if (pAdjuntos.Count == 0)
-                throw new ArgumentException();
+            if (pAdjuntos.Count==0)
+                return new List<string>() { };
 
-            string pathString = string.Empty;
-            ConcurrentBag<string> nombres = new ConcurrentBag<string>();
+                string pathString = string.Empty;
+                IProducerConsumerCollection<string> nombres = new ConcurrentBag<string>();
 
-            try
-            {
-                pathString = CrearDirectorio("Adjuntos");
-
-            }
-            catch(ApplicationException)
-            {
-                pathString = Path.Combine(DireccionRaiz, "Edo", "Adjuntos");
-            }
-            finally
-            {
-                Parallel.ForEach(pAdjuntos, (InfoAdjunto attachmentMessagePart) =>
+                try
                 {
-                    pathString = Path.Combine(pathString, attachmentMessagePart.Nombre);
+                    pathString = CrearDirectorio("Adjuntos");
 
-                    nombres.Add(DescargarArchivo(new MemoryStream(attachmentMessagePart.Contenido), pathString));
-                });
-                
-            }
-            //devolver todos los nombres que no sean string.Empty
-            return nombres.SkipWhile(x => !string.IsNullOrEmpty(x)).ToList();
+                }
+                catch (ApplicationException)
+                {
+                    pathString = Path.Combine(DireccionRaiz, "Edo", "Adjuntos");
+                }
+                finally
+                {
+                    string pathAux = pathString;
+                    foreach (InfoAdjunto attachmentMessagePart in pAdjuntos)
+                    {
+                        pathAux = Path.Combine(pathString, attachmentMessagePart.Nombre);
+                        nombres.TryAdd(DescargarArchivo(new MemoryStream(attachmentMessagePart.Contenido), pathAux));
+                    }
+
+                }
+                //devolver todos los nombres que no sean string.Empty
+                return nombres.SkipWhile(x => !string.IsNullOrEmpty(x)).ToList();
         }
         public static string DescargarTextoPlano(Mensaje pMensaje)
         {
@@ -126,7 +126,7 @@ namespace Utilidades
             };
             string textoPlano = string.Format(@"Remitente: {1},{0}Fecha: {2},{0}Destinatario:{0}{3},{0}Asunto: {4},{0}Cuerpo: {5}", param);
 
-            return DescargarArchivo(textoPlano, Path.Combine(DireccionRaiz,"Edo",param[4].ToString()+".txt"));
+            return DescargarArchivo(textoPlano, Path.Combine(DireccionRaiz, "Edo", param[4].ToString() + ".txt"));
         }
         public static string DescargarMensaje(Mensaje pMensaje)
         {

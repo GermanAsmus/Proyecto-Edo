@@ -82,6 +82,10 @@
       <Project>{3fa000c1-478d-4b59-b1f0-076427d48ffc}</Project>
       <Name>Servicio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{a815539c-52f2-4d68-8759-ac6cbd74905c}</Project>
+      <Name>Utilidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

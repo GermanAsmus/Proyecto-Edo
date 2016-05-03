@@ -47,6 +47,9 @@
     <Compile Include="IControlador.cs" />
     <Compile Include="ICriterio.cs" />
     <Compile Include="IGestorRespositorios.cs" />
+    <Compile Include="IProtocolo.cs" />
+    <Compile Include="IProtocoloRecepcion.cs" />
+    <Compile Include="IProtocoloTransmision.cs" />
     <Compile Include="IRepositorio.cs" />
     <Compile Include="IServicio.cs" />
     <Compile Include="IRepositorioRaiz.cs" />

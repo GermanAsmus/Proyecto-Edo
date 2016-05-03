@@ -41,15 +41,18 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pop3.cs" />
-    <Compile Include="Conexion.cs" />
+    <Compile Include="Servicio.cs" />
+    <Compile Include="Protocolo.cs" />
     <Compile Include="Smtp.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="OpenPop">
-      <HintPath>..\..\..\..\..\Downloads\OpenPop.NET 2.0.5\OpenPop.NET 2.0.5\binaries\signed (strong name)\OpenPop.dll</HintPath>
+    <Reference Include="OpenPop, Version=2.0.6.1120, Culture=neutral, PublicKeyToken=6bdb97f144b7efc8, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

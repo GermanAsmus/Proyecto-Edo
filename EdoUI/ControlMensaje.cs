@@ -15,12 +15,12 @@ namespace EdoUI
     public partial class ControlMensaje : UserControl
     {
         private IControlador controlador;
-        IRepositorioBase<Completo> servicioMensaje;
+        IRepositorio<Mensaje> servicioMensaje;
         public ControlMensaje(ref IControlador pControlador)
         {
             InitializeComponent();
             controlador = pControlador;
-            servicioMensaje = (IRepositorioBase<Completo>)controlador.iGestor.ObtenerServicio(typeof(Completo));
+            //servicioMensaje = (IRepositorioBase<Completo>)controlador.iGestor.ObtenerServicio(typeof(Completo));
         }
 
         private void toolStripButtonCancelar_Click(object sender, EventArgs e)

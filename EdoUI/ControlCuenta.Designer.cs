@@ -96,7 +96,7 @@
             this.textBoxContrasenia2.PasswordChar = '*';
             this.textBoxContrasenia2.Size = new System.Drawing.Size(244, 20);
             this.textBoxContrasenia2.TabIndex = 8;
-            this.textBoxContrasenia2.TextChanged += new System.EventHandler(this.textBoxContrasenia2_TextChanged);
+            //this.textBoxContrasenia2.TextChanged += new System.EventHandler(this.textBoxContrasenia2_TextChanged);
             // 
             // labelContrasenia2
             // 
@@ -134,7 +134,7 @@
             this.textBoxDireccion.Name = "textBoxDireccion";
             this.textBoxDireccion.Size = new System.Drawing.Size(244, 20);
             this.textBoxDireccion.TabIndex = 4;
-            this.textBoxDireccion.TextChanged += new System.EventHandler(this.textBoxDireccion_TextChanged);
+            //this.textBoxDireccion.TextChanged += new System.EventHandler(this.textBoxDireccion_TextChanged);
             // 
             // labelDireccion
             // 
@@ -167,7 +167,7 @@
             this.toolStripButtonAceptar.Name = "toolStripButtonAceptar";
             this.toolStripButtonAceptar.Size = new System.Drawing.Size(52, 22);
             this.toolStripButtonAceptar.Text = "Aceptar";
-            this.toolStripButtonAceptar.Click += new System.EventHandler(this.toolStripButtonAceptar_Click);
+            //this.toolStripButtonAceptar.Click += new System.EventHandler(this.toolStripButtonAceptar_Click);
             // 
             // labelNombre
             // 
@@ -186,7 +186,7 @@
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(244, 20);
             this.textBoxNombre.TabIndex = 2;
-            this.textBoxNombre.TextChanged += new System.EventHandler(this.textBoxNombre_TextChanged);
+            //this.textBoxNombre.TextChanged += new System.EventHandler(this.textBoxNombre_TextChanged);
             // 
             // comboBoxServidores
             // 

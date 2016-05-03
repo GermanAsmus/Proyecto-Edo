@@ -21,7 +21,7 @@ namespace Utilidades
         {
             if (!Cabeceras.TryAdd(pCabecera))
                 throw new Exception();
-            else
+            else 
                 BagChanged();
         }
         public void AgregarMensaje(Mensaje pMensaje)

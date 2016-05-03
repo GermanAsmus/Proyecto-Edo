@@ -78,7 +78,7 @@
             this.toolStripButtonNuevaCuenta.Name = "toolStripButtonNuevaCuenta";
             this.toolStripButtonNuevaCuenta.Size = new System.Drawing.Size(86, 22);
             this.toolStripButtonNuevaCuenta.Text = "Nueva Cuenta";
-            this.toolStripButtonNuevaCuenta.Click += new System.EventHandler(this.toolStripButtonNuevaCuenta_Click);
+            //this.toolStripButtonNuevaCuenta.Click += new System.EventHandler(this.toolStripButtonNuevaCuenta_Click);
             // 
             // toolStripComboBoxCuenta
             // 
@@ -87,8 +87,8 @@
             this.toolStripComboBoxCuenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolStripComboBoxCuenta.Name = "toolStripComboBoxCuenta";
             this.toolStripComboBoxCuenta.Size = new System.Drawing.Size(121, 25);
-            this.toolStripComboBoxCuenta.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxCuenta_SelectedIndexChanged);
-            this.toolStripComboBoxCuenta.Click += new System.EventHandler(this.toolStripComboBoxCuenta_Click);
+            //this.toolStripComboBoxCuenta.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxCuenta_SelectedIndexChanged);
+            //this.toolStripComboBoxCuenta.Click += new System.EventHandler(this.toolStripComboBoxCuenta_Click);
             // 
             // toolStripLabel1
             // 

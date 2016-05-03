@@ -36,7 +36,7 @@ namespace EdoUI
             InitializeComponent();
             Mensaje = pMensaje;
             this.labelAsunto.Text = Mensaje.Asunto;
-            this.labelRemitente.Text = Mensaje.Remitente;
+            //this.labelRemitente.Text = Mensaje.Remitente;
             this.Estado = "Descargando";
         }
     }

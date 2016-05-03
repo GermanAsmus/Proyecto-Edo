@@ -7,8 +7,8 @@ namespace ControlDependencia
         Cuenta CuentaServicio { get; }
         IBuzon BuzonServicio { get; }
 
-        void Enviar(Mensaje mensaje);
-        void Descargar(int cantidad);
-        void Eliminar(int pUid);
+        void Enviar(Mensaje pMensaje,string pNombreProtocolo);
+        void Descargar(int pCantidad,string pNombreProtocolo);
+        void Eliminar(int pUid,string pNombreProtocolo);
     }
 }

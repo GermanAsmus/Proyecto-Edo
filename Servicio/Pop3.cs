@@ -9,144 +9,134 @@ using System.Threading.Tasks;
 using Modelo;
 using ControlDependencia;
 using Utilidades;
+using OpenPop.Mime.Header;
+using OpenPop.Mime;
 
 namespace Servicio
 {
 
-    public class Pop3
+    public class Pop3 : IProtocoloRecepcion
     {
-        private Cuenta iCuenta;
-        private IBuzon iBuzon;
+        public Action MensajeDescargado;
+        public Cuenta CuentaUsuario { get; }
 
-        public Pop3(Cuenta cuentaUsuario, IBuzon buzon)
+        public IBuzon Buzon { get; }
+
+        public Pop3(Cuenta pCuentaUsuario, Buzon pBuzon)
         {
-            iCuenta = cuentaUsuario;
-            iBuzon = buzon;
+            CuentaUsuario = pCuentaUsuario;
+            pBuzon.BagChanged += Descarga;
+            Buzon = pBuzon;
         }
-        /// <summary>
-        /// Se descarga una cabecera particular respectiva al id <paramref name="i"/>
-        /// </summary>
-        /// <param name="i">identificador del mensaje</param>
-        private void doGetMessageHeader(int i)
+        private void Descarga()
         {
+            MensajeDescargado();
+        }
 
-            var client = new Pop3Client();
-            //Conexion y Autorizacion del servidor
-            client.Connect(iCuenta.Servidor.HostPOP, iCuenta.Servidor.PuertoPOP, iCuenta.Servidor.SSL);
-            client.Authenticate(iCuenta.DireccionCorreo.DireccionDeCorreo, iCuenta.Contraseña);
-            client.Reset();
+        private void ObtenerCabecera(int pId, Pop3Client pCliente)
+        {
+            MessageHeader iCabecera = pCliente.GetMessageHeaders(pId + 1);
+            this.ToMensaje(iCabecera);
+        }
+        private void ObtenerMensaje(int pId, Pop3Client pCliente)
+        {
+            var iMensaje = pCliente.GetMessage(pId + 1);
+            this.ToMensaje(iMensaje);
+        }
 
-            if (i > client.GetMessageCount())
-                throw new TaskCanceledException("fuera del indice");
-
-            var t = client.GetMessageHeaders(i + 1);
-            //Desconexion del servidor
-            client.Disconnect();
-
-
-            // Se convierte MessageHeader (entidad del paquete OpenPop.Net), 
-            // a Cabecera (entidad propia del modelo)
-
-            Mensaje cabecera = new Mensaje()
+        private void ToMensaje(MessageHeader pMensaje)
+        {
+            Mensaje iMensajeCabecera = iMensajeCabecera = new Mensaje()
             {
-                Fecha = t.Date,
-                Asunto = t.Subject,
-                DireccionCorreo = new DireccionCorreo() { DireccionDeCorreo = t.From.Address },
-                CodigoMensaje = t.MessageId
+                Fecha = pMensaje.Date,
+                Asunto = pMensaje.Subject,
+                DireccionCorreo = new DireccionCorreo() { DireccionDeCorreo = pMensaje.From.Address },
+                CodigoMensaje = pMensaje.MessageId
             };
-            t.To.ForEach(x => cabecera.Destinatario.Add(new DireccionCorreo() { DireccionDeCorreo = x.Address }));
-
-            // Se agrega la cabecera al buzon
-            iBuzon.AgregarCabecera(cabecera);
+            pMensaje.To.ForEach(x => iMensajeCabecera.Destinatario.Add(new DireccionCorreo() { DireccionDeCorreo = x.Address }));
+            Buzon.AgregarCabecera(iMensajeCabecera);
         }
-        /// <summary>
-        /// Se descarga la n <paramref name="cantiad"/> de cabeceras de la cuenta asociada.
-        /// </summary>
-        /// <param name="cantidad">cantidad de cabeceras a descargar</param>
-        public void DescargarCabeceras(int cantidad)
+
+        private void ToMensaje(Message pMensaje)
         {
-            try
-            {
-                //revisar
-                Parallel.For(0, cantidad, i => doGetMessageHeader(i));
-            }
-            catch (Exception)
-            {
-                //
-            }
-        }
-        /// <summary>
-        /// Se descarga un mensaje particular respectivo al id <paramref name="i"/>.
-        /// </summary>
-        /// <param name="i">identificador del mensaje</param>
-        private void doGetMessage(int i)
-        {
-            var client = new Pop3Client();
-            //Conexion y Autorizacion del servidor
-            client.Connect(iCuenta.Servidor.HostPOP, iCuenta.Servidor.PuertoPOP, iCuenta.Servidor.SSL);
-            client.Authenticate(iCuenta.DireccionCorreo.DireccionDeCorreo, iCuenta.Contraseña);
-            client.Reset();
+            if (pMensaje == null)
+                throw new Exception();
 
-            if (i > client.GetMessageCount())
-                throw new TaskCanceledException("fuera del indice");
-
-            var t = client.GetMessage(i + 1);
-
-            //Desconexion del servidor
-            client.Disconnect();
             Mensaje mensaje = new Mensaje()
             {
-                Fecha = t.Headers.Date,
-                Asunto = t.Headers.Subject,
-                DireccionCorreo = new DireccionCorreo() { DireccionDeCorreo = t.Headers.From.Address },
-                CodigoMensaje = t.Headers.MessageId,
-                Contenido = t.MessagePart.GetBodyAsText()
+                Fecha = pMensaje.Headers.Date,
+                Asunto = pMensaje.Headers.Subject,
+                DireccionCorreo = new DireccionCorreo() { DireccionDeCorreo = pMensaje.Headers.From.Address },
+                CodigoMensaje = pMensaje.Headers.MessageId,
             };
-            t.Headers.To.ForEach(x => mensaje.Destinatario.Add(new DireccionCorreo() { DireccionDeCorreo = x.Address }));
+
+            if (pMensaje.MessagePart.Body != null)
+                mensaje.Contenido = pMensaje.MessagePart.GetBodyAsText();
+            else
+                mensaje.Contenido = string.Empty;
+
+
+            pMensaje.Headers.To.ForEach(x => mensaje.Destinatario.Add(new DireccionCorreo() { DireccionDeCorreo = x.Address }));
             List<InfoAdjunto> listaAdjuntos = new List<InfoAdjunto>();
-            t.FindAllAttachments().ForEach(x => listaAdjuntos.Add(new InfoAdjunto() { Nombre = x.FileName, Contenido = x.Body }));
-            Descargar.DescargarAdjunto(listaAdjuntos).ForEach(x => mensaje.Adjuntos.Add(new Adjunto() { CodigoAdjunto = x}));
+            pMensaje.FindAllAttachments().ForEach(x => listaAdjuntos.Add(new InfoAdjunto() { Nombre = x.FileName, Contenido = x.Body }));
 
-            //Se agrega el mensaje al buzon
-            iBuzon.AgregarMensaje(mensaje);
-        }
-        /// <summary>
-        /// Se descarga la n <paramref name="cantiad"/> de mensajes de la cuenta asociada.
-        /// </summary>
-        /// <param name="pCantidad">cantidad de mensajes a descargar</param>
-        public void DescargarMensaje(int pCantidad)
-        {
-            try
-            {
-                Parallel.For(0, pCantidad, i => doGetMessage(i));
-            }
-            catch (Exception)
-            {
-                //
-            }
+            Utilidades.Descargar.DescargarAdjunto(listaAdjuntos).ForEach(x => mensaje.Adjuntos.Add(new Adjunto() { CodigoAdjunto = x }));
+
+            Buzon.AgregarMensaje(mensaje);
         }
 
-        /// <summary>
-        /// Se elimina un mensaje repectivo al <paramref name="id"/> asociado.
-        /// </summary>
-        /// <param name="id"></param>
-        public void EliminarMensaje(int id)
+        public void Descargar(int pCantidad)
         {
-            try
+            IList<Task> iTasks = new List<Task>();
+            for (int i = 0; i < pCantidad; i++)
             {
-                var client = new Pop3Client();
+                iTasks.Add(Task.Factory.StartNew(() =>
+                {
+                    using (Pop3Client iCliente = ObtenerCliente())
+                    {
+                        int iCantidadReal = iCliente.GetMessageCount();
+                        if (i > iCantidadReal)
+                            i = iCantidadReal;
+                        this.ObtenerCabecera(i, iCliente);
+                    }
+
+                }));
+                iTasks.Add(Task.Factory.StartNew(() =>
+                {
+                    using (Pop3Client iCliente = ObtenerCliente())
+                    {
+                        int iCantidadReal = iCliente.GetMessageCount();
+                        if (i > iCantidadReal)
+                            i = iCantidadReal;
+                        this.ObtenerMensaje(i, iCliente);
+                    }
+                }));
+            }
+            Task.WaitAll(iTasks.ToArray());
+        }
+        public Pop3Client ObtenerCliente()
+        {
+            Pop3Client iCliente = new Pop3Client();
+
+            iCliente.Connect(CuentaUsuario.Servidor.HostPOP, CuentaUsuario.Servidor.PuertoPOP, CuentaUsuario.Servidor.SSL);
+            iCliente.Authenticate(CuentaUsuario.DireccionCorreo.DireccionDeCorreo, CuentaUsuario.Contraseña);
+            iCliente.Reset();
+
+            return iCliente;
+        }
+
+        public void Eliminar(int pId)
+        {
+            using (Pop3Client iCliente = new Pop3Client())
+            {
                 //Conexion y Autorizacion del servidor
-                client.Connect(iCuenta.Servidor.HostPOP, iCuenta.Servidor.PuertoPOP, iCuenta.Servidor.SSL);
-                client.Authenticate(iCuenta.DireccionCorreo.DireccionDeCorreo, iCuenta.Contraseña);
-                client.Reset();
+                iCliente.Connect(CuentaUsuario.Servidor.HostPOP, CuentaUsuario.Servidor.PuertoPOP, CuentaUsuario.Servidor.SSL);
+                iCliente.Authenticate(CuentaUsuario.DireccionCorreo.DireccionDeCorreo, CuentaUsuario.Contraseña);
+                iCliente.Reset();
                 //Eliminacion del mensaje en el servidor
-                client.DeleteMessage(id);
+                iCliente.DeleteMessage(pId);
                 //Desconexion del servidor
-                client.Disconnect();
-            }
-            catch (Exception)
-            {
-                //
+                iCliente.Disconnect();
             }
         }
     }

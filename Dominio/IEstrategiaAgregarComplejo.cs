@@ -6,6 +6,6 @@ namespace Dominio
         where T1 : class
         where T2 : class
     {
-        int Agregar(T1 hijo, T2 padre);
+        int Agregar(T1 pHijo, T2 pPadre);
     }
 }

@@ -34,14 +34,14 @@ namespace Servicio.Tests
             };
 
             Pop3 popClient = new Pop3(cuenta, new Buzon());
-            popClient.MensajeDescargado += Fin;
+            popClient.ActualizacionBuzon += Fin;
             popClient.Descargar(10);
             
             CollectionAssert.AllItemsAreNotNull(popClient.Buzon.Cabeceras);
         }
         private void Fin()
         {
-
+            //Se descargaron los mensajes
         }
     }
 }

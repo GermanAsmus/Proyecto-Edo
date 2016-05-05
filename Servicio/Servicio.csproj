@@ -44,7 +44,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Excepciones\GetMessageFromServerException.cs" />
+    <Compile Include="Excepciones\SmtpException.cs" />
+    <Compile Include="Excepciones\SmtpClientException.cs" />
+    <Compile Include="Excepciones\Pop3ClientException.cs" />
+    <Compile Include="Excepciones\ProtocolException.cs" />
     <Compile Include="Pop3.cs" />
+    <Compile Include="Excepciones\Pop3Exception.cs" />
     <Compile Include="Servicio.cs" />
     <Compile Include="Protocolo.cs" />
     <Compile Include="Smtp.cs" />
@@ -72,6 +78,7 @@
       <Name>Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

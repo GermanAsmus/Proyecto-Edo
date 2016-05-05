@@ -44,14 +44,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Excepciones\ValidateDatabaseEntityException.cs" />
+    <Compile Include="Excepciones\DatabaseException.cs" />
+    <Compile Include="Excepciones\UpdateDatabase.cs" />
+    <Compile Include="Excepciones\SqlServiceException.cs" />
+    <Compile Include="Excepciones\ServiceException.cs" />
+    <Compile Include="Excepciones\CreateDatabase.cs" />
     <Compile Include="EntityFrameworkDBContext.cs" />
-    <Compile Include="Migrations\201603032135282_InitialMigration.cs" />
-    <Compile Include="Migrations\201603032135282_InitialMigration.Designer.cs">
-      <DependentUpon>201603032135282_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603041756334_InitialMigration1.cs" />
-    <Compile Include="Migrations\201603041756334_InitialMigration1.Designer.cs">
-      <DependentUpon>201603041756334_InitialMigration1.cs</DependentUpon>
+    <Compile Include="Migrations\201605041931359_InitialCreate.cs" />
+    <Compile Include="Migrations\201605041931359_InitialCreate.Designer.cs">
+      <DependentUpon>201605041931359_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorio.cs" />
@@ -68,6 +70,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
@@ -85,11 +88,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603032135282_InitialMigration.resx">
-      <DependentUpon>201603032135282_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603041756334_InitialMigration1.resx">
-      <DependentUpon>201603041756334_InitialMigration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605041931359_InitialCreate.resx">
+      <DependentUpon>201605041931359_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

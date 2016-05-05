@@ -1,4 +1,5 @@
 ﻿using ControlDependencia;
+using Dominio.Excepciones;
 using Modelo;
 using System;
 using System.Collections.Generic;
@@ -13,15 +14,21 @@ namespace Dominio
             //Constructor
         }
 
-        public int Agregar(Mensaje hijo, Cuenta padre)
+        public int Agregar(Mensaje pHijo, Cuenta pPadre)
         {
+            if (pHijo == null)
+                throw new ArgumentNullException(nameof(pHijo));
+
+            if (pPadre == null)
+                throw new ArgumentNullException(nameof(pPadre));
+
             //verifica que los string no sean nulos o vacios
-            if (string.IsNullOrEmpty(hijo.Asunto))
-                throw new ApplicationException();
+            if (string.IsNullOrEmpty(pHijo.Asunto))
+                throw new NullReferenceException("El asunto del mensaje no puede ser vacío o nulo");
 
             //verifica cada una de las direcciones de correo
             List<DireccionCorreo> destinatariosValidos = new List<DireccionCorreo>();
-            var destinatarios = hijo.Destinatario.GetEnumerator();
+            var destinatarios = pHijo.Destinatario.GetEnumerator();
 
             IRepositorio<DireccionCorreo> aRepositorioDireccionCorreo = this.GestorServicio.ObtenerRepositorio<DireccionCorreo>();
             IValidar<DireccionCorreo> validarDireccionDeCorreo = new ValidarDireccionCorreo();
@@ -30,18 +37,18 @@ namespace Dominio
             {
                 destinatariosValidos.Add(validarDireccionDeCorreo.Evaluar(destinatarios.Current, aRepositorioDireccionCorreo));
             }
-            hijo.Destinatario = destinatariosValidos;
+            pHijo.Destinatario = destinatariosValidos;
 
             IRepositorio<Cuenta> aRepositorioCuenta = this.GestorServicio.ObtenerRepositorio<Cuenta>();
-            Cuenta unaCuenta = aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, padre.Id));
-            if (unaCuenta == null)
-                throw new Exception("No existe la cuenta en la bd");
+            Cuenta iCuenta = aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pPadre.Id));
+            if (iCuenta == null)
+                throw new NullReferenceException(nameof(iCuenta));
 
-            unaCuenta.Mensajes.Add(hijo);
+            iCuenta.Mensajes.Add(pHijo);
             //Se completa la propiedad requerida del entidadHija, respectiva al id de la cuenta.
-            hijo.CuentaId = unaCuenta.Id;
+            pHijo.CuentaId = iCuenta.Id;
             //Se actualiza la cuenta, que mantiene una colección de mensajes.
-            return aRepositorioCuenta.Editar(unaCuenta);
+            return aRepositorioCuenta.Editar(iCuenta);
 
         }
     }

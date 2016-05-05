@@ -18,9 +18,9 @@ namespace Servicio
         {
             pProtocoloRecepcion.Eliminar(pId);
         }
-        public void Enviar(Mensaje pMensaje, IProtocoloTransmision pProtocoloRecepcion)
+        public void Enviar(Mensaje pMensaje, Cuenta pCuenta, IProtocoloTransmision pProtocoloTransmision)
         {
-            //pProtocoloRecepcion.Enviar(pMensaje);
+            pProtocoloTransmision.Enviar(pMensaje,pCuenta);
         }
     }
 }

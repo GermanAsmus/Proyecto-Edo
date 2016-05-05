@@ -1,35 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Modelo;
-
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Data.Entity.ModelConfiguration.Configuration;
-
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
+using Persistencia.Excepciones;
 
 namespace Persistencia
 {
     public class EntityFrameworkDBContext : DbContext
     {
-        public DbSet<Cuenta> Cuenta { get; set; }
-        public DbSet<Mensaje> Mensaje { get; set; }
-        public DbSet<Servidor> Servidor { get; set; }
-        public DbSet<DireccionCorreo> DireccionCorreo { get; set; }
-        public DbSet<Adjunto> Adjunto { get; set; }
+        public IDbSet<Cuenta> Cuenta { get; set; }
+        public IDbSet<Mensaje> Mensaje { get; set; }
+        public IDbSet<Servidor> Servidor { get; set; }
+        public IDbSet<DireccionCorreo> DireccionCorreo { get; set; }
+        public IDbSet<Adjunto> Adjunto { get; set; }
 
         public EntityFrameworkDBContext()
             : base("DataBase")
         {
-
             //Database.SetInitializer<EntityFrameworkDBContext>(null);
+            try
+            { 
             if (!this.Database.Exists())
-                this.Database.CreateIfNotExists();
+                    if (!this.Database.CreateIfNotExists())
+                        throw new CreateDatabaseException("Problemas con creación de la base de datos, verifique que tenga instalado sql express");
+            }
+            catch (Exception sqlException)
+            {
+                throw new SqlServiceException("Problemas con la conexión a la base de datos, verifique que el servicio SQL Server (SQLEXPRESS) esté incializado", sqlException);
+            }
 
             var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+
             this.Configuration.AutoDetectChangesEnabled = true;
             this.Configuration.ProxyCreationEnabled = true;
             this.Configuration.LazyLoadingEnabled = true;
@@ -38,7 +41,24 @@ namespace Persistencia
 
         public int Commit()
         {
-            return base.SaveChanges();
+            string mensaje = "No se pudienron guardar los cambios";
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch(InvalidOperationException ex)
+            {
+                throw new InvalidOperationException(mensaje, ex);
+            }
+            catch(DbUpdateException ex)
+            {
+                throw new UpdateDatabaseException("No se pudo actualizar la base de datos, "+mensaje, ex);
+            }
+            catch(DbEntityValidationException ex)
+            {
+                throw new ValidateDatabaseEntityException("No se pudieron validar las entidades que se pretendían salvar, "+mensaje, ex);
+            }
+
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -46,47 +66,42 @@ namespace Persistencia
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            //modelBuilder.Entity<Servidor>().ToTable("Servidor");
-            //modelBuilder.Entity<Servidor>().HasKey<String>(x => x.Nombre);
-            //modelBuilder.Entity<Servidor>().Property(x => x.HostPOP).IsRequired();
-            //modelBuilder.Entity<Servidor>().Property(x => x.HostSMTP).IsRequired();
-            //modelBuilder.Entity<Servidor>().Property(x => x.PuertoPOP).IsRequired();
-            //modelBuilder.Entity<Servidor>().Property(x => x.PuertoSMTP).IsRequired();
-            //modelBuilder.Entity<Servidor>().Property(x => x.SSL).IsRequired();
+            modelBuilder.Entity<Servidor>().ToTable("Servidor");
+            modelBuilder.Entity<Servidor>().HasKey<int>(x => x.Id);
+            modelBuilder.Entity<Servidor>().Property(x => x.Nombre).IsRequired();
+            modelBuilder.Entity<Servidor>().Property(x => x.HostPOP).IsRequired();
+            modelBuilder.Entity<Servidor>().Property(x => x.HostSMTP).IsRequired();
+            modelBuilder.Entity<Servidor>().Property(x => x.PuertoPOP).IsRequired();
+            modelBuilder.Entity<Servidor>().Property(x => x.PuertoSMTP).IsRequired();
+            modelBuilder.Entity<Servidor>().Property(x => x.SSL).IsRequired();
 
+            modelBuilder.Entity<Cuenta>().ToTable("Cuenta");
+            modelBuilder.Entity<Cuenta>().HasKey<int>(x => x.Id);
+            modelBuilder.Entity<Cuenta>().Property(x => x.Nombre).IsRequired();
+            modelBuilder.Entity<Cuenta>().Property(x => x.DireccionId).IsRequired();
+            modelBuilder.Entity<Cuenta>().Property(x => x.Contraseña).IsRequired();
+            modelBuilder.Entity<Cuenta>().HasRequired(x => x.Servidor).WithMany(y => y.Cuenta).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Cuenta>().HasRequired(x => x.DireccionCorreo).WithOptional(y => y.Cuenta);
 
+            modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionCorreo");
+            modelBuilder.Entity<DireccionCorreo>().HasKey<int>(x => x.Id);
+            modelBuilder.Entity<DireccionCorreo>().Property(x => x.DireccionDeCorreo).IsRequired();
+            modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesRemitente).WithRequired(y => y.DireccionCorreo).HasForeignKey(z => z.DireccionId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesDestinatario).WithMany(y => y.Destinatario).Map(t => { t.ToTable("DireccionCorreoMensaje"); });
 
-            //modelBuilder.Entity<Cuenta>().ToTable("Cuenta");
-            //modelBuilder.Entity<Cuenta>().HasKey<String>(x => x.CuentaId);
-            //modelBuilder.Entity<Cuenta>().Property(x => x.DireccionId).IsRequired();
-            //modelBuilder.Entity<Cuenta>().Property(x => x.Contraseña).IsRequired();
-            //modelBuilder.Entity<Cuenta>().HasRequired(x => x.Servidor).WithMany(y => y.Cuenta).HasForeignKey<string>(z => z.ServidorId).WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Cuenta>().HasRequired(x => x.DireccionCorreo).WithOptional(y => y.Cuenta);
+            modelBuilder.Entity<Mensaje>().ToTable("Mensaje");
+            modelBuilder.Entity<Mensaje>().HasKey<int>(x => x.Id);
+            modelBuilder.Entity<Mensaje>().Property(x => x.Asunto).IsRequired();
+            modelBuilder.Entity<Mensaje>().Property(x => x.CodigoMensaje).IsOptional();
+            modelBuilder.Entity<Mensaje>().Property(x => x.Contenido).IsOptional();
+            modelBuilder.Entity<Mensaje>().Property(x => x.Leido).IsOptional();
+            modelBuilder.Entity<Mensaje>().Property(x => x.Fecha).IsRequired();
+            modelBuilder.Entity<Mensaje>().HasRequired(x => x.Cuenta).WithMany(y => y.Mensajes).HasForeignKey(z => z.CuentaId);
+            modelBuilder.Entity<Mensaje>().HasMany(x => x.Adjuntos).WithMany(y => y.Mensajes).Map(t => { t.ToTable("AdjuntoMensaje"); });
 
-            //modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionCorreo");
-            //modelBuilder.Entity<DireccionCorreo>().HasKey<String>(x => x.DireccionId);
-            //modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesRemitente).WithRequired(y => y.DireccionCorreo).HasForeignKey(z => z.Remitente).WillCascadeOnDelete(false);
-            //modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesDestinatario).WithMany(y => y.Destinatario).Map(t => { t.ToTable("DireccionCorreoMensaje"); });
-
-            //modelBuilder.Entity<Mensaje>().HasKey<string>(x => x.MensajeId);
-            //modelBuilder.Entity<Mensaje>().Property(x => x.MensajeId).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            //modelBuilder.Entity<Mensaje>().HasRequired(x => x.Cuenta).WithMany(y => y.Mensajes).HasForeignKey(z => z.CuentaId);
-            ////modelBuilder.Entity<Mensaje>().HasRequired(x => x.Remitente).WithOptional();
-            //modelBuilder.Entity<Completo>().HasMany(x => x.Adjuntos).WithMany(y => y.Mensajes).Map(t => { t.ToTable("AdjuntoMensaje"); });
-            //modelBuilder.Entity<Completo>().Map(m =>
-            //{
-            //    m.MapInheritedProperties();
-            //    m.ToTable("Mensaje");
-
-            //});
-
-            //modelBuilder.Entity<Adjunto>().ToTable("Adjunto");
-            //modelBuilder.Entity<Adjunto>().HasKey<String>(x => x.AdjuntoId);
-
-
-
-
-
+            modelBuilder.Entity<Adjunto>().ToTable("Adjunto");
+            modelBuilder.Entity<Adjunto>().HasKey<int>(x => x.Id);
+            modelBuilder.Entity<Adjunto>().Property(x => x.CodigoAdjunto).IsRequired();
         }
     }
 }

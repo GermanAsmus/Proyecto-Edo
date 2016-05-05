@@ -44,10 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controlador.cs" />
+    <Compile Include="Excepciones\AddOperationException.cs" />
     <Compile Include="GestorRepositorios.cs" />
     <Compile Include="IEstrategiaAgregar.cs" />
     <Compile Include="IEstrategiaAgregarComplejo.cs" />
     <Compile Include="IEstrategiaAgregarSimple.cs" />
+    <Compile Include="Excepciones\InvalidRepositoryOperationException.cs" />
     <Compile Include="RepositorioAdjunto.cs" />
     <Compile Include="RepositorioCuenta.cs" />
     <Compile Include="RepositorioDireccion.cs" />

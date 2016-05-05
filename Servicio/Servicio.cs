@@ -11,33 +11,30 @@ namespace Servicio
 {
     public class Servicio : IServicio
     {
-        private IDictionary<string, IProtocolo> iProtocolos;
-        public IBuzon BuzonServicio { get; }
-        public Cuenta CuentaServicio { get; }
+        public IProtocolo iProtocolo { get; }
+        public Cuenta CuentaServicio { get; set; }
 
-        public Servicio(IDictionary<string, IProtocolo> pProtocolos)
+        public Servicio(IProtocolo pProtocolo)
         {
-            iProtocolos = pProtocolos;
+            iProtocolo = pProtocolo;
         }
 
-        public void Descargar(int pCantidad, string pNombreProtocolo)
+        public void Descargar(int pCantidad, IProtocoloRecepcion pProtocoloRecepcion, IBuzon pBuzon)
         {
-            //Pop3 pop = new Pop3(CuentaServicio, BuzonServicio);
-            //pop.DescargarCabeceras(pCantidad);
-            //pop.DescargarMensaje(pCantidad);
+            pProtocoloRecepcion.CuentaUsuario = CuentaServicio;
+            pProtocoloRecepcion.Buzon = pBuzon;
+            this.iProtocolo.Descargar(pCantidad,pProtocoloRecepcion);
         }
 
-        public void Eliminar(int pUid, string pNombreProtocolo)
+        public void Eliminar(int pUid, IProtocoloRecepcion pProtocoloRecepcion)
         {
-            //Pop3 pop = new Pop3(CuentaServicio, BuzonServicio);
-            //pop.EliminarMensaje(pUid);
+            pProtocoloRecepcion.CuentaUsuario = CuentaServicio;
+            this.iProtocolo.Eliminar(pUid, pProtocoloRecepcion);
         }
 
-        public void Enviar(Mensaje pMensaje, string pNombreProtocolo)
+        public void Enviar(Mensaje pMensaje, IProtocoloTransmision pProtocoloTransmision)
         {
-            //Smtp smtp = new Smtp(CuentaServicio);
-            //smtp.Enviar(pMensaje);
+            this.iProtocolo.Enviar(pMensaje,this.CuentaServicio,pProtocoloTransmision);
         }
-
     }
 }

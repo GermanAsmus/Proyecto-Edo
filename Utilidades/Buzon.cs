@@ -19,17 +19,22 @@ namespace Utilidades
 
         public void AgregarCabecera(Mensaje pCabecera)
         {
+            if (pCabecera == null)
+                throw new ArgumentNullException(nameof(pCabecera));
             if (!Cabeceras.TryAdd(pCabecera))
-                throw new Exception();
-            else 
+                throw new InvalidOperationException("No se pudo agregar la cabecera a la colección del buzon");
+            else
                 BagChanged();
         }
         public void AgregarMensaje(Mensaje pMensaje)
         {
+            if (pMensaje == null)
+                throw new ArgumentNullException(nameof(pMensaje));
+
             if (!Mensajes.TryAdd(pMensaje))
-                throw new Exception();
-            else
-                BagChanged();
+                    throw new InvalidOperationException("No se pudo agregar el mensaje a la colección del buzon");
+                else
+                    BagChanged();
         }
         public Buzon()
         {

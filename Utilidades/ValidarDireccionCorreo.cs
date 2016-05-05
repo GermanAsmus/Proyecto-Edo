@@ -13,8 +13,11 @@ namespace Utilidades
     {
         public override DireccionCorreo Evaluar(DireccionCorreo pEntidad, IRepositorio<DireccionCorreo> pRepositorio)
         {
+            if (pEntidad == null)
+                throw new ArgumentNullException(nameof(pEntidad));
+
             if (string.IsNullOrEmpty(pEntidad.DireccionDeCorreo))
-                throw new NullReferenceException("Direccion de correo");
+                throw new NullReferenceException(nameof(pEntidad));
 
             var direccion = pRepositorio.Obtener(x => BuscarDireccionDeCorreo.BuscarPorId(x,pEntidad.Id));
 
@@ -27,9 +30,9 @@ namespace Utilidades
                     pRepositorio.Agregar(pEntidad);
                     return  pRepositorio.Obtener(x => BuscarDireccionDeCorreo.BuscarPorId(x, pEntidad.Id));
                 }
-                catch (FormatException)
+                catch (FormatException ex)
                 {
-                    throw new FormatException("El formato de la direccion de correo no es valida");
+                    throw new FormatException("El formato de la direccion de correo no es valida",ex);
                 }
         }
     }

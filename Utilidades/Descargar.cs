@@ -7,6 +7,7 @@ using System.IO;
 using System.Collections.Concurrent;
 using Modelo;
 using System.Net.Mail;
+using Utilidades.Excepciones;
 
 namespace Utilidades
 {
@@ -17,10 +18,10 @@ namespace Utilidades
         private static string DescargarArchivo(MemoryStream stream, string pathString)
         {
             if (string.IsNullOrWhiteSpace(pathString))
-                throw new ArgumentException("PathString");
+                throw new ArgumentNullException(nameof(pathString));
 
             if (stream == Stream.Null)
-                throw new ArgumentException("Stream");
+                throw new ArgumentNullException(nameof(stream));
 
             string fileName = string.Empty;
 
@@ -35,10 +36,10 @@ namespace Utilidades
         private static string DescargarArchivo(string textoPlano, string pathString)
         {
             if (string.IsNullOrWhiteSpace(pathString))
-                throw new ArgumentException("PathString");
+                throw new ArgumentNullException(nameof(pathString));
 
             if (string.IsNullOrWhiteSpace(textoPlano))
-                throw new ArgumentException("TextoPlano");
+                throw new ArgumentNullException(nameof(textoPlano));
 
             string fileName = string.Empty;
 
@@ -50,12 +51,12 @@ namespace Utilidades
 
             return fileName;
         }
-        private static string CrearDirectorio(string directorio)
+        private static string CrearDirectorio(string pDirectorio)
         {
-            if (string.IsNullOrWhiteSpace(directorio))
-                throw new ArgumentException("Directorio");
+            if (string.IsNullOrWhiteSpace(pDirectorio))
+                throw new ArgumentNullException(nameof(pDirectorio));
 
-            string pathString = Path.Combine(DireccionRaiz, "Edo", directorio);
+            string pathString = Path.Combine(DireccionRaiz, "Edo", pDirectorio);
 
             if (Directory.Exists(pathString))
                 throw new ApplicationException("El Direcrorio ya existe");
@@ -64,17 +65,17 @@ namespace Utilidades
                 DirectoryInfo info = Directory.CreateDirectory(pathString);
                 return info.Name;
             }
-            catch (IOException bEx)
+            catch (IOException ex)
             {
-                throw new ApplicationException("Problemas creando el Directorio", bEx);
+                throw new CreateDirectoryException("No se pudo crear del directorio", ex);
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                throw new ApplicationException("La creacion del directorio fue cancelada por falta de permisos");
+                throw new CreateDirectoryException("La creacion del directorio fue cancelada por falta de permisos", ex);
             }
-            catch (NotSupportedException)
+            catch (NotSupportedException ex)
             {
-                throw new FormatException("Directorio");
+                throw new CreateDirectoryException("No se pudo crear del directorio, funcionalidades no soportadas",ex);
             }
         }
         public static List<string> DescargarAdjunto(List<InfoAdjunto> pAdjuntos)
@@ -110,6 +111,8 @@ namespace Utilidades
         }
         public static string DescargarTextoPlano(Mensaje pMensaje)
         {
+            if (pMensaje == null)
+                throw new ArgumentNullException(nameof(pMensaje));
 
             string destinatario = string.Empty;
 
@@ -130,6 +133,9 @@ namespace Utilidades
         }
         public static string DescargarMensaje(Mensaje pMensaje)
         {
+            if (pMensaje == null)
+                throw new ArgumentNullException(nameof(pMensaje));
+
             MailMessage message = new MailMessage()
             {
                 From = new MailAddress(pMensaje.DireccionCorreo.DireccionDeCorreo),
@@ -149,9 +155,9 @@ namespace Utilidades
 
                 return Path.Combine(DireccionRaiz, "Edo");
             }
-            catch (SmtpException)
+            catch (SmtpException ex)
             {
-                throw new ApplicationException("Problemas guardando el mensaje");
+                throw new ApplicationException("Problemas guardando el mensaje.", ex);
             }
         }
     }

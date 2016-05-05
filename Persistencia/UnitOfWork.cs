@@ -43,8 +43,15 @@ namespace Persistencia
 
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            try
+            {
+                Dispose(true);
+                GC.SuppressFinalize(this);
+            }
+            catch(ArgumentNullException ex)
+            {
+                throw new ArgumentNullException("El garbage collector no puede finalizar con el finalizar con la instancia del UnitOfWork porque ya es nula",ex);
+            }
         }
         private void Dispose(bool disposing)
         {

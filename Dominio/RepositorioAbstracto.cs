@@ -10,29 +10,36 @@ namespace Dominio
         public IGestorRespositorios GestorServicio { get; }
         public IRepositorio<T> Repositorio { get; }
 
-        public RepositorioAbstracto(IRepositorio<T> iRepositorio, IGestorRespositorios pGestor)
+        public RepositorioAbstracto(IRepositorio<T> pRepositorio, IGestorRespositorios pGestor)
         {
-            this.Repositorio = iRepositorio;
+            if (pRepositorio == null)
+                throw new ArgumentNullException(nameof(pRepositorio));
+
+            if (pGestor == null)
+                throw new ArgumentNullException(nameof(pGestor));
+
+            this.Repositorio = pRepositorio;
+            this.GestorServicio = pGestor;
         }
-        int IRepositorio<T>.Agregar(T entity)
+        int IRepositorio<T>.Agregar(T pEntidad)
         {
             throw new NotImplementedException();
         }
-        public virtual int Editar(T entidad)
+        public virtual int Editar(T pEntidad)
         {
-            return Repositorio.Editar(entidad);
+            return Repositorio.Editar(pEntidad);
         }
-        public virtual int Eliminar(T entidad)
+        public virtual int Eliminar(T pEntidad)
         {
-            return Repositorio.Eliminar(entidad);
+            return Repositorio.Eliminar(pEntidad);
         }
-        public virtual IEnumerable<T> Encontrar(Expression<Func<T,bool>> criterio)
+        public virtual IEnumerable<T> Encontrar(Expression<Func<T,bool>> pCriterio)
         {
-            return Repositorio.Encontrar(criterio);
+            return Repositorio.Encontrar(pCriterio);
         }
-        public virtual T Obtener(Expression<Func<T, bool>> criterio)
+        public virtual T Obtener(Expression<Func<T, bool>> pCriterio)
         {
-               return Repositorio.Obtener(criterio);
+               return Repositorio.Obtener(pCriterio);
         }
         public virtual IEnumerable<T> ObtenerTodos()
         {

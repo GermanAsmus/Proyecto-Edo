@@ -11,7 +11,7 @@ namespace Persistencia
     {
 
         protected DbContext iEntities;
-        protected readonly DbSet<TEntity> iDbSet;
+        protected readonly IDbSet<TEntity> iDbSet;
 
         public Repositorio(EntityFrameworkDBContext context)
         {
@@ -39,17 +39,21 @@ namespace Persistencia
 
         public IEnumerable<TEntity> Encontrar(Expression<Func<TEntity, bool>> criterio)
         {
-            return iDbSet.Where(criterio).ToList();
+            if (criterio == null)
+                throw new ArgumentNullException("El criterio es nulo, no se puede evaluar la expresión");
+            return iDbSet.Where(criterio);
         }
 
         public TEntity Obtener(Expression<Func<TEntity, bool>> criterio)
         {
+            if (criterio == null)
+                throw new ArgumentNullException("El criterio es nulo, no se puede evaluar la expresión");
            return iDbSet.SingleOrDefault(criterio);
         }
 
         public IEnumerable<TEntity> ObtenerTodos()
         {
-            return iDbSet.ToList();
+            return iDbSet;
         }
     }
 }

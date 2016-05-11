@@ -1,4 +1,5 @@
 ﻿using ControlDependencia;
+using ControlDependencia.Dominio;
 using Modelo;
 
 namespace Dominio

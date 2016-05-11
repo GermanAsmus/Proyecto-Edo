@@ -43,18 +43,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBuzon.cs" />
-    <Compile Include="IControlador.cs" />
-    <Compile Include="ICriterio.cs" />
-    <Compile Include="IGestorRespositorios.cs" />
-    <Compile Include="IProtocolo.cs" />
-    <Compile Include="IProtocoloRecepcion.cs" />
-    <Compile Include="IProtocoloTransmision.cs" />
+    <Compile Include="Utilidades\IBuzon.cs" />
+    <Compile Include="Dominio\IControlador.cs" />
+    <Compile Include="Utilidades\ICriterio.cs" />
+    <Compile Include="Dominio\IGestorRespositorios.cs" />
+    <Compile Include="Servicio\IProtocolo.cs" />
+    <Compile Include="Servicio\IProtocoloRecepcion.cs" />
+    <Compile Include="Servicio\IProtocoloTransmision.cs" />
     <Compile Include="IRepositorio.cs" />
-    <Compile Include="IServicio.cs" />
+    <Compile Include="Servicio\IServicio.cs" />
     <Compile Include="IRepositorioRaiz.cs" />
-    <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="IValidar.cs" />
+    <Compile Include="Persistencia\IUnitOfWork.cs" />
+    <Compile Include="Utilidades\IValidar.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Modelo\Modelo.csproj">

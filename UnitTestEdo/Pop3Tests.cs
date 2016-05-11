@@ -1,6 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ControlDependencia;
+using ControlDependencia.Utilidades;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Modelo;
 using Utilidades;
+using Utilidades.Misc;
 
 namespace Servicio.Tests
 {
@@ -10,7 +13,7 @@ namespace Servicio.Tests
         [TestMethod]
         public void Descargar()
         {
-            Servidor gmail = new Servidor()
+            Servidor iServidorGmail = new Servidor()
             {
                 Nombre = "gmail",
                 HostSMTP = "smtp.gmail.com",
@@ -20,20 +23,24 @@ namespace Servicio.Tests
                 SSL = true
             };
 
-            DireccionCorreo dieccion = new DireccionCorreo()
+            DireccionCorreo iDieccion = new DireccionCorreo()
             {
                 DireccionDeCorreo = "electronik.32@gmail.com"
             };
 
-            Cuenta cuenta = new Cuenta()
+            Cuenta iCuenta = new Cuenta()
             {
-                DireccionCorreo = dieccion,
+                DireccionCorreo = iDieccion,
                 Contraseña = "proyecto3ro",
                 Nombre = "German Asmus",
-                Servidor = gmail,
+                Servidor = iServidorGmail,
             };
 
-            Pop3 popClient = new Pop3(cuenta, new Buzon());
+            IBuzon iBuzon = new Buzon();
+
+            Pop3 popClient = new Pop3();
+            popClient.Buzon = iBuzon;
+            popClient.CuentaUsuario = iCuenta;
             popClient.ActualizacionBuzon += Fin;
             popClient.Descargar(10);
             

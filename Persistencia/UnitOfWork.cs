@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ControlDependencia;
 using Modelo;
 using System.Data.Entity;
+using ControlDependencia.Persistencia;
 
 namespace Persistencia
 {
@@ -32,8 +33,6 @@ namespace Persistencia
             this.RepositorioDireccionCorreo = new Repositorio<DireccionCorreo>(iContext);
             this.RepositorioMensaje = new Repositorio<Mensaje>(iContext);
             this.RepositorioServidor = new Repositorio<Servidor>(iContext);
-
-
         }
 
         public int Commit()

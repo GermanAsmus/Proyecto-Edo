@@ -13,6 +13,9 @@ using Utilidades;
 using OpenPop.Mime.Header;
 using OpenPop.Mime;
 using Servicio.Excepciones;
+using ControlDependencia.Servicio;
+using ControlDependencia.Utilidades;
+using Utilidades.Misc;
 
 namespace Servicio
 {
@@ -98,7 +101,7 @@ namespace Servicio
             List<InfoAdjunto> listaAdjuntos = new List<InfoAdjunto>();
             pMensaje.FindAllAttachments().ForEach(x => listaAdjuntos.Add(new InfoAdjunto() { Nombre = x.FileName, Contenido = x.Body }));
 
-            Utilidades.Descargar.DescargarAdjunto(listaAdjuntos).ForEach(x => mensaje.Adjuntos.Add(new Adjunto() { CodigoAdjunto = x }));
+            Utilidades.SistemaDeArchivos.Descargar.DescargarAdjunto(listaAdjuntos).ForEach(x => mensaje.Adjuntos.Add(new Adjunto() { CodigoAdjunto = x }));
 
             Buzon.AgregarMensaje(mensaje);
         }

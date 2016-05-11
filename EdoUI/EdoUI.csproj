@@ -37,22 +37,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -66,10 +50,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlRaiz.cs">
+    <Compile Include="Sobre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sobre.Designer.cs">
+      <DependentUpon>Sobre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Componentes\BloqueUtilidad.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ControlRaiz.Designer.cs">
+    <Compile Include="Componentes\BloqueUtilidad.Designer.cs">
+      <DependentUpon>BloqueUtilidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Componentes\ControlRaiz.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\ControlRaiz.Designer.cs">
       <DependentUpon>ControlRaiz.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
@@ -78,7 +74,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IoCContenedor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -86,49 +81,55 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ControlAdjuntos.cs">
+    <Compile Include="Componentes\ControlAdjuntos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ControlAdjuntos.Designer.cs">
+    <Compile Include="Componentes\ControlAdjuntos.Designer.cs">
       <DependentUpon>ControlAdjuntos.cs</DependentUpon>
     </Compile>
-    <Compile Include="BandejaMensajes.cs">
+    <Compile Include="Componentes\BandejaMensajes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BandejaMensajes.Designer.cs">
+    <Compile Include="Componentes\BandejaMensajes.Designer.cs">
       <DependentUpon>BandejaMensajes.cs</DependentUpon>
     </Compile>
-    <Compile Include="BloqueCuenta.cs">
+    <Compile Include="Componentes\BloqueCuenta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BloqueCuenta.Designer.cs">
+    <Compile Include="Componentes\BloqueCuenta.Designer.cs">
       <DependentUpon>BloqueCuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlCuenta.cs">
+    <Compile Include="Componentes\ControlCuenta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ControlCuenta.Designer.cs">
+    <Compile Include="Componentes\ControlCuenta.Designer.cs">
       <DependentUpon>ControlCuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="BloqueMensaje.cs">
+    <Compile Include="Componentes\BloqueMensaje.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BloqueMensaje.Designer.cs">
+    <Compile Include="Componentes\BloqueMensaje.Designer.cs">
       <DependentUpon>BloqueMensaje.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlMensaje.cs">
+    <Compile Include="Componentes\ControlMensaje.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ControlMensaje.Designer.cs">
+    <Compile Include="Componentes\ControlMensaje.Designer.cs">
       <DependentUpon>ControlMensaje.cs</DependentUpon>
     </Compile>
-    <Compile Include="PanelPrincipal.cs">
+    <Compile Include="Componentes\PanelPrincipal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PanelPrincipal.Designer.cs">
+    <Compile Include="Componentes\PanelPrincipal.Designer.cs">
       <DependentUpon>PanelPrincipal.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ControlRaiz.resx">
+    <EmbeddedResource Include="Sobre.resx">
+      <DependentUpon>Sobre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Componentes\BloqueUtilidad.resx">
+      <DependentUpon>BloqueUtilidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Componentes\ControlRaiz.resx">
       <DependentUpon>ControlRaiz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
@@ -138,28 +139,27 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlAdjuntos.resx">
+    <EmbeddedResource Include="Componentes\ControlAdjuntos.resx">
       <DependentUpon>ControlAdjuntos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BandejaMensajes.resx">
+    <EmbeddedResource Include="Componentes\BandejaMensajes.resx">
       <DependentUpon>BandejaMensajes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BloqueCuenta.resx">
+    <EmbeddedResource Include="Componentes\BloqueCuenta.resx">
       <DependentUpon>BloqueCuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlCuenta.resx">
+    <EmbeddedResource Include="Componentes\ControlCuenta.resx">
       <DependentUpon>ControlCuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BloqueMensaje.resx">
+    <EmbeddedResource Include="Componentes\BloqueMensaje.resx">
       <DependentUpon>BloqueMensaje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlMensaje.resx">
+    <EmbeddedResource Include="Componentes\ControlMensaje.resx">
       <DependentUpon>ControlMensaje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PanelPrincipal.resx">
+    <EmbeddedResource Include="Componentes\PanelPrincipal.resx">
       <DependentUpon>PanelPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

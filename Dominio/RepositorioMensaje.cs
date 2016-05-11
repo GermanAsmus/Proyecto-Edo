@@ -1,9 +1,13 @@
 ﻿using ControlDependencia;
+using ControlDependencia.Dominio;
+using ControlDependencia.Utilidades;
 using Dominio.Excepciones;
 using Modelo;
 using System;
 using System.Collections.Generic;
 using Utilidades;
+using Utilidades.CriteriosDeBusqueda;
+using Utilidades.Validacion;
 
 namespace Dominio
 {
@@ -16,6 +20,9 @@ namespace Dominio
 
         public int Agregar(Mensaje pHijo, Cuenta pPadre)
         {
+
+            //Se previene que pHijo y pPadre no sean nulos
+
             if (pHijo == null)
                 throw new ArgumentNullException(nameof(pHijo));
 
@@ -30,7 +37,7 @@ namespace Dominio
             List<DireccionCorreo> destinatariosValidos = new List<DireccionCorreo>();
             var destinatarios = pHijo.Destinatario.GetEnumerator();
 
-            IRepositorio<DireccionCorreo> aRepositorioDireccionCorreo = this.GestorServicio.ObtenerRepositorio<DireccionCorreo>();
+            IRepositorio<DireccionCorreo> aRepositorioDireccionCorreo = this.GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();
             IValidar<DireccionCorreo> validarDireccionDeCorreo = new ValidarDireccionCorreo();
 
             while (destinatarios.MoveNext())
@@ -39,7 +46,7 @@ namespace Dominio
             }
             pHijo.Destinatario = destinatariosValidos;
 
-            IRepositorio<Cuenta> aRepositorioCuenta = this.GestorServicio.ObtenerRepositorio<Cuenta>();
+            IRepositorio<Cuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<Cuenta>();
             Cuenta iCuenta = aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pPadre.Id));
             if (iCuenta == null)
                 throw new NullReferenceException(nameof(iCuenta));

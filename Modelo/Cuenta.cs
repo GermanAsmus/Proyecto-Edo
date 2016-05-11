@@ -3,20 +3,26 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
+    /// <summary>
+    /// Entidad Cuenta, modela una cuenta de correo.
+    /// </summary>
     public class Cuenta : IEntidadModelo
     {
+        //Identificador único de la cuenta.
         public int Id { get; set; }
-        //nombre de la cuenta
+        //Nombre de la cuenta.
         public string Nombre { get; set; }
         public string Contraseña { get; set; }
-
+        //Identificador del servidor al que está relacionada la cuenta.
         public int ServidorId { get; set; }
+        //Entidad del servidor al que está relacionada la cuenta.
         public Servidor Servidor { get; set; }
 
-        //direccion de correo de la cuenta
+        //Identificador de la direccion de correo de la cuenta
         public int DireccionId { get; set; }
+        //Entidad de la direccion de correo a la que está relacionada la cuenta.
         public DireccionCorreo DireccionCorreo { get; set; }
-
+        //Colección de mensjes que mantiene la cuenta.
         public virtual ICollection<Mensaje> Mensajes { get; set; }
 
         public Cuenta()

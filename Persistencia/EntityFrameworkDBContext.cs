@@ -8,7 +8,7 @@ using Persistencia.Excepciones;
 
 namespace Persistencia
 {
-    public class EntityFrameworkDBContext : DbContext
+    public class EntityFrameworkDBContext : DbContext, IContext
     {
         public IDbSet<Cuenta> Cuenta { get; set; }
         public IDbSet<Mensaje> Mensaje { get; set; }

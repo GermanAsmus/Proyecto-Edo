@@ -51,6 +51,7 @@
     <Compile Include="Excepciones\ServiceException.cs" />
     <Compile Include="Excepciones\CreateDatabase.cs" />
     <Compile Include="EntityFrameworkDBContext.cs" />
+    <Compile Include="IContext.cs" />
     <Compile Include="Migrations\201605041931359_InitialCreate.cs" />
     <Compile Include="Migrations\201605041931359_InitialCreate.Designer.cs">
       <DependentUpon>201605041931359_InitialCreate.cs</DependentUpon>
@@ -81,6 +82,10 @@
     <ProjectReference Include="..\ControlDependencia\ControlDependencia.csproj">
       <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
       <Name>ControlDependencia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EdoUnity\EdoUnity.csproj">
+      <Project>{ad415791-96e7-44b7-9ca4-bc206936857e}</Project>
+      <Name>EdoUnity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modelo\Modelo.csproj">
       <Project>{c7f74b31-7843-4997-82e0-0e9d00b3df1b}</Project>

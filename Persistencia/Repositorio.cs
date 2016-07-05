@@ -4,37 +4,39 @@ using System.Linq;
 using System.Linq.Expressions;
 using ControlDependencia;
 using System.Data.Entity;
+using ControlDependencia.Persistencia;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Objects.DataClasses;
 
 namespace Persistencia
 {
     public class Repositorio<TEntity> : IRepositorio<TEntity> where TEntity : class
     {
+        protected IContext iContext;
+        protected IDbSet<TEntity> iDbSet;
 
-        protected DbContext iEntities;
-        protected readonly IDbSet<TEntity> iDbSet;
-
-        public Repositorio(EntityFrameworkDBContext context)
+        public Repositorio(IUnitOfWork pUnitOfWork)
         {
-            iEntities = context;
-            iDbSet = context.Set<TEntity>();
+            this.iContext = (IContext)pUnitOfWork.Context;
+            this.iDbSet = ((DbContext)this.iContext).Set<TEntity>();
         }
 
         public int Agregar(TEntity entity)
         {
             iDbSet.Add(entity);
-            return iEntities.SaveChanges();
+            return this.iContext.ObjectContext.SaveChanges();
         }
 
         public int Editar(TEntity entity)
         {
-            iEntities.Entry(entity).State = EntityState.Modified;
-            return iEntities.SaveChanges();
+            ((DbContext)this.iContext).Entry(entity).State = EntityState.Modified;
+            return this.iContext.ObjectContext.SaveChanges();
         }
 
         public int Eliminar(TEntity entity)
         {
             iDbSet.Remove(entity);
-            return iEntities.SaveChanges();
+            return ((DbContext)this.iContext).SaveChanges();
         }
 
         public IEnumerable<TEntity> Encontrar(Expression<Func<TEntity, bool>> criterio)

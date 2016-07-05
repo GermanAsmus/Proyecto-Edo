@@ -11,6 +11,8 @@ namespace ControlDependencia.Dominio
     /// </summary>
     public interface IControlador
     {
+        IGestorRespositorios GestorRepositorios { get; }
+
         /// <summary>
         /// Agrega una cuenta nueva al sistema.
         /// </summary>
@@ -114,26 +116,23 @@ namespace ControlDependencia.Dominio
         /// <returns>Colección de todos los servidores existentes en el sistema</returns>
         IEnumerable<Servidor> ObtenerTodosLosServidores();
         /// <summary>
-        /// Envía un correo mediante un protocolo de transmisión.
+        /// Envía un correo mediante la cuenta del usuario.
         /// </summary>
         /// <param name="pMensaje">Mensaje a enviar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
-        /// <param name="pProtocoloTransmision">Protocolo de transmisión, ej: Smtp</param>
-        void Enviar(Mensaje pMensaje, Cuenta pCuenta, IProtocoloTransmision pProtocoloTransmision);
+        void Enviar(Mensaje pMensaje, Cuenta pCuenta);
         /// <summary>
-        /// Recibe una cantidad de mensajes respectivos a una cuenta, mediante un protocolo de recepción.
+        /// Recibe una cantidad de mensajes respectivos a una cuenta.
         /// </summary>
         /// <param name="pCantidad">Cantidad de mensajes a descargar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
-        /// <param name="pProtocoloRecepcion">Protocolo de recepcion que se utiliza para descargar los mensajes, ej: Pop3, IMAP</param>
         /// <param name="pBuzon">Entidad que almacena los mensajes descargados</param>
-        void Recibir(int pCantidad, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion, IBuzon pBuzon);
+        void Recibir(int pCantidad, Cuenta pCuenta, IBuzon pBuzon);
         /// <summary>
-        /// Elimina un mensaje del servidor de correo respectivo a una cuenta, mediante un protocolo de recepción.
+        /// Elimina un mensaje del servidor de correo respectivo a una cuenta.
         /// </summary>
         /// <param name="pId">Identificador del mensaje en el servidor</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
-        /// <param name="pProtocoloRecepcion">Protocolo de recepcion que se utiliza para descargar los mensajes, ej: Pop3, IMAP</param>
-        void EliminarDelServidor(int pId, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion);
+        void EliminarDelServidor(int pId, Cuenta pCuenta);
     }
 }

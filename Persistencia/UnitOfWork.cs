@@ -1,43 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using ControlDependencia;
-using Modelo;
-using System.Data.Entity;
 using ControlDependencia.Persistencia;
+using System.Linq;
+using Modelo;
 
 namespace Persistencia
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private EntityFrameworkDBContext iContext;
+        public ControlDependencia.Persistencia.IContext Context { get; set; }
+        public ICollection<IRepositorioRaiz> Repositorios { get; }
 
-        public IRepositorio<Adjunto> RepositorioAdjunto { get; set; }
-
-        public IRepositorio<Cuenta> RepositorioCuenta { get; set; }
-
-        public IRepositorio<DireccionCorreo> RepositorioDireccionCorreo { get; set; }
-
-        public IRepositorio<Mensaje> RepositorioMensaje { get; set; }
-
-        public IRepositorio<Servidor> RepositorioServidor { get; set; }
-
-        public UnitOfWork()
+        public UnitOfWork(IContext pContext)
         {
-            this.iContext = new EntityFrameworkDBContext();
-            this.RepositorioAdjunto = new Repositorio<Adjunto>(iContext);
-            this.RepositorioCuenta = new Repositorio<Cuenta>(iContext);
-            this.RepositorioDireccionCorreo = new Repositorio<DireccionCorreo>(iContext);
-            this.RepositorioMensaje = new Repositorio<Mensaje>(iContext);
-            this.RepositorioServidor = new Repositorio<Servidor>(iContext);
+            this.Context = pContext;
+
+            this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorio<Cuenta>>());
+            this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorio<Mensaje>>());
+            this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorio<Servidor>>());
+            this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorio<Adjunto>>());
+            this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorio<DireccionCorreo>>());
         }
+        public IRepositorio<T> ObtenerRepositorio<T>() where T : class
+        {
+            return (IRepositorio<T>)this.Repositorios.FirstOrDefault(x => x.GetType().GetGenericTypeDefinition() == typeof(T));
+        }
+
 
         public int Commit()
         {
-            return iContext.Commit();
+            return Context.Commit();
         }
 
         public void Dispose()
@@ -47,19 +40,19 @@ namespace Persistencia
                 Dispose(true);
                 GC.SuppressFinalize(this);
             }
-            catch(ArgumentNullException ex)
+            catch (ArgumentNullException ex)
             {
-                throw new ArgumentNullException("El garbage collector no puede finalizar con el finalizar con la instancia del UnitOfWork porque ya es nula",ex);
+                throw new ArgumentNullException("El garbage collector no puede finalizar con el finalizar con la instancia del UnitOfWork porque ya es nula", ex);
             }
         }
         private void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (iContext != null)
+                if (Context != null)
                 {
-                    iContext.Dispose();
-                    iContext = null;
+                    Context.Dispose();
+                    Context = null;
                 }
             }
 

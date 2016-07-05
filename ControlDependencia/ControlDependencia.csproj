@@ -43,6 +43,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Persistencia\IContext.cs" />
     <Compile Include="Utilidades\IBuzon.cs" />
     <Compile Include="Dominio\IControlador.cs" />
     <Compile Include="Utilidades\ICriterio.cs" />

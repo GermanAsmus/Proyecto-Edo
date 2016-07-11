@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace Modelo
 {
@@ -11,7 +13,21 @@ namespace Modelo
         //Identificador único de la direccion de correo.
         public int Id { get; set; }
         //Direccion de correo real de la entidad. Ej: miCorreo@correo.com
-        public string DireccionDeCorreo { get; set; }
+        public string DireccionDeCorreo { get { return this.DireccionDeCorreo; }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                    try
+                    {
+                        MailAddress auxiliar = new MailAddress(value);
+                        this.DireccionDeCorreo = value;
+                    }
+                    catch (FormatException ex)
+                    {
+                        throw new FormatException("El formato de la direccion de correo no es valida", ex);
+                    }
+            }
+        }
         //Identificador de la cuenta a la que está asociada la dirección de correo.
         public int CuentaId { get; set; }
         //Entidad Cuenta a la que está asociada la dirección de correo.

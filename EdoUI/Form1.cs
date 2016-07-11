@@ -47,6 +47,7 @@ namespace EdoUI
             if (this.controlPanelPrincipal.contenedorPanel.IsDisposed && this.panelA.Controls.Count > 0)
                 panelA.Controls.RemoveAt(0);
         }
+
         private void iTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             this.SetText(VerificarConexion.ObtenerEstadoConexion() ? "Conectado" : "Sin Conexion");

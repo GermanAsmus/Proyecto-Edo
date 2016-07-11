@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace Modelo
 {
     /// <summary>
@@ -28,7 +29,7 @@ namespace Modelo
         }
 
         //encriptar contrasña
-        //encontrar servicio dinamicamente, reconocer "gmail, yahoo, etc.."
-    
+
+
     }
 }

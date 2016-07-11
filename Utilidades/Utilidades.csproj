@@ -49,6 +49,7 @@
     <Compile Include="Misc\Buzon.cs" />
     <Compile Include="Excepciones\CreateDirectoryException.cs" />
     <Compile Include="CriteriosDeBusqueda\CriterioDeBusqueda.cs" />
+    <Compile Include="Seguridad\MD5Hash.cs" />
     <Compile Include="SistemaDeArchivos\Descargar.cs" />
     <Compile Include="Misc\InfoAdjunto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

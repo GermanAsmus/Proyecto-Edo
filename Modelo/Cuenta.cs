@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace Modelo
 {
@@ -29,6 +30,9 @@ namespace Modelo
 
         //encriptar contrasña
         //encontrar servicio dinamicamente, reconocer "gmail, yahoo, etc.."
-    
+        public string ReconocerServicio(DireccionCorreo pDireccion)
+        {
+            return new MailAddress(pDireccion.DireccionDeCorreo).Host;
+        }
     }
 }

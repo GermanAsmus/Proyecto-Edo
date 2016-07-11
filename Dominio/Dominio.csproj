@@ -50,9 +50,6 @@
     <Compile Include="IEstrategiaAgregarComplejo.cs" />
     <Compile Include="IEstrategiaAgregarSimple.cs" />
     <Compile Include="Excepciones\InvalidRepositoryOperationException.cs" />
-    <Compile Include="RepositorioAdjunto.cs" />
-    <Compile Include="RepositorioCuenta.cs" />
-    <Compile Include="RepositorioDireccion.cs" />
     <Compile Include="RepositorioMensaje.cs" />
     <Compile Include="RepositorioServidor.cs" />
     <Compile Include="RepositorioAbstracto.cs" />

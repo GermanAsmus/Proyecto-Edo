@@ -47,7 +47,6 @@
     <Compile Include="CriteriosDeBusqueda\BuscarServidor.cs" />
     <Compile Include="ExpandoObjectUtil.cs" />
     <Compile Include="Misc\Buzon.cs" />
-    <Compile Include="Excepciones\CreateDirectoryException.cs" />
     <Compile Include="CriteriosDeBusqueda\CriterioDeBusqueda.cs" />
     <Compile Include="SistemaDeArchivos\Descargar.cs" />
     <Compile Include="Misc\InfoAdjunto.cs" />

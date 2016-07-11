@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Servidores>
+  <Servidor>
+    <Nombre>Gmail</Nombre>
+    <Protocolos>
+      <Smtp>
+        <Host></Host>
+        <Puerto></Puerto>
+        <SSL></SSL>
+      </Smtp>
+      <Pop>
+        <Host></Host>
+        <Puerto></Puerto>
+        <SSL></SSL>
+      </Pop>
+    </Protocolos>
+  </Servidor>
+
+  <Servidor>
+    <Nombre>Yahoo</Nombre>
+    <Protocolos>
+      <Smtp>
+        <Host></Host>
+        <Puerto></Puerto>
+        <SSL></SSL>
+      </Smtp>
+      <Pop>
+        <Host></Host>
+        <Puerto></Puerto>
+        <SSL></SSL>
+      </Pop>
+    </Protocolos>
+  </Servidor>
+</Servidores>

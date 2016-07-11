@@ -12,11 +12,8 @@ namespace Modelo
         public int Id { get; set; }
         //Nombre de la cuenta.
         public string Nombre { get; set; }
+
         public string Contraseña { get; set; }
-        //Identificador del servidor al que está relacionada la cuenta.
-        public int ServidorId { get; set; }
-        //Entidad del servidor al que está relacionada la cuenta.
-        public Servidor Servidor { get; set; }
 
         //Identificador de la direccion de correo de la cuenta
         public int DireccionId { get; set; }
@@ -29,5 +26,9 @@ namespace Modelo
         {
             Mensajes = new List<Mensaje>();
         }
+
+        //encriptar contrasña
+        //encontrar servicio dinamicamente, reconocer "gmail, yahoo, etc.."
+    
     }
 }

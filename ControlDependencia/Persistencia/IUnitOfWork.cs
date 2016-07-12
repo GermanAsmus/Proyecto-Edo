@@ -9,7 +9,7 @@ namespace ControlDependencia.Persistencia
     {
         IContext Context { get; set; }
         ICollection<IRepositorioRaiz> Repositorios { get; }
-        IRepositorio<T> ObtenerRepositorio<T>() where T : class;
+        IRepositorioUnico<T> ObtenerRepositorio<T>() where T : class;
         int Commit();
     }
 }

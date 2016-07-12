@@ -17,6 +17,8 @@ namespace Modelo
 
         public string Contraseña { get; set; }
 
+        public Servidor Servidor { get; set; }
+
         //Identificador de la direccion de correo de la cuenta
         public int DireccionId { get; set; }
         //Entidad de la direccion de correo a la que está relacionada la cuenta.

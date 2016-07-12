@@ -17,6 +17,6 @@ namespace ControlDependencia.Dominio
         /// </summary>
         /// <typeparam name="T">Tipo que define al repositorio</typeparam>
         /// <returns>repositorio del tipo T</returns>
-        IRepositorio<T> ObtenerRepositorio<T>() where T : class;
+        IRepositorioUnico<T> ObtenerRepositorio<T>() where T : class;
     }
 }

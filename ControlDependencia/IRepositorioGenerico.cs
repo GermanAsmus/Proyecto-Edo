@@ -5,13 +5,8 @@ using System.Linq.Expressions;
 
 namespace ControlDependencia
 {
-    public interface IRepositorio<TEntity> : IRepositorioRaiz where TEntity : class
+    public interface IRepositorioGenerico<TEntity> : IRepositorioRaiz where TEntity : class
     {
-        /// <summary>
-        /// Agrega una instancia del tipo <typeparamref name="TEntity"/>  que persistirá en el repositorio
-        /// </summary>
-        /// <param name="pEntidad">entidad del tipo <typeparamref name="TEntity"/> </param>
-        int Agregar(TEntity pEntidad);
         /// <summary>
         /// Elimina una instancia del tipo <typeparamref name="TEntity"/> que persistirá el repositorio
         /// </summary>
@@ -19,10 +14,9 @@ namespace ControlDependencia
         /// <returns>void</returns>
         int Eliminar(TEntity pEntidad);
         /// <summary>
-        /// Actualiza una instancia del tipo <typeparamref name="TEntity"/> que ya existe en el repositorio que lo persiste
+        /// Actualiza el repositorio;
         /// </summary>
-        /// <param name="pEntidad">entidad del tipo <typeparamref name="TEntity"/></param>
-        int Editar(TEntity pEntidad);
+        int Editar();
         /// <summary>
         /// Obtiene todas las entidades <typeparamref name="TEntity"/> que persisten en el repositorio
         /// </summary>
@@ -41,6 +35,6 @@ namespace ControlDependencia
         /// </summary>
         /// <param name="pCriterio">pCriterio de busqueda</param>
         /// <returns>Coleccion enumerable de las entidades obtenidas</returns>
-        TEntity Obtener(Expression<Func<TEntity,bool>> pCriterio);
+        TEntity Obtener(Expression<Func<TEntity, bool>> pCriterio);
     }
 }

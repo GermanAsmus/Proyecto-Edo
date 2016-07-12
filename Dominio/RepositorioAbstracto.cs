@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using ControlDependencia;
 using ControlDependencia.Dominio;
+using Modelo;
+using Utilidades.CriteriosDeBusqueda;
+using ControlDependencia.Persistencia;
 
 namespace Dominio
 {
@@ -11,45 +14,39 @@ namespace Dominio
     /// Define su implementación de forma virtual y genérica.
     /// </summary>
     /// <typeparam name="T">Tipo de entidad de modelo</typeparam>
-    public abstract class RepositorioAbstracto<T> : IRepositorio<T>,IEstrategiaAgregar where T : class
+    public abstract class RepositorioAbstracto<T> : IRepositorioUnico<T> where T : class
     {
-        /// <summary>
-        /// Gestor de los repositorios, mantiene todos los repositorios que se definieron con anterioridad.
-        /// </summary>
-        public IGestorRespositorios GestorRepositorios { get; }
+        ///// <summary>
+        ///// Gestor de los repositorios, mantiene todos los repositorios que se definieron con anterioridad.
+        ///// </summary>
+        //public IGestorRespositorios GestorRepositorios { get; }
         /// <summary>
         /// Repositorio del tipo de la entidad de modelo.
         /// </summary>
-        public IRepositorio<T> Repositorio { get; }
+        public IRepositorioUnico<T> iRepositorio { get; }
         /// <summary>
         /// Constructor de la clase abstracta.
         /// </summary>
         /// <param name="pRepositorio">Repositorio del tipo de la entidad de modelo con que se define esta clase</param>
         /// <param name="pGestor">Gestor de los repositorios</param>
-        public RepositorioAbstracto(IRepositorio<T> pRepositorio, IGestorRespositorios pGestor)
+        public RepositorioAbstracto(IRepositorioUnico<T> pRepositorio)//, IGestorRespositorios pGestor)
         {
             if (pRepositorio == null)
                 throw new ArgumentNullException(nameof(pRepositorio));
 
-            if (pGestor == null)
-                throw new ArgumentNullException(nameof(pGestor));
+            //if (pGestor == null)
+            //    throw new ArgumentNullException(nameof(pGestor));
 
-            this.Repositorio = pRepositorio;
-            this.GestorRepositorios = pGestor;
-        }
-
-        int IRepositorio<T>.Agregar(T pEntidad)
-        {
-            throw new NotImplementedException();
+            this.iRepositorio = pRepositorio;
+            //this.GestorRepositorios = pGestor;
         }
         /// <summary>
         /// Implementación virtual del método Editar.
         /// </summary>
-        /// <param name="pEntidad">entidad a confirmar edición</param>
         /// <returns>0 si se completó la operación, sino se realizó correctamente</returns>
-        public virtual int Editar(T pEntidad)
+        public virtual int Editar()
         {
-            return Repositorio.Editar(pEntidad);
+            return iRepositorio.Editar();
         }
         /// <summary>
         /// Implementación virtual del método Eliminar.
@@ -58,7 +55,7 @@ namespace Dominio
         /// <returns>0 si se completó la operación, sino se realizó correctamente</returns>
         public virtual int Eliminar(T pEntidad)
         {
-            return Repositorio.Eliminar(pEntidad);
+            return iRepositorio.Eliminar(pEntidad);
         }
         /// <summary>
         /// Implementación virtual del método Encontrar.
@@ -68,7 +65,7 @@ namespace Dominio
         /// <returns>Colección de las entidades encontradas</returns>
         public virtual IEnumerable<T> Encontrar(Expression<Func<T,bool>> pCriterio)
         {
-            return Repositorio.Encontrar(pCriterio);
+            return iRepositorio.Encontrar(pCriterio);
         }
         /// <summary>
         /// Implementación virtual del método Obtener.
@@ -78,7 +75,7 @@ namespace Dominio
         /// <returns>Entidad obtenida</returns>
         public virtual T Obtener(Expression<Func<T, bool>> pCriterio)
         {
-               return Repositorio.Obtener(pCriterio);
+               return iRepositorio.Obtener(pCriterio);
         }
         /// <summary>
         /// Implementación virtual del método ObtenerTodos.
@@ -87,7 +84,36 @@ namespace Dominio
         /// <returns>Colección de todas las entidaes del sistema</returns>
         public virtual IEnumerable<T> ObtenerTodos()
         {
-              return Repositorio.ObtenerTodos();
+              return iRepositorio.ObtenerTodos();
         }
+
+        //public int Agregar(DireccionCorreo pHijo, Cuenta pPadre)
+        //{
+        //    if (pHijo == null)
+        //        throw new ArgumentNullException(nameof(pHijo));
+
+        //    if (pPadre == null)
+        //        throw new ArgumentNullException(nameof(pPadre));
+
+        //    if (string.IsNullOrEmpty(pPadre.Contraseña) || string.IsNullOrEmpty(pPadre.Nombre))
+        //        throw new NullReferenceException("Los atributos contraseña, nombre, no pueden ser nulos o vacíos");
+
+        //    IRepositorioGenerico<DireccionCorreo> aRepositorioDireccion = this.GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();
+
+        //    DireccionCorreo iDireccion = aRepositorioDireccion.Obtener(direccion => BuscarDireccionDeCorreo.BuscarPorDireccion(direccion, pHijo.DireccionDeCorreo));
+        //    //De no existir la direccion, se agrega a la base de datos
+        //    if (iDireccion == null)
+        //        aRepositorioDireccion.Agregar(pHijo);
+
+        //    iDireccion.Cuenta = pPadre;
+        //    iDireccion.CuentaId = pPadre.Id;
+        //    pPadre.DireccionId = iDireccion.Id;
+
+        //    //Cargar el Servidor
+        //    Servidor iServidor = new Servidor();
+        //    pPadre.Servidor = iServidor;
+
+        //    Repositorio.Agregar(pPadre);
+        //}
     }
 }

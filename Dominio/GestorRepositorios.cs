@@ -26,12 +26,11 @@ namespace Dominio
             Repositorios.Add(typeof(Cuenta), new RepositorioCuenta(pUoW.ObtenerRepositorio<Cuenta>(), this));
             Repositorios.Add(typeof(DireccionCorreo), new RepositorioDireccion(pUoW.ObtenerRepositorio<DireccionCorreo>(), this));
             Repositorios.Add(typeof(Mensaje), new RepositorioMensaje(pUoW.ObtenerRepositorio<Mensaje>(), this));
-            Repositorios.Add(typeof(Servidor), new RepositorioServidor(pUoW.ObtenerRepositorio<Servidor>(), this));
         }
 
-        public IRepositorio<T> ObtenerRepositorio<T>() where T : class
+        public IRepositorioUnico<T> ObtenerRepositorio<T>() where T : class
         {
-            return (IRepositorio<T>)this.Repositorios[typeof(T)]; 
+            return (IRepositorioUnico<T>)this.Repositorios[typeof(T)]; 
         }
     }
 }

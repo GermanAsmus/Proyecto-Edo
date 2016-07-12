@@ -20,7 +20,7 @@ namespace ControlDependencia.Dominio
         /// <param name="pCuenta">Nueva cuenta que se agregará al sistema</param>
         /// <param name="pServidor">Servidor de correo que utiliza la nueva cuenta</param>
         /// <returns>0 si no se pudo completar la operación, sino la operación fue exitosa</returns>
-        int AregarCuenta(DireccionCorreo pDireccion, Cuenta pCuenta, Servidor pServidor);
+        int AregarCuenta(DireccionCorreo pDireccion, Cuenta pCuenta);
         /// <summary>
         /// Confirma la edición de una cuenta ya existente en el sistema.
         /// </summary>
@@ -108,13 +108,6 @@ namespace ControlDependencia.Dominio
         /// </summary>
         /// <returns>Colección de todas las cuentas existentes en el sistema</returns>
         IEnumerable<Cuenta> ObtenerTodasLasCuentas();
-        Servidor ObtenerServidor(int pId);
-        Servidor ObtenerServidor(string pNombre);
-        /// <summary>
-        /// Obtiene todos los servidores existentes en el sistema.
-        /// </summary>
-        /// <returns>Colección de todos los servidores existentes en el sistema</returns>
-        IEnumerable<Servidor> ObtenerTodosLosServidores();
         /// <summary>
         /// Envía un correo mediante la cuenta del usuario.
         /// </summary>

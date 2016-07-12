@@ -10,7 +10,7 @@ using System.Data.Entity.Core.Objects.DataClasses;
 
 namespace Persistencia
 {
-    public class Repositorio<TEntity> : IRepositorio<TEntity> where TEntity : class
+    public class Repositorio<TEntity> : IRepositorioUnico<TEntity> where TEntity : class
     {
         protected IContext iContext;
         protected IDbSet<TEntity> iDbSet;
@@ -27,9 +27,8 @@ namespace Persistencia
             return this.iContext.ObjectContext.SaveChanges();
         }
 
-        public int Editar(TEntity entity)
+        public int Editar()
         {
-            ((DbContext)this.iContext).Entry(entity).State = EntityState.Modified;
             return this.iContext.ObjectContext.SaveChanges();
         }
 

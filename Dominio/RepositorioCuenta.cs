@@ -2,52 +2,47 @@
 using ControlDependencia.Dominio;
 using Modelo;
 using System;
-using Utilidades;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Utilidades.CriteriosDeBusqueda;
+using ControlDependencia.Persistencia;
 
 namespace Dominio
 {
-    public class RepositorioCuenta : RepositorioAbstracto<Cuenta>,IEstrategiaAgregarComplejo<Cuenta, Servidor>
+    public class RepositorioCuenta : RepositorioAbstracto<Cuenta>, IRepositorioUnico<Cuenta>
     {
-        public RepositorioCuenta(IRepositorio<Cuenta> iRepositorio, IGestorRespositorios pGestor) : base(iRepositorio, pGestor)
+        private IRepositorioUnico<DireccionCorreo> iRepositorioExterno;
+
+        public RepositorioCuenta(IRepositorioUnico<Cuenta> pRepositorioInterno, IRepositorioUnico<DireccionCorreo> pRepositorioExterno) : base (pRepositorioInterno) {        }
+
+        public int Agregar(Cuenta pEntidad)
         {
+            if (pEntidad == null)
+                throw new ArgumentNullException(nameof(pEntidad));
 
-        }
-        //Se previene que pHijo y pPadre no sean nulos
+            if (pEntidad.DireccionCorreo == null)
+                throw new ArgumentNullException(nameof(pEntidad.DireccionCorreo));
 
-        public int Agregar(Cuenta pHijo, Servidor pPadre)
-        {
-            if (pHijo == null)
-                throw new ArgumentNullException(nameof(pHijo));
+            if (string.IsNullOrEmpty(pEntidad.Contraseña) || string.IsNullOrEmpty(pEntidad.Nombre))
+                throw new NullReferenceException("los atributos contraseña, nombre, no pueden ser nulos o vacíos");
 
-            if (pPadre == null)
-                throw new ArgumentNullException(nameof(pPadre));
+            DireccionCorreo iDireccion = iRepositorioExterno.Obtener(direccion => BuscarDireccionDeCorreo.BuscarPorDireccion(direccion, pEntidad.DireccionCorreo.DireccionDeCorreo));
+            //de no existir la direccion, se agrega a la base de datos
+            if (iDireccion != null)
+                throw new Exception();
 
-            //verifica que los string no sean nulos o vacios
-            if (string.IsNullOrEmpty(pHijo.Contraseña) || string.IsNullOrEmpty(pHijo.Nombre))
-                throw new NullReferenceException("Los atributos contraseña, nombre, no pueden ser nulos o vacíos");
+            iRepositorioExterno.Agregar(pEntidad.DireccionCorreo);
+            iDireccion.Cuenta = pEntidad;
+            iDireccion.CuentaId = pEntidad.Id;
+            pEntidad.DireccionId = iDireccion.Id;
 
-            //Verifica si la direccion de correo ya está en la base de datos
-            IRepositorio<DireccionCorreo> aRepositorioDireccion = this.GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();
-                        
-            DireccionCorreo iDireccion = new Utilidades.Validacion.ValidarDireccionCorreo().Evaluar(pHijo.DireccionCorreo, aRepositorioDireccion);
-            if (iDireccion == null)
-                throw new NullReferenceException(nameof(iDireccion));
+            //cargar el servidor
+            Servidor iServidor = new Servidor();
+            pEntidad.Servidor = iServidor;
 
-            iDireccion.Cuenta = pHijo;
-            iDireccion.CuentaId = pHijo.Id;
-            pHijo.DireccionId = iDireccion.Id;
-
-            //Obtiene el servidor residente en la base de datos
-            IRepositorio<Servidor> aRepositorioServidor = this.GestorRepositorios.ObtenerRepositorio<Servidor>();
-            Servidor unServidor = aRepositorioServidor.Obtener(x => BuscarServidor.BuscarPorNombre(x,pPadre.Nombre));
-
-            pHijo.Servidor = unServidor;
-
-            unServidor.Cuenta.Add(pHijo);
-
-            pHijo.ServidorId = unServidor.Id;
-            return aRepositorioServidor.Editar(unServidor);
+            return iRepositorio.Agregar(pEntidad);
         }
     }
 }

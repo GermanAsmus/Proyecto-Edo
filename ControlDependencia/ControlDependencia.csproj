@@ -43,6 +43,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepositorioUnico.cs" />
     <Compile Include="IEncriptador.cs" />
     <Compile Include="Persistencia\IContext.cs" />
     <Compile Include="Utilidades\IBuzon.cs" />
@@ -52,11 +53,10 @@
     <Compile Include="Servicio\IProtocolo.cs" />
     <Compile Include="Servicio\IProtocoloRecepcion.cs" />
     <Compile Include="Servicio\IProtocoloTransmision.cs" />
-    <Compile Include="IRepositorio.cs" />
+    <Compile Include="IRepositorioGenerico.cs" />
     <Compile Include="Servicio\IServicio.cs" />
     <Compile Include="IRepositorioRaiz.cs" />
     <Compile Include="Persistencia\IUnitOfWork.cs" />
-    <Compile Include="Utilidades\IValidar.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Modelo\Modelo.csproj">

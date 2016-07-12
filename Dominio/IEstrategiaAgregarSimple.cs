@@ -6,7 +6,7 @@ namespace Dominio
     /// Estratégia de agregación independiente a cualquier otro tipo de entidad del modelo.
     /// </summary>
     /// <typeparam name="T">Tipo de entidad del modelo</typeparam>
-    public interface IEstrategiaAgregarSimple<T> : IRepositorio<T> where T : class
+    public interface IEstrategiaAgregarSimple<T> : IRepositorioGenerico<T> where T : class
     {
         /// <summary>
         /// Agrega una entidad al sistema

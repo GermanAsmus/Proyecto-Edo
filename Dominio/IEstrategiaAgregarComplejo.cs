@@ -7,7 +7,7 @@ namespace Dominio
     /// </summary>
     /// <typeparam name="T1">Tipo de entidad dependiente del Tipo de entidad T2</typeparam>
     /// <typeparam name="T2">Tipo de entidad independiente sobre el Tipo de entidad T1</typeparam>
-    public interface IEstrategiaAgregarComplejo<T1, T2> : IRepositorio<T1>
+    public interface IEstrategiaAgregarComplejo<T1, T2> : IRepositorioGenerico<T1>
         where T1 : class
         where T2 : class
     {

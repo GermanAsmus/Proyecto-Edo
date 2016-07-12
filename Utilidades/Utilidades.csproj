@@ -53,10 +53,6 @@
     <Compile Include="SistemaDeArchivos\Descargar.cs" />
     <Compile Include="Misc\InfoAdjunto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validacion\Validar.cs" />
-    <Compile Include="Validacion\ValidarAdjunto.cs" />
-    <Compile Include="Validacion\ValidarDireccionCorreo.cs" />
-    <Compile Include="Validacion\ValidarServidor.cs" />
     <Compile Include="Internet\VerificarConexion.cs" />
   </ItemGroup>
   <ItemGroup>

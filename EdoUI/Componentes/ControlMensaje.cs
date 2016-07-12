@@ -16,7 +16,7 @@ namespace EdoUI
     public partial class ControlMensaje : UserControl
     {
         private IControlador controlador;
-        IRepositorio<Mensaje> servicioMensaje;
+        IRepositorioUnico<Mensaje> servicioMensaje;
         public ControlMensaje(ref IControlador pControlador)
         {
             InitializeComponent();

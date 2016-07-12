@@ -1,62 +1,61 @@
-﻿using ControlDependencia;
-using ControlDependencia.Dominio;
-using ControlDependencia.Utilidades;
-using Dominio.Excepciones;
-using Modelo;
+﻿using Modelo;
 using System;
 using System.Collections.Generic;
-using Utilidades;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ControlDependencia.Dominio;
+using ControlDependencia;
 using Utilidades.CriteriosDeBusqueda;
-using Utilidades.Validacion;
 
 namespace Dominio
 {
-    public class RepositorioMensaje : RepositorioAbstracto<Mensaje>, IEstrategiaAgregarComplejo<Mensaje, Cuenta>
+    public class RepositorioMensaje : RepositorioAbstracto<Mensaje>, IRepositorioUnico<Mensaje>
     {
-        public RepositorioMensaje(IRepositorio<Mensaje> pRepositorio, IGestorRespositorios pGestor) : base(pRepositorio, pGestor)
+        private IRepositorioUnico<Adjunto> iRepositorioAdjunto;
+        private IRepositorioUnico<DireccionCorreo> iRepositorioDireccionDeCorreo;
+        private IRepositorioUnico<Cuenta> iRepositorioCuenta;
+
+        public RepositorioMensaje(IRepositorioUnico<Mensaje> pRepositorioInterno, IRepositorioUnico<Adjunto> pRepositorioAdjunto, IRepositorioUnico<DireccionCorreo> pRepositorioDireccionDeCorreo, IRepositorioUnico<Cuenta> pRepositorioCuenta) : base(pRepositorioInterno)
         {
-            //Constructor
+            this.iRepositorioAdjunto = pRepositorioAdjunto;
+            this.iRepositorioDireccionDeCorreo = pRepositorioDireccionDeCorreo;
+            this.iRepositorioCuenta = pRepositorioCuenta;
         }
 
-        public int Agregar(Mensaje pHijo, Cuenta pPadre)
+        public int Agregar(Mensaje pEntidad)
         {
+            if (pEntidad == null)
+                throw new ArgumentNullException(nameof(pEntidad));
 
-            //Se previene que pHijo y pPadre no sean nulos
-
-            if (pHijo == null)
-                throw new ArgumentNullException(nameof(pHijo));
-
-            if (pPadre == null)
-                throw new ArgumentNullException(nameof(pPadre));
+            if (pEntidad.Cuenta == null)
+                throw new ArgumentNullException(nameof(pEntidad.Cuenta));
 
             //verifica que los string no sean nulos o vacios
-            if (string.IsNullOrEmpty(pHijo.Asunto))
+            if (string.IsNullOrEmpty(pEntidad.Asunto))
                 throw new NullReferenceException("El asunto del mensaje no puede ser vacío o nulo");
 
-            //verifica cada una de las direcciones de correo
             List<DireccionCorreo> destinatariosValidos = new List<DireccionCorreo>();
-            var destinatarios = pHijo.Destinatario.GetEnumerator();
+            var destinatarios = pEntidad.Destinatario.GetEnumerator();
 
-            IRepositorio<DireccionCorreo> aRepositorioDireccionCorreo = this.GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();
-            IValidar<DireccionCorreo> validarDireccionDeCorreo = new ValidarDireccionCorreo();
-
+            DireccionCorreo iDireccion = null;
             while (destinatarios.MoveNext())
             {
-                destinatariosValidos.Add(validarDireccionDeCorreo.Evaluar(destinatarios.Current, aRepositorioDireccionCorreo));
+                iDireccion = this.iRepositorioDireccionDeCorreo.Obtener(d => BuscarDireccionDeCorreo.BuscarPorDireccion(d, destinatarios.Current.DireccionDeCorreo));
+                if (iDireccion != null)
+                    destinatariosValidos.Add(destinatarios.Current);
             }
-            pHijo.Destinatario = destinatariosValidos;
-
-            IRepositorio<Cuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<Cuenta>();
-            Cuenta iCuenta = aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pPadre.Id));
+            pEntidad.Destinatario = destinatariosValidos;
+                    
+            Cuenta iCuenta = this.iRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pEntidad.Cuenta.Id));
             if (iCuenta == null)
                 throw new NullReferenceException(nameof(iCuenta));
 
-            iCuenta.Mensajes.Add(pHijo);
+            iCuenta.Mensajes.Add(pEntidad);
             //Se completa la propiedad requerida del entidadHija, respectiva al id de la cuenta.
-            pHijo.CuentaId = iCuenta.Id;
+            pEntidad.CuentaId = iCuenta.Id;
             //Se actualiza la cuenta, que mantiene una colección de mensajes.
-            return aRepositorioCuenta.Editar(iCuenta);
-
+            return iRepositorioCuenta.Editar();
         }
     }
 }

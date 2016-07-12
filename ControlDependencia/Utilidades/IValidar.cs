@@ -12,6 +12,6 @@
         /// <param name="pEntidad">Entidad a evaluar</param>
         /// <param name="pRepositorio">Reposiorio del mismo tipo de la entidad</param>
         /// <returns>Si la entidad es evaluada satisfactoriamente, devuelve dicha entidad</returns>
-        T Evaluar(T pEntidad, IRepositorio<T> pRepositorio);
+        T Evaluar(T pEntidad, IRepositorioGenerico<T> pRepositorio);
     }
 }

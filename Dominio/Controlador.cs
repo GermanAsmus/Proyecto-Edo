@@ -22,11 +22,34 @@ namespace Dominio
             iServicio = IoCContainer.Resolver<IServicio>();
             GestorRepositorios = new GestorRepositorios(pUnitOfWork);
         }
-
-        public int AregarCuenta(Cuenta pCuenta, Servidor pServidor)
+        public void AregarCuenta(DireccionCorreo pDireccion, Cuenta pCuenta)
         {
-            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<Cuenta>();
-            return aRepositorio.Agregar(pCuenta, pServidor);
+            if (pDireccion == null)
+                throw new ArgumentNullException(nameof(pDireccion));
+
+            if (pCuenta == null)
+                throw new ArgumentNullException(nameof(pCuenta));
+
+            if (string.IsNullOrEmpty(pCuenta.Contraseña) || string.IsNullOrEmpty(pCuenta.Nombre))
+                throw new NullReferenceException("Los atributos contraseña, nombre, no pueden ser nulos o vacíos");
+
+            IRepositorioUnico<DireccionCorreo> aRepositorioDireccion = this.GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();
+
+            DireccionCorreo iDireccion = aRepositorioDireccion.Obtener(direccion => BuscarDireccionDeCorreo.BuscarPorDireccion(direccion, pDireccion.DireccionDeCorreo));
+            //De no existir la direccion, se agrega a la base de datos
+            if (iDireccion == null)
+                aRepositorioDireccion.Agregar(pDireccion);
+
+            iDireccion.Cuenta = pCuenta;
+            iDireccion.CuentaId = pCuenta.Id;
+            pCuenta.DireccionId = iDireccion.Id;
+
+            //Cargar el Servidor
+            Servidor iServidor = new Servidor();
+            pCuenta.Servidor = iServidor;
+
+            IRepositorioUnico<Cuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<Cuenta>();
+            aRepositorioCuenta.Agregar(pCuenta);
         }
         public int EditarCuenta(Cuenta pCuenta)
         {
@@ -139,6 +162,43 @@ namespace Dominio
         }
         public void Enviar(Mensaje pMensaje, Cuenta pCuenta)
         {
+            //poner un estado de enviado o no enviado(por las dudas)
+
+            if (pMensaje == null)
+                throw new ArgumentNullException(nameof(pMensaje));
+
+            if (pCuenta == null)
+                throw new ArgumentNullException(nameof(pCuenta));
+
+            //verifica que los string no sean nulos o vacios
+            if (string.IsNullOrEmpty(pMensaje.Asunto))
+                throw new NullReferenceException("El asunto del mensaje no puede ser vacío o nulo");
+
+            //verifica cada una de las direcciones de correo
+            List<DireccionCorreo> destinatariosValidos = new List<DireccionCorreo>();
+            var destinatarios = pMensaje.Destinatario.GetEnumerator();
+
+            IRepositorioUnico<DireccionCorreo> aRepositorioDireccionCorreo = this.GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();
+            DireccionCorreo iDireccion = null;
+            while (destinatarios.MoveNext())
+            {
+                iDireccion = aRepositorioDireccionCorreo.Obtener(d => BuscarDireccionDeCorreo.BuscarPorDireccion(d, destinatarios.Current.DireccionDeCorreo));
+                if (iDireccion != null)
+                    destinatariosValidos.Add(destinatarios.Current);
+            }
+            pMensaje.Destinatario = destinatariosValidos;
+
+            IRepositorioUnico<Cuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<Cuenta>();
+            Cuenta iCuenta = aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pCuenta.Id));
+            if (iCuenta == null)
+                throw new NullReferenceException(nameof(iCuenta));
+
+            iCuenta.Mensajes.Add(pMensaje);
+            //Se completa la propiedad requerida del entidadHija, respectiva al id de la cuenta.
+            pMensaje.CuentaId = iCuenta.Id;
+            //Se actualiza la cuenta, que mantiene una colección de mensajes.
+            aRepositorioCuenta.Editar(iCuenta);
+
             IProtocoloTransmision iProtocoloTransmision = IoCContainer.Resolver<IProtocoloTransmision>();
             this.iServicio.Enviar(pMensaje, pCuenta, iProtocoloTransmision);
         }
@@ -152,21 +212,6 @@ namespace Dominio
             IProtocoloRecepcion iProtocoloRecepcion = IoCContainer.Resolver<IProtocoloRecepcion>();
             this.iServicio.Eliminar(pId, pCuenta, iProtocoloRecepcion);
         }
-        public int AregarCuenta(DireccionCorreo pDireccion, Cuenta pCuenta, Servidor pServidor)
-        {
-            throw new NotImplementedException();
-        }
-        public Servidor ObtenerServidor(int pId)
-        {
-            throw new NotImplementedException();
-        }
-        public Servidor ObtenerServidor(string pNombre)
-        {
-            throw new NotImplementedException();
-        }
-        public IEnumerable<Servidor> ObtenerTodosLosServidores()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

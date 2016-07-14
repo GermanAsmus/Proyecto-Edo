@@ -4,30 +4,29 @@
     <Nombre>Gmail</Nombre>
     <Protocolos>
       <Smtp>
-        <Host></Host>
-        <Puerto></Puerto>
-        <SSL></SSL>
+        <Host>smtp.gmail.com</Host>
+        <Puerto>587</Puerto>
+        <SSL>true</SSL>
       </Smtp>
       <Pop>
-        <Host></Host>
-        <Puerto></Puerto>
-        <SSL></SSL>
+        <Host>pop.gmail.com</Host>
+        <Puerto>995</Puerto>
+        <SSL>true</SSL>
       </Pop>
     </Protocolos>
   </Servidor>
-
   <Servidor>
     <Nombre>Yahoo</Nombre>
     <Protocolos>
       <Smtp>
-        <Host></Host>
-        <Puerto></Puerto>
-        <SSL></SSL>
+        <Host>smtp.mail.yahoo.com</Host>
+        <Puerto>587</Puerto>
+        <SSL>true</SSL>
       </Smtp>
       <Pop>
-        <Host></Host>
-        <Puerto></Puerto>
-        <SSL></SSL>
+        <Host>pop.mail.yahoo.com</Host>
+        <Puerto>995</Puerto>
+        <SSL>true</SSL>
       </Pop>
     </Protocolos>
   </Servidor>

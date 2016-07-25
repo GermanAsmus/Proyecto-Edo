@@ -202,6 +202,10 @@
       <Project>{3fa000c1-478d-4b59-b1f0-076427d48ffc}</Project>
       <Name>Servicio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UnityDI\UnityDI.csproj">
+      <Project>{77e797ba-4be6-478a-a043-ac91fc7b220a}</Project>
+      <Name>UnityDI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utilidades\Utilidades.csproj">
       <Project>{a815539c-52f2-4d68-8759-ac6cbd74905c}</Project>
       <Name>Utilidades</Name>

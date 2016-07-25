@@ -64,6 +64,10 @@
       <Project>{c7f74b31-7843-4997-82e0-0e9d00b3df1b}</Project>
       <Name>Modelo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UnityDI\UnityDI.csproj">
+      <Project>{77e797ba-4be6-478a-a043-ac91fc7b220a}</Project>
+      <Name>UnityDI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utilidades\Utilidades.csproj">
       <Project>{a815539c-52f2-4d68-8759-ac6cbd74905c}</Project>
       <Name>Utilidades</Name>

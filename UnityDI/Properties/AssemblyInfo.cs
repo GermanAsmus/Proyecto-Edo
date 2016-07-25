@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MainEdoUnity")]
+[assembly: AssemblyTitle("UnityDI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MainEdoUnity")]
+[assembly: AssemblyProduct("UnityDI")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a514c737-927a-41b5-a375-cf7ea4a2aef4")]
+[assembly: Guid("77e797ba-4be6-478a-a043-ac91fc7b220a")]
 
 // Version information for an assembly consists of the following four values:
 //

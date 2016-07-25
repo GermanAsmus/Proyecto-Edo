@@ -2,6 +2,7 @@
 using ControlDependencia.Utilidades;
 using Modelo;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace ControlDependencia.Dominio
 {
@@ -115,12 +116,12 @@ namespace ControlDependencia.Dominio
         /// <param name="pCuenta">Cuenta del usuario</param>
         void Enviar(Mensaje pMensaje, Cuenta pCuenta);
         /// <summary>
-        /// Recibe una cantidad de mensajes respectivos a una cuenta.
+        /// Recibe un mensaje.
         /// </summary>
-        /// <param name="pCantidad">Cantidad de mensajes a descargar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
         /// <param name="pBuzon">Entidad que almacena los mensajes descargados</param>
-        void Recibir(int pCantidad, Cuenta pCuenta, IBuzon pBuzon);
+        void Recibir(int pIdMensaje, CancellationToken pCancellation, Cuenta pCuenta, ref IBuzon pBuzon);
+        void Recibir(CancellationToken pCancellation, Cuenta pCuenta,ref IBuzon pBuzon);
         /// <summary>
         /// Elimina un mensaje del servidor de correo respectivo a una cuenta.
         /// </summary>

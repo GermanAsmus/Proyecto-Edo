@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using ControlDependencia;
 using Modelo;
 using ControlDependencia.Dominio;
-using EdoUnity;
+using UnityDI;
 
 namespace EdoUI
 {

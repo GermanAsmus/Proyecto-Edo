@@ -12,13 +12,13 @@ namespace Dominio
 {
     public class RepositorioMensaje : RepositorioAbstracto<Mensaje>, IRepositorioUnico<Mensaje>
     {
-        private IRepositorioUnico<Adjunto> iRepositorioAdjunto;
+        //private IRepositorioUnico<Adjunto> iRepositorioAdjunto;
         private IRepositorioUnico<DireccionCorreo> iRepositorioDireccionDeCorreo;
         private IRepositorioUnico<Cuenta> iRepositorioCuenta;
 
-        public RepositorioMensaje(IRepositorioUnico<Mensaje> pRepositorioInterno, IRepositorioUnico<Adjunto> pRepositorioAdjunto, IRepositorioUnico<DireccionCorreo> pRepositorioDireccionDeCorreo, IRepositorioUnico<Cuenta> pRepositorioCuenta) : base(pRepositorioInterno)
+        public RepositorioMensaje(IRepositorioUnico<Mensaje> pRepositorioInterno, /*IRepositorioUnico<Adjunto> pRepositorioAdjunto,*/ IRepositorioUnico<DireccionCorreo> pRepositorioDireccionDeCorreo, IRepositorioUnico<Cuenta> pRepositorioCuenta) : base(pRepositorioInterno)
         {
-            this.iRepositorioAdjunto = pRepositorioAdjunto;
+            //this.iRepositorioAdjunto = pRepositorioAdjunto;
             this.iRepositorioDireccionDeCorreo = pRepositorioDireccionDeCorreo;
             this.iRepositorioCuenta = pRepositorioCuenta;
         }

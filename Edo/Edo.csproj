@@ -4,18 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BFD4EEA3-BD06-457D-8B8D-935D4A47C37E}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{3924E260-F4B5-41B5-904B-AE18EC61747B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ControlDependencia</RootNamespace>
-    <AssemblyName>ControlDependencia</AssemblyName>
+    <RootNamespace>Edo</RootNamespace>
+    <AssemblyName>Edo</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,37 +32,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="IRepositorioUnico.cs" />
-    <Compile Include="IEncriptador.cs" />
-    <Compile Include="IStartEdo.cs" />
-    <Compile Include="Persistencia\IContext.cs" />
-    <Compile Include="Utilidades\IBuzon.cs" />
-    <Compile Include="Dominio\IControlador.cs" />
-    <Compile Include="Utilidades\ICriterio.cs" />
-    <Compile Include="Dominio\IGestorRespositorios.cs" />
-    <Compile Include="Servicio\IProtocolo.cs" />
-    <Compile Include="Servicio\IProtocoloRecepcion.cs" />
-    <Compile Include="Servicio\IProtocoloTransmision.cs" />
-    <Compile Include="IRepositorioGenerico.cs" />
-    <Compile Include="Servicio\IServicio.cs" />
-    <Compile Include="IRepositorioRaiz.cs" />
-    <Compile Include="Persistencia\IUnitOfWork.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Modelo\Modelo.csproj">
-      <Project>{c7f74b31-7843-4997-82e0-0e9d00b3df1b}</Project>
-      <Name>Modelo</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

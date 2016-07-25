@@ -1,6 +1,6 @@
 ﻿namespace EdoUI
 {
-    partial class EDO
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EDO));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStripConexion = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelConexion = new System.Windows.Forms.ToolStripStatusLabel();
@@ -121,7 +121,7 @@
             this.panelA.Size = new System.Drawing.Size(902, 598);
             this.panelA.TabIndex = 4;
             // 
-            // EDO
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

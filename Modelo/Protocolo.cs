@@ -8,9 +8,10 @@ namespace Modelo
 {
     public class Protocolo
     {
-        public Protocolo()
+        public string Nombre { get; private set; }
+        public Protocolo(string pNombre)
         {
-
+            this.Nombre = pNombre;
         }
         //Host del servidor.
         public string Host { get; set; }

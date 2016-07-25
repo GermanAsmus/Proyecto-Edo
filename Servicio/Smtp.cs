@@ -19,11 +19,13 @@ namespace Servicio
 
             try
             {
-                SmtpClient iSmtp = new SmtpClient(pCuenta.Servidor.HostSMTP, pCuenta.Servidor.PuertoSMTP);
-                iSmtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                iSmtp.EnableSsl = pCuenta.Servidor.SSL;
-                iSmtp.UseDefaultCredentials = false;
-                iSmtp.Credentials = new NetworkCredential(pCuenta.DireccionCorreo.DireccionDeCorreo, pCuenta.Contraseña);
+                Modelo.Protocolo iSmtp = pCuenta.Servidor.ObtenerProtocolo("smtp");
+
+                SmtpClient iClienteSmtp = new SmtpClient(iSmtp.Host, iSmtp.Puerto);
+                iClienteSmtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                iClienteSmtp.EnableSsl = iSmtp.SSL;
+                iClienteSmtp.UseDefaultCredentials = false;
+                iClienteSmtp.Credentials = new NetworkCredential(pCuenta.DireccionCorreo.DireccionDeCorreo, pCuenta.Contraseña);
 
 
                 MailMessage mensaje = new MailMessage()
@@ -35,7 +37,7 @@ namespace Servicio
                 pMensaje.Adjuntos.ToList().ForEach(x => mensaje.Attachments.Add(new Attachment(x.CodigoAdjunto)));
                 pMensaje.Destinatario.ToList().ForEach(x => mensaje.To.Add(x.DireccionDeCorreo));
 
-                iSmtp.Send(mensaje);
+                iClienteSmtp.Send(mensaje);
             }
             catch(ArgumentOutOfRangeException ex)
             {

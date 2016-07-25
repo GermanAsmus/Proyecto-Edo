@@ -16,6 +16,9 @@ namespace Dominio
 
         public int Agregar(DireccionCorreo pEntidad)
         {
+            if(pEntidad==null)
+                throw new ArgumentNullException(nameof(pEntidad));
+
             DireccionCorreo iDireccion = this.iRepositorio.Obtener(x => BuscarDireccionDeCorreo.BuscarPorId(x, pEntidad.Id));
             if (iDireccion != null)
                return this.iRepositorio.Agregar(pEntidad);

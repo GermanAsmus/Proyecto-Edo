@@ -65,12 +65,6 @@
   <ItemGroup>
     <Content Include="Entidades_Dinamicas\Servidores.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EdoUnity\EdoUnity.csproj">
-      <Project>{ad415791-96e7-44b7-9ca4-bc206936857e}</Project>
-      <Name>EdoUnity</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

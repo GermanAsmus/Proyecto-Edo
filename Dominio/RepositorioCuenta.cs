@@ -15,7 +15,10 @@ namespace Dominio
     {
         private IRepositorioUnico<DireccionCorreo> iRepositorioExterno;
 
-        public RepositorioCuenta(IRepositorioUnico<Cuenta> pRepositorioInterno, IRepositorioUnico<DireccionCorreo> pRepositorioExterno) : base (pRepositorioInterno) {        }
+        public RepositorioCuenta(IRepositorioUnico<Cuenta> pRepositorioInterno, IRepositorioUnico<DireccionCorreo> pRepositorioExterno) : base (pRepositorioInterno)
+        {
+            this.iRepositorioExterno = pRepositorioExterno;
+        }
 
         public int Agregar(Cuenta pEntidad)
         {
@@ -30,10 +33,9 @@ namespace Dominio
 
             DireccionCorreo iDireccion = iRepositorioExterno.Obtener(direccion => BuscarDireccionDeCorreo.BuscarPorDireccion(direccion, pEntidad.DireccionCorreo.DireccionDeCorreo));
             //de no existir la direccion, se agrega a la base de datos
-            if (iDireccion != null)
-                throw new Exception();
+            if (iDireccion == null)
+                iRepositorioExterno.Agregar(iDireccion);
 
-            iRepositorioExterno.Agregar(pEntidad.DireccionCorreo);
             iDireccion.Cuenta = pEntidad;
             iDireccion.CuentaId = pEntidad.Id;
             pEntidad.DireccionId = iDireccion.Id;

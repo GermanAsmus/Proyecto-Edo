@@ -1,5 +1,6 @@
 ﻿using ControlDependencia.Utilidades;
 using Modelo;
+using System.Threading;
 
 namespace ControlDependencia.Servicio
 {
@@ -22,10 +23,11 @@ namespace ControlDependencia.Servicio
         /// <summary>
         /// Descarga una cantidad de mensajes de una cuenta mediante un protocolo de recepción.
         /// </summary>
-        /// <param name="pCantidad">Cantidad de mensjes a descargar</param>
+        /// <param name="pIdMensaje">Id del mensaje a descargar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
         /// <param name="pProtocoloRecepcion">Protocolo de recepción de correos</param>
-        void Descargar(int pCantidad, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion, IBuzon pBuzon);
+        void Descargar(int pIdMensaje, CancellationToken pCancellation, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion, ref IBuzon pBuzon);
+        void Descargar(CancellationToken pCancellation, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion, ref IBuzon pBuzon);
         /// <summary>
         /// Elimina un mensaje de una cuenta mediante un protocolo de recepción
         /// </summary>

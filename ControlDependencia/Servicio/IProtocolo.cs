@@ -1,4 +1,5 @@
 ﻿using Modelo;
+using System.Threading;
 
 namespace ControlDependencia.Servicio
 {
@@ -7,12 +8,8 @@ namespace ControlDependencia.Servicio
     /// </summary>
     public interface IProtocolo
     {
-        /// <summary>
-        /// Descarga una cantidad de mensajes de una cuenta mediante un protocolo de recepción.
-        /// </summary>
-        /// <param name="pCantidad">Cantidad de mensjes a descargar</param>
-        /// <param name="pProtocoloRecepcion">Protocolo de recepción de correos</param>
-        void Descargar(int pCantidad,IProtocoloRecepcion pProtocoloRecepcion);
+        void Descargar(int pIdMensaje, CancellationToken pCancellation, IProtocoloRecepcion pProtocoloRecepcion);
+        void Descargar(CancellationToken pCancellation, IProtocoloRecepcion pProtocoloRecepcion);
         /// <summary>
         /// Elimina un mensaje de una cuenta mediante un protocolo de recepción
         /// </summary>

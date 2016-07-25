@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ControlDependencia;
+using System;
 using System.Windows.Forms;
 
 namespace EdoUI
 {
-    static class Program
+    public class StartEdo : IStartEdo
     {
         /// <summary>
         /// The main entry point for the application.
@@ -16,7 +14,11 @@ namespace EdoUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new EDO());
+            Application.Run(new MainForm());
+        }
+        public void Run()
+        {
+            Main();
         }
     }
 }

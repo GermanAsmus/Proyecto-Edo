@@ -3,18 +3,18 @@ using ControlDependencia.Dominio;
 using ControlDependencia.Persistencia;
 using ControlDependencia.Servicio;
 using ControlDependencia.Utilidades;
-using EdoUnity;
 using Modelo;
 using System;
 using System.Collections.Generic;
-using Utilidades;
 using Utilidades.CriteriosDeBusqueda;
+using UnityDI;
+using System.Threading;
 
 namespace Dominio
 {
     public class Controlador : IControlador
     {
-        public IGestorRespositorios GestorRepositorios { get; }
+        public IGestorRespositorios GestorRepositorios { get; private set; }
         private IServicio iServicio;
 
         public Controlador(IUnitOfWork pUnitOfWork)
@@ -22,44 +22,20 @@ namespace Dominio
             iServicio = IoCContainer.Resolver<IServicio>();
             GestorRepositorios = new GestorRepositorios(pUnitOfWork);
         }
-        public void AregarCuenta(DireccionCorreo pDireccion, Cuenta pCuenta)
+        public int AregarCuenta(DireccionCorreo pDireccion, Cuenta pCuenta)
         {
-            if (pDireccion == null)
-                throw new ArgumentNullException(nameof(pDireccion));
-
-            if (pCuenta == null)
-                throw new ArgumentNullException(nameof(pCuenta));
-
-            if (string.IsNullOrEmpty(pCuenta.Contraseña) || string.IsNullOrEmpty(pCuenta.Nombre))
-                throw new NullReferenceException("Los atributos contraseña, nombre, no pueden ser nulos o vacíos");
-
-            IRepositorioUnico<DireccionCorreo> aRepositorioDireccion = this.GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();
-
-            DireccionCorreo iDireccion = aRepositorioDireccion.Obtener(direccion => BuscarDireccionDeCorreo.BuscarPorDireccion(direccion, pDireccion.DireccionDeCorreo));
-            //De no existir la direccion, se agrega a la base de datos
-            if (iDireccion == null)
-                aRepositorioDireccion.Agregar(pDireccion);
-
-            iDireccion.Cuenta = pCuenta;
-            iDireccion.CuentaId = pCuenta.Id;
-            pCuenta.DireccionId = iDireccion.Id;
-
-            //Cargar el Servidor
-            Servidor iServidor = new Servidor();
-            pCuenta.Servidor = iServidor;
-
             IRepositorioUnico<Cuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<Cuenta>();
-            aRepositorioCuenta.Agregar(pCuenta);
+            return aRepositorioCuenta.Agregar(pCuenta);
         }
         public int EditarCuenta(Cuenta pCuenta)
         {
             RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<Cuenta>();
-            return aRepositorio.Editar(pCuenta);
+            return aRepositorio.Editar();
         }
         public int EditarDireccionDeCorreo(DireccionCorreo pDireccionCorreo)
         {
             RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();
-            return aRepositorio.Editar(pDireccionCorreo);
+            return aRepositorio.Editar();
         }
         public int EliminarDireccionDeCorreo(int pId)
         {
@@ -197,15 +173,20 @@ namespace Dominio
             //Se completa la propiedad requerida del entidadHija, respectiva al id de la cuenta.
             pMensaje.CuentaId = iCuenta.Id;
             //Se actualiza la cuenta, que mantiene una colección de mensajes.
-            aRepositorioCuenta.Editar(iCuenta);
+            aRepositorioCuenta.Editar();
 
             IProtocoloTransmision iProtocoloTransmision = IoCContainer.Resolver<IProtocoloTransmision>();
             this.iServicio.Enviar(pMensaje, pCuenta, iProtocoloTransmision);
         }
-        public void Recibir(int pCantidad, Cuenta pCuenta, IBuzon pBuzon)
+        public void Recibir(CancellationToken pCancellation,Cuenta pCuenta, ref IBuzon pBuzon)
         {
             IProtocoloRecepcion iProtocoloRecepcion = IoCContainer.Resolver<IProtocoloRecepcion>();
-            this.iServicio.Descargar(pCantidad, pCuenta, iProtocoloRecepcion, pBuzon);
+            this.iServicio.Descargar(pCancellation, pCuenta, iProtocoloRecepcion, ref pBuzon);
+        }
+        public void Recibir(int pIdMensaje, CancellationToken pCancellation, Cuenta pCuenta,ref IBuzon pBuzon)
+        {
+            IProtocoloRecepcion iProtocoloRecepcion = IoCContainer.Resolver<IProtocoloRecepcion>();
+            this.iServicio.Descargar(pIdMensaje, pCancellation, pCuenta, iProtocoloRecepcion,ref pBuzon);
         }
         public void EliminarDelServidor(int pId, Cuenta pCuenta)
         {

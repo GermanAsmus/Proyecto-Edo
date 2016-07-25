@@ -15,14 +15,14 @@ using Utilidades.Internet;
 
 namespace EdoUI
 {
-    public partial class EDO : Form
+    public partial class MainForm : Form
     {
         delegate void SetTextCallback(string text);
         static System.Timers.Timer iTimer;
 
         PanelPrincipal controlPanelPrincipal;
 
-        public EDO()
+        public MainForm()
         {
             InitializeComponent();
 

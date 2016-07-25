@@ -14,7 +14,7 @@ namespace Dominio
     /// Define su implementación de forma virtual y genérica.
     /// </summary>
     /// <typeparam name="T">Tipo de entidad de modelo</typeparam>
-    public abstract class RepositorioAbstracto<T> : IRepositorioUnico<T> where T : class
+    public abstract class RepositorioAbstracto<T> : IRepositorioGenerico<T> where T : class
     {
         ///// <summary>
         ///// Gestor de los repositorios, mantiene todos los repositorios que se definieron con anterioridad.

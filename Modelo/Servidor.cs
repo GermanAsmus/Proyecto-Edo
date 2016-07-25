@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Modelo
 {
@@ -14,6 +16,11 @@ namespace Modelo
 
         public Servidor()
         {
+        }
+
+        public Protocolo ObtenerProtocolo(string nombre)
+        {
+            return this.Protocolos.FirstOrDefault(p => p.Nombre == nombre.ToLower());
         }
     }
 }

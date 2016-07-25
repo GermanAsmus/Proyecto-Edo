@@ -12,7 +12,7 @@ namespace Persistencia
     {
         public IDbSet<Cuenta> Cuenta { get; set; }
         public IDbSet<Mensaje> Mensaje { get; set; }
-        public IDbSet<Servidor> Servidor { get; set; }
+        //public IDbSet<Servidor> Servidor { get; set; }
         public IDbSet<DireccionCorreo> DireccionCorreo { get; set; }
         public IDbSet<Adjunto> Adjunto { get; set; }
 
@@ -66,21 +66,21 @@ namespace Persistencia
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Entity<Servidor>().ToTable("Servidor");
-            modelBuilder.Entity<Servidor>().HasKey<int>(x => x.Id);
-            modelBuilder.Entity<Servidor>().Property(x => x.Nombre).IsRequired();
-            modelBuilder.Entity<Servidor>().Property(x => x.HostPOP).IsRequired();
-            modelBuilder.Entity<Servidor>().Property(x => x.HostSMTP).IsRequired();
-            modelBuilder.Entity<Servidor>().Property(x => x.PuertoPOP).IsRequired();
-            modelBuilder.Entity<Servidor>().Property(x => x.PuertoSMTP).IsRequired();
-            modelBuilder.Entity<Servidor>().Property(x => x.SSL).IsRequired();
+            //modelBuilder.Entity<Servidor>().ToTable("Servidor");
+            //modelBuilder.Entity<Servidor>().HasKey<int>(x => x.Id);
+            //modelBuilder.Entity<Servidor>().Property(x => x.Nombre).IsRequired();
+            //modelBuilder.Entity<Servidor>().Property(x => x.HostPOP).IsRequired();
+            //modelBuilder.Entity<Servidor>().Property(x => x.HostSMTP).IsRequired();
+            //modelBuilder.Entity<Servidor>().Property(x => x.PuertoPOP).IsRequired();
+            //modelBuilder.Entity<Servidor>().Property(x => x.PuertoSMTP).IsRequired();
+            //modelBuilder.Entity<Servidor>().Property(x => x.SSL).IsRequired();
 
             modelBuilder.Entity<Cuenta>().ToTable("Cuenta");
             modelBuilder.Entity<Cuenta>().HasKey<int>(x => x.Id);
             modelBuilder.Entity<Cuenta>().Property(x => x.Nombre).IsRequired();
             modelBuilder.Entity<Cuenta>().Property(x => x.DireccionId).IsRequired();
             modelBuilder.Entity<Cuenta>().Property(x => x.Contraseña).IsRequired();
-            modelBuilder.Entity<Cuenta>().HasRequired(x => x.Servidor).WithMany(y => y.Cuenta).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Cuenta>().HasRequired(x => x.Servidor).WithMany(y => y.Cuenta).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Cuenta>().HasRequired(x => x.DireccionCorreo).WithOptional(y => y.Cuenta);
 
             modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionCorreo");

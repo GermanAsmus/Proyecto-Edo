@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
 using OpenPop.Pop3;
 using OpenPop.Pop3.Exceptions;
 using System.Threading.Tasks;
 using Modelo;
-using ControlDependencia;
-using Utilidades;
 using OpenPop.Mime.Header;
 using OpenPop.Mime;
 using Servicio.Excepciones;
 using ControlDependencia.Servicio;
 using ControlDependencia.Utilidades;
 using Utilidades.Misc;
+using System.Threading;
 
 namespace Servicio
 {
@@ -56,7 +51,7 @@ namespace Servicio
                 var iMensaje = pCliente.GetMessage(pId + 1);
                 this.ToMensaje(iMensaje);
             }
-            catch(PopServerException ex)
+            catch (PopServerException ex)
             {
                 throw new GetMessageFromServerException("No se pudo obtener el mensaje del servidor. Verifique la conexion a internet.", ex);
             }
@@ -77,7 +72,6 @@ namespace Servicio
             pMensaje.To.ForEach(x => iMensajeCabecera.Destinatario.Add(new DireccionCorreo() { DireccionDeCorreo = x.Address }));
             Buzon.AgregarCabecera(iMensajeCabecera);
         }
-
         private void ToMensaje(Message pMensaje)
         {
             if (pMensaje == null)
@@ -106,48 +100,86 @@ namespace Servicio
             Buzon.AgregarMensaje(mensaje);
         }
 
-        public void Descargar(int pCantidad)
+        public void Descargar(CancellationToken pCanelation)
         {
-            try {
-                IList<Task> iTasks = new List<Task>();
-                for (int i = 0; i < pCantidad; i++)
+            IList<Task> iTasks = new List<Task>();
+            int iCantidad = 0;
+            using (Pop3Client iCliente = ObtenerCliente())
+            {
+                iCantidad = iCliente.GetMessageCount();
+                int i = 0;
+                while (!pCanelation.IsCancellationRequested && i<iCantidad)
                 {
                     iTasks.Add(Task.Factory.StartNew(() =>
                     {
-                        using (Pop3Client iCliente = ObtenerCliente())
-                        {
-                            int iCantidadReal = iCliente.GetMessageCount();
-                            if (i > iCantidadReal)
-                                i = iCantidadReal;
-                            this.ObtenerCabecera(i, iCliente);
-                        }
-
+                        this.ObtenerCabecera(i,iCliente);
                     }));
-                    iTasks.Add(Task.Factory.StartNew(() =>
-                    {
-                        using (Pop3Client iCliente = ObtenerCliente())
-                        {
-                            int iCantidadReal = iCliente.GetMessageCount();
-                            if (i > iCantidadReal)
-                                i = iCantidadReal;
-                            this.ObtenerMensaje(i, iCliente);
-                        }
-                    }));
+                    i++;
                 }
-                Task.WaitAll(iTasks.ToArray());
-            }
-            catch(Pop3ClientException ex)
-            {
-                throw new Pop3ClientException("No se pudo obtener el cliente pop3.", ex);
+                if (pCanelation.IsCancellationRequested)
+                    iCliente.Disconnect();
             }
         }
+        public void Descargar(int pIdMensaje,CancellationToken pCanelation)
+        {
+            Task iDescargarMensaje;
+            using (Pop3Client iCliente = ObtenerCliente())
+            {
+                if (!pCanelation.IsCancellationRequested)
+                    iDescargarMensaje = (Task.Factory.StartNew(() =>
+                    {
+                        this.ObtenerMensaje(pIdMensaje, iCliente);
+                    }));
+                else
+                    iCliente.Disconnect();
+            }
+        }
+
+        //public void Descargar(int pCantidad)
+        //{
+        //    try
+        //    {
+        //        IList<Task> iTasks = new List<Task>();
+        //        for (int i = 0; i < pCantidad; i++)
+        //        {
+        //            iTasks.Add(Task.Factory.StartNew(() =>
+        //            {
+        //                using (Pop3Client iCliente = ObtenerCliente())
+        //                {
+        //                    int iCantidadReal = iCliente.GetMessageCount();
+        //                    if (i > iCantidadReal)
+        //                        i = iCantidadReal;
+        //                    this.ObtenerCabecera(i, iCliente);
+        //                }
+
+        //            }));
+        //            iTasks.Add(Task.Factory.StartNew(() =>
+        //            {
+        //                using (Pop3Client iCliente = ObtenerCliente())
+        //                {
+        //                    int iCantidadReal = iCliente.GetMessageCount();
+        //                    if (i > iCantidadReal)
+        //                        i = iCantidadReal;
+        //                    this.ObtenerMensaje(i, iCliente);
+        //                }
+        //            }));
+        //        }
+        //        Task.WaitAll(iTasks.ToArray());
+        //    }
+        //    catch (Pop3ClientException ex)
+        //    {
+        //        throw new Pop3ClientException("No se pudo obtener el cliente pop3.", ex);
+        //    }
+        //}
         public Pop3Client ObtenerCliente()
         {
             try
             {
                 Pop3Client iCliente = new Pop3Client();
 
-                iCliente.Connect(CuentaUsuario.Servidor.HostPOP, CuentaUsuario.Servidor.PuertoPOP, CuentaUsuario.Servidor.SSL);
+                Modelo.Protocolo iPop = CuentaUsuario.Servidor.ObtenerProtocolo("pop3");
+
+                iCliente.Connect(iPop.Host, iPop.Puerto, iPop.SSL);
                 iCliente.Authenticate(CuentaUsuario.DireccionCorreo.DireccionDeCorreo, CuentaUsuario.Contraseña);
                 iCliente.Reset();
 
@@ -163,19 +195,14 @@ namespace Servicio
         {
             try
             {
-                using (Pop3Client iCliente = new Pop3Client())
+                using (Pop3Client iCliente = ObtenerCliente())
                 {
-                    //Conexion y Autorizacion del servidor
-                    iCliente.Connect(CuentaUsuario.Servidor.HostPOP, CuentaUsuario.Servidor.PuertoPOP, CuentaUsuario.Servidor.SSL);
-                    iCliente.Authenticate(CuentaUsuario.DireccionCorreo.DireccionDeCorreo, CuentaUsuario.Contraseña);
-                    iCliente.Reset();
-                    //Eliminacion del mensaje en el servidor
                     iCliente.DeleteMessage(pId);
                     //Desconexion del servidor
                     iCliente.Disconnect();
                 }
             }
-            catch(PopClientException ex)
+            catch (PopClientException ex)
             {
                 throw new Pop3ClientException("No se pudo eliminar el mensaje, problemas con el cliente pop3. Ver excepcion interna.", ex);
             }

@@ -8,6 +8,7 @@ using System.Net.Mail;
 using ControlDependencia;
 using ControlDependencia.Servicio;
 using ControlDependencia.Utilidades;
+using System.Threading;
 
 namespace Servicio
 {
@@ -20,11 +21,17 @@ namespace Servicio
             iProtocolo = pProtocolo;
         }
 
-        public void Descargar(int pCantidad, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion, IBuzon pBuzon)
+        public void Descargar(int pIdMensaje,CancellationToken pCancellation, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion,ref IBuzon pBuzon)
         {
             pProtocoloRecepcion.CuentaUsuario = pCuenta;
             pProtocoloRecepcion.Buzon = pBuzon;
-            this.iProtocolo.Descargar(pCantidad, pProtocoloRecepcion);
+            this.iProtocolo.Descargar(pIdMensaje,pCancellation, pProtocoloRecepcion);
+        }
+        public void Descargar(CancellationToken pCancellation, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion,ref IBuzon pBuzon)
+        {
+            pProtocoloRecepcion.CuentaUsuario = pCuenta;
+            pProtocoloRecepcion.Buzon = pBuzon;
+            this.iProtocolo.Descargar(pCancellation, pProtocoloRecepcion);
         }
 
         public void Eliminar(int pUid, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion)

@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="ControladorTests.cs" />
     <Compile Include="DescargarTests.cs" />
-    <Compile Include="Pop3Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositorioTests.cs" />
     <Compile Include="SmtpTests.cs" />

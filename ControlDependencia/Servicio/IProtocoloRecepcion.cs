@@ -1,5 +1,6 @@
 ﻿using ControlDependencia.Utilidades;
 using Modelo;
+using System.Threading;
 
 namespace ControlDependencia.Servicio
 {
@@ -17,10 +18,13 @@ namespace ControlDependencia.Servicio
         /// </summary>
         IBuzon Buzon { get; set; }
         /// <summary>
-        /// Descarga una cantiad de mensajes del servidor.
+        /// Descarga las cabeceras de los mensajes del servidor.
         /// </summary>
-        /// <param name="pCantidad">Cantidad de mensajes a descargar</param>
-        void Descargar(int pCantidad);
+        void Descargar(CancellationToken pCancellation);
+        /// <summary>
+        /// Descarga un mensaje particular del servidor.
+        /// </summary>
+        void Descargar(int pIdMensaje, CancellationToken pCanselation);
         /// <summary>
         /// Elimina una cantidad de mensajes del servidor.
         /// </summary>

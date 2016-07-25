@@ -4,6 +4,7 @@ using ControlDependencia;
 using ControlDependencia.Persistencia;
 using System.Linq;
 using Modelo;
+using UnityDI;
 
 namespace Persistencia
 {
@@ -16,11 +17,11 @@ namespace Persistencia
         {
             this.Context = pContext;
 
-            this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioUnico<Cuenta>>());
-            this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioUnico<Mensaje>>());
-            this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioUnico<Servidor>>());
-            this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioUnico<Adjunto>>());
-            this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioUnico<DireccionCorreo>>());
+            this.Repositorios.Add(IoCContainer.Resolver<IRepositorioUnico<Cuenta>>());
+            this.Repositorios.Add(IoCContainer.Resolver<IRepositorioUnico<Mensaje>>());
+            //this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioUnico<Servidor>>());
+            this.Repositorios.Add(IoCContainer.Resolver<IRepositorioUnico<Adjunto>>());
+            this.Repositorios.Add(IoCContainer.Resolver<IRepositorioUnico<DireccionCorreo>>());
         }
         public IRepositorioUnico<T> ObtenerRepositorio<T>() where T : class
         {

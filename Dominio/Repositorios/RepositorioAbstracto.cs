@@ -7,7 +7,7 @@ using Modelo;
 using Utilidades.CriteriosDeBusqueda;
 using ControlDependencia.Persistencia;
 
-namespace Dominio
+namespace Dominio.Repositorios
 {
     /// <summary>
     /// Clase abstracta que define el implementa el comportamiento definido en las interfaces que implementa.

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Utilidades.CriteriosDeBusqueda;
 using ControlDependencia.Persistencia;
 
-namespace Dominio
+namespace Dominio.Repositorios
 {
     public class RepositorioCuenta : RepositorioAbstracto<Cuenta>, IRepositorioUnico<Cuenta>
     {

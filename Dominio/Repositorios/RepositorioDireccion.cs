@@ -5,7 +5,7 @@ using System;
 using Utilidades;
 using Utilidades.CriteriosDeBusqueda;
 
-namespace Dominio
+namespace Dominio.Repositorios
 {
     public class RepositorioDireccion : RepositorioAbstracto<DireccionCorreo>, IRepositorioUnico<DireccionCorreo>
     {

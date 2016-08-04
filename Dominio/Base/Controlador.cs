@@ -9,8 +9,9 @@ using System.Collections.Generic;
 using Utilidades.CriteriosDeBusqueda;
 using UnityDI;
 using System.Threading;
+using Dominio.Repositorios;
 
-namespace Dominio
+namespace Dominio.Base
 {
     public class Controlador : IControlador
     {

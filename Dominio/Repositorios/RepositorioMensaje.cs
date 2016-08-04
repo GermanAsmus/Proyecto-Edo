@@ -8,7 +8,7 @@ using ControlDependencia.Dominio;
 using ControlDependencia;
 using Utilidades.CriteriosDeBusqueda;
 
-namespace Dominio
+namespace Dominio.Repositorios
 {
     public class RepositorioMensaje : RepositorioAbstracto<Mensaje>, IRepositorioUnico<Mensaje>
     {

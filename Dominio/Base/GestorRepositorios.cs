@@ -7,8 +7,9 @@ using System.IO;
 using System.Net.Mail;
 using ControlDependencia.Persistencia;
 using ControlDependencia.Dominio;
+using Dominio.Repositorios;
 
-namespace Dominio
+namespace Dominio.Base
 {
     public class GestorRepositorios : IGestorRespositorios
     {

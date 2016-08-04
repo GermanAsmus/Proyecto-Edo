@@ -43,14 +43,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controlador.cs" />
+    <Compile Include="Base\Controlador.cs" />
     <Compile Include="Excepciones\AddOperationException.cs" />
-    <Compile Include="GestorRepositorios.cs" />
+    <Compile Include="Base\GestorRepositorios.cs" />
     <Compile Include="Excepciones\InvalidRepositoryOperationException.cs" />
-    <Compile Include="RepositorioMensaje.cs" />
-    <Compile Include="RepositorioCuenta.cs" />
-    <Compile Include="RepositorioDireccion.cs" />
-    <Compile Include="RepositorioAbstracto.cs" />
+    <Compile Include="Repositorios\RepositorioMensaje.cs" />
+    <Compile Include="Repositorios\RepositorioCuenta.cs" />
+    <Compile Include="Repositorios\RepositorioDireccion.cs" />
+    <Compile Include="Repositorios\RepositorioAbstracto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

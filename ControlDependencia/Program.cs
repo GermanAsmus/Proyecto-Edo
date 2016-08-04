@@ -1,15 +1,14 @@
-﻿using ControlDependencia;
-using ControlDependencia.Dominio;
+﻿using ControlDependencia.Persistencia;
 
-namespace UnityDI
+namespace ControlDependencia
 {
-    public static class Program
+    static class Program
     {
         static void Main()
         {
             // IoCContainer.iPathConfigFile= @"C:\Users\german\Source\Repos\UnityDI\UnityDI\Unity.config";
             //IoCContainer.Resolver<IStartEdo>().Run();
-            IoCContainer.Resolver<IControlador>();
+            IoC_CL.Resolver<IUnitOfWork>();
         }
     }
 }

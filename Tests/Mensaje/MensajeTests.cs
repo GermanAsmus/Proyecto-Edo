@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CapaInterfaces.Modelo;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Modelo;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,42 @@ namespace Tests
     [TestClass()]
     public class MensajeTests
     {
+        static ICuenta iCuenta;
+        static IMensaje iMensaje;
+
         [TestMethod()]
         public void CambiarEstadoPersistencia()
         {
-            var iCuenta = new CuentaExterna();
 
-            var iMensaje = new MensajeIncompleto(iCuenta);
+            iCuenta = new CuentaExterna();
+            iMensaje = new MensajeIncompleto(iCuenta);
 
-            var estadoInicial = iMensaje.EstadoPersistencia;
+            var estadoInicial = iMensaje.ObtenerEstadoPersistencia;
             iMensaje.CambiarEstadoPersistencia();
-            Assert.AreNotEqual(estadoInicial, iMensaje.EstadoPersistencia);
+            Assert.AreNotEqual(estadoInicial, iMensaje.ObtenerEstadoPersistencia);
         }
 
+        [TestMethod()]
+        public void ObtenerEstrategiaPertenencia()
+        {
+            iCuenta = new CuentaExterna();
+            iMensaje = new MensajeCompleto(iCuenta);
+
+            var mensajeCompleto = (MensajeCompleto)iMensaje;
+            var estrategiaPertenencia = mensajeCompleto.ObtenerPertenecia;
+            Assert.AreEqual(estrategiaPertenencia, EstrategiaPertenencia.Externo.ToString());
+        }
+
+        [TestMethod()]
+        public void ObtenerVisibilidad()
+        {
+            iCuenta = new CuentaExterna();
+            iMensaje = new MensajeIncompleto(iCuenta);
+
+            var mensajeCompleto = (MensajeIncompleto)iMensaje;
+            var mensajeUsuario = (MensajeExterno)mensajeCompleto.Pertenencia;
+            var visibilidad = mensajeUsuario.ObtenerVisibilidad();
+            Assert.AreEqual(visibilidad, EstadoVisibilidad.No_Visto.ToString());
+        }
     }
 }

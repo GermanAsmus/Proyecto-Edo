@@ -18,15 +18,15 @@ namespace Persistencia
         {
             this.Context = pContext;
 
-            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioUnico<Cuenta>>());
-            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioUnico<Mensaje>>());
-            //this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioUnico<Servidor>>());
-            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioUnico<Adjunto>>());
-            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioUnico<DireccionCorreo>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<Cuenta>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<Mensaje>>());
+            //this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioCompleto<Servidor>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<Adjunto>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<DireccionCorreo>>());
         }
-        public IRepositorioUnico<T> ObtenerRepositorio<T>() where T : class
+        public IRepositorioCompleto<T> ObtenerRepositorio<T>() where T : class
         {
-            return (IRepositorioUnico<T>)this.Repositorios.FirstOrDefault(x => x.GetType().GetGenericTypeDefinition() == typeof(T));
+            return (IRepositorioCompleto<T>)this.Repositorios.FirstOrDefault(x => x.GetType().GetGenericTypeDefinition() == typeof(T));
         }
 
 

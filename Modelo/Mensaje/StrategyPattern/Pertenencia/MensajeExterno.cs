@@ -38,6 +38,9 @@ namespace Modelo
                     "La cuenta a la que referencia el mensaje debería ser del tipo {0}, pero no lo es.",
                     typeof(CuentaExterna)));
             this.Cuenta = pCuenta;
+
+            this.Visibilidad = new MensajeNoVisto();
         }
+
     }
 }

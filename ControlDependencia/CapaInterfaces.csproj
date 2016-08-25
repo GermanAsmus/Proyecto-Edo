@@ -43,12 +43,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IObtenible.cs" />
     <Compile Include="Modelo\IAdjunto.cs" />
-    <Compile Include="Modelo\ICuenta.cs" />
-    <Compile Include="Modelo\ICuentaUsuario.cs" />
+    <Compile Include="Modelo\Cuenta\ICuenta.cs" />
+    <Compile Include="Modelo\Cuenta\ICuentaUsuario.cs" />
     <Compile Include="Modelo\IDireccionCorreo.cs" />
     <Compile Include="Modelo\IEntidadModelo.cs" />
-    <Compile Include="IRepositorioUnico.cs" />
+    <Compile Include="IRepositorioCompleto.cs" />
     <Compile Include="IEncriptador.cs" />
     <Compile Include="Modelo\Mensaje\IMensaje.cs" />
     <Compile Include="Modelo\Mensaje\IMensajeCompleto.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="Servicio\IProtocolo.cs" />
     <Compile Include="Servicio\IProtocoloRecepcion.cs" />
     <Compile Include="Servicio\IProtocoloTransmision.cs" />
-    <Compile Include="IRepositorioGenerico.cs" />
+    <Compile Include="IRepositorioEstandar.cs" />
     <Compile Include="Servicio\IServicio.cs" />
     <Compile Include="IRepositorioRaiz.cs" />
     <Compile Include="Persistencia\IUnitOfWork.cs" />

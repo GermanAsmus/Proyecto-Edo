@@ -17,6 +17,6 @@ namespace CapaInterfaces.Dominio
         /// </summary>
         /// <typeparam name="T">Tipo que define al repositorio</typeparam>
         /// <returns>repositorio del tipo T</returns>
-        IRepositorioUnico<T> ObtenerRepositorio<T>() where T : class;
+        IRepositorioCompleto<T> ObtenerRepositorio<T>() where T : class;
     }
 }

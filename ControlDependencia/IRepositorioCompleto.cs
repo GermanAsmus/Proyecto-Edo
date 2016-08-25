@@ -1,6 +1,6 @@
 ﻿namespace CapaInterfaces
 {
-    public interface IRepositorioUnico<TEntity> : IRepositorioGenerico<TEntity> where TEntity : class
+    public interface IRepositorioCompleto<TEntity> : IRepositorioEstandar<TEntity> where TEntity : class
     {
         /// <summary>
         /// Agrega una instancia del tipo <typeparamref name="TEntity"/>  que persistirá en el repositorio

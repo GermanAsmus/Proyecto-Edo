@@ -10,13 +10,13 @@ using CapaInterfaces.Modelo;
 
 namespace Dominio.Repositorios
 {
-    public class RepositorioMensaje : RepositorioAbstracto<IMensaje>, IRepositorioUnico<IMensaje>
+    public class RepositorioMensaje : RepositorioAbstracto<IMensaje>, IRepositorioCompleto<IMensaje>
     {
-        //private IRepositorioUnico<Adjunto> iRepositorioAdjunto;
-        private IRepositorioUnico<IDireccionCorreo> iRepositorioDireccionDeCorreo;
-        private IRepositorioUnico<ICuenta> iRepositorioCuenta;
+        //private IRepositorioCompleto<Adjunto> iRepositorioAdjunto;
+        private IRepositorioCompleto<IDireccionCorreo> iRepositorioDireccionDeCorreo;
+        private IRepositorioCompleto<ICuenta> iRepositorioCuenta;
 
-        public RepositorioMensaje(IRepositorioUnico<IMensaje> pRepositorioInterno, /*IRepositorioUnico<Adjunto> pRepositorioAdjunto,*/ IRepositorioUnico<IDireccionCorreo> pRepositorioDireccionDeCorreo, IRepositorioUnico<ICuenta> pRepositorioCuenta) : base(pRepositorioInterno)
+        public RepositorioMensaje(IRepositorioCompleto<IMensaje> pRepositorioInterno, /*IRepositorioCompleto<Adjunto> pRepositorioAdjunto,*/ IRepositorioCompleto<IDireccionCorreo> pRepositorioDireccionDeCorreo, IRepositorioCompleto<ICuenta> pRepositorioCuenta) : base(pRepositorioInterno)
         {
             //this.iRepositorioAdjunto = pRepositorioAdjunto;
             this.iRepositorioDireccionDeCorreo = pRepositorioDireccionDeCorreo;
@@ -55,7 +55,7 @@ namespace Dominio.Repositorios
             //Se completa la propiedad requerida del entidadHija, respectiva al id de la cuenta.
             pEntidad.CuentaId = iCuenta.Id;
             //Se actualiza la cuenta, que mantiene una colección de mensajes.
-            return iRepositorioCuenta.Editar();
+            return iRepositorioCuenta.Actualizar();
         }
     }
 }

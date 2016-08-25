@@ -5,11 +5,11 @@ using CapaInterfaces.Modelo;
 
 namespace Dominio.Repositorios
 {
-    public class RepositorioCuenta : RepositorioAbstracto<ICuenta>, IRepositorioUnico<ICuenta>
+    public class RepositorioCuenta : RepositorioAbstracto<ICuenta>, IRepositorioCompleto<ICuenta>
     {
-        private IRepositorioUnico<IDireccionCorreo> iRepositorioExterno;
+        private IRepositorioCompleto<IDireccionCorreo> iRepositorioExterno;
 
-        public RepositorioCuenta(IRepositorioUnico<ICuenta> pRepositorioInterno, IRepositorioUnico<IDireccionCorreo> pRepositorioExterno) : base(pRepositorioInterno)
+        public RepositorioCuenta(IRepositorioCompleto<ICuenta> pRepositorioInterno, IRepositorioCompleto<IDireccionCorreo> pRepositorioExterno) : base(pRepositorioInterno)
         {
             this.iRepositorioExterno = pRepositorioExterno;
         }

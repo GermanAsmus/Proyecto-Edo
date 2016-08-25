@@ -10,7 +10,7 @@ using System.Data.Entity.Core.Objects.DataClasses;
 
 namespace Persistencia
 {
-    public class Repositorio<TEntity> : IRepositorioUnico<TEntity> where TEntity : class
+    public class Repositorio<TEntity> : IRepositorioCompleto<TEntity> where TEntity : class
     {
         protected IContext iContext;
         protected IDbSet<TEntity> iDbSet;
@@ -27,7 +27,7 @@ namespace Persistencia
             return this.iContext.ObjectContext.SaveChanges();
         }
 
-        public int Editar()
+        public int Actualizar()
         {
             return this.iContext.ObjectContext.SaveChanges();
         }
@@ -38,7 +38,7 @@ namespace Persistencia
             return ((DbContext)this.iContext).SaveChanges();
         }
 
-        public IEnumerable<TEntity> Encontrar(Expression<Func<TEntity, bool>> criterio)
+        public IEnumerable<TEntity> ObtenerSegun(Expression<Func<TEntity, bool>> criterio)
         {
             if (criterio == null)
                 throw new ArgumentNullException("El criterio es nulo, no se puede evaluar la expresión");

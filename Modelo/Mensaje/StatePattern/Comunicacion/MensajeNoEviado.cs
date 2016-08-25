@@ -12,9 +12,6 @@ namespace Modelo
         {
             return EstadoComunicacion.No_Enviado;
         }
-        public MensajeNoEviado()
-        {
-            this.RegistroMensajes = new List<IRegistroMensaje>();
-        }
+        public MensajeNoEviado() : base() { }
     }
 }

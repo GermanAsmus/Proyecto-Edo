@@ -25,18 +25,18 @@ namespace Dominio
         }
         public int AregarCuenta(IDireccionCorreo pDireccion, ICuenta pCuenta)
         {
-            IRepositorioUnico<ICuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuenta>();
+            IRepositorioCompleto<ICuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuenta>();
             return aRepositorioCuenta.Agregar(pCuenta);
         }
         public int EditarCuenta(ICuenta pCuenta)
         {
             RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuenta>();
-            return aRepositorio.Editar();
+            return aRepositorio.Actualizar();
         }
         public int EditarDireccionDeCorreo(IDireccionCorreo pDireccionCorreo)
         {
             RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
-            return aRepositorio.Editar();
+            return aRepositorio.Actualizar();
         }
         public int EliminarDireccionDeCorreo(int pId)
         {
@@ -155,7 +155,7 @@ namespace Dominio
             List<IDireccionCorreo> destinatariosValidos = new List<IDireccionCorreo>();
             var destinatarios = pMensaje.Destinatario.GetEnumerator();
 
-            IRepositorioUnico<IDireccionCorreo> aRepositorioDireccionCorreo = this.GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
+            IRepositorioCompleto<IDireccionCorreo> aRepositorioDireccionCorreo = this.GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
             IDireccionCorreo iDireccion = null;
             while (destinatarios.MoveNext())
             {
@@ -165,7 +165,7 @@ namespace Dominio
             }
             pMensaje.Destinatario = destinatariosValidos;
 
-            IRepositorioUnico<ICuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuenta>();
+            IRepositorioCompleto<ICuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuenta>();
             ICuentaUsuario iCuenta = (ICuentaUsuario)aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pCuenta.Id));
             if (iCuenta == null)
                 throw new NullReferenceException(nameof(iCuenta));
@@ -174,7 +174,7 @@ namespace Dominio
             //Se completa la propiedad requerida del entidadHija, respectiva al id de la ICuenta.
             pMensaje.CuentaId = iCuenta.Id;
             //Se actualiza la ICuenta, que mantiene una colección de mensajes.
-            aRepositorioCuenta.Editar();
+            aRepositorioCuenta.Actualizar();
 
             IProtocoloTransmision iProtocoloTransmision = IoC_CL.Resolver<IProtocoloTransmision>();
             this.iServicio.Enviar(pMensaje, pCuenta, iProtocoloTransmision);

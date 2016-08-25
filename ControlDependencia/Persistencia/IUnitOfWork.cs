@@ -9,7 +9,7 @@ namespace CapaInterfaces.Persistencia
     {
         IContext Context { get; set; }
         ICollection<IRepositorioRaiz> Repositorios { get; }
-        IRepositorioUnico<T> ObtenerRepositorio<T>() where T : class;
+        IRepositorioCompleto<T> ObtenerRepositorio<T>() where T : class;
         int Commit();
     }
 }

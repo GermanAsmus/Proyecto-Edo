@@ -10,6 +10,5 @@ namespace CapaInterfaces.Modelo
         IServidor Servidor { get; set; }
 
         string ReconocerServidor(IDireccionCorreo pDireccion);
-        IMensaje RedactarNuevoMensaje(string pCuerpoMensaje, string pAsuntoMensaje, IList<string> pDireccionesCorreo);
     }
 }

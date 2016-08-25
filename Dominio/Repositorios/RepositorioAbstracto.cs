@@ -13,7 +13,7 @@ namespace Dominio.Repositorios
     /// Define su implementación de forma virtual y genérica.
     /// </summary>
     /// <typeparam name="T">Tipo de entidad de modelo</typeparam>
-    public abstract class RepositorioAbstracto<T> : IRepositorioGenerico<T> where T : class
+    public abstract class RepositorioAbstracto<T> : IRepositorioEstandar<T> where T : class
     {
         ///// <summary>
         ///// Gestor de los repositorios, mantiene todos los repositorios que se definieron con anterioridad.
@@ -22,13 +22,13 @@ namespace Dominio.Repositorios
         /// <summary>
         /// Repositorio del tipo de la entidad de modelo.
         /// </summary>
-        public IRepositorioUnico<T> iRepositorio { get; }
+        public IRepositorioCompleto<T> iRepositorio { get; }
         /// <summary>
         /// Constructor de la clase abstracta.
         /// </summary>
         /// <param name="pRepositorio">Repositorio del tipo de la entidad de modelo con que se define esta clase</param>
         /// <param name="pGestor">Gestor de los repositorios</param>
-        public RepositorioAbstracto(IRepositorioUnico<T> pRepositorio)//, IGestorRespositorios pGestor)
+        public RepositorioAbstracto(IRepositorioCompleto<T> pRepositorio)//, IGestorRespositorios pGestor)
         {
             if (pRepositorio == null)
                 throw new ArgumentNullException(nameof(pRepositorio));
@@ -40,12 +40,12 @@ namespace Dominio.Repositorios
             //this.GestorRepositorios = pGestor;
         }
         /// <summary>
-        /// Implementación virtual del método Editar.
+        /// Implementación virtual del método Actualizar.
         /// </summary>
         /// <returns>0 si se completó la operación, sino se realizó correctamente</returns>
-        public virtual int Editar()
+        public virtual int Actualizar()
         {
-            return iRepositorio.Editar();
+            return iRepositorio.Actualizar();
         }
         /// <summary>
         /// Implementación virtual del método Eliminar.
@@ -57,14 +57,14 @@ namespace Dominio.Repositorios
             return iRepositorio.Eliminar(pEntidad);
         }
         /// <summary>
-        /// Implementación virtual del método Encontrar.
+        /// Implementación virtual del método ObtenerSegun.
         /// Se busca un conjunto de elementos que cumplan con el criterio.
         /// </summary>
         /// <param name="pCriterio">Criterio de busqueda</param>
         /// <returns>Colección de las entidades encontradas</returns>
-        public virtual IEnumerable<T> Encontrar(Expression<Func<T,bool>> pCriterio)
+        public virtual IEnumerable<T> ObtenerSegun(Expression<Func<T,bool>> pCriterio)
         {
-            return iRepositorio.Encontrar(pCriterio);
+            return iRepositorio.ObtenerSegun(pCriterio);
         }
         /// <summary>
         /// Implementación virtual del método Obtener.
@@ -97,7 +97,7 @@ namespace Dominio.Repositorios
         //    if (string.IsNullOrEmpty(pPadre.Contraseña) || string.IsNullOrEmpty(pPadre.Nombre))
         //        throw new NullReferenceException("Los atributos contraseña, nombre, no pueden ser nulos o vacíos");
 
-        //    IRepositorioGenerico<DireccionCorreo> aRepositorioDireccion = this.GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();
+        //    IRepositorioEstandar<DireccionCorreo> aRepositorioDireccion = this.GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();
 
         //    DireccionCorreo iDireccion = aRepositorioDireccion.Obtener(direccion => BuscarDireccionDeCorreo.BuscarPorDireccion(direccion, pHijo.DireccionDeCorreo));
         //    //De no existir la direccion, se agrega a la base de datos

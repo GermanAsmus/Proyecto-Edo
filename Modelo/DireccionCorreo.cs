@@ -17,7 +17,10 @@ namespace Modelo
         //Direccion de correo real de la entidad. Ej: miCorreo@correo.com
         public string DireccionDeCorreo
         {
-            get { return this.DireccionDeCorreo; }
+            get
+            {
+                return this.DireccionDeCorreo;
+            }
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -41,8 +44,12 @@ namespace Modelo
         //Colección de mensajes en los que la dirección de correo está asociada como dirección de correo remitente.
         public virtual ICollection<IMensaje> MensajesRemitente { get; set; }
 
-        public DireccionCorreo()
+        public DireccionCorreo(string pDireccionDeCorreo)
         {
+            if (string.IsNullOrEmpty(pDireccionDeCorreo))
+                throw new ArgumentNullException(string.Format("El parámetro {0} no puede ser nula", nameof(pDireccionDeCorreo)));
+            this.DireccionDeCorreo = pDireccionDeCorreo;
+
             MensajesRemitente = new List<IMensaje>();
             MensajesDestinatario = new List<IMensaje>();
         }

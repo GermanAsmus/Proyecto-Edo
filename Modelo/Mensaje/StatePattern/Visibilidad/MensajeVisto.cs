@@ -2,17 +2,12 @@
 
 namespace Modelo
 {
-    public class MensajeVisto : IStateVisibilidad
+    public class MensajeVisto : MensajeSinVisibilidadDefinida
     {
-        public IRegistroMensaje RegistroMensaje { get; set; }
-
-        public EstadoVisibilidad ObtenerEstadoVisibilidad()
+        public override EstadoVisibilidad ObtenerEstadoVisibilidad()
         {
             return EstadoVisibilidad.Visto;
         }
-        public MensajeVisto()
-        {
-            this.RegistroMensaje = new RegistroMensaje();
-        }
+        public MensajeVisto() : base() { }
     }
 }

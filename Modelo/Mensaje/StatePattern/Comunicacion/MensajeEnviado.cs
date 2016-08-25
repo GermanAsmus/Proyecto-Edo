@@ -12,12 +12,6 @@ namespace Modelo
             return EstadoComunicacion.Enviado;
         }
 
-        public MensajeEnviado()
-        {
-            this.RegistroMensajes = new List<IRegistroMensaje>();
-        }
-
-
-
+        public MensajeEnviado() : base() { }
     }
 }

@@ -5,7 +5,7 @@ namespace Modelo
 {
     public class MensajeCompleto : MensajeSinEstructuraDefinida, IMensajeCompleto
     {
-        public new IStrategyPertenenciaMensaje Pertenencia { get; private set; }
+        public override IStrategyPertenenciaMensaje Pertenencia { get; }
 
         public MensajeCompleto(ICuenta pCuenta) : base(pCuenta)
         {

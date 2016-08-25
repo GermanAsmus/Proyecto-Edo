@@ -8,7 +8,7 @@ namespace Modelo
     //está sujeto a la restricción de ser completo.
     public class MensajeIncompleto : MensajeSinEstructuraDefinida
     {
-        public new IStrategyPertenenciaMensaje Pertenencia { get; private set; }
+        public override IStrategyPertenenciaMensaje Pertenencia { get; }
 
         public MensajeIncompleto(ICuenta pCuenta) : base(pCuenta)
         {

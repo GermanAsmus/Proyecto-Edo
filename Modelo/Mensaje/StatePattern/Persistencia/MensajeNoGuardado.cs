@@ -12,9 +12,6 @@ namespace Modelo
             return EstadoPersistencia.No_Guardado;
         }
 
-        public MensajeNoGuardado()
-        {
-            this.RegistroMensajes = new List<IRegistroMensaje>();
-        }
+        public MensajeNoGuardado() : base() { }
     }
 }

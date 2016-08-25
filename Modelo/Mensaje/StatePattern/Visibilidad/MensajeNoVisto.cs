@@ -3,18 +3,13 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class MensajeNoVisto : IStateVisibilidad
+    public class MensajeNoVisto : MensajeSinVisibilidadDefinida
     {
-        public IRegistroMensaje RegistroMensaje { get; set; }
-
-        public EstadoVisibilidad ObtenerEstadoVisibilidad()
+        public override EstadoVisibilidad ObtenerEstadoVisibilidad()
         {
             return EstadoVisibilidad.No_Visto;
         }
 
-        public MensajeNoVisto()
-        {
-            this.RegistroMensaje = new RegistroMensaje();
-        }
+        public MensajeNoVisto() : base() { }
     }
 }

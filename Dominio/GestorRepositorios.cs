@@ -30,9 +30,9 @@ namespace Dominio
             Repositorios.Add(typeof(IMensaje), new RepositorioMensaje(pUoW.ObtenerRepositorio<IMensaje>(), this.ObtenerRepositorio<IDireccionCorreo>(), this.ObtenerRepositorio<ICuenta>()));
         }
 
-        public IRepositorioUnico<T> ObtenerRepositorio<T>() where T : class
+        public IRepositorioCompleto<T> ObtenerRepositorio<T>() where T : class
         {
-            return (IRepositorioUnico<T>)this.Repositorios[typeof(T)]; 
+            return (IRepositorioCompleto<T>)this.Repositorios[typeof(T)]; 
         }
     }
 }

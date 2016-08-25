@@ -45,9 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adjunto.cs" />
-    <Compile Include="Cuenta.cs" />
-    <Compile Include="CuentaExterna.cs" />
-    <Compile Include="CuentaUsuario.cs" />
+    <Compile Include="Cuenta\Cuenta.cs" />
+    <Compile Include="Cuenta\CuentaExterna.cs" />
+    <Compile Include="Cuenta\CuentaUsuario.cs" />
     <Compile Include="DireccionCorreo.cs" />
     <Compile Include="Mensaje\IRegistrable.cs" />
     <Compile Include="Mensaje\IRegistrableCollection.cs" />
@@ -60,6 +60,7 @@
     <Compile Include="Mensaje\RegistroNuloException.cs" />
     <Compile Include="Mensaje\StatePattern\Persistencia\MensajeSinEstadoDePersistenciaDefinido.cs" />
     <Compile Include="Mensaje\StatePattern\Visibilidad\IStateVisibilidad.cs" />
+    <Compile Include="Mensaje\StatePattern\Visibilidad\MensajeSinVisibilidadDefinida.cs" />
     <Compile Include="Mensaje\StrategyPattern\Estructura\IStrategyEstructuraMensaje.cs" />
     <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeSinEstructuraDefinida.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\EstrategiaPertenencia.cs" />

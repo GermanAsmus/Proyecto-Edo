@@ -20,5 +20,10 @@ namespace Modelo
         {
             return this.RegistroMensajes.LastOrDefault();
         }
+
+        public MensajeSinEstadoDePersistenciaDefinido()
+        {
+            this.RegistroMensajes = new List<IRegistroMensaje>();
+        }
     }
 }

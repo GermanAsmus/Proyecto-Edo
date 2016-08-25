@@ -20,6 +20,6 @@ namespace CapaInterfaces.Modelo
         ICollection<IDireccionCorreo> Destinatario { get; set; }
 
         void CambiarEstadoPersistencia();
-        string EstadoPersistencia { get; }
+        string ObtenerEstadoPersistencia { get; }
     }
 }

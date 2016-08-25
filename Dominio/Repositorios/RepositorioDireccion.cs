@@ -7,9 +7,9 @@ using Utilidades.CriteriosDeBusqueda;
 
 namespace Dominio.Repositorios
 {
-    public class RepositorioDireccion : RepositorioAbstracto<IDireccionCorreo>, IRepositorioUnico<IDireccionCorreo>
+    public class RepositorioDireccion : RepositorioAbstracto<IDireccionCorreo>, IRepositorioCompleto<IDireccionCorreo>
     {
-        public RepositorioDireccion(IRepositorioUnico<IDireccionCorreo> pRepositorioInterno) : base(pRepositorioInterno)
+        public RepositorioDireccion(IRepositorioCompleto<IDireccionCorreo> pRepositorioInterno) : base(pRepositorioInterno)
         {
 
         }

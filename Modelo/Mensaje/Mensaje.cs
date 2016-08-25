@@ -37,7 +37,7 @@ namespace Modelo
 
         }
 
-        public string EstadoPersistencia
+        public string ObtenerEstadoPersistencia
         {
             get
             {

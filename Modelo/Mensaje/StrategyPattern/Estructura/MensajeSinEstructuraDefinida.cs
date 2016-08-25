@@ -14,7 +14,7 @@ namespace Modelo
             get { return this.Pertenencia.ObtenerEstrategiaPertenencia().ToString(); }
         }
 
-        public IStrategyPertenenciaMensaje Pertenencia { get; }
+        public abstract IStrategyPertenenciaMensaje Pertenencia { get; }
 
         public MensajeSinEstructuraDefinida(ICuenta pCuenta)
         {

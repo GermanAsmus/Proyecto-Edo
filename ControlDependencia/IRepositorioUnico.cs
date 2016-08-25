@@ -1,4 +1,4 @@
-﻿namespace ControlDependencia
+﻿namespace CapaInterfaces
 {
     public interface IRepositorioUnico<TEntity> : IRepositorioGenerico<TEntity> where TEntity : class
     {

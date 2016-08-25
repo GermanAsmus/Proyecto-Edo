@@ -1,8 +1,8 @@
-﻿using Modelo;
+﻿using CapaInterfaces.Modelo;
 using System;
 using System.Collections.Concurrent;
 
-namespace ControlDependencia.Utilidades
+namespace CapaInterfaces.Utilidades
 {
     /// <summary>
     /// Interfaz que mantiene dos colecciones concurrentes que se actualizan mediante la agregación de Mensajes.
@@ -12,20 +12,20 @@ namespace ControlDependencia.Utilidades
         /// <summary>
         /// Coleccion Concurrente de cabeceras de mensajes
         /// </summary>
-        IProducerConsumerCollection<Mensaje> Cabeceras { get; }
+        IProducerConsumerCollection<IMensaje> Cabeceras { get; }
         /// <summary>
         /// Coleccion Concurrente de mensajes
         /// </summary>
-        IProducerConsumerCollection<Mensaje> Mensajes { get; }
+        IProducerConsumerCollection<IMensaje> Mensajes { get; }
         /// <summary>
         /// Agrega una cabecera a la coleccion Cabeceras
         /// </summary>
         /// <param name="pCabecera">Cabecera de un mensaje</param>
-        void AgregarCabecera(Mensaje pCabecera);
+        void AgregarCabecera(IMensaje pCabecera);
         /// <summary>
         /// Agrega un mensaje a la coleccion Mensajes
         /// </summary>
         /// <param name="pMensaje">Un mensaje</param>
-        void AgregarMensaje(Mensaje pMensaje);
+        void AgregarMensaje(IMensaje pMensaje);
     }
 }

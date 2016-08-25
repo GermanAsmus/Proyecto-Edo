@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControlDependencia
+namespace CapaInterfaces
 {
-    public interface IStartEdo
+    public interface IEntidadModelo
     {
-        void Run();
+        int Id { get; set; }
     }
 }

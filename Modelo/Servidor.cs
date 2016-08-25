@@ -1,24 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using CapaInterfaces.Modelo;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System;
 
 namespace Modelo
 {
     /// <summary>
     /// Entidad Servidor, modela un servidor de correo. Ej: gmail, yahoo, hotmail.
     /// </summary>
-    public class Servidor
+    public class Servidor : IServidor
     {
         //Nombre del servidor.
         public string Nombre { get; set; }
         //Protocolos de comunicacion del servidor
-        public IEnumerable<Protocolo> Protocolos { get; set; }
+        public IEnumerable<IProtocolo> Protocolos { get; set; }
 
         public Servidor()
         {
         }
 
-        public Protocolo ObtenerProtocolo(string nombre)
+        public IProtocolo ObtenerProtocolo(string nombre)
         {
             return this.Protocolos.FirstOrDefault(p => p.Nombre == nombre.ToLower());
         }

@@ -1,11 +1,11 @@
-﻿using ControlDependencia;
+﻿using CapaInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Modelo;
-using ControlDependencia.Servicio;
+using CapaInterfaces.Servicio;
 using System.Threading;
 
 namespace Servicio

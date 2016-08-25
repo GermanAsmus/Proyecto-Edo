@@ -122,7 +122,7 @@ namespace Utilidades.SistemaDeArchivos
             object[] param =
            {
                 Environment.NewLine,
-                pMensaje.DireccionCorreo.DireccionDeCorreo,
+                pMensaje.Cuenta.DireccionCorreo.DireccionDeCorreo,
                 pMensaje.Fecha,
                 destinatario,
                 pMensaje.Asunto,
@@ -139,7 +139,7 @@ namespace Utilidades.SistemaDeArchivos
 
             MailMessage message = new MailMessage()
             {
-                From = new MailAddress(pMensaje.DireccionCorreo.DireccionDeCorreo),
+                From = new MailAddress(pMensaje.Cuenta.DireccionCorreo.DireccionDeCorreo),
                 Subject = pMensaje.Asunto,
                 Body = pMensaje.Contenido
             };

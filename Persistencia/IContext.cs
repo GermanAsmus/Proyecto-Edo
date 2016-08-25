@@ -2,7 +2,7 @@
 
 namespace Persistencia
 {
-    public interface IContext : ControlDependencia.Persistencia.IContext, IObjectContextAdapter
+    public interface IContext : CapaInterfaces.Persistencia.IContext, IObjectContextAdapter
     {
     }
 }

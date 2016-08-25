@@ -7,26 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ControlDependencia;
+//using ControlDependencia;
 using Modelo;
-using Dominio;
-using ControlDependencia.Dominio;
+//using ControlDependencia.Dominio;
 
 namespace EdoUI
 {
     public partial class ControlCuenta : UserControl
     {
         public Cuenta iNuevaCuenta { get; }
-        private IControlador iControlador;
+        //private IControlador iControlador;
         private string iDireccion;
 
-        public ControlCuenta(ref IControlador pControlador)
-        {
-            InitializeComponent();
-            iNuevaCuenta = new Cuenta();
-            iControlador = pControlador;
-            //comboBoxServidores.Items.AddRange(this.iControlador.ObtenerTodosLosServidores().Select(x => x.Nombre).ToArray());
-        }
+        //public ControlCuenta(ref IControlador pControlador)
+        //{
+        //    InitializeComponent();
+        //    iNuevaCuenta = new Cuenta();
+        //    iControlador = pControlador;
+        //    //comboBoxServidores.Items.AddRange(this.iControlador.ObtenerTodosLosServidores().Select(x => x.Nombre).ToArray());
+        //}
 
         private void toolStripButtonAceptar_Click(object sender, EventArgs e)
         {

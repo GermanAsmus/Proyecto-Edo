@@ -4,9 +4,9 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
-using ControlDependencia;
+using CapaInterfaces;
 using Servicio.Excepciones;
-using ControlDependencia.Servicio;
+using CapaInterfaces.Servicio;
 
 namespace Servicio
 {

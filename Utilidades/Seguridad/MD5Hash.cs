@@ -1,4 +1,4 @@
-﻿using ControlDependencia;
+﻿using CapaInterfaces;
 using System;
 using System.Security.Cryptography;
 using System.Text;

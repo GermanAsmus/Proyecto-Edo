@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaInterfaces.Modelo;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +9,7 @@ namespace Modelo
     /// <summary>
     /// Entidad Adjunto, modela un archivo adjunto que pueda persistir en el sistema.
     /// </summary>
-    public class Adjunto : IEntidadModelo
+    public class Adjunto : IAdjunto
     {
         //Identificador único del Adjunto.
         public int Id { get; set; }
@@ -28,11 +29,11 @@ namespace Modelo
 
         }
         //Colección de mensajes a los que el adjunto está relacionado.
-        public virtual ICollection<Mensaje> Mensajes { get; set; }
+        public virtual ICollection<IMensaje> Mensajes { get; set; }
 
         public Adjunto()
         {
-            Mensajes = new List<Mensaje>();
+            Mensajes = new List<IMensaje>();
         }
 
         private static bool Existe(string pCodigo)

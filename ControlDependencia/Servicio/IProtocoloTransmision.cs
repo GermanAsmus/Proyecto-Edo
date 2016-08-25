@@ -1,6 +1,6 @@
-﻿using Modelo;
+﻿using CapaInterfaces.Modelo;
 
-namespace ControlDependencia.Servicio
+namespace CapaInterfaces.Servicio
 {
     /// <summary>
     /// Protocolo de transmisión de correos.
@@ -12,6 +12,6 @@ namespace ControlDependencia.Servicio
         /// </summary>
         /// <param name="pMensaje">Mensaje a enviar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
-        void Enviar(Mensaje pMensaje, Cuenta pCuenta);
+        void Enviar(IMensaje pMensaje, ICuenta pCuenta);
     }
 }

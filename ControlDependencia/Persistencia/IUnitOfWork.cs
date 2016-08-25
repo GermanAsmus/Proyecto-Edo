@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ControlDependencia.Persistencia
+namespace CapaInterfaces.Persistencia
 {
     /// <summary>
     /// Unidad de trabajo, mantiene el contexto de ejecución.

@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ControlDependencia;
+using CapaInterfaces;
 using Modelo;
-using ControlDependencia.Dominio;
-using UnityDI;
+using CapaInterfaces.Dominio;
+//using UnityDI;
 
 namespace EdoUI
 {
@@ -22,7 +22,7 @@ namespace EdoUI
         {
             InitializeComponent();
             tabControlContenedor.ImageList = imageList1;
-            iControlador = IoCContainer.Resolver<IControlador>();
+            iControlador = IoC_CL.Resolver<IControlador>();
 
             AgregarTab(new PictureBox() { Name="Primeros Pasos" });
         }
@@ -37,12 +37,12 @@ namespace EdoUI
         }
         private void toolStripButtonNuevaCuenta_Click(object sender, EventArgs e)
         {
-            AgregarTab(new ControlCuenta(ref iControlador) { Name = "Nueva Cuenta" });
+            //AgregarTab(new ControlCuenta(ref iControlador) { Name = "Nueva Cuenta" });
         }
 
         private void toolStripComboBoxCuenta_Click(object sender, EventArgs e)
         {
-            this.toolStripComboBoxCuenta.Items.AddRange(this.iControlador.ObtenerTodasLasCuentas().Select(x => x.Nombre).ToArray());
+            //this.toolStripComboBoxCuenta.Items.AddRange(this.iControlador.ObtenerTodasLasCuentas().Select(x => x.Nombre).ToArray());
         }
 
         private void toolStripComboBoxCuenta_SelectedIndexChanged(object sender, EventArgs e)

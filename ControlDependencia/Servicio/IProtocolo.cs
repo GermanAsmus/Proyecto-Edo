@@ -1,7 +1,7 @@
-﻿using Modelo;
+﻿using CapaInterfaces.Modelo;
 using System.Threading;
 
-namespace ControlDependencia.Servicio
+namespace CapaInterfaces.Servicio
 {
     /// <summary>
     /// Protocolo que se implementa para manejar los servicios de internet, de recepción y transmisión de mensajes
@@ -22,6 +22,6 @@ namespace ControlDependencia.Servicio
         /// <param name="pMensaje">Mensaje a enviar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
         /// <param name="pProtocoloTansmision">Protocolo de transmisión de correos</param>
-        void Enviar(Mensaje pMensaje, Cuenta pCuenta, IProtocoloTransmision pProtocoloTansmision);
+        void Enviar(IMensaje pMensaje, ICuenta pCuenta, IProtocoloTransmision pProtocoloTansmision);
     }
 }

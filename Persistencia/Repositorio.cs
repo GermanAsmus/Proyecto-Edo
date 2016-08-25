@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using ControlDependencia;
+using CapaInterfaces;
 using System.Data.Entity;
-using ControlDependencia.Persistencia;
+using CapaInterfaces.Persistencia;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects.DataClasses;
 

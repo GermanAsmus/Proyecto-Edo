@@ -1,4 +1,4 @@
-﻿namespace ControlDependencia.Persistencia
+﻿namespace CapaInterfaces.Persistencia
 {
     public interface IContext
     {

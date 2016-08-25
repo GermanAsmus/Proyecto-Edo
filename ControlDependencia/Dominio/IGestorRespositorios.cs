@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 
-namespace ControlDependencia.Dominio
+namespace CapaInterfaces.Dominio
 {
     /// <summary>
     /// Interfaz que define al Gestor de Repositorios.

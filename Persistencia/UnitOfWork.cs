@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using ControlDependencia;
-using ControlDependencia.Persistencia;
+using CapaInterfaces;
+using CapaInterfaces.Persistencia;
 using System.Linq;
 using Modelo;
-using UnityDI;
+using EdoUI;
+//using UnityDI;
 
 namespace Persistencia
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public ControlDependencia.Persistencia.IContext Context { get; set; }
+        public CapaInterfaces.Persistencia.IContext Context { get; set; }
         public ICollection<IRepositorioRaiz> Repositorios { get; }
 
         public UnitOfWork(IContext pContext)
         {
             this.Context = pContext;
 
-            this.Repositorios.Add(IoCContainer.Resolver<IRepositorioUnico<Cuenta>>());
-            this.Repositorios.Add(IoCContainer.Resolver<IRepositorioUnico<Mensaje>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioUnico<Cuenta>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioUnico<Mensaje>>());
             //this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioUnico<Servidor>>());
-            this.Repositorios.Add(IoCContainer.Resolver<IRepositorioUnico<Adjunto>>());
-            this.Repositorios.Add(IoCContainer.Resolver<IRepositorioUnico<DireccionCorreo>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioUnico<Adjunto>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioUnico<DireccionCorreo>>());
         }
         public IRepositorioUnico<T> ObtenerRepositorio<T>() where T : class
         {

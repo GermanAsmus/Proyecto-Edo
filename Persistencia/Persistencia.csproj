@@ -40,8 +40,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Excepciones\ValidateDatabaseEntityException.cs" />
@@ -79,17 +83,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ControlDependencia\ControlDependencia.csproj">
+    <ProjectReference Include="..\ControlDependencia\CapaInterfaces.csproj">
       <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
-      <Name>ControlDependencia</Name>
+      <Name>CapaInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EdoUI\EdoUI.csproj">
+      <Project>{e1de0b46-38ae-42e5-ae58-33a9e5118899}</Project>
+      <Name>EdoUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modelo\Modelo.csproj">
       <Project>{c7f74b31-7843-4997-82e0-0e9d00b3df1b}</Project>
       <Name>Modelo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UnityDI\UnityDI.csproj">
-      <Project>{77e797ba-4be6-478a-a043-ac91fc7b220a}</Project>
-      <Name>UnityDI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

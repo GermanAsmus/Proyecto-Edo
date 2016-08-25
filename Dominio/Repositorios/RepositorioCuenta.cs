@@ -1,26 +1,20 @@
-﻿using ControlDependencia;
-using ControlDependencia.Dominio;
-using Modelo;
+﻿using CapaInterfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utilidades.CriteriosDeBusqueda;
-using ControlDependencia.Persistencia;
+using CapaInterfaces.Modelo;
 
 namespace Dominio.Repositorios
 {
-    public class RepositorioCuenta : RepositorioAbstracto<Cuenta>, IRepositorioUnico<Cuenta>
+    public class RepositorioCuenta : RepositorioAbstracto<ICuenta>, IRepositorioUnico<ICuenta>
     {
-        private IRepositorioUnico<DireccionCorreo> iRepositorioExterno;
+        private IRepositorioUnico<IDireccionCorreo> iRepositorioExterno;
 
-        public RepositorioCuenta(IRepositorioUnico<Cuenta> pRepositorioInterno, IRepositorioUnico<DireccionCorreo> pRepositorioExterno) : base (pRepositorioInterno)
+        public RepositorioCuenta(IRepositorioUnico<ICuenta> pRepositorioInterno, IRepositorioUnico<IDireccionCorreo> pRepositorioExterno) : base (pRepositorioInterno)
         {
             this.iRepositorioExterno = pRepositorioExterno;
         }
 
-        public int Agregar(Cuenta pEntidad)
+        public int Agregar(ICuenta pEntidad)
         {
             if (pEntidad == null)
                 throw new ArgumentNullException(nameof(pEntidad));
@@ -31,7 +25,7 @@ namespace Dominio.Repositorios
             if (string.IsNullOrEmpty(pEntidad.Contraseña) || string.IsNullOrEmpty(pEntidad.Nombre))
                 throw new NullReferenceException("los atributos contraseña, nombre, no pueden ser nulos o vacíos");
 
-            DireccionCorreo iDireccion = iRepositorioExterno.Obtener(direccion => BuscarDireccionDeCorreo.BuscarPorDireccion(direccion, pEntidad.DireccionCorreo.DireccionDeCorreo));
+            IDireccionCorreo iDireccion = iRepositorioExterno.Obtener(direccion => BuscarDireccionDeCorreo.BuscarPorDireccion(direccion, pEntidad.DireccionCorreo.DireccionDeCorreo));
             //de no existir la direccion, se agrega a la base de datos
             if (iDireccion == null)
                 iRepositorioExterno.Agregar(iDireccion);
@@ -41,8 +35,8 @@ namespace Dominio.Repositorios
             pEntidad.DireccionId = iDireccion.Id;
 
             //cargar el servidor
-            Servidor iServidor = new Servidor();
-            pEntidad.Servidor = iServidor;
+            //IServidor iServidor = new Servidor();
+            //pEntidad.IServidor = iServidor;
 
             return iRepositorio.Agregar(pEntidad);
         }

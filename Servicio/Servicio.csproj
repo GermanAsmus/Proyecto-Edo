@@ -65,9 +65,9 @@
     <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ControlDependencia\ControlDependencia.csproj">
+    <ProjectReference Include="..\ControlDependencia\CapaInterfaces.csproj">
       <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
-      <Name>ControlDependencia</Name>
+      <Name>CapaInterfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modelo\Modelo.csproj">
       <Project>{c7f74b31-7843-4997-82e0-0e9d00b3df1b}</Project>

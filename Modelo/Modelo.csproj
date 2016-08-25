@@ -45,9 +45,33 @@
   <ItemGroup>
     <Compile Include="Adjunto.cs" />
     <Compile Include="Cuenta.cs" />
+    <Compile Include="CuentaExterna.cs" />
+    <Compile Include="CuentaUsuario.cs" />
     <Compile Include="DireccionCorreo.cs" />
-    <Compile Include="IEntidadModelo.cs" />
-    <Compile Include="Mensaje.cs" />
+    <Compile Include="Mensaje\IRegistrable.cs" />
+    <Compile Include="Mensaje\IRegistroMensaje.cs" />
+    <Compile Include="Mensaje\RegistroMensaje.cs" />
+    <Compile Include="Mensaje\StatePattern\Comunicacion\EstadoComunicacion.cs" />
+    <Compile Include="Mensaje\StatePattern\Comunicacion\IStateComunicacion.cs" />
+    <Compile Include="Mensaje\StrategyPattern\Estructura\IStrategyEstructuraMensaje.cs" />
+    <Compile Include="Mensaje\StrategyPattern\Pertenencia\EstrategiaPertenencia.cs" />
+    <Compile Include="Mensaje\StrategyPattern\Pertenencia\IStrategyPertenenciaMensaje.cs" />
+    <Compile Include="Mensaje\Mensaje.cs" />
+    <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeCompleto.cs" />
+    <Compile Include="Mensaje\StatePattern\Comunicacion\MensajeEnviado.cs" />
+    <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeExterno.cs" />
+    <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeIncompleto.cs" />
+    <Compile Include="Mensaje\StatePattern\Comunicacion\MensajeNoEviado.cs" />
+    <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeUsuario.cs" />
+    <Compile Include="Mensaje\StatePattern\Persistencia\EstadoPersistencia.cs" />
+    <Compile Include="Mensaje\StatePattern\Persistencia\IStatePersistencia.cs" />
+    <Compile Include="Mensaje\StatePattern\Persistencia\MensajeGuardado.cs" />
+    <Compile Include="Mensaje\StatePattern\Persistencia\MensajeNoGuardado.cs" />
+    <Compile Include="Mensaje\StatePattern\Visibilidad\EstadoVisibilidad.cs" />
+    <Compile Include="Mensaje\StatePattern\Visibilidad\IStateVisibilidad.cs" />
+    <Compile Include="Mensaje\StatePattern\Visibilidad\MensajeNoVisto.cs" />
+    <Compile Include="Mensaje\StatePattern\Visibilidad\MensajeVisto.cs" />
+    <Compile Include="Mensaje\StrategyPattern\Pertenencia\TipoCuentaException.cs" />
     <Compile Include="Protocolo.cs" />
     <Compile Include="Servidor.cs" />
   </ItemGroup>
@@ -64,6 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entidades_Dinamicas\Servidores.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControlDependencia\CapaInterfaces.csproj">
+      <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
+      <Name>CapaInterfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

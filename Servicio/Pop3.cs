@@ -7,8 +7,8 @@ using Modelo;
 using OpenPop.Mime.Header;
 using OpenPop.Mime;
 using Servicio.Excepciones;
-using ControlDependencia.Servicio;
-using ControlDependencia.Utilidades;
+using CapaInterfaces.Servicio;
+using CapaInterfaces.Utilidades;
 using Utilidades.Misc;
 using System.Threading;
 

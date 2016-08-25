@@ -1,29 +1,29 @@
-﻿using Modelo;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ControlDependencia.Dominio;
-using ControlDependencia;
+using CapaInterfaces.Dominio;
+using CapaInterfaces;
 using Utilidades.CriteriosDeBusqueda;
+using CapaInterfaces.Modelo;
 
 namespace Dominio.Repositorios
 {
-    public class RepositorioMensaje : RepositorioAbstracto<Mensaje>, IRepositorioUnico<Mensaje>
+    public class RepositorioMensaje : RepositorioAbstracto<IMensaje>, IRepositorioUnico<IMensaje>
     {
         //private IRepositorioUnico<Adjunto> iRepositorioAdjunto;
-        private IRepositorioUnico<DireccionCorreo> iRepositorioDireccionDeCorreo;
-        private IRepositorioUnico<Cuenta> iRepositorioCuenta;
+        private IRepositorioUnico<IDireccionCorreo> iRepositorioDireccionDeCorreo;
+        private IRepositorioUnico<ICuenta> iRepositorioCuenta;
 
-        public RepositorioMensaje(IRepositorioUnico<Mensaje> pRepositorioInterno, /*IRepositorioUnico<Adjunto> pRepositorioAdjunto,*/ IRepositorioUnico<DireccionCorreo> pRepositorioDireccionDeCorreo, IRepositorioUnico<Cuenta> pRepositorioCuenta) : base(pRepositorioInterno)
+        public RepositorioMensaje(IRepositorioUnico<IMensaje> pRepositorioInterno, /*IRepositorioUnico<Adjunto> pRepositorioAdjunto,*/ IRepositorioUnico<IDireccionCorreo> pRepositorioDireccionDeCorreo, IRepositorioUnico<ICuenta> pRepositorioCuenta) : base(pRepositorioInterno)
         {
             //this.iRepositorioAdjunto = pRepositorioAdjunto;
             this.iRepositorioDireccionDeCorreo = pRepositorioDireccionDeCorreo;
             this.iRepositorioCuenta = pRepositorioCuenta;
         }
 
-        public int Agregar(Mensaje pEntidad)
+        public int Agregar(IMensaje pEntidad)
         {
             if (pEntidad == null)
                 throw new ArgumentNullException(nameof(pEntidad));
@@ -35,10 +35,10 @@ namespace Dominio.Repositorios
             if (string.IsNullOrEmpty(pEntidad.Asunto))
                 throw new NullReferenceException("El asunto del mensaje no puede ser vacío o nulo");
 
-            List<DireccionCorreo> destinatariosValidos = new List<DireccionCorreo>();
+            List<IDireccionCorreo> destinatariosValidos = new List<IDireccionCorreo>();
             var destinatarios = pEntidad.Destinatario.GetEnumerator();
 
-            DireccionCorreo iDireccion = null;
+            IDireccionCorreo iDireccion = null;
             while (destinatarios.MoveNext())
             {
                 iDireccion = this.iRepositorioDireccionDeCorreo.Obtener(d => BuscarDireccionDeCorreo.BuscarPorDireccion(d, destinatarios.Current.DireccionDeCorreo));
@@ -47,7 +47,7 @@ namespace Dominio.Repositorios
             }
             pEntidad.Destinatario = destinatariosValidos;
                     
-            Cuenta iCuenta = this.iRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pEntidad.Cuenta.Id));
+            ICuenta iCuenta = this.iRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pEntidad.Cuenta.Id));
             if (iCuenta == null)
                 throw new NullReferenceException(nameof(iCuenta));
 

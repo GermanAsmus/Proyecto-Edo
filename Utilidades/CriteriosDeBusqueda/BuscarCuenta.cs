@@ -1,16 +1,12 @@
-﻿using Modelo;
+﻿using CapaInterfaces.Modelo;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Utilidades.CriteriosDeBusqueda
 {
-    public class BuscarCuenta : CriterioDeBusqueda<Cuenta>
+    public class BuscarCuenta : CriterioDeBusqueda<ICuenta>
     {
-        public new static Func<Cuenta, int, bool> BuscarPorId = (pEntidad, pId) => pEntidad.Id == pId;
-        public static Func<Cuenta, string, bool> BuscarPorNombre = (pEntidad, pNombre) => pEntidad.Nombre == pNombre;
-        public static Func<Cuenta, int, bool> BuscarPorDireccion = (pEntidad, pDireccionId) => pEntidad.DireccionId == pDireccionId;
+        public new static Func<ICuenta, int, bool> BuscarPorId = (pEntidad, pId) => pEntidad.Id == pId;
+        public static Func<ICuenta, string, bool> BuscarPorNombre = (pEntidad, pNombre) => pEntidad.Nombre == pNombre;
+        public static Func<ICuenta, int, bool> BuscarPorDireccion = (pEntidad, pDireccionId) => pEntidad.DireccionId == pDireccionId;
     }
 }

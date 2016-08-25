@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using ControlDependencia;
-using ControlDependencia.Dominio;
+using CapaInterfaces;
+using CapaInterfaces.Dominio;
 using Modelo;
 using Utilidades.CriteriosDeBusqueda;
-using ControlDependencia.Persistencia;
+using CapaInterfaces.Persistencia;
 
 namespace Dominio.Repositorios
 {

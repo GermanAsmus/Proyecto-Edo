@@ -1,11 +1,11 @@
-﻿using Modelo;
+﻿using CapaInterfaces.Modelo;
 using System;
 
 namespace Utilidades.CriteriosDeBusqueda
 {
-    public abstract class BuscarAdjunto : CriterioDeBusqueda<Adjunto>
+    public abstract class BuscarAdjunto : CriterioDeBusqueda<IAdjunto>
     {
-        public new static Func<Adjunto, int, bool> BuscarPorId = (pEntidad, pId) => pEntidad.Id == pId;
-        public static Func<Adjunto, string, bool> BuscarPorCodigo = (pEntidad, pCodigo) => pEntidad.CodigoAdjunto == pCodigo;
+        public new static Func<IAdjunto, int, bool> BuscarPorId = (pEntidad, pId) => pEntidad.Id == pId;
+        public static Func<IAdjunto, string, bool> BuscarPorCodigo = (pEntidad, pCodigo) => pEntidad.CodigoAdjunto == pCodigo;
     }
 }

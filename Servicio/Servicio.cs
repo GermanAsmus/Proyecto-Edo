@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Modelo;
 using System.Net.Mail;
-using ControlDependencia;
-using ControlDependencia.Servicio;
-using ControlDependencia.Utilidades;
+using CapaInterfaces;
+using CapaInterfaces.Servicio;
+using CapaInterfaces.Utilidades;
 using System.Threading;
 
 namespace Servicio

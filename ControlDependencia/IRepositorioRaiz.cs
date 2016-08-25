@@ -1,4 +1,4 @@
-﻿namespace ControlDependencia
+﻿namespace CapaInterfaces
 {
     public interface IRepositorioRaiz
     {

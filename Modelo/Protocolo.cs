@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CapaInterfaces.Modelo;
 
 namespace Modelo
 {
-    public class Protocolo
+    public class Protocolo : IProtocolo
     {
         public string Nombre { get; private set; }
+
         public Protocolo(string pNombre)
         {
             this.Nombre = pNombre;

@@ -1,9 +1,8 @@
-﻿using Modelo;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace ControlDependencia
+namespace CapaInterfaces
 {
     public interface IRepositorioGenerico<TEntity> : IRepositorioRaiz where TEntity : class
     {

@@ -1,6 +1,4 @@
-﻿using Modelo;
-
-namespace ControlDependencia.Utilidades
+﻿namespace CapaInterfaces.Utilidades
 {
 
     public interface ICriterio<T> where T : IEntidadModelo

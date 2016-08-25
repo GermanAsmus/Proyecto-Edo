@@ -7,22 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ControlDependencia;
+//using ControlDependencia;
 using Modelo;
-using ControlDependencia.Dominio;
+//using ControlDependencia.Dominio;
 
 namespace EdoUI
 {
     public partial class ControlMensaje : UserControl
     {
-        private IControlador controlador;
-        IRepositorioUnico<Mensaje> servicioMensaje;
-        public ControlMensaje(ref IControlador pControlador)
-        {
-            InitializeComponent();
-            controlador = pControlador;
-            //servicioMensaje = (IRepositorioBase<Completo>)controlador.iGestor.ObtenerServicio(typeof(Completo));
-        }
+        //private IControlador controlador;
+        //IRepositorioUnico<Mensaje> servicioMensaje;
+        //public ControlMensaje(ref IControlador pControlador)
+        //{
+        //    InitializeComponent();
+        //    controlador = pControlador;
+        //    //servicioMensaje = (IRepositorioBase<Completo>)controlador.iGestor.ObtenerServicio(typeof(Completo));
+        //}
 
         private void toolStripButtonCancelar_Click(object sender, EventArgs e)
         {

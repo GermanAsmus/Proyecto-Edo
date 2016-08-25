@@ -1,8 +1,8 @@
-﻿using ControlDependencia.Utilidades;
-using Modelo;
+﻿using CapaInterfaces.Modelo;
+using CapaInterfaces.Utilidades;
 using System.Threading;
 
-namespace ControlDependencia.Servicio
+namespace CapaInterfaces.Servicio
 {
     /// <summary>
     /// Fachada del paquete de servicio
@@ -19,21 +19,21 @@ namespace ControlDependencia.Servicio
         /// <param name="pMensaje">Mensaje a enviar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
         /// <param name="pProtocoloTansmision">Protocolo de transmisión de correos</param>
-        void Enviar(Mensaje pMensaje, Cuenta pCuenta, IProtocoloTransmision pProtocoloTransmision);
+        void Enviar(IMensaje pMensaje, ICuenta pCuenta, IProtocoloTransmision pProtocoloTransmision);
         /// <summary>
         /// Descarga una cantidad de mensajes de una cuenta mediante un protocolo de recepción.
         /// </summary>
         /// <param name="pIdMensaje">Id del mensaje a descargar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
         /// <param name="pProtocoloRecepcion">Protocolo de recepción de correos</param>
-        void Descargar(int pIdMensaje, CancellationToken pCancellation, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion, ref IBuzon pBuzon);
-        void Descargar(CancellationToken pCancellation, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion, ref IBuzon pBuzon);
+        void Descargar(int pIdMensaje, CancellationToken pCancellation, ICuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion, ref IBuzon pBuzon);
+        void Descargar(CancellationToken pCancellation, ICuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion, ref IBuzon pBuzon);
         /// <summary>
         /// Elimina un mensaje de una cuenta mediante un protocolo de recepción
         /// </summary>
         /// <param name="pId">Identificador del mensaje</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
         /// <param name="pProtocoloRecepcion">Protocolo de recepción de correos</param>
-        void Eliminar(int pUid, Cuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion);
+        void Eliminar(int pUid, ICuenta pCuenta, IProtocoloRecepcion pProtocoloRecepcion);
     }
 }

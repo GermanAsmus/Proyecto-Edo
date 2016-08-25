@@ -1,8 +1,8 @@
-﻿using ControlDependencia.Utilidades;
-using Modelo;
+﻿using CapaInterfaces.Modelo;
+using CapaInterfaces.Utilidades;
 using System.Threading;
 
-namespace ControlDependencia.Servicio
+namespace CapaInterfaces.Servicio
 {
     /// <summary>
     /// Protocolo de recepción de correos.
@@ -12,7 +12,7 @@ namespace ControlDependencia.Servicio
         /// <summary>
         /// Cuenta del usuario que utiliza el protocolo.
         /// </summary>
-        Cuenta CuentaUsuario { get; set; }
+        ICuenta CuentaUsuario { get; set; }
         /// <summary>
         /// Entidad que mantiene los mensajes descargados.
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using ControlDependencia.Utilidades;
+﻿using CapaInterfaces;
+using CapaInterfaces.Utilidades;
 using Modelo;
 using System;
 

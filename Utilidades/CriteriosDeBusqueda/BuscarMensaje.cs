@@ -1,12 +1,12 @@
-﻿using Modelo;
+﻿using CapaInterfaces.Modelo;
 using System;
 
 namespace Utilidades.CriteriosDeBusqueda
 {
-    public class BuscarMensaje : CriterioDeBusqueda<Mensaje>
+    public class BuscarMensaje : CriterioDeBusqueda<IMensaje>
     {
-        public new static Func<Mensaje, int, bool> BuscarPorId = (pEntidad, pId) => pEntidad.Id == pId;
-        public static Func<Mensaje, string, bool> BuscarPorCodigo = (pEntidad, pCodigo) => pEntidad.CodigoMensaje == pCodigo;
-        public static Func<Mensaje, string, bool> BuscarPorAsunto = (pEntidad, pAsunto) => pEntidad.Asunto == pAsunto;
+        public new static Func<IMensaje, int, bool> BuscarPorId = (pEntidad, pId) => pEntidad.Id == pId;
+        public static Func<IMensaje, string, bool> BuscarPorCodigo = (pEntidad, pCodigo) => pEntidad.CodigoMensaje == pCodigo;
+        public static Func<IMensaje, string, bool> BuscarPorAsunto = (pEntidad, pAsunto) => pEntidad.Asunto == pAsunto;
     }
 }

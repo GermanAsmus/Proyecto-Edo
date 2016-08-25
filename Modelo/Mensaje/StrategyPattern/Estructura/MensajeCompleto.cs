@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class MensajeCompleto : Mensaje, IMensajeCompleto, IStrategyEstructuraMensaje
+    public class MensajeCompleto : MensajeSinEstructuraDefinida, IMensajeCompleto
     {
-        public IStrategyPertenenciaMensaje Pertenencia { get; set; }
+        public new IStrategyPertenenciaMensaje Pertenencia { get; private set; }
 
-        public MensajeCompleto(ICuenta pCuenta, EstrategiaPertenencia pPertenencia)
+        public MensajeCompleto(ICuenta pCuenta) : base(pCuenta)
         {
             Adjuntos = new List<IAdjunto>();
 
-            if (pPertenencia == EstrategiaPertenencia.Externo)
+            if (pCuenta.GetType() == typeof(CuentaExterna))
                 this.Pertenencia = new MensajeExterno(pCuenta);
             else
                 this.Pertenencia = new MensajeUsuario(pCuenta);

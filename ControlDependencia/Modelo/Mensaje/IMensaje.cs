@@ -18,5 +18,8 @@ namespace CapaInterfaces.Modelo
         
         // Colección de direcciones de correo como direcciones destinatarios.
         ICollection<IDireccionCorreo> Destinatario { get; set; }
+
+        void CambiarEstadoPersistencia();
+        string EstadoPersistencia { get; }
     }
 }

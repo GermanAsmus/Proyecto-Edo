@@ -31,13 +31,13 @@ namespace Modelo
         public IMensaje RedactarNuevoMensaje(string pCuerpoMensaje, string pAsuntoMensaje, IList<string> pDireccionesCorreo)
         {
             //preguntar cómo se puede hacer llamando al repositorio de mensajes, que ya tiene el codigo para agregar
-            Mensaje nuevoMensaje = new Mensaje()
-            {
-                Contenido = pCuerpoMensaje,
-                Asunto = pAsuntoMensaje,
-                Fecha = DateTime.Today.ToShortDateString(),
-                CuentaId = this.Id
-            };
+            Mensaje nuevoMensaje = new MensajeCompleto(this);
+            //{
+            //    Contenido = pCuerpoMensaje,
+            //    Asunto = pAsuntoMensaje,
+            //    Fecha = DateTime.Today.ToShortDateString(),
+            //    CuentaId = this.Id
+            //};
             foreach (string direccion in pDireccionesCorreo)
             {
                 nuevoMensaje.Destinatario.Add(new DireccionCorreo() { DireccionDeCorreo = direccion });

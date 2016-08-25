@@ -66,42 +66,42 @@ namespace Persistencia
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            //modelBuilder.Entity<Servidor>().ToTable("Servidor");
-            //modelBuilder.Entity<Servidor>().HasKey<int>(x => x.Id);
-            //modelBuilder.Entity<Servidor>().Property(x => x.Nombre).IsRequired();
-            //modelBuilder.Entity<Servidor>().Property(x => x.HostPOP).IsRequired();
-            //modelBuilder.Entity<Servidor>().Property(x => x.HostSMTP).IsRequired();
-            //modelBuilder.Entity<Servidor>().Property(x => x.PuertoPOP).IsRequired();
-            //modelBuilder.Entity<Servidor>().Property(x => x.PuertoSMTP).IsRequired();
-            //modelBuilder.Entity<Servidor>().Property(x => x.SSL).IsRequired();
+            ////modelBuilder.Entity<Servidor>().ToTable("Servidor");
+            ////modelBuilder.Entity<Servidor>().HasKey<int>(x => x.Id);
+            ////modelBuilder.Entity<Servidor>().Property(x => x.Nombre).IsRequired();
+            ////modelBuilder.Entity<Servidor>().Property(x => x.HostPOP).IsRequired();
+            ////modelBuilder.Entity<Servidor>().Property(x => x.HostSMTP).IsRequired();
+            ////modelBuilder.Entity<Servidor>().Property(x => x.PuertoPOP).IsRequired();
+            ////modelBuilder.Entity<Servidor>().Property(x => x.PuertoSMTP).IsRequired();
+            ////modelBuilder.Entity<Servidor>().Property(x => x.SSL).IsRequired();
 
-            modelBuilder.Entity<Cuenta>().ToTable("Cuenta");
-            modelBuilder.Entity<Cuenta>().HasKey<int>(x => x.Id);
-            modelBuilder.Entity<Cuenta>().Property(x => x.Nombre).IsRequired();
-            modelBuilder.Entity<Cuenta>().Property(x => x.DireccionId).IsRequired();
-            modelBuilder.Entity<Cuenta>().Property(x => x.Contraseña).IsRequired();
-            //modelBuilder.Entity<Cuenta>().HasRequired(x => x.Servidor).WithMany(y => y.Cuenta).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<Cuenta>().HasRequired(x => x.DireccionCorreo).WithOptional(y => y.Cuenta);
+            //modelBuilder.Entity<Cuenta>().ToTable("Cuenta");
+            //modelBuilder.Entity<Cuenta>().HasKey<int>(x => x.Id);
+            //modelBuilder.Entity<Cuenta>().Property(x => x.Nombre).IsRequired();
+            //modelBuilder.Entity<Cuenta>().Property(x => x.DireccionId).IsRequired();
+            //modelBuilder.Entity<Cuenta>().Property(x => x.Contraseña).IsRequired();
+            ////modelBuilder.Entity<Cuenta>().HasRequired(x => x.Servidor).WithMany(y => y.Cuenta).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Cuenta>().HasRequired(x => x.DireccionCorreo).WithOptional(y => y.Cuenta);
 
-            modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionCorreo");
-            modelBuilder.Entity<DireccionCorreo>().HasKey<int>(x => x.Id);
-            modelBuilder.Entity<DireccionCorreo>().Property(x => x.DireccionDeCorreo).IsRequired();
-            modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesRemitente).WithRequired(y => y.DireccionCorreo).HasForeignKey(z => z.DireccionId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesDestinatario).WithMany(y => y.Destinatario).Map(t => { t.ToTable("DireccionCorreoMensaje"); });
+            //modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionCorreo");
+            //modelBuilder.Entity<DireccionCorreo>().HasKey<int>(x => x.Id);
+            //modelBuilder.Entity<DireccionCorreo>().Property(x => x.DireccionDeCorreo).IsRequired();
+            //modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesRemitente).WithRequired(y => y.DireccionCorreo).HasForeignKey(z => z.DireccionId).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesDestinatario).WithMany(y => y.Destinatario).Map(t => { t.ToTable("DireccionCorreoMensaje"); });
 
-            modelBuilder.Entity<Mensaje>().ToTable("Mensaje");
-            modelBuilder.Entity<Mensaje>().HasKey<int>(x => x.Id);
-            modelBuilder.Entity<Mensaje>().Property(x => x.Asunto).IsRequired();
-            modelBuilder.Entity<Mensaje>().Property(x => x.CodigoMensaje).IsOptional();
-            modelBuilder.Entity<Mensaje>().Property(x => x.Contenido).IsOptional();
-            modelBuilder.Entity<Mensaje>().Property(x => x.Leido).IsOptional();
-            modelBuilder.Entity<Mensaje>().Property(x => x.Fecha).IsRequired();
-            modelBuilder.Entity<Mensaje>().HasRequired(x => x.Cuenta).WithMany(y => y.Mensajes).HasForeignKey(z => z.CuentaId);
-            modelBuilder.Entity<Mensaje>().HasMany(x => x.Adjuntos).WithMany(y => y.Mensajes).Map(t => { t.ToTable("AdjuntoMensaje"); });
+            //modelBuilder.Entity<Mensaje>().ToTable("Mensaje");
+            //modelBuilder.Entity<Mensaje>().HasKey<int>(x => x.Id);
+            //modelBuilder.Entity<Mensaje>().Property(x => x.Asunto).IsRequired();
+            //modelBuilder.Entity<Mensaje>().Property(x => x.CodigoMensaje).IsOptional();
+            //modelBuilder.Entity<Mensaje>().Property(x => x.Contenido).IsOptional();
+            //modelBuilder.Entity<Mensaje>().Property(x => x.Leido).IsOptional();
+            //modelBuilder.Entity<Mensaje>().Property(x => x.Fecha).IsRequired();
+            //modelBuilder.Entity<Mensaje>().HasRequired(x => x.Cuenta).WithMany(y => y.Mensajes).HasForeignKey(z => z.CuentaId);
+            //modelBuilder.Entity<Mensaje>().HasMany(x => x.Adjuntos).WithMany(y => y.Mensajes).Map(t => { t.ToTable("AdjuntoMensaje"); });
 
-            modelBuilder.Entity<Adjunto>().ToTable("Adjunto");
-            modelBuilder.Entity<Adjunto>().HasKey<int>(x => x.Id);
-            modelBuilder.Entity<Adjunto>().Property(x => x.CodigoAdjunto).IsRequired();
+            //modelBuilder.Entity<Adjunto>().ToTable("Adjunto");
+            //modelBuilder.Entity<Adjunto>().HasKey<int>(x => x.Id);
+            //modelBuilder.Entity<Adjunto>().Property(x => x.CodigoAdjunto).IsRequired();
         }
     }
 }

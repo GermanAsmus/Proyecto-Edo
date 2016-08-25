@@ -166,7 +166,7 @@ namespace Dominio
             pMensaje.Destinatario = destinatariosValidos;
 
             IRepositorioUnico<ICuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuenta>();
-            ICuenta iCuenta = aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pCuenta.Id));
+            ICuentaUsuario iCuenta = (ICuentaUsuario)aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pCuenta.Id));
             if (iCuenta == null)
                 throw new NullReferenceException(nameof(iCuenta));
 

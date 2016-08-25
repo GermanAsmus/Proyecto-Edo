@@ -50,8 +50,8 @@
     <Compile Include="Modelo\IEntidadModelo.cs" />
     <Compile Include="IRepositorioUnico.cs" />
     <Compile Include="IEncriptador.cs" />
-    <Compile Include="Modelo\IMensaje.cs" />
-    <Compile Include="Modelo\IMensajeCompleto.cs" />
+    <Compile Include="Modelo\Mensaje\IMensaje.cs" />
+    <Compile Include="Modelo\Mensaje\IMensajeCompleto.cs" />
     <Compile Include="Modelo\IProtocolo.cs" />
     <Compile Include="Modelo\IServidor.cs" />
     <Compile Include="Persistencia\IContext.cs" />

@@ -1,19 +1,21 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class MensajeGuardado : IStatePersistencia
+    public class MensajeGuardado : MensajeSinEstadoDePersistenciaDefinido
     {
-        public IRegistroMensaje RegistroMensaje { get; set; }
+        public new ICollection<IRegistroMensaje> RegistroMensajes { get; private set; }
 
-        public EstadoPersistencia ObtenerEstadoPersistencia()
+        public override EstadoPersistencia ObtenerEstadoPersistencia()
         {
             return EstadoPersistencia.Guardado;
         }
 
         public MensajeGuardado()
         {
-            this.RegistroMensaje = new RegistroMensaje();
+            this.RegistroMensajes = new List<IRegistroMensaje>();
         }
     }
 }

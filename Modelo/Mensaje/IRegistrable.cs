@@ -1,7 +1,9 @@
-﻿namespace Modelo
+﻿using System;
+
+namespace Modelo
 {
     public interface IRegistrable
     {
-        IRegistroMensaje RegistroMensaje { get; set; }
+        IRegistroMensaje RegistroMensaje { get; }
     }
 }

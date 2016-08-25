@@ -9,6 +9,7 @@ using Modelo;
 using System.Net.Mail;
 using Utilidades.Excepciones;
 using Utilidades.Misc;
+using CapaInterfaces.Modelo;
 
 namespace Utilidades.SistemaDeArchivos
 {
@@ -110,10 +111,12 @@ namespace Utilidades.SistemaDeArchivos
                 //devolver todos los nombres que no sean string.Empty
                 return nombres.SkipWhile(x => !string.IsNullOrEmpty(x)).ToList();
         }
-        public static string DescargarTextoPlano(Mensaje pMensaje)
+        public static string DescargarTextoPlano(IMensaje pMensaje)
         {
             if (pMensaje == null)
                 throw new ArgumentNullException(nameof(pMensaje));
+
+            var pMensajeCast = (IMensajeCompleto)pMensaje;
 
             string destinatario = string.Empty;
 
@@ -122,13 +125,12 @@ namespace Utilidades.SistemaDeArchivos
             object[] param =
            {
                 Environment.NewLine,
-                pMensaje.Cuenta.DireccionCorreo.DireccionDeCorreo,
-                pMensaje.Fecha,
+                pMensajeCast.Cuenta.DireccionCorreo.DireccionDeCorreo,
                 destinatario,
-                pMensaje.Asunto,
-                pMensaje.Contenido
+                pMensajeCast.Asunto,
+                pMensajeCast.Contenido
             };
-            string textoPlano = string.Format(@"Remitente: {1},{0}Fecha: {2},{0}Destinatario:{0}{3},{0}Asunto: {4},{0}Cuerpo: {5}", param);
+            string textoPlano = string.Format(@"Remitente: {1},{0}Destinatario:{0}{2},{0}Asunto: {3},{0}Cuerpo: {4}", param);
 
             return DescargarArchivo(textoPlano, Path.Combine(DireccionRaiz, "Edo", param[4].ToString() + ".txt"));
         }
@@ -137,13 +139,15 @@ namespace Utilidades.SistemaDeArchivos
             if (pMensaje == null)
                 throw new ArgumentNullException(nameof(pMensaje));
 
+            var pMensajeCast = (IMensajeCompleto)pMensaje;
+
             MailMessage message = new MailMessage()
             {
-                From = new MailAddress(pMensaje.Cuenta.DireccionCorreo.DireccionDeCorreo),
-                Subject = pMensaje.Asunto,
-                Body = pMensaje.Contenido
+                From = new MailAddress(pMensajeCast.Cuenta.DireccionCorreo.DireccionDeCorreo),
+                Subject = pMensajeCast.Asunto,
+                Body = pMensajeCast.Contenido
             };
-            foreach (var item in pMensaje.Destinatario)
+            foreach (var item in pMensajeCast.Destinatario)
             {
                 message.To.Add(item.DireccionDeCorreo);
             }

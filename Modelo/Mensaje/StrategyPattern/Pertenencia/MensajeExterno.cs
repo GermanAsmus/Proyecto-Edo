@@ -1,14 +1,10 @@
-﻿using CapaInterfaces.Modelo;
+﻿using System;
+using CapaInterfaces.Modelo;
 
 namespace Modelo
 {
-    public class MensajeExterno : IStrategyPertenenciaMensaje
+    public class MensajeExterno : MensajeSinPerteneciaDefinida
     {
-        public ICuenta Cuenta
-        {
-            get { return Cuenta; }
-            set { this.Cuenta = value; }
-        }
 
         public IStateVisibilidad Visibilidad { get; private set; }
 
@@ -22,8 +18,18 @@ namespace Modelo
             return this.Visibilidad;
         }
 
+        public string ObtenerVisibilidad()
+        {
+            return this.Visibilidad.ObtenerEstadoVisibilidad().ToString();
+        }
+
+        public override EstrategiaPertenencia ObtenerEstrategiaPertenencia()
+        {
+            return EstrategiaPertenencia.Externo;
+        }
+
         //Constructor de la clase
-        public MensajeExterno(ICuenta pCuenta)
+        public MensajeExterno(ICuenta pCuenta) : base(pCuenta)
         {
             //Se verifica que la cuenta que referencia el mensaje sea una cuenta externa
             if (pCuenta.GetType() != typeof(CuentaExterna))

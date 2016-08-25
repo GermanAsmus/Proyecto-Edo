@@ -2,6 +2,8 @@
 {
     public interface IStrategyEstructuraMensaje
     {
-        IStrategyPertenenciaMensaje Pertenencia { get; set; }
+        IStrategyPertenenciaMensaje Pertenencia { get; }
+
+        string ObtenerPertenecia { get; }
     }
 }

@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class MensajeUsuario : IStrategyPertenenciaMensaje
+    public class MensajeUsuario : MensajeSinPerteneciaDefinida
     {
         public IStateComunicacion Comunicacion { get; private set; }
-        public ICuenta Cuenta
-        {
-            get { return Cuenta; }
-            set { this.Cuenta = value; }
-        }
 
         public IStateComunicacion CambiarComunicacion()
         {
@@ -26,8 +21,18 @@ namespace Modelo
             return this.Comunicacion;
         }
 
+        public string ObtenerComunicacion()
+        {
+            return this.Comunicacion.ObtenerEstadoComunicacion().ToString();
+        }
+
+        public override EstrategiaPertenencia ObtenerEstrategiaPertenencia()
+        {
+            return EstrategiaPertenencia.Usuario;
+        }
+
         //Constructor de la clase
-        public MensajeUsuario(ICuenta pCuenta)
+        public MensajeUsuario(ICuenta pCuenta) : base(pCuenta)
         {
             //refactorizado código :)
             var type = typeof(CuentaUsuario);

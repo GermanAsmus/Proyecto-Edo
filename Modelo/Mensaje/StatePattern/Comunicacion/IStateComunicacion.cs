@@ -1,6 +1,6 @@
 ﻿namespace Modelo
 {
-    public interface IStateComunicacion : IRegistrable
+    public interface IStateComunicacion : IRegistrableCollection
     {
         EstadoComunicacion ObtenerEstadoComunicacion();
     }

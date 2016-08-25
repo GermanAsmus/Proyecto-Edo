@@ -1,18 +1,20 @@
 ﻿using System;
+using CapaInterfaces.Modelo;
+using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class MensajeEnviado : IStateComunicacion
+    public class MensajeEnviado : MensajeSinEstadoDeComunicacionDefinido
     {
-        public IRegistroMensaje RegistroMensaje { get; set; }
-        public EstadoComunicacion ObtenerEstadoComunicacion()
+        public new ICollection<IRegistroMensaje> RegistroMensajes { get; private set; }
+        public override EstadoComunicacion ObtenerEstadoComunicacion()
         {
             return EstadoComunicacion.Enviado;
         }
 
         public MensajeEnviado()
         {
-            this.RegistroMensaje = new RegistroMensaje();
+            this.RegistroMensajes = new List<IRegistroMensaje>();
         }
 
 

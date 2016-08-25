@@ -9,22 +9,26 @@ namespace Dominio.Repositorios
     {
         private IRepositorioUnico<IDireccionCorreo> iRepositorioExterno;
 
-        public RepositorioCuenta(IRepositorioUnico<ICuenta> pRepositorioInterno, IRepositorioUnico<IDireccionCorreo> pRepositorioExterno) : base (pRepositorioInterno)
+        public RepositorioCuenta(IRepositorioUnico<ICuenta> pRepositorioInterno, IRepositorioUnico<IDireccionCorreo> pRepositorioExterno) : base(pRepositorioInterno)
         {
             this.iRepositorioExterno = pRepositorioExterno;
         }
 
         public int Agregar(ICuenta pEntidad)
         {
+
             if (pEntidad == null)
                 throw new ArgumentNullException(nameof(pEntidad));
 
             if (pEntidad.DireccionCorreo == null)
                 throw new ArgumentNullException(nameof(pEntidad.DireccionCorreo));
 
-            if (string.IsNullOrEmpty(pEntidad.Contraseña) || string.IsNullOrEmpty(pEntidad.Nombre))
-                throw new NullReferenceException("los atributos contraseña, nombre, no pueden ser nulos o vacíos");
-
+            if (pEntidad.GetType() == typeof(ICuentaUsuario))
+            {
+                var pEntidadCast = pEntidad as ICuentaUsuario;
+                if (string.IsNullOrEmpty(pEntidadCast.Contraseña) || string.IsNullOrEmpty(pEntidadCast.Nombre))
+                    throw new NullReferenceException("los atributos contraseña, nombre, no pueden ser nulos o vacíos");
+            }
             IDireccionCorreo iDireccion = iRepositorioExterno.Obtener(direccion => BuscarDireccionDeCorreo.BuscarPorDireccion(direccion, pEntidad.DireccionCorreo.DireccionDeCorreo));
             //de no existir la direccion, se agrega a la base de datos
             if (iDireccion == null)

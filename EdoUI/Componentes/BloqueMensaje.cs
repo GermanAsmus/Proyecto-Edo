@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelo;
+using CapaInterfaces.Modelo;
 
 namespace EdoUI
 {
     public partial class BloqueMensaje : UserControl
     {
-        public Mensaje Mensaje { get; }
+        public IMensaje Mensaje { get; }
 
         public string Estado
         {
@@ -31,7 +32,7 @@ namespace EdoUI
             //set { this.labelAsunto.Text = value; }
         }
 
-        public BloqueMensaje(Mensaje pMensaje)
+        public BloqueMensaje(IMensaje pMensaje)
         {
             InitializeComponent();
             Mensaje = pMensaje;

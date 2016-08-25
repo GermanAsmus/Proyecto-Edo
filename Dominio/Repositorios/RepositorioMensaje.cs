@@ -47,7 +47,7 @@ namespace Dominio.Repositorios
             }
             pEntidad.Destinatario = destinatariosValidos;
                     
-            ICuenta iCuenta = this.iRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pEntidad.Cuenta.Id));
+            ICuentaUsuario iCuenta = (ICuentaUsuario)this.iRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pEntidad.Cuenta.Id));
             if (iCuenta == null)
                 throw new NullReferenceException(nameof(iCuenta));
 

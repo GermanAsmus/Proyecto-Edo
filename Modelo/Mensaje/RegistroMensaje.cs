@@ -47,5 +47,22 @@ namespace Modelo
 
             return this.Fecha;
         }
+
+        /// <summary>
+        /// Al cambiar la fecha, se devuelve la fecha anterior.
+        /// </summary>
+        /// <param name="pNuevaFecha"></param>
+        /// <returns></returns>
+        public DateTime CambiarFecha(DateTime pNuevaFecha)
+        {
+            var fechaAnterior = this.Fecha;
+            this.Fecha = pNuevaFecha;
+            return fechaAnterior;
+        }
+
+        public bool NoEsNulo()
+        {
+            return this.Fecha != null;
+        }
     }
 }

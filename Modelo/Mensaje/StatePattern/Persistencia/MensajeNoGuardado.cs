@@ -1,16 +1,20 @@
-﻿namespace Modelo
-{
-    public class MensajeNoGuardado : IStatePersistencia
-    {
-        public IRegistroMensaje RegistroMensaje { get; set; }
+﻿using System;
+using System.Collections.Generic;
 
-        public EstadoPersistencia ObtenerEstadoPersistencia()
+namespace Modelo
+{
+    public class MensajeNoGuardado : MensajeSinEstadoDePersistenciaDefinido
+    {
+        public new ICollection<IRegistroMensaje> RegistroMensajes { get; private set; }
+
+        public override EstadoPersistencia ObtenerEstadoPersistencia()
         {
             return EstadoPersistencia.No_Guardado;
         }
+
         public MensajeNoGuardado()
         {
-            this.RegistroMensaje = new RegistroMensaje();
+            this.RegistroMensajes = new List<IRegistroMensaje>();
         }
     }
 }

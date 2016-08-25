@@ -1,4 +1,7 @@
-﻿namespace Modelo
+﻿using System;
+using System.Collections.Generic;
+
+namespace Modelo
 {
     public class MensajeNoVisto : IStateVisibilidad
     {
@@ -8,6 +11,7 @@
         {
             return EstadoVisibilidad.No_Visto;
         }
+
         public MensajeNoVisto()
         {
             this.RegistroMensaje = new RegistroMensaje();

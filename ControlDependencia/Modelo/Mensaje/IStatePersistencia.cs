@@ -1,6 +1,6 @@
 ﻿namespace Modelo
 {
-    public interface IStatePersistencia : IRegistrableCollection
+    public interface IStatePersistencia : IRegistrable
     {
         EstadoPersistencia ObtenerEstadoPersistencia();
     }

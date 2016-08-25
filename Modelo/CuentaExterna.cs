@@ -1,6 +1,6 @@
 ﻿namespace Modelo
 {
-    public sealed class CuentaExterna : Cuenta
+    public class CuentaExterna : Cuenta
     {
     }
 }

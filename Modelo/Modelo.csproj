@@ -41,6 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Mensaje\DiagramaMensaje.cd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adjunto.cs" />
@@ -49,11 +50,18 @@
     <Compile Include="CuentaUsuario.cs" />
     <Compile Include="DireccionCorreo.cs" />
     <Compile Include="Mensaje\IRegistrable.cs" />
+    <Compile Include="Mensaje\IRegistrableCollection.cs" />
     <Compile Include="Mensaje\IRegistroMensaje.cs" />
     <Compile Include="Mensaje\RegistroMensaje.cs" />
     <Compile Include="Mensaje\StatePattern\Comunicacion\EstadoComunicacion.cs" />
     <Compile Include="Mensaje\StatePattern\Comunicacion\IStateComunicacion.cs" />
+    <Compile Include="Mensaje\StatePattern\Comunicacion\MensajeSinEstadoDeComunicacionDefinido.cs" />
+    <Compile Include="Mensaje\StatePattern\Persistencia\IStatePersistencia.cs" />
+    <Compile Include="Mensaje\RegistroNuloException.cs" />
+    <Compile Include="Mensaje\StatePattern\Persistencia\MensajeSinEstadoDePersistenciaDefinido.cs" />
+    <Compile Include="Mensaje\StatePattern\Visibilidad\IStateVisibilidad.cs" />
     <Compile Include="Mensaje\StrategyPattern\Estructura\IStrategyEstructuraMensaje.cs" />
+    <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeSinEstructuraDefinida.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\EstrategiaPertenencia.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\IStrategyPertenenciaMensaje.cs" />
     <Compile Include="Mensaje\Mensaje.cs" />
@@ -62,13 +70,12 @@
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeExterno.cs" />
     <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeIncompleto.cs" />
     <Compile Include="Mensaje\StatePattern\Comunicacion\MensajeNoEviado.cs" />
+    <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeSinPerteneciaDefinida.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeUsuario.cs" />
     <Compile Include="Mensaje\StatePattern\Persistencia\EstadoPersistencia.cs" />
-    <Compile Include="Mensaje\StatePattern\Persistencia\IStatePersistencia.cs" />
     <Compile Include="Mensaje\StatePattern\Persistencia\MensajeGuardado.cs" />
     <Compile Include="Mensaje\StatePattern\Persistencia\MensajeNoGuardado.cs" />
     <Compile Include="Mensaje\StatePattern\Visibilidad\EstadoVisibilidad.cs" />
-    <Compile Include="Mensaje\StatePattern\Visibilidad\IStateVisibilidad.cs" />
     <Compile Include="Mensaje\StatePattern\Visibilidad\MensajeNoVisto.cs" />
     <Compile Include="Mensaje\StatePattern\Visibilidad\MensajeVisto.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\TipoCuentaException.cs" />
@@ -88,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entidades_Dinamicas\Servidores.xml" />
+    <Content Include="Mensaje\SobreMensaje.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ControlDependencia\CapaInterfaces.csproj">

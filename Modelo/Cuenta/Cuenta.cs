@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Linq.Expressions;
+using System.Linq;
 
 namespace Modelo
 {
@@ -44,10 +45,22 @@ namespace Modelo
         //¿Cómo?, mi idea era hacerlo mediante el patron observer, o algo así para que se actualice la
         //lista de mensajes.
 
-        public void AgregarNuevoMensaje(IMensaje pEntidad) { }
-        public void EliminarMensaje(IMensaje pEntidad) { }
-        public abstract IEnumerable<IMensaje> ObtenerTodos();
-        public abstract IEnumerable<IMensaje> ObtenerSegun(Expression<Func<IMensaje, bool>> pCriterio);
-        public abstract IMensaje Obtener(Expression<Func<IMensaje, bool>> pCriterio);
+        public void AgregarNuevoMensaje(IMensaje pEntidad)
+        {
+            this.Mensajes.Add(pEntidad);
+        }
+
+        public void EliminarMensaje(IMensaje pEntidad)
+        {
+            this.Mensajes.Remove(pEntidad);
+        }
+        public IEnumerable<IMensaje> ObtenerSegun(Expression<Func<IMensaje, bool>> pCriterio)
+        {
+            return this.Mensajes.AsQueryable().Where(pCriterio);
+        }
+        public IMensaje Obtener(Expression<Func<IMensaje, bool>> pCriterio)
+        {
+            return this.Mensajes.AsQueryable().FirstOrDefault(pCriterio);
+        }
     }
 }

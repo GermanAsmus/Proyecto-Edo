@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CapaInterfaces.Modelo
 {
-    public interface IMensaje : IEntidadModelo
+    public interface IMensaje : IEntidadModelo, IObtenible<IDireccionCorreo>
     {
         ////Identificador de la dirección de correo asociada al mensaje, como dirección remitente.
         //public int DireccionId { get; set; }
@@ -21,5 +21,8 @@ namespace CapaInterfaces.Modelo
 
         void CambiarEstadoPersistencia();
         string ObtenerEstadoPersistencia { get; }
+
+        void AgregarNuevoDestinatario(IDireccionCorreo pDireccionCorreo);
+        void EliminarDestinatario(IDireccionCorreo pDireccionCorreo);
     }
 }

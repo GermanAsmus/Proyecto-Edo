@@ -69,7 +69,7 @@ namespace Dominio
         public IEnumerable<IDireccionCorreo> ObtenerTodasLasDireccionesDeCorreo()
         {
             RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
-            return aRepositorio.ObtenerTodos();
+            return aRepositorio.Todos();
         }
         public int EliminarMensaje(int pId)
         {
@@ -102,7 +102,7 @@ namespace Dominio
         public IEnumerable<IMensaje> ObtenerTodosLosMensajes()
         {
             RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensaje>();
-            return aRepositorio.ObtenerTodos();
+            return aRepositorio.Todos();
         }
         public int EliminarCuenta(int pId)
         {
@@ -135,7 +135,7 @@ namespace Dominio
         public IEnumerable<ICuenta> ObtenerTodasLasCuentas()
         {
             RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuenta>();
-            return aRepositorio.ObtenerTodos();
+            return aRepositorio.Todos();
         }
         public void Enviar(IMensaje pMensaje, ICuenta pCuenta)
         {

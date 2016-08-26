@@ -14,9 +14,11 @@ namespace CapaInterfaces.Modelo
         //Entidad de la direccion de correo a la que está relacionada la cuenta.
         IDireccionCorreo DireccionCorreo { get; set; }
 
+        ICollection<IMensaje> Mensajes { get; set; }
+
         void AgregarNuevoMensaje(IMensaje pMensaje);
         void EliminarMensaje(IMensaje pMensaje);
-       
+
 
     }
 }

@@ -1,5 +1,9 @@
 ﻿using CapaInterfaces.Modelo;
 using System.Collections.Generic;
+using CapaInterfaces;
+using System;
+using System.Linq.Expressions;
+using System.Linq;
 
 namespace Modelo
 {
@@ -23,5 +27,24 @@ namespace Modelo
         // Coleccion de adjuntos del mensaje.
         public virtual ICollection<IAdjunto> Adjuntos { get; set; }
 
+        public IEnumerable<IAdjunto> ObtenerSegun(Expression<Func<IAdjunto, bool>> pCriterio)
+        {
+            return this.Adjuntos.AsQueryable().Where(pCriterio);
+        }
+
+        public IAdjunto Obtener(Expression<Func<IAdjunto, bool>> pCriterio)
+        {
+            return this.Adjuntos.AsQueryable().FirstOrDefault(pCriterio);
+        }
+
+        public void AgregarNuevoAdjunto(IAdjunto pAdjunto)
+        {
+            this.Adjuntos.Add(pAdjunto);
+        }
+
+        public void EliminarAdjunto(IAdjunto pAdjunto)
+        {
+            this.Adjuntos.Remove(pAdjunto);
+        }
     }
 }

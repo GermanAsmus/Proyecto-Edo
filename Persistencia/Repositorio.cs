@@ -52,7 +52,7 @@ namespace Persistencia
            return iDbSet.SingleOrDefault(criterio);
         }
 
-        public IEnumerable<TEntity> ObtenerTodos()
+        public IEnumerable<TEntity> Todos()
         {
             return iDbSet;
         }

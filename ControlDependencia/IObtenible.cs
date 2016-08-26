@@ -9,11 +9,7 @@ namespace CapaInterfaces
 {
     public interface IObtenible<TEntity> where TEntity : class
     {
-        /// <summary>
-        /// Obtiene todas las entidades <typeparamref name="TEntity"/> que persisten en el repositorio
-        /// </summary>
-        /// <returns>Coleccion enumerable de las entidades obtenidas</returns>
-        IEnumerable<TEntity> ObtenerTodos();
+       
         /// <summary>
         /// Obtiene todas las entidades <typeparamref name="TEntity"/> que cumplen con el <paramref name="pCriterio"/>
         /// que persisten en el repositorio

@@ -2,6 +2,7 @@
 using CapaInterfaces.Utilidades;
 using Modelo;
 using System;
+using System.Linq.Expressions;
 
 namespace Utilidades.CriteriosDeBusqueda
 {

@@ -6,7 +6,7 @@ namespace CapaInterfaces
 {
     public interface IRepositorioEstandar<TEntity> : IRepositorioRaiz, IObtenible<TEntity> where TEntity : class
     {
-        
+
         /// <summary>
         /// Actualiza el repositorio;
         /// </summary>
@@ -17,6 +17,10 @@ namespace CapaInterfaces
         /// <param name="pEntidad">entidad del tipo <typeparamref name="TEntity"/></param>
         /// <returns>void</returns>
         int Eliminar(TEntity pEntidad);
-        
+        /// <summary>
+        /// Obtiene todas las entidades <typeparamref name="TEntity"/> que persisten en el repositorio
+        /// </summary>
+        /// <returns>Coleccion enumerable de las entidades obtenidas</returns>
+        IEnumerable<TEntity> Todos();
     }
 }

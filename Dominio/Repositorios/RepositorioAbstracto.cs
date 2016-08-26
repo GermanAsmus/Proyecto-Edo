@@ -81,9 +81,9 @@ namespace Dominio.Repositorios
         /// Obtiene todas las entidades del sistema.
         /// </summary>
         /// <returns>Colección de todas las entidaes del sistema</returns>
-        public virtual IEnumerable<T> ObtenerTodos()
+        public virtual IEnumerable<T> Todos()
         {
-              return iRepositorio.ObtenerTodos();
+              return iRepositorio.Todos();
         }
 
         //public int Agregar(DireccionCorreo pHijo, Cuenta pPadre)

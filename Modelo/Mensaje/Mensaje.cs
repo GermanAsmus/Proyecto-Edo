@@ -1,6 +1,8 @@
 ﻿using CapaInterfaces.Modelo;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Modelo
 {
@@ -35,6 +37,24 @@ namespace Modelo
             else
                 this.iEstadoPersistencia = new MensajeNoGuardado();
 
+        }
+
+        public IEnumerable<IDireccionCorreo> ObtenerSegun(Expression<Func<IDireccionCorreo, bool>> pCriterio)
+        {
+            return this.Destinatario.AsQueryable().Where(pCriterio);
+        }
+        public IDireccionCorreo Obtener(Expression<Func<IDireccionCorreo, bool>> pCriterio)
+        {
+            return this.Destinatario.AsQueryable().FirstOrDefault(pCriterio);
+        }
+
+        public void AgregarNuevoDestinatario(IDireccionCorreo pDireccionCorreo)
+        {
+            this.Destinatario.Add(pDireccionCorreo);
+        }
+        public void EliminarDestinatario(IDireccionCorreo pDireccionCorreo)
+        {
+            this.Destinatario.Remove(pDireccionCorreo);
         }
 
         public string ObtenerEstadoPersistencia

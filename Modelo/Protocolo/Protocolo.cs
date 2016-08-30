@@ -2,19 +2,19 @@
 
 namespace Modelo
 {
-    public class Protocolo : IProtocolo
+    public abstract class Protocolo : IProtocolo
     {
-        public string Nombre { get; private set; }
-
-        public Protocolo(string pNombre)
-        {
-            this.Nombre = pNombre;
-        }
+        #region Propiedades
+        public string Nombre { get; protected set; }
         //Host del servidor.
         public string Host { get; set; }
         //Puerto del servidor.
         public int Puerto { get; set; }
         //SSL, capa de puertos de seguridad, del servidor.
         public bool SSL { get; set; }
+        #endregion
+
+        public Protocolo() { }
+        
     }
 }

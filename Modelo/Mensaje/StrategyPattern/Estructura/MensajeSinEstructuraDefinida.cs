@@ -9,7 +9,7 @@ namespace Modelo
 {
     public abstract class MensajeSinEstructuraDefinida : Mensaje, IStrategyEstructuraMensaje
     {
-        public string ObtenerPertenecia
+        public string ObtenerEstadoPertenecia
         {
             get { return this.Pertenencia.ObtenerEstrategiaPertenencia().ToString(); }
         }

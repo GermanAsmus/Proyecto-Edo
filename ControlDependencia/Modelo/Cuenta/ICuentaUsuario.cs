@@ -7,8 +7,6 @@ namespace CapaInterfaces.Modelo
         string Contraseña { get; set; }
         //ICollection<IMensaje> Mensajes { get; set; }
         string Nombre { get; set; }
-        IServidor Servidor { get; set; }
 
-        string ReconocerServidor(IDireccionCorreo pDireccion);
     }
 }

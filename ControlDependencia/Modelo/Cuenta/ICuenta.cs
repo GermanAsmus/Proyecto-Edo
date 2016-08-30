@@ -19,6 +19,7 @@ namespace CapaInterfaces.Modelo
         void AgregarNuevoMensaje(IMensaje pMensaje);
         void EliminarMensaje(IMensaje pMensaje);
 
+        IServidor Servidor { get; set; }
 
     }
 }

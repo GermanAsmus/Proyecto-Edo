@@ -7,10 +7,14 @@ using System.Linq.Expressions;
 namespace Modelo
 {
     /// <summary>
-    /// Entidad Mensaje, modela un menaje o correo.
+    /// Modela un menaje (correo), como una entidad de base y no concluyente.
+    /// Sus clases derivadas concretan el mensaje (agregando significado y siendo más responsables).
     /// </summary>
     public abstract class Mensaje : IMensaje
     {
+        //protected RepositorioModelo<IDireccionCorreo> iRepositorioDireccion;
+
+        #region Propiedades
         //Identificador único del mensaje
         public int Id { get; set; }
         //Asunto del mensaje.
@@ -22,22 +26,43 @@ namespace Modelo
         // Colección de direcciones de correo como direcciones destinatarios.
         public virtual ICollection<IDireccionCorreo> Destinatario { get; set; }
 
-        private IStatePersistencia iEstadoPersistencia;
-
+        #endregion
+        /// <summary>
+        /// Estado de persistencia del mensaje. (Guardado/No_Guardado).
+        /// </summary>
+        private EstadoPersistencia iEstadoPersistencia;
+        /// <summary>
+        /// Constructor de la clase.
+        /// El estado de persistencia por defecto es "No_Guardado".
+        /// </summary>
         public Mensaje()
         {
             Destinatario = new List<IDireccionCorreo>();
-            this.iEstadoPersistencia = new MensajeNoGuardado();
+            this.iEstadoPersistencia = EstadoPersistencia.No_Guardado;
         }
-
+        /// <summary>
+        /// Cambia el estado de persistencia del mensaje.
+        /// (Guardado/No_Guardado).
+        /// </summary>
         public void CambiarEstadoPersistencia()
         {
-            if (this.iEstadoPersistencia.ObtenerEstadoPersistencia() != Modelo.EstadoPersistencia.Guardado)
-                this.iEstadoPersistencia = new MensajeGuardado();
+            if (this.iEstadoPersistencia != EstadoPersistencia.Guardado)
+                this.iEstadoPersistencia = EstadoPersistencia.Guardado;
             else
-                this.iEstadoPersistencia = new MensajeNoGuardado();
+                this.iEstadoPersistencia = EstadoPersistencia.No_Guardado;
 
         }
+        /// <summary>
+        /// Obtiene el estado de persistencia del mensaje.
+        /// (Guardado/No_Guardado).
+        /// </summary>
+        public string ObtenerEstadoPersistencia
+        {
+            get { return this.iEstadoPersistencia.ToString(); }
+        }
+
+
+        #region Metodos
 
         public IEnumerable<IDireccionCorreo> ObtenerSegun(Expression<Func<IDireccionCorreo, bool>> pCriterio)
         {
@@ -57,13 +82,9 @@ namespace Modelo
             this.Destinatario.Remove(pDireccionCorreo);
         }
 
-        public string ObtenerEstadoPersistencia
-        {
-            get
-            {
-                return this.iEstadoPersistencia.ObtenerEstadoPersistencia().ToString();
-            }
-        }
+        #endregion
+
+
 
 
         //IDEA: metodo estático que permita devolver todo el mensaje como un texto plano.

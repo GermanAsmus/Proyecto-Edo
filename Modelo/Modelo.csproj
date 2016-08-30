@@ -45,43 +45,53 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adjunto.cs" />
+    <Compile Include="Protocolo\Creador\CreadorProtocoloSMTP.cs" />
+    <Compile Include="Protocolo\Creador\CreadorProtocoloPOP.cs" />
+    <Compile Include="Protocolo\Creador\CreadorProtocolo.cs" />
+    <Compile Include="RepositorioModelo.cs" />
+    <Compile Include="Servidor\Creador\ControlCreadoresServidor.cs" />
+    <Compile Include="Servidor\Creador\CreadorServidorNulo.cs" />
+    <Compile Include="Servidor\Factory\ServidorYahooFactory.cs" />
+    <Compile Include="Servidor\Factory\IServidorFactory.cs" />
+    <Compile Include="Protocolo\ProtocoloPOP.cs" />
+    <Compile Include="Protocolo\ProtocoloSMTP.cs" />
+    <Compile Include="Servidor\Factory\ServidorGmailFactory.cs" />
+    <Compile Include="Servidor\ServidorNulo.cs" />
+    <Compile Include="Servidor\Creador\CreadorServidor.cs" />
+    <Compile Include="Cuenta\Creador\CreadorCuenta.cs" />
+    <Compile Include="Cuenta\Creador\CreadorCuentaExterna.cs" />
+    <Compile Include="Cuenta\Creador\CreadorCuentaUsuario.cs" />
+    <Compile Include="Cuenta\Factory\CuentaExternaFactory.cs" />
+    <Compile Include="Cuenta\Factory\CuentaUsuarioFactory.cs" />
     <Compile Include="Cuenta\Cuenta.cs" />
     <Compile Include="Cuenta\CuentaExterna.cs" />
     <Compile Include="Cuenta\CuentaUsuario.cs" />
     <Compile Include="DireccionCorreo.cs" />
-    <Compile Include="Mensaje\IRegistrable.cs" />
-    <Compile Include="Mensaje\IRegistrableCollection.cs" />
-    <Compile Include="Mensaje\IRegistroMensaje.cs" />
-    <Compile Include="Mensaje\RegistroMensaje.cs" />
-    <Compile Include="Mensaje\StatePattern\Comunicacion\EstadoComunicacion.cs" />
-    <Compile Include="Mensaje\StatePattern\Comunicacion\IStateComunicacion.cs" />
-    <Compile Include="Mensaje\StatePattern\Comunicacion\MensajeSinEstadoDeComunicacionDefinido.cs" />
-    <Compile Include="Mensaje\StatePattern\Persistencia\IStatePersistencia.cs" />
-    <Compile Include="Mensaje\RegistroNuloException.cs" />
-    <Compile Include="Mensaje\StatePattern\Persistencia\MensajeSinEstadoDePersistenciaDefinido.cs" />
-    <Compile Include="Mensaje\StatePattern\Visibilidad\IStateVisibilidad.cs" />
-    <Compile Include="Mensaje\StatePattern\Visibilidad\MensajeSinVisibilidadDefinida.cs" />
+    <Compile Include="Cuenta\Factory\ICuentaFactory.cs" />
+    <Compile Include="Mensaje\RegistroDeCambios\IRegistroMensaje.cs" />
+    <Compile Include="Mensaje\RegistroDeCambios\RegistroMensaje.cs" />
+    <Compile Include="Mensaje\EstadoComunicacion.cs" />
+    <Compile Include="Mensaje\RegistroDeCambios\RegistroNuloException.cs" />
     <Compile Include="Mensaje\StrategyPattern\Estructura\IStrategyEstructuraMensaje.cs" />
     <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeSinEstructuraDefinida.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\EstrategiaPertenencia.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\IStrategyPertenenciaMensaje.cs" />
     <Compile Include="Mensaje\Mensaje.cs" />
     <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeCompleto.cs" />
-    <Compile Include="Mensaje\StatePattern\Comunicacion\MensajeEnviado.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeExterno.cs" />
     <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeIncompleto.cs" />
-    <Compile Include="Mensaje\StatePattern\Comunicacion\MensajeNoEviado.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeSinPerteneciaDefinida.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeUsuario.cs" />
-    <Compile Include="Mensaje\StatePattern\Persistencia\EstadoPersistencia.cs" />
-    <Compile Include="Mensaje\StatePattern\Persistencia\MensajeGuardado.cs" />
-    <Compile Include="Mensaje\StatePattern\Persistencia\MensajeNoGuardado.cs" />
-    <Compile Include="Mensaje\StatePattern\Visibilidad\EstadoVisibilidad.cs" />
-    <Compile Include="Mensaje\StatePattern\Visibilidad\MensajeNoVisto.cs" />
-    <Compile Include="Mensaje\StatePattern\Visibilidad\MensajeVisto.cs" />
+    <Compile Include="Mensaje\EstadoPersistencia.cs" />
+    <Compile Include="Mensaje\EstadoVisibilidad.cs" />
     <Compile Include="Mensaje\StrategyPattern\Pertenencia\TipoCuentaException.cs" />
-    <Compile Include="Protocolo.cs" />
-    <Compile Include="Servidor.cs" />
+    <Compile Include="Protocolo\Protocolo.cs" />
+    <Compile Include="Protocolo\ProtocoloNulo.cs" />
+    <Compile Include="Servidor\Creador\CreadorServidorGmail.cs" />
+    <Compile Include="Servidor\Creador\CreadorServidorYahoo.cs" />
+    <Compile Include="Servidor\Servidor.cs" />
+    <Compile Include="Servidor\ServidorGmail.cs" />
+    <Compile Include="Servidor\ServidorYahoo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -96,7 +106,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entidades_Dinamicas\Servidores.xml" />
     <Content Include="Mensaje\SobreMensaje.txt" />
   </ItemGroup>
   <ItemGroup>

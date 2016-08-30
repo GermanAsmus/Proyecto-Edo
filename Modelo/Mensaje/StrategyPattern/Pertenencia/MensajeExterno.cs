@@ -1,28 +1,38 @@
 ﻿using System;
 using CapaInterfaces.Modelo;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Modelo
 {
     public class MensajeExterno : MensajeSinPerteneciaDefinida
     {
+        public ICollection<IRegistroMensaje<EstadoVisibilidad>> RegistroVisibiliadad { get; private set; }
 
-        public IStateVisibilidad Visibilidad { get; private set; }
-
-        public IStateVisibilidad CambiarVisibilidad()
+        //Cambia el estado de la visibilidad del mensaje, agregando el cambio como un nuevo registro.
+        private void CambiarEstadoVisibilidad(EstadoVisibilidad pVisibilidad)
         {
-            if (Visibilidad.ObtenerEstadoVisibilidad() == EstadoVisibilidad.Visto)
-                this.Visibilidad = new MensajeNoVisto();
+            if (this.RegistroVisibiliadad == null)
+                this.RegistroVisibiliadad = new List<IRegistroMensaje<EstadoVisibilidad>>();
+
+            this.RegistroVisibiliadad.Add(new RegistroMensaje<EstadoVisibilidad>(pVisibilidad));
+        }
+        //Cambia el estado de la visibilidad del mensaje.
+        public EstadoVisibilidad CambiarEstadoVisibilidad()
+        {
+            if (this.ObtenerEstadoVisibilidad() != EstadoVisibilidad.Visto)
+                this.CambiarEstadoVisibilidad(EstadoVisibilidad.Visto);
             else
-                this.Visibilidad = new MensajeVisto();
+                this.CambiarEstadoVisibilidad(EstadoVisibilidad.No_Visto);
 
-            return this.Visibilidad;
+            return this.ObtenerEstadoVisibilidad();
         }
-
-        public string ObtenerVisibilidad()
+        //Se devuelve el estado de visibilidad del mensaje.
+        public EstadoVisibilidad ObtenerEstadoVisibilidad()
         {
-            return this.Visibilidad.ObtenerEstadoVisibilidad().ToString();
+            return this.RegistroVisibiliadad.Last().Registro;
         }
-
+        //Se devuelve si el mensaje es externo o del usuario.
         public override EstrategiaPertenencia ObtenerEstrategiaPertenencia()
         {
             return EstrategiaPertenencia.Externo;
@@ -39,7 +49,7 @@ namespace Modelo
                     typeof(CuentaExterna)));
             this.Cuenta = pCuenta;
 
-            this.Visibilidad = new MensajeNoVisto();
+            this.CambiarEstadoVisibilidad(EstadoVisibilidad.No_Visto);
         }
 
     }

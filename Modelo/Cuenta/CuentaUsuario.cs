@@ -12,15 +12,9 @@ namespace Modelo
         //Contraseña de la cuenta
         public string Contraseña { get; set; }
 
-        public IServidor Servidor { get; set; }
+
         //Entidad de la direccion de correo a la que está relacionada la cuenta.
-
-        public CuentaUsuario() { }
-
-        public string ReconocerServidor(IDireccionCorreo pDireccion)
-        {
-            return new MailAddress(pDireccion.DireccionDeCorreo).Host;
-        }
+        public CuentaUsuario(ICuentaFactory pCuentaFactory, string pDireccion) : base(pCuentaFactory, pDireccion) { }
 
     }
 }

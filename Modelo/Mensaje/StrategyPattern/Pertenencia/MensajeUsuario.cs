@@ -9,21 +9,29 @@ namespace Modelo
 {
     public class MensajeUsuario : MensajeSinPerteneciaDefinida
     {
-        public IStateComunicacion Comunicacion { get; private set; }
+        public ICollection<IRegistroMensaje<EstadoComunicacion>> RegistroComunicacion { get; private set; }
 
-        public IStateComunicacion CambiarComunicacion()
+        private void CambiarEstadoComunicacion(EstadoComunicacion pComunicacion)
         {
-            if (Comunicacion.ObtenerEstadoComunicacion() == EstadoComunicacion.Enviado)
-                this.Comunicacion = new MensajeNoEviado();
-            else
-                this.Comunicacion = new MensajeEnviado();
+            if (this.RegistroComunicacion == null)
+                this.RegistroComunicacion = new List<IRegistroMensaje<EstadoComunicacion>>();
 
-            return this.Comunicacion;
+            this.RegistroComunicacion.Add(new RegistroMensaje<EstadoComunicacion>(pComunicacion));
         }
 
-        public string ObtenerComunicacion()
+        public EstadoComunicacion CambiarEstadoComunicacion()
         {
-            return this.Comunicacion.ObtenerEstadoComunicacion().ToString();
+            if (this.ObtenerEstadoComunicacion() != EstadoComunicacion.Enviado)
+                this.CambiarEstadoComunicacion(EstadoComunicacion.Enviado);
+            else
+                this.CambiarEstadoComunicacion(EstadoComunicacion.No_Enviado);
+
+            return this.ObtenerEstadoComunicacion();
+        }
+
+        public EstadoComunicacion ObtenerEstadoComunicacion()
+        {
+            return this.RegistroComunicacion.Last().Registro;
         }
 
         public override EstrategiaPertenencia ObtenerEstrategiaPertenencia()
@@ -45,7 +53,7 @@ namespace Modelo
                     type));
             this.Cuenta = pCuenta;
 
-            this.Comunicacion = new MensajeNoEviado();
+            this.CambiarEstadoComunicacion(EstadoComunicacion.No_Enviado);
         }
     }
 }

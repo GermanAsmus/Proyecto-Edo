@@ -4,6 +4,6 @@
     {
         IStrategyPertenenciaMensaje Pertenencia { get; }
 
-        string ObtenerPertenecia { get; }
+        string ObtenerEstadoPertenecia { get; }
     }
 }

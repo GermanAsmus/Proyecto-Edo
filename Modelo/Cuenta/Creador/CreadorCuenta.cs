@@ -6,9 +6,10 @@ namespace Modelo
 {
     public abstract class CreadorCuenta
     {
-        protected abstract ICuenta CrearCuenta(string pDireccion);
 
-        public ICuenta ObtenerCuenta(string pDireccion)
+        protected abstract ICuentaDTO CrearCuenta(string pDireccion);
+
+        public ICuentaDTO ObtenerCuenta(string pDireccion)
         {
             return this.CrearCuenta(pDireccion);
         }

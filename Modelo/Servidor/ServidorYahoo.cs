@@ -3,11 +3,11 @@ using CapaInterfaces.Modelo;
 
 namespace Modelo
 {
-    public class ServidorYahoo : Servidor
+    public class ServidorYahoo : ServidorDAO
     {
         public ServidorYahoo(IServidorFactory pServidorFactory) : base (pServidorFactory)
         {
-            this.Nombre = "yahoo";
+            this.ServidorDTO.Nombre = "yahoo";
         }
     }
 }

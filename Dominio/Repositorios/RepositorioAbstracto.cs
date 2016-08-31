@@ -13,7 +13,7 @@ namespace Dominio.Repositorios
     /// Define su implementación de forma virtual y genérica.
     /// </summary>
     /// <typeparam name="T">Tipo de entidad de modelo</typeparam>
-    public abstract class RepositorioAbstracto<T> : IRepositorioEstandar<T> where T : class
+    public abstract class RepositorioAbstracto<T> : IRepositorioEstandar<T> where T : class, IEntidadModelo
     {
         ///// <summary>
         ///// Gestor de los repositorios, mantiene todos los repositorios que se definieron con anterioridad.

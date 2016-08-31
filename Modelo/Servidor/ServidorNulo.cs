@@ -3,12 +3,12 @@ using CapaInterfaces.Modelo;
 
 namespace Modelo
 {
-    public class ServidorNulo : Servidor
+    public class ServidorNulo : ServidorDAO
     {
 
         public ServidorNulo(IServidorFactory pServidorFactory) : base (pServidorFactory)
         {
-            this.Nombre = "nulo";
+            this.ServidorDTO.Nombre = "nulo";
         }
     }
 }

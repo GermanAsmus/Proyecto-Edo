@@ -14,10 +14,10 @@ namespace Utilidades.Misc
         // Esta accion sera el trigger para los observadores
         public Action BagChanged;
 
-        public IProducerConsumerCollection<IMensaje> Cabeceras { get; }
-        public IProducerConsumerCollection<IMensaje> Mensajes { get; }
+        public IProducerConsumerCollection<IMensajeDTO> Cabeceras { get; }
+        public IProducerConsumerCollection<IMensajeDTO> Mensajes { get; }
 
-        public void AgregarCabecera(IMensaje pCabecera)
+        public void AgregarCabecera(IMensajeDTO pCabecera)
         {
             if (pCabecera == null)
                 throw new ArgumentNullException(nameof(pCabecera));
@@ -26,7 +26,7 @@ namespace Utilidades.Misc
             else
                 BagChanged();
         }
-        public void AgregarMensaje(IMensaje pMensaje)
+        public void AgregarMensaje(IMensajeDTO pMensaje)
         {
             if (pMensaje == null)
                 throw new ArgumentNullException(nameof(pMensaje));
@@ -38,8 +38,8 @@ namespace Utilidades.Misc
         }
         public Buzon()
         {
-            Cabeceras = new ConcurrentBag<IMensaje>();
-            Mensajes = new ConcurrentBag<IMensaje>();
+            Cabeceras = new ConcurrentBag<IMensajeDTO>();
+            Mensajes = new ConcurrentBag<IMensajeDTO>();
         }
     }
 }

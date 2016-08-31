@@ -6,11 +6,11 @@ namespace Modelo
 {
     public abstract class CreadorServidor
     {
-        protected abstract IServidor CrearServidor();
+        protected abstract IServidorDTO CrearServidor();
 
         public abstract string ObtenerNombre();
 
-        public IServidor ObtenerServidor()
+        public IServidorDTO ObtenerServidor()
         {
             return this.CrearServidor();
         }

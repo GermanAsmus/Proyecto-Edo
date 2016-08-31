@@ -10,7 +10,7 @@ namespace Modelo
     /// <summary>
     /// Entidad DireccionCorreo, modela una dirección de correo. Ej: miCorreo@correo.com
     /// </summary>
-    public class DireccionCorreo : IDireccionCorreo
+    public class DireccionCorreo : IDireccionCorreoDTO
     {
 
         #region Propiedades
@@ -20,12 +20,12 @@ namespace Modelo
         public string DireccionDeCorreo { get; set; }
         //Identificador de la cuenta a la que está asociada la dirección de correo.
         public int CuentaId { get; set; }
-        //Entidad Cuenta a la que está asociada la dirección de correo.
-        public ICuenta Cuenta { get; set; }
+        //Entidad CuentaDAO a la que está asociada la dirección de correo.
+        public ICuentaDTO Cuenta { get; set; }
         //Colección de mensajes en los que la dirección de correo está asociada como dirección de correo destinatario.
-        public virtual ICollection<IMensaje> MensajesDestinatario { get; set; }
+        public virtual ICollection<IMensajeDTO> MensajesDestinatario { get; set; }
         //Colección de mensajes en los que la dirección de correo está asociada como dirección de correo remitente.
-        public virtual ICollection<IMensaje> MensajesRemitente { get; set; }
+        public virtual ICollection<IMensajeDTO> MensajesRemitente { get; set; }
         #endregion
         
         public DireccionCorreo(string pDireccionDeCorreo)
@@ -42,13 +42,13 @@ namespace Modelo
                 throw new FormatException("El formato de la direccion de correo no es valida", ex);
             }
 
-            MensajesRemitente = new List<IMensaje>();
-            MensajesDestinatario = new List<IMensaje>();
+            MensajesRemitente = new List<IMensajeDTO>();
+            MensajesDestinatario = new List<IMensajeDTO>();
         }
 
-        public static string ObtenerHost(IDireccionCorreo pDireccion)
+        public static string ObtenerHost(IDireccionCorreoDTO pDireccion)
         {
-            return new MailAddress(pDireccion.DireccionDeCorreo).Host;
+            return new MailAddress(pDireccion.DireccionDeCorreo).Host.Split('.')[0];
         }
     }
 }

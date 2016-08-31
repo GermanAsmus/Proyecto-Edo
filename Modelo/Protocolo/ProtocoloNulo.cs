@@ -3,16 +3,8 @@ using CapaInterfaces.Modelo;
 
 namespace Modelo
 {
-    internal class ProtocoloNulo : IProtocolo
+    internal class ProtocoloNulo : ProtocoloDTO
     {
-        public string Host { get; set; }
-
-        public string Nombre { get; }
-
-        public int Puerto { get; set; }
-
-        public bool SSL { get; set; }
-
         public ProtocoloNulo()
         {
             this.Host = string.Empty;

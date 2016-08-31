@@ -8,14 +8,14 @@ namespace Tests
     [TestClass]
     public class CuentaTDD
     {
-        private static ICuenta cuentaTdd;
-        private static CreadorCuenta creador;
+        private static ICuentaDTO cuentaTdd;
         private static string direccionCuenta;
+        private static CreadorCuenta creador;
 
         [TestInitialize]
         public void Initialize()
         {
-            direccionCuenta = "tdd@tdd.com";
+           direccionCuenta = "tdd@gmail.com";
         }
 
         [TestMethod]
@@ -29,7 +29,6 @@ namespace Tests
         public void ObtenerCuentaUsuario()
         {
             creador = new CreadorCuentaUsuario();
-            //poner como parametro la direccion de correo
             cuentaTdd = creador.ObtenerCuenta(direccionCuenta);
             Assert.IsNotNull(cuentaTdd);
         }

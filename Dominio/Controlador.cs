@@ -23,121 +23,121 @@ namespace Dominio
             iServicio = IoC_CL.Resolver<IServicio>();
             GestorRepositorios = new GestorRepositorios(pUnitOfWork);
         }
-        public int AregarCuenta(IDireccionCorreo pDireccion, ICuenta pCuenta)
+        public int AregarCuenta(IDireccionCorreoDTO pDireccion, ICuentaDTO pCuenta)
         {
-            IRepositorioCompleto<ICuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuenta>();
+            IRepositorioCompleto<ICuentaDTO> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
             return aRepositorioCuenta.Agregar(pCuenta);
         }
-        public int EditarCuenta(ICuenta pCuenta)
+        public int EditarCuenta(ICuentaDTO pCuenta)
         {
-            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuenta>();
+            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
             return aRepositorio.Actualizar();
         }
-        public int EditarDireccionDeCorreo(IDireccionCorreo pDireccionCorreo)
+        public int EditarDireccionDeCorreo(IDireccionCorreoDTO pDireccionCorreo)
         {
-            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
+            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
             return aRepositorio.Actualizar();
         }
         public int EliminarDireccionDeCorreo(int pId)
         {
-            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
-            IDireccionCorreo unaDireccion = this.ObtenerDireccionDeCorreo(pId);
+            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
+            IDireccionCorreoDTO unaDireccion = this.ObtenerDireccionDeCorreo(pId);
             return aRepositorio.Eliminar(unaDireccion);
         }
         public int EliminarDireccionDeCorreo(string pDireccionDeCorreo)
         {
-            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
-            IDireccionCorreo unaDireccion = this.ObtenerDireccionDeCorreo(pDireccionDeCorreo);
+            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
+            IDireccionCorreoDTO unaDireccion = this.ObtenerDireccionDeCorreo(pDireccionDeCorreo);
             return aRepositorio.Eliminar(unaDireccion);
         }
-        public IDireccionCorreo ObtenerDireccionDeCorreo(int pId)
+        public IDireccionCorreoDTO ObtenerDireccionDeCorreo(int pId)
         {
-            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
-            IDireccionCorreo unaDireccion = aRepositorio.Obtener(x => BuscarDireccionDeCorreo.BuscarPorCuentaId(x, pId));
+            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
+            IDireccionCorreoDTO unaDireccion = aRepositorio.Obtener(x => BuscarDireccionDeCorreo.BuscarPorCuentaId(x, pId));
             if (unaDireccion == null)
                 throw new Exception("La direccion de correo no existe en el sistema");
             return unaDireccion;
         }
-        public IDireccionCorreo ObtenerDireccionDeCorreo(string pDireccionDeCorreo)
+        public IDireccionCorreoDTO ObtenerDireccionDeCorreo(string pDireccionDeCorreo)
         {
-            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
-            IDireccionCorreo unaDireccion = aRepositorio.Obtener(x => BuscarDireccionDeCorreo.BuscarPorDireccion(x, pDireccionDeCorreo));
+            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
+            IDireccionCorreoDTO unaDireccion = aRepositorio.Obtener(x => BuscarDireccionDeCorreo.BuscarPorDireccion(x, pDireccionDeCorreo));
             if (unaDireccion == null)
                 throw new Exception("La direccion de correo no existe en el sistema");
             return unaDireccion;
         }
-        public IEnumerable<IDireccionCorreo> ObtenerTodasLasDireccionesDeCorreo()
+        public IEnumerable<IDireccionCorreoDTO> ObtenerTodasLasDireccionesDeCorreo()
         {
-            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
+            RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
             return aRepositorio.Todos();
         }
         public int EliminarMensaje(int pId)
         {
-            RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensaje>();
-            IMensaje unMensaje = this.ObtenerMensaje(pId);
+            RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensajeDTO>();
+            IMensajeDTO unMensaje = this.ObtenerMensaje(pId);
             return aRepositorio.Eliminar(unMensaje);
         }
         public int EliminarMensaje(string pAsunto)
         {
-            RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensaje>();
-            IMensaje unMensaje = this.ObtenerMensaje(pAsunto);
+            RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensajeDTO>();
+            IMensajeDTO unMensaje = this.ObtenerMensaje(pAsunto);
             return aRepositorio.Eliminar(unMensaje);
         }
-        public IMensaje ObtenerMensaje(int pId)
+        public IMensajeDTO ObtenerMensaje(int pId)
         {
-            RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensaje>();
-            IMensaje unMensaje = aRepositorio.Obtener(x => BuscarMensaje.BuscarPorId(x, pId));
+            RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensajeDTO>();
+            IMensajeDTO unMensaje = aRepositorio.Obtener(x => BuscarMensaje.BuscarPorId(x, pId));
             if (unMensaje == null)
                 throw new Exception("El menasje no existe en el sistema");
             return unMensaje;
         }
-        public IMensaje ObtenerMensaje(string pAsunto)
+        public IMensajeDTO ObtenerMensaje(string pAsunto)
         {
-            RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensaje>();
-            IMensaje unMensaje = aRepositorio.Obtener(x => BuscarMensaje.BuscarPorAsunto(x, pAsunto));
+            RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensajeDTO>();
+            IMensajeDTO unMensaje = aRepositorio.Obtener(x => BuscarMensaje.BuscarPorAsunto(x, pAsunto));
             if (unMensaje == null)
                 throw new Exception("El menasje no existe en el sistema");
             return unMensaje;
         }
-        public IEnumerable<IMensaje> ObtenerTodosLosMensajes()
+        public IEnumerable<IMensajeDTO> ObtenerTodosLosMensajes()
         {
-            RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensaje>();
+            RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensajeDTO>();
             return aRepositorio.Todos();
         }
         public int EliminarCuenta(int pId)
         {
-            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuenta>();
-            ICuenta unaCuenta = this.ObtenerCuenta(pId);
+            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
+            ICuentaDTO unaCuenta = this.ObtenerCuenta(pId);
             return aRepositorio.Eliminar(unaCuenta);
         }
         public int EliminarCuenta(string pNombre)
         {
-            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuenta>();
-            ICuenta unaCuenta = this.ObtenerCuenta(pNombre);
+            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
+            ICuentaDTO unaCuenta = this.ObtenerCuenta(pNombre);
             return aRepositorio.Eliminar(unaCuenta);
         }
-        public ICuenta ObtenerCuenta(int pId)
+        public ICuentaDTO ObtenerCuenta(int pId)
         {
-            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuenta>();
-            ICuenta unaCuenta = aRepositorio.Obtener(x => BuscarCuenta.BuscarPorId(x, pId));
+            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
+            ICuentaDTO unaCuenta = aRepositorio.Obtener(x => BuscarCuenta.BuscarPorId(x, pId));
             if (unaCuenta == null)
                 throw new Exception("La cuenta no existe en el sistema");
             return unaCuenta;
         }
-        public ICuenta ObtenerCuenta(string pNombre)
+        public ICuentaDTO ObtenerCuenta(string pNombre)
         {
-            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuenta>();
-            ICuenta unaCuenta = aRepositorio.Obtener(x => BuscarCuenta.BuscarPorNombre(x, pNombre));
+            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
+            ICuentaDTO unaCuenta = aRepositorio.Obtener(x => BuscarCuenta.BuscarPorNombre(x, pNombre));
             if (unaCuenta == null)
                 throw new Exception("La cuenta no existe en el sistema");
             return unaCuenta;
         }
-        public IEnumerable<ICuenta> ObtenerTodasLasCuentas()
+        public IEnumerable<ICuentaDTO> ObtenerTodasLasCuentas()
         {
-            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuenta>();
+            RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
             return aRepositorio.Todos();
         }
-        public void Enviar(IMensaje pMensaje, ICuenta pCuenta)
+        public void Enviar(IMensajeDTO pMensaje, ICuentaDTO pCuenta)
         {
             //poner un estado de enviado o no enviado(por las dudas)
 
@@ -152,11 +152,11 @@ namespace Dominio
                 throw new NullReferenceException("El asunto del IMensaje no puede ser vacío o nulo");
 
             //verifica cada una de las direcciones de correo
-            List<IDireccionCorreo> destinatariosValidos = new List<IDireccionCorreo>();
+            List<IDireccionCorreoDTO> destinatariosValidos = new List<IDireccionCorreoDTO>();
             var destinatarios = pMensaje.Destinatario.GetEnumerator();
 
-            IRepositorioCompleto<IDireccionCorreo> aRepositorioDireccionCorreo = this.GestorRepositorios.ObtenerRepositorio<IDireccionCorreo>();
-            IDireccionCorreo iDireccion = null;
+            IRepositorioCompleto<IDireccionCorreoDTO> aRepositorioDireccionCorreo = this.GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
+            IDireccionCorreoDTO iDireccion = null;
             while (destinatarios.MoveNext())
             {
                 iDireccion = aRepositorioDireccionCorreo.Obtener(d => BuscarDireccionDeCorreo.BuscarPorDireccion(d, destinatarios.Current.DireccionDeCorreo));
@@ -165,8 +165,8 @@ namespace Dominio
             }
             pMensaje.Destinatario = destinatariosValidos;
 
-            IRepositorioCompleto<ICuenta> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuenta>();
-            ICuentaUsuario iCuenta = (ICuentaUsuario)aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pCuenta.Id));
+            IRepositorioCompleto<ICuentaDTO> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
+            ICuentaUsuarioDTO iCuenta = (ICuentaUsuarioDTO)aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pCuenta.Id));
             if (iCuenta == null)
                 throw new NullReferenceException(nameof(iCuenta));
 
@@ -179,17 +179,17 @@ namespace Dominio
             IProtocoloTransmision iProtocoloTransmision = IoC_CL.Resolver<IProtocoloTransmision>();
             this.iServicio.Enviar(pMensaje, pCuenta, iProtocoloTransmision);
         }
-        public void Recibir(CancellationToken pCancellation,ICuenta pCuenta, ref IBuzon pBuzon)
+        public void Recibir(CancellationToken pCancellation,ICuentaDTO pCuenta, ref IBuzon pBuzon)
         {
             IProtocoloRecepcion iProtocoloRecepcion = IoC_CL.Resolver<IProtocoloRecepcion>();
             this.iServicio.Descargar(pCancellation, pCuenta, iProtocoloRecepcion, ref pBuzon);
         }
-        public void Recibir(int pIdMensaje, CancellationToken pCancellation, ICuenta pCuenta,ref IBuzon pBuzon)
+        public void Recibir(int pIdMensaje, CancellationToken pCancellation, ICuentaDTO pCuenta,ref IBuzon pBuzon)
         {
             IProtocoloRecepcion iProtocoloRecepcion = IoC_CL.Resolver<IProtocoloRecepcion>();
             this.iServicio.Descargar(pIdMensaje, pCancellation, pCuenta, iProtocoloRecepcion,ref pBuzon);
         }
-        public void EliminarDelServidor(int pId, ICuenta pCuenta)
+        public void EliminarDelServidor(int pId, ICuentaDTO pCuenta)
         {
             IProtocoloRecepcion iProtocoloRecepcion = IoC_CL.Resolver<IProtocoloRecepcion>();
             this.iServicio.Eliminar(pId, pCuenta, iProtocoloRecepcion);

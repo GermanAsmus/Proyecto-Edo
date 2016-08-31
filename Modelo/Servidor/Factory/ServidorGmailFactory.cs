@@ -6,9 +6,9 @@ namespace Modelo
 {
     public class ServidorGmailFactory : IServidorFactory
     {
-        public ICollection<IProtocolo> AgregarProtocolo()
+        public ICollection<IProtocoloDTO> AgregarProtocolo()
         {
-            IList<IProtocolo> protocolos = new List<IProtocolo>()
+            IList<IProtocoloDTO> protocolos = new List<IProtocoloDTO>()
             {
                 new ProtocoloSMTP(),
                 new ProtocoloPOP()

@@ -7,19 +7,19 @@ using Utilidades.CriteriosDeBusqueda;
 
 namespace Dominio.Repositorios
 {
-    public class RepositorioDireccion : RepositorioAbstracto<IDireccionCorreo>, IRepositorioCompleto<IDireccionCorreo>
+    public class RepositorioDireccion : RepositorioAbstracto<IDireccionCorreoDTO>, IRepositorioCompleto<IDireccionCorreoDTO>
     {
-        public RepositorioDireccion(IRepositorioCompleto<IDireccionCorreo> pRepositorioInterno) : base(pRepositorioInterno)
+        public RepositorioDireccion(IRepositorioCompleto<IDireccionCorreoDTO> pRepositorioInterno) : base(pRepositorioInterno)
         {
 
         }
 
-        public int Agregar(IDireccionCorreo pEntidad)
+        public int Agregar(IDireccionCorreoDTO pEntidad)
         {
             if(pEntidad==null)
                 throw new ArgumentNullException(nameof(pEntidad));
 
-            IDireccionCorreo iDireccion = this.iRepositorio.Obtener(x => BuscarDireccionDeCorreo.BuscarPorId(x, pEntidad.Id));
+            IDireccionCorreoDTO iDireccion = this.iRepositorio.Obtener(x => BuscarDireccionDeCorreo.BuscarPorId(x, pEntidad.Id));
             if (iDireccion != null)
                return this.iRepositorio.Agregar(pEntidad);
             else

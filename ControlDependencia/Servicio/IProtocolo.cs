@@ -22,6 +22,6 @@ namespace CapaInterfaces.Servicio
         /// <param name="pMensaje">Mensaje a enviar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
         /// <param name="pProtocoloTansmision">Protocolo de transmisión de correos</param>
-        void Enviar(IMensaje pMensaje, ICuenta pCuenta, IProtocoloTransmision pProtocoloTansmision);
+        void Enviar(IMensajeDAO pMensaje, ICuentaDAO pCuenta, IProtocoloTransmision pProtocoloTansmision);
     }
 }

@@ -12,7 +12,7 @@ namespace CapaInterfaces.Servicio
         /// <summary>
         /// Cuenta del usuario que utiliza el protocolo.
         /// </summary>
-        ICuenta CuentaUsuario { get; set; }
+        ICuentaDAO CuentaUsuario { get; set; }
         /// <summary>
         /// Entidad que mantiene los mensajes descargados.
         /// </summary>

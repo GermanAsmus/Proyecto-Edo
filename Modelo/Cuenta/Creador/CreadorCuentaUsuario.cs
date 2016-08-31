@@ -5,10 +5,10 @@ namespace Modelo
 {
     public class CreadorCuentaUsuario : CreadorCuenta
     {
-        protected override ICuenta CrearCuenta(string pDireccion)
+        protected override ICuentaDTO CrearCuenta(string pDireccion)
         {
             ICuentaFactory factoryCuenta = new CuentaUsuarioFactory();
-            return new CuentaUsuario(factoryCuenta, pDireccion);//Cuando se instancia la cuenta, se realiza así misma.
+            return new CuentaUsuario(factoryCuenta, pDireccion).CuentaDTO;
         }
     }
 }

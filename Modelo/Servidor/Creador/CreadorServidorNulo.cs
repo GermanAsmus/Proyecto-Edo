@@ -14,9 +14,9 @@ namespace Modelo
             return "nulo";
         }
 
-        protected override IServidor CrearServidor()
+        protected override IServidorDTO CrearServidor()
         {
-            return new ServidorNulo(null);
+            return new ServidorNulo(null).ServidorDTO;
         }
     }
 }

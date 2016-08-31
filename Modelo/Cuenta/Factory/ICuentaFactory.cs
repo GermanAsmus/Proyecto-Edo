@@ -4,6 +4,6 @@ namespace Modelo
 {
     public interface ICuentaFactory
     {
-        IServidor AgregarServidor(string pNombre);
+        IServidorDTO AgregarServidor(string pNombre);
     }
 }

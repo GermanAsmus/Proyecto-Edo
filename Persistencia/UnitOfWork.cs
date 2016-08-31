@@ -18,13 +18,13 @@ namespace Persistencia
         {
             this.Context = pContext;
 
-            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<Cuenta>>());
-            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<Mensaje>>());
-            //this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioCompleto<Servidor>>());
-            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<Adjunto>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<CuentaDTO>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<MensajeDTO>>());
+            //this.Repositorios.Add(EdoUnity.IoCContainer.Resolver<IRepositorioCompleto<ServidorDAO>>());
+            this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<AdjuntoDTO>>());
             this.Repositorios.Add(IoC_CL.Resolver<IRepositorioCompleto<DireccionCorreo>>());
         }
-        public IRepositorioCompleto<T> ObtenerRepositorio<T>() where T : class
+        public IRepositorioCompleto<T> ObtenerRepositorio<T>() where T : class, IEntidadModelo
         {
             return (IRepositorioCompleto<T>)this.Repositorios.FirstOrDefault(x => x.GetType().GetGenericTypeDefinition() == typeof(T));
         }

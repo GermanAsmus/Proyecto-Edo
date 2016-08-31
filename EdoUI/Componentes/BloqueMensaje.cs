@@ -14,7 +14,7 @@ namespace EdoUI
 {
     public partial class BloqueMensaje : UserControl
     {
-        public IMensaje Mensaje { get; }
+        public IMensajeDTO Mensaje { get; }
 
         public string Estado
         {
@@ -32,7 +32,7 @@ namespace EdoUI
             //set { this.labelAsunto.Text = value; }
         }
 
-        public BloqueMensaje(IMensaje pMensaje)
+        public BloqueMensaje(IMensajeDTO pMensaje)
         {
             InitializeComponent();
             Mensaje = pMensaje;

@@ -10,10 +10,10 @@ namespace Modelo
             return "yahoo";
         }
 
-        protected override IServidor CrearServidor()
+        protected override IServidorDTO CrearServidor()
         {
             IServidorFactory servidorFactory = new ServidorYahooFactory();
-            return new ServidorYahoo(servidorFactory);
+            return new ServidorYahoo(servidorFactory).ServidorDTO;
         }
     }
 }

@@ -43,18 +43,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modelo\DAO\IEntidadDAO.cs" />
+    <Compile Include="Modelo\DAO\IServidorDAO.cs" />
+    <Compile Include="Modelo\DTO\ICuentaDTO.cs" />
     <Compile Include="IObtenible.cs" />
-    <Compile Include="Modelo\IAdjunto.cs" />
-    <Compile Include="Modelo\Cuenta\ICuenta.cs" />
-    <Compile Include="Modelo\Cuenta\ICuentaUsuario.cs" />
-    <Compile Include="Modelo\IDireccionCorreo.cs" />
+    <Compile Include="Modelo\DTO\IMensajeCompletoDTO.cs" />
+    <Compile Include="Modelo\DTO\IMensajeDTO.cs" />
+    <Compile Include="Modelo\DTO\IAdjuntoDTO.cs" />
+    <Compile Include="Modelo\DAO\ICuentaDAO.cs" />
+    <Compile Include="Modelo\DTO\ICuentaUsuarioDTO.cs" />
+    <Compile Include="Modelo\DTO\IDireccionCorreo.cs" />
     <Compile Include="Modelo\IEntidadModelo.cs" />
     <Compile Include="IRepositorioCompleto.cs" />
     <Compile Include="IEncriptador.cs" />
-    <Compile Include="Modelo\Mensaje\IMensaje.cs" />
-    <Compile Include="Modelo\Mensaje\IMensajeCompleto.cs" />
-    <Compile Include="Modelo\IProtocolo.cs" />
-    <Compile Include="Modelo\IServidor.cs" />
+    <Compile Include="Modelo\DAO\IMensajeDAO.cs" />
+    <Compile Include="Modelo\DAO\IMensajeCompleto.cs" />
+    <Compile Include="Modelo\DTO\IProtocoloDTO.cs" />
+    <Compile Include="Modelo\DTO\IServidorDTO.cs" />
     <Compile Include="Persistencia\IContext.cs" />
     <Compile Include="Utilidades\IBuzon.cs" />
     <Compile Include="Dominio\IControlador.cs" />

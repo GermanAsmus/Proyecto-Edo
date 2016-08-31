@@ -8,7 +8,7 @@ namespace Tests
     [TestClass]
     public class ServidorTDD
     {
-        private static IServidor servidor;
+        private static IServidorDTO servidor;
         private static CreadorServidor creador;
         [TestInitialize]
         public void Initialize()

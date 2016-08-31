@@ -41,14 +41,29 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Diagrama.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adjunto.cs" />
+    <Compile Include="AdjuntoDTO.cs" />
+    <Compile Include="Mensaje\Estructura\ControlEstructurasMensaje.cs" />
+    <Compile Include="CriterioException.cs" />
+    <Compile Include="Cuenta\CuentaUsuarioDTO .cs" />
+    <Compile Include="Cuenta\CuentaDTO.cs" />
+    <Compile Include="Mensaje\Creador\CreadorMensajeNulo.cs" />
+    <Compile Include="Mensaje\MensajeNuloDTO.cs" />
+    <Compile Include="Mensaje\Factory\IMensajeFactory.cs" />
+    <Compile Include="Mensaje\Creador\CreadorMensaje.cs" />
+    <Compile Include="Mensaje\Creador\MensajeExternoCreador.cs" />
+    <Compile Include="Mensaje\Factory\MensajeExternoFactory.cs" />
+    <Compile Include="Mensaje\MensajeDTO.cs" />
+    <Compile Include="Mensaje\Estructura\EstructurasMensaje.cs" />
+    <Compile Include="Mensaje\Estructura\MensajeCompletoDAO.cs" />
+    <Compile Include="Mensaje\Estructura\MensajeIncompletoDAO.cs" />
+    <Compile Include="PathInexistenteException.cs" />
+    <Compile Include="Servidor\ServidorDTO.cs" />
+    <Compile Include="EntidadDAO.cs" />
     <Compile Include="Protocolo\Creador\CreadorProtocoloSMTP.cs" />
     <Compile Include="Protocolo\Creador\CreadorProtocoloPOP.cs" />
     <Compile Include="Protocolo\Creador\CreadorProtocolo.cs" />
-    <Compile Include="RepositorioModelo.cs" />
     <Compile Include="Servidor\Creador\ControlCreadoresServidor.cs" />
     <Compile Include="Servidor\Creador\CreadorServidorNulo.cs" />
     <Compile Include="Servidor\Factory\ServidorYahooFactory.cs" />
@@ -63,33 +78,30 @@
     <Compile Include="Cuenta\Creador\CreadorCuentaUsuario.cs" />
     <Compile Include="Cuenta\Factory\CuentaExternaFactory.cs" />
     <Compile Include="Cuenta\Factory\CuentaUsuarioFactory.cs" />
-    <Compile Include="Cuenta\Cuenta.cs" />
+    <Compile Include="Cuenta\CuentaDAO.cs" />
     <Compile Include="Cuenta\CuentaExterna.cs" />
     <Compile Include="Cuenta\CuentaUsuario.cs" />
     <Compile Include="DireccionCorreo.cs" />
     <Compile Include="Cuenta\Factory\ICuentaFactory.cs" />
-    <Compile Include="Mensaje\RegistroDeCambios\IRegistroMensaje.cs" />
-    <Compile Include="Mensaje\RegistroDeCambios\RegistroMensaje.cs" />
     <Compile Include="Mensaje\EstadoComunicacion.cs" />
-    <Compile Include="Mensaje\RegistroDeCambios\RegistroNuloException.cs" />
-    <Compile Include="Mensaje\StrategyPattern\Estructura\IStrategyEstructuraMensaje.cs" />
-    <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeSinEstructuraDefinida.cs" />
-    <Compile Include="Mensaje\StrategyPattern\Pertenencia\EstrategiaPertenencia.cs" />
-    <Compile Include="Mensaje\StrategyPattern\Pertenencia\IStrategyPertenenciaMensaje.cs" />
-    <Compile Include="Mensaje\Mensaje.cs" />
-    <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeCompleto.cs" />
-    <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeExterno.cs" />
-    <Compile Include="Mensaje\StrategyPattern\Estructura\MensajeIncompleto.cs" />
-    <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeSinPerteneciaDefinida.cs" />
-    <Compile Include="Mensaje\StrategyPattern\Pertenencia\MensajeUsuario.cs" />
+    <Compile Include="Mensaje\Estructura\IMensajeEstructurado.cs" />
+    <Compile Include="Mensaje\Estructura\MensajeEstructuradoDTO.cs" />
+    <Compile Include="Mensaje\Pertenencia\EstrategiaPertenencia.cs" />
+    <Compile Include="Mensaje\Pertenencia\IStrategyPertenenciaMensaje.cs" />
+    <Compile Include="Mensaje\MensajeDAO.cs" />
+    <Compile Include="Mensaje\Estructura\MensajeCompletoDTO.cs" />
+    <Compile Include="Mensaje\Pertenencia\MensajeExterno.cs" />
+    <Compile Include="Mensaje\Estructura\MensajeIncompletoDTO.cs" />
+    <Compile Include="Mensaje\Pertenencia\MensajeSinPerteneciaDefinida.cs" />
+    <Compile Include="Mensaje\Pertenencia\MensajeUsuario.cs" />
     <Compile Include="Mensaje\EstadoPersistencia.cs" />
     <Compile Include="Mensaje\EstadoVisibilidad.cs" />
-    <Compile Include="Mensaje\StrategyPattern\Pertenencia\TipoCuentaException.cs" />
-    <Compile Include="Protocolo\Protocolo.cs" />
+    <Compile Include="Mensaje\Pertenencia\TipoCuentaException.cs" />
+    <Compile Include="Protocolo\ProtocoloDTO.cs" />
     <Compile Include="Protocolo\ProtocoloNulo.cs" />
     <Compile Include="Servidor\Creador\CreadorServidorGmail.cs" />
     <Compile Include="Servidor\Creador\CreadorServidorYahoo.cs" />
-    <Compile Include="Servidor\Servidor.cs" />
+    <Compile Include="Servidor\ServidorDAO.cs" />
     <Compile Include="Servidor\ServidorGmail.cs" />
     <Compile Include="Servidor\ServidorYahoo.cs" />
   </ItemGroup>
@@ -114,6 +126,7 @@
       <Name>CapaInterfaces</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

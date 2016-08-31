@@ -5,7 +5,7 @@ namespace Modelo
 {
     public class CreadorProtocoloSMTP : CreadorProtocolo
     {
-        protected override IProtocolo CrearProtocolo()
+        protected override IProtocoloDTO CrearProtocolo()
         {
             return new ProtocoloSMTP();
         }

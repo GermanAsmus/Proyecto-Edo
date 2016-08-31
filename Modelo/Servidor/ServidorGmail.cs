@@ -3,11 +3,11 @@ using CapaInterfaces.Modelo;
 
 namespace Modelo
 {
-    public class ServidorGmail : Servidor
+    public class ServidorGmail : ServidorDAO
     {
         public ServidorGmail(IServidorFactory pServidorFactory) : base(pServidorFactory)
         {
-            this.Nombre = "gmail";
+            this.ServidorDTO.Nombre = "gmail";
         }
     }
 }

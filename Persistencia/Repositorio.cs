@@ -10,7 +10,7 @@ using System.Data.Entity.Core.Objects.DataClasses;
 
 namespace Persistencia
 {
-    public class Repositorio<TEntity> : IRepositorioCompleto<TEntity> where TEntity : class
+    public class Repositorio<TEntity> : IRepositorioCompleto<TEntity> where TEntity : class, IEntidadModelo
     {
         protected IContext iContext;
         protected IDbSet<TEntity> iDbSet;

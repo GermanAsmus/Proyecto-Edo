@@ -15,7 +15,7 @@ namespace EdoUI
 {
     public partial class ControlCuenta : UserControl
     {
-        public Cuenta iNuevaCuenta { get; }
+        public CuentaDTO iNuevaCuenta { get; }
         //private IControlador iControlador;
         private string iDireccion;
 

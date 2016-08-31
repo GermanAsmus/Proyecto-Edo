@@ -17,7 +17,7 @@ namespace EdoUI
     {
         //private IControlador controlador;
         private BandejaMensajes bandeja;
-        //public BloqueCuenta(Cuenta pCuenta, ref IControlador pControlador)
+        //public BloqueCuenta(CuentaDAO pCuenta, ref IControlador pControlador)
         //{
         //    InitializeComponent();
         //    this.controlador = pControlador;

@@ -12,20 +12,20 @@ namespace CapaInterfaces.Utilidades
         /// <summary>
         /// Coleccion Concurrente de cabeceras de mensajes
         /// </summary>
-        IProducerConsumerCollection<IMensaje> Cabeceras { get; }
+        IProducerConsumerCollection<IMensajeDTO> Cabeceras { get; }
         /// <summary>
         /// Coleccion Concurrente de mensajes
         /// </summary>
-        IProducerConsumerCollection<IMensaje> Mensajes { get; }
+        IProducerConsumerCollection<IMensajeDTO> Mensajes { get; }
         /// <summary>
         /// Agrega una cabecera a la coleccion Cabeceras
         /// </summary>
         /// <param name="pCabecera">Cabecera de un mensaje</param>
-        void AgregarCabecera(IMensaje pCabecera);
+        void AgregarCabecera(IMensajeDTO pCabecera);
         /// <summary>
         /// Agrega un mensaje a la coleccion Mensajes
         /// </summary>
         /// <param name="pMensaje">Un mensaje</param>
-        void AgregarMensaje(IMensaje pMensaje);
+        void AgregarMensaje(IMensajeDTO pMensaje);
     }
 }

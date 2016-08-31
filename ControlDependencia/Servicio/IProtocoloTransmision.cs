@@ -12,6 +12,6 @@ namespace CapaInterfaces.Servicio
         /// </summary>
         /// <param name="pMensaje">Mensaje a enviar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
-        void Enviar(IMensaje pMensaje, ICuenta pCuenta);
+        void Enviar(IMensajeDAO pMensaje, ICuentaDAO pCuenta);
     }
 }

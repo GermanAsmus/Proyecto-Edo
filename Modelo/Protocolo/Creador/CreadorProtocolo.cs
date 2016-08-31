@@ -9,8 +9,8 @@ namespace Modelo
 {
     public abstract class CreadorProtocolo
     {
-        protected abstract IProtocolo CrearProtocolo();
-        public IProtocolo ObtenerProtocolo()
+        protected abstract IProtocoloDTO CrearProtocolo();
+        public IProtocoloDTO ObtenerProtocolo()
         {
             return this.CrearProtocolo();
         }

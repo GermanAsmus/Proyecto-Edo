@@ -5,10 +5,10 @@ namespace Modelo
 {
     public class CuentaExternaFactory : ICuentaFactory
     {
-        public IServidor AgregarServidor(string pNombre)
+        public IServidorDTO AgregarServidor(string pNombre)
         {
             CreadorServidor creador = new CreadorServidorNulo();
-            IServidor servidorNulo = creador.ObtenerServidor();
+            IServidorDTO servidorNulo = creador.ObtenerServidor();
             return servidorNulo;
         }
     }

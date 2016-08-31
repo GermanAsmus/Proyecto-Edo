@@ -111,12 +111,12 @@ namespace Utilidades.SistemaDeArchivos
                 //devolver todos los nombres que no sean string.Empty
                 return nombres.SkipWhile(x => !string.IsNullOrEmpty(x)).ToList();
         }
-        public static string DescargarTextoPlano(IMensaje pMensaje)
+        public static string DescargarTextoPlano(IMensajeDTO pMensaje)
         {
             if (pMensaje == null)
                 throw new ArgumentNullException(nameof(pMensaje));
 
-            var pMensajeCast = (IMensajeCompleto)pMensaje;
+            var pMensajeCast = (IMensajeCompletoDTO)pMensaje;
 
             string destinatario = string.Empty;
 
@@ -134,12 +134,12 @@ namespace Utilidades.SistemaDeArchivos
 
             return DescargarArchivo(textoPlano, Path.Combine(DireccionRaiz, "Edo", param[4].ToString() + ".txt"));
         }
-        public static string DescargarMensaje(Mensaje pMensaje)
+        public static string DescargarMensaje(MensajeDAO pMensaje)
         {
             if (pMensaje == null)
                 throw new ArgumentNullException(nameof(pMensaje));
 
-            var pMensajeCast = (IMensajeCompleto)pMensaje;
+            var pMensajeCast = (IMensajeCompletoDTO)pMensaje;
 
             MailMessage message = new MailMessage()
             {

@@ -2,7 +2,7 @@
 
 namespace Modelo
 {
-    public class ProtocoloPOP : Protocolo
+    public class ProtocoloPOP : ProtocoloDTO
     {
         public ProtocoloPOP() : base()
         {

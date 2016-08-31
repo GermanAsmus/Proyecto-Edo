@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace CapaInterfaces
 {
-    public interface IRepositorioEstandar<TEntity> : IRepositorioRaiz, IObtenible<TEntity> where TEntity : class
+    public interface IRepositorioEstandar<TEntity> : IRepositorioRaiz, IObtenible<TEntity> where TEntity : class, IEntidadModelo
     {
 
         /// <summary>

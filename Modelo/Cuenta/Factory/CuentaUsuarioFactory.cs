@@ -11,9 +11,10 @@ namespace Modelo
         {
             this.Creadores = new ControlCreadoresServidor().ObtenerCreadores();
         }
-        public IServidor AgregarServidor(string pNombre)
+        public IServidorDTO AgregarServidor(string pNombre)
         {
-            IServidor servidor = null;
+
+            IServidorDTO servidor = null;
             try
             {
                 servidor = this.Creadores[pNombre].ObtenerServidor();

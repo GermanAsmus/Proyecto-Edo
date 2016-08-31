@@ -5,6 +5,6 @@ namespace Modelo
 {
     public interface IServidorFactory
     {
-        ICollection<IProtocolo> AgregarProtocolo();
+        ICollection<IProtocoloDTO> AgregarProtocolo();
     }
 }

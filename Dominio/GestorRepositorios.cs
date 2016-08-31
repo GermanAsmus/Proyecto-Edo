@@ -22,17 +22,17 @@ namespace Dominio
         public GestorRepositorios(IUnitOfWork pUoW)
         {
             Repositorios = new Dictionary<Type, IRepositorioRaiz>();
-            Repositorios.Add(typeof(IDireccionCorreo), new RepositorioDireccion(pUoW.ObtenerRepositorio<IDireccionCorreo>()));
+            Repositorios.Add(typeof(IDireccionCorreoDTO), new RepositorioDireccion(pUoW.ObtenerRepositorio<IDireccionCorreoDTO>()));
             
             //Repositorios.Add(typeof(Adjunto), new RepositorioAdjunto(pUoW.ObtenerRepositorio<Adjunto>(),this));
-            Repositorios.Add(typeof(ICuenta), new RepositorioCuenta(pUoW.ObtenerRepositorio<ICuenta>(),this.ObtenerRepositorio<IDireccionCorreo>()));
+            Repositorios.Add(typeof(ICuentaDTO), new RepositorioCuenta(pUoW.ObtenerRepositorio<ICuentaDTO>(),this.ObtenerRepositorio<IDireccionCorreoDTO>()));
 
-            Repositorios.Add(typeof(IMensaje), new RepositorioMensaje(pUoW.ObtenerRepositorio<IMensaje>(), this.ObtenerRepositorio<IDireccionCorreo>(), this.ObtenerRepositorio<ICuenta>()));
+            Repositorios.Add(typeof(IMensajeDTO), new RepositorioMensaje(pUoW.ObtenerRepositorio<IMensajeDTO>(), this.ObtenerRepositorio<IDireccionCorreoDTO>(), this.ObtenerRepositorio<ICuentaDTO>()));
         }
 
-        public IRepositorioCompleto<T> ObtenerRepositorio<T>() where T : class
+        public IRepositorioCompleto<TEntity> ObtenerRepositorio<TEntity>() where TEntity : class, IEntidadModelo
         {
-            return (IRepositorioCompleto<T>)this.Repositorios[typeof(T)]; 
+            return (IRepositorioCompleto<TEntity>)this.Repositorios[typeof(TEntity)]; 
         }
     }
 }

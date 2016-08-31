@@ -8,7 +8,7 @@ namespace Tests
     [TestClass]
     public class ProtocoloTDD
     {
-        private static IProtocolo protocolo;
+        private static IProtocoloDTO protocolo;
         private static CreadorProtocolo creador;
 
         [TestInitialize]

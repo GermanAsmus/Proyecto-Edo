@@ -8,7 +8,7 @@ namespace Modelo
         protected override ICuentaDTO CrearCuenta(string pDireccion)
         {
             ICuentaFactory factoryCuenta = new CuentaExternaFactory();
-            return new CuentaExterna(factoryCuenta, pDireccion).CuentaDTO;
+            return new CuentaExternaDAO(factoryCuenta, pDireccion).CuentaDTO;
         }
     }
 }

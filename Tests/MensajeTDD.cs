@@ -23,5 +23,12 @@ namespace Tests
             mensajeTDD = creador.ObtenerMensaje();
             Assert.IsNotNull(mensajeTDD);
         }
+        [TestMethod]
+        public void ObtenerMensajeUsuario()
+        {
+            creador = new MensajeUsuarioCreador();
+            mensajeTDD = creador.ObtenerMensaje();
+            Assert.IsNotNull(mensajeTDD);
+        }
     }
 }

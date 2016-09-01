@@ -11,6 +11,11 @@ namespace Modelo
     {
         protected ICollection<TEntity> iColeccionFuente;
 
+        public EntidadDAO(ICollection<TEntity> pColeccionFuente)
+        {
+            this.iColeccionFuente = pColeccionFuente;
+        }
+
         public void Agregar(TEntity pEntidad)
         {
             if (pEntidad == null)

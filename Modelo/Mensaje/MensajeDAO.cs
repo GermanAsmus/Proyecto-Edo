@@ -10,20 +10,26 @@ namespace Modelo
     /// Modela un menaje (correo), como una entidad de base y no concluyente.
     /// Sus clases derivadas concretan el mensaje (agregando significado y siendo más responsables).
     /// </summary>
-    public abstract class MensajeDAO : EntidadDAO<IDireccionCorreoDTO>, IMensajeDAO
+    public abstract class MensajeDAO : IEntidadDAO<IDireccionCorreoDTO>, IMensajeDAO
     {
+        protected IEntidadDAO<IDireccionCorreoDTO> iServicioControlDirecciones;
 
-        public MensajeDTO MensajeDTO { get; set; }
+        public abstract IMensajeDTO MensajeDTO { get; set; }
         protected IMensajeFactory iMensajeFactory;
+
+        protected void RealizarMensaje()
+        {
+            this.MensajeDTO = this.iMensajeFactory.AgregarEstructura(typeof(MensajeCompletoDTO).Name);
+        }
         /// <summary>
         /// Constructor de la clase.
         /// El estado de persistencia por defecto es "No_Guardado".
         /// </summary>
         public MensajeDAO(IMensajeFactory pMensajeFactory)
         {
+            this.iServicioControlDirecciones = new EntidadDAO<IDireccionCorreoDTO>(new List<IDireccionCorreoDTO>());
             this.iMensajeFactory = pMensajeFactory;
-            this.MensajeDTO = new MensajeDTO();
-            this.MensajeDTO.EstadoPersistencia = EstadoPersistencia.No_Guardado;
+            this.RealizarMensaje();
         }
         /// <summary>
         /// Cambia el estado de persistencia del mensaje.
@@ -31,10 +37,10 @@ namespace Modelo
         /// </summary>
         public void CambiarEstadoPersistencia()
         {
-            if (this.MensajeDTO.EstadoPersistencia != EstadoPersistencia.Guardado)
-                this.MensajeDTO.EstadoPersistencia = EstadoPersistencia.Guardado;
+            if (this.ObtenerEstadoPersistencia() != EstadoPersistencia.Guardado.ToString())
+                (this.MensajeDTO as MensajeDTO).EstadoPersistencia = EstadoPersistencia.Guardado;
             else
-                this.MensajeDTO.EstadoPersistencia = EstadoPersistencia.No_Guardado;
+                (this.MensajeDTO as MensajeDTO).EstadoPersistencia = EstadoPersistencia.No_Guardado;
 
         }
         /// <summary>
@@ -43,14 +49,27 @@ namespace Modelo
         /// </summary>
         public string ObtenerEstadoPersistencia()
         {
-            return this.MensajeDTO.EstadoPersistencia.ToString();
+            return (this.MensajeDTO as MensajeDTO).EstadoPersistencia.ToString();
         }
 
-        //IDEA: metodo estático que permita devolver todo el mensaje como un texto plano.
+        public void Agregar(IDireccionCorreoDTO pEntidad)
+        {
+            iServicioControlDirecciones.Agregar(pEntidad);
+        }
 
-        ////Identificador de la dirección de correo asociada al mensaje, como dirección remitente.
-        //public int DireccionId { get; set; }
-        ////Entidad de la dirección de correo remitente.
-        //public DireccionCorreo DireccionCorreo { get; set; }
+        public void Eliminar(IDireccionCorreoDTO pEntidad)
+        {
+            iServicioControlDirecciones.Eliminar(pEntidad);
+        }
+
+        public IEnumerable<IDireccionCorreoDTO> ObtenerSegun(Expression<Func<IDireccionCorreoDTO, bool>> pCriterio)
+        {
+            return iServicioControlDirecciones.ObtenerSegun(pCriterio);
+        }
+
+        public IDireccionCorreoDTO Obtener(Expression<Func<IDireccionCorreoDTO, bool>> pCriterio)
+        {
+            return iServicioControlDirecciones.Obtener(pCriterio);
+        }
     }
 }

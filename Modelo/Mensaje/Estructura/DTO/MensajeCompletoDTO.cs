@@ -10,19 +10,15 @@ namespace Modelo
     public class MensajeCompletoDTO : MensajeEstructuradoDTO, IMensajeCompletoDTO
     {
 
-        public override EstructuraMensaje Estructura
-        {
-            get
-            {
-                return EstructuraMensaje.completo;
-            }
-        }
-
         // Contenido en Texto Plano
         public string Contenido { get; set; }
 
         // Coleccion de adjuntos del mensaje.
         public virtual ICollection<IAdjuntoDTO> Adjuntos { get; set; }
 
+        public MensajeCompletoDTO()
+        {
+            this.Estructura = EstructuraMensaje.completo;
+        }
     }
 }

@@ -35,17 +35,20 @@ namespace Dominio.Repositorios
             if (string.IsNullOrEmpty(pEntidad.Asunto))
                 throw new NullReferenceException("El asunto del mensaje no puede ser vacío o nulo");
 
-            List<IDireccionCorreoDTO> destinatariosValidos = new List<IDireccionCorreoDTO>();
-            var destinatarios = pEntidad.Destinatario.GetEnumerator();
 
-            IDireccionCorreoDTO iDireccion = null;
-            while (destinatarios.MoveNext())
-            {
-                iDireccion = this.iRepositorioDireccionDeCorreo.Obtener(d => BuscarDireccionDeCorreo.BuscarPorDireccion(d, destinatarios.Current.DireccionDeCorreo));
-                if (iDireccion != null)
-                    destinatariosValidos.Add(destinatarios.Current);
-            }
-            pEntidad.Destinatario = destinatariosValidos;
+            //Rehacer, ahora los destinatarios son cuentas
+
+            //List<IDireccionCorreoDTO> destinatariosValidos = new List<IDireccionCorreoDTO>();
+            //var destinatarios = pEntidad.Destinatario.GetEnumerator();
+
+            //IDireccionCorreoDTO iDireccion = null;
+            //while (destinatarios.MoveNext())
+            //{
+            //    iDireccion = this.iRepositorioDireccionDeCorreo.Obtener(d => BuscarDireccionDeCorreo.BuscarPorDireccion(d, destinatarios.Current.DireccionCorreo.DireccionDeCorreo));
+            //    if (iDireccion != null)
+            //        destinatariosValidos.Add(destinatarios.Current);
+            //}
+            //pEntidad.Destinatario = destinatariosValidos;
                     
             ICuentaUsuarioDTO iCuenta = (ICuentaUsuarioDTO)this.iRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pEntidad.Cuenta.Id));
             if (iCuenta == null)

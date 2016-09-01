@@ -2,9 +2,9 @@
 
 namespace Modelo
 {
-    public class CuentaExterna : CuentaDAO
+    public class CuentaExternaDAO : CuentaDAO
     {
-        public CuentaExterna(ICuentaFactory pCuentaFactory, string pDireccion) : base(pCuentaFactory, pDireccion) { }
+        public CuentaExternaDAO(ICuentaFactory pCuentaFactory, string pDireccion) : base(pCuentaFactory, pDireccion) { }
 
         //protected override void RealizarCuenta()
         //{

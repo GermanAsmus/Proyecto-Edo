@@ -11,8 +11,10 @@ namespace Modelo
     /// <summary>
     /// Entidad abstracta que modela una cuenta de correo.
     /// </summary>
-    public abstract class CuentaDAO : EntidadDAO<IMensajeDTO>, ICuentaDAO
+    public abstract class CuentaDAO : IEntidadDAO<IMensajeDTO>, ICuentaDAO
     {
+
+        protected IEntidadDAO<IMensajeDTO> iServicioControlMensajes;
         /// <summary>
         /// Mantiene los atributos de la cuenta modelada.
         /// </summary>
@@ -36,6 +38,8 @@ namespace Modelo
             if (string.IsNullOrEmpty(pDireccion))
                 throw new ArgumentNullException(nameof(pDireccion));
 
+            this.iServicioControlMensajes = new EntidadDAO<IMensajeDTO>(new List<IMensajeDTO>());
+
             this.CuentaDTO = new CuentaDTO() { DireccionCorreo = new DireccionCorreo(pDireccion) };
 
             this.iCuentaFactory = pCuentaFactory;
@@ -51,5 +55,24 @@ namespace Modelo
             this.CuentaDTO.Servidor = this.iCuentaFactory.AgregarServidor(DireccionCorreo.ObtenerHost(this.CuentaDTO.DireccionCorreo));
         }
 
+        public void Agregar(IMensajeDTO pEntidad)
+        {
+            iServicioControlMensajes.Agregar(pEntidad);
+        }
+
+        public void Eliminar(IMensajeDTO pEntidad)
+        {
+            iServicioControlMensajes.Eliminar(pEntidad);
+        }
+
+        public IEnumerable<IMensajeDTO> ObtenerSegun(Expression<Func<IMensajeDTO, bool>> pCriterio)
+        {
+            return iServicioControlMensajes.ObtenerSegun(pCriterio);
+        }
+
+        public IMensajeDTO Obtener(Expression<Func<IMensajeDTO, bool>> pCriterio)
+        {
+            return iServicioControlMensajes.Obtener(pCriterio);
+        }
     }
 }

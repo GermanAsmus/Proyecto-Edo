@@ -5,10 +5,10 @@ using System.Net.Mail;
 
 namespace Modelo
 {
-    public class CuentaUsuario : CuentaDAO
+    public class CuentaUsuarioDAO : CuentaDAO
     {
         //Entidad de la direccion de correo a la que está relacionada la cuenta.
-        public CuentaUsuario(ICuentaFactory pCuentaFactory, string pDireccion) : base(pCuentaFactory, pDireccion) { }
+        public CuentaUsuarioDAO(ICuentaFactory pCuentaFactory, string pDireccion) : base(pCuentaFactory, pDireccion) { }
 
     }
 }

@@ -157,13 +157,16 @@ namespace Dominio
 
             IRepositorioCompleto<IDireccionCorreoDTO> aRepositorioDireccionCorreo = this.GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
             IDireccionCorreoDTO iDireccion = null;
-            while (destinatarios.MoveNext())
-            {
-                iDireccion = aRepositorioDireccionCorreo.Obtener(d => BuscarDireccionDeCorreo.BuscarPorDireccion(d, destinatarios.Current.DireccionDeCorreo));
-                if (iDireccion != null)
-                    destinatariosValidos.Add(destinatarios.Current);
-            }
-            pMensaje.Destinatario = destinatariosValidos;
+
+            //Rehacer, ahora los destinatarios son cuentas
+
+            //while (destinatarios.MoveNext())
+            //{
+            //    iDireccion = aRepositorioDireccionCorreo.Obtener(d => BuscarDireccionDeCorreo.BuscarPorDireccion(d, destinatarios.Current.DireccionDeCorreo));
+            //    if (iDireccion != null)
+            //        destinatariosValidos.Add(destinatarios.Current);
+            //}
+            //pMensaje.Destinatario = destinatariosValidos;
 
             IRepositorioCompleto<ICuentaDTO> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
             ICuentaUsuarioDTO iCuenta = (ICuentaUsuarioDTO)aRepositorioCuenta.Obtener(x => BuscarCuenta.BuscarPorId(x, pCuenta.Id));

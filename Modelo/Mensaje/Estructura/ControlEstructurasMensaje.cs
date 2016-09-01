@@ -14,11 +14,11 @@ namespace Modelo
         {
             iEstructuras = new Dictionary<string, IMensajeDTO>();
             var clasesDerivadas = Assembly.GetExecutingAssembly().GetTypes()
-                .Where(d => d.IsSubclassOf(typeof(IMensajeEstructurado)) && d.IsSubclassOf(typeof(IMensajeDTO))).ToList();
+                .Where(d => d.IsSubclassOf(typeof(MensajeEstructuradoDTO))).ToList();
             foreach (var claseDerivada in clasesDerivadas)
             {
-                IMensajeEstructurado creador = (IMensajeEstructurado)Activator.CreateInstance(claseDerivada);
-                iEstructuras.Add(creador.Estructura.ToString(), creador as IMensajeDTO);
+                IMensajeEstructuradoDTO creador = (IMensajeEstructuradoDTO)Activator.CreateInstance(claseDerivada);
+                iEstructuras.Add(claseDerivada.Name, creador as IMensajeDTO);
             }
         }
 

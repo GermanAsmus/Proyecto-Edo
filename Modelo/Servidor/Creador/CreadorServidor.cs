@@ -4,15 +4,8 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public abstract class CreadorServidor
+    public abstract class CreadorServidor : Creador<IServidorDAO>
     {
-        protected abstract IServidorDTO CrearServidor();
-
         public abstract string ObtenerNombre();
-
-        public IServidorDTO ObtenerServidor()
-        {
-            return this.CrearServidor();
-        }
     }
 }

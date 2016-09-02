@@ -9,23 +9,21 @@ namespace Modelo
     {
         private EntidadDAO<AdjuntoDTO> iServicioControlAdjuntos;
 
-        public MensajeCompletoDAO(IMensajeFactory pMensajeFactory) : base(pMensajeFactory)
+        public MensajeCompletoDAO(MensajeFactory pMensajeFactory) : base(pMensajeFactory)
         {
             this.iServicioControlAdjuntos = new EntidadDAO<AdjuntoDTO>(new List<AdjuntoDTO>());
-            this.iMensajeEstructuradoDTO = new MensajeCompletoDTO();
-
         }
 
         public override IMensajeDTO MensajeDTO
         {
             get
             {
-                return this.iMensajeEstructuradoDTO;
+                return base.MensajeDTO as MensajeCompletoDTO;
             }
 
             set
             {
-                this.iMensajeEstructuradoDTO = (value as MensajeCompletoDTO);
+                base.MensajeDTO = value as MensajeCompletoDTO;
             }
         }
 

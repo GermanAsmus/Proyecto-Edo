@@ -43,6 +43,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICreador.cs" />
+    <Compile Include="IFactory.cs" />
     <Compile Include="Modelo\DAO\IEntidadDAO.cs" />
     <Compile Include="Modelo\DAO\IServidorDAO.cs" />
     <Compile Include="Modelo\DTO\ICuentaDTO.cs" />

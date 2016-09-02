@@ -21,14 +21,14 @@ namespace Tests
         public void ObtenerProtocoloPOP()
         {
             creador = new CreadorProtocoloPOP();
-            protocolo = creador.ObtenerProtocolo();
+            protocolo = creador.ObtenerEntidad();
             Assert.IsNotNull(protocolo);
         }
         [TestMethod]
         public void ObtenerProtocoloSMTP()
         {
             creador = new CreadorProtocoloSMTP();
-            protocolo = creador.ObtenerProtocolo();
+            protocolo = creador.ObtenerEntidad();
             Assert.IsNotNull(protocolo);
         }
     }

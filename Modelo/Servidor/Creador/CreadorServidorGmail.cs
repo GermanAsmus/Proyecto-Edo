@@ -10,10 +10,10 @@ namespace Modelo
             return "gmail";
         }
 
-        protected override IServidorDTO CrearServidor()
+        protected override IServidorDAO CrearEntidad()
         {
-            IServidorFactory servidorFactory = new ServidorGmailFactory();
-            return new ServidorGmail(servidorFactory).ServidorDTO;
+            ServidorFactory servidorFactory = new ServidorGmailFactory();
+            return new ServidorGmail(servidorFactory);
         }
     }
 }

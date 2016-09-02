@@ -15,14 +15,15 @@ namespace Modelo
     {
 
         protected IEntidadDAO<IMensajeDTO> iServicioControlMensajes;
+
         /// <summary>
         /// Mantiene los atributos de la cuenta modelada.
         /// </summary>
-        public ICuentaDTO CuentaDTO { get; set; }
+        public virtual ICuentaDTO CuentaDTO { get; set; }
         /// <summary>
         /// Atributo responsable de realizar la cuenta cuando se instancie la clase.
         /// </summary>
-        protected ICuentaFactory iCuentaFactory;
+        protected CuentaFactory iCuentaFactory;
 
         /// <summary>
         /// 
@@ -32,18 +33,10 @@ namespace Modelo
         /// e insertando posteriormente la instancia del ServidorDAO correspondiente.
         /// </summary>
         /// <param name="pCuentaFactory">Clase responsable de definir el ServidorDAO correspondiente</param>
-        /// <param name="pDireccion">Direccion del correo</param>
-        public CuentaDAO(ICuentaFactory pCuentaFactory, string pDireccion)
+        public CuentaDAO(ICuentaDTO pCuentaDTO)
         {
-            if (string.IsNullOrEmpty(pDireccion))
-                throw new ArgumentNullException(nameof(pDireccion));
-
-            this.iServicioControlMensajes = new EntidadDAO<IMensajeDTO>(new List<IMensajeDTO>());
-
-            this.CuentaDTO = new CuentaDTO() { DireccionCorreo = new DireccionCorreo(pDireccion) };
-
-            this.iCuentaFactory = pCuentaFactory;
-            this.RealizarCuenta();
+            if (pCuentaDTO==null)
+                throw new ArgumentNullException(nameof(pCuentaDTO));
         }
 
         /// <summary>
@@ -52,7 +45,7 @@ namespace Modelo
         /// </summary>
         protected void RealizarCuenta()
         {
-            this.CuentaDTO.Servidor = this.iCuentaFactory.AgregarServidor(DireccionCorreo.ObtenerHost(this.CuentaDTO.DireccionCorreo));
+            this.CuentaDTO.Servidor = this.iCuentaFactory.AgregarEntidad();
         }
 
         public void Agregar(IMensajeDTO pEntidad)

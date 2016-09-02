@@ -6,7 +6,7 @@ namespace Modelo
     public class ServidorNulo : ServidorDAO
     {
 
-        public ServidorNulo(IServidorFactory pServidorFactory) : base (pServidorFactory)
+        public ServidorNulo(ServidorFactory pServidorFactory) : base (pServidorFactory)
         {
             this.ServidorDTO.Nombre = "nulo";
         }

@@ -8,26 +8,26 @@ namespace Tests
     [TestClass]
     public class MensajeTDD
     {
-        private static IMensajeDTO mensajeTDD;
+        private static IMensajeDAO mensajeTDD;
         private static CreadorMensaje creador;
 
         [TestInitialize]
         public void Initialize()
         {
-            
+            mensajeTDD = null;
         }
         [TestMethod]
         public void ObtenerMensajeExterno()
         {
-            creador = new MensajeExternoCreador();
-            mensajeTDD = creador.ObtenerMensaje();
+            //creador = new MensajeExternoCreador();
+            //mensajeTDD = creador.ObtenerEntidad();
             Assert.IsNotNull(mensajeTDD);
         }
         [TestMethod]
         public void ObtenerMensajeUsuario()
         {
-            creador = new MensajeUsuarioCreador();
-            mensajeTDD = creador.ObtenerMensaje();
+            //creador = new MensajeUsuarioCreador();
+            //mensajeTDD = creador.ObtenerEntidad();
             Assert.IsNotNull(mensajeTDD);
         }
     }

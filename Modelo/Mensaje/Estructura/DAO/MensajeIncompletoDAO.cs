@@ -5,21 +5,20 @@ namespace Modelo
 {
     public class MensajeIncompletoDAO : MensajeEstructuradoDAO
     {
-        public MensajeIncompletoDAO(IMensajeFactory pMensajeFactory) : base(pMensajeFactory)
+        public MensajeIncompletoDAO(MensajeFactory pMensajeFactory) : base(pMensajeFactory)
         {
-            this.iMensajeEstructuradoDTO = new MensajeIncompletoDTO();
         }
 
         public override IMensajeDTO MensajeDTO
         {
             get
             {
-                return this.iMensajeEstructuradoDTO;
+                return base.MensajeDTO as MensajeIncompletoDTO;
             }
 
             set
             {
-                this.iMensajeEstructuradoDTO = (value as MensajeIncompletoDTO);
+                base.MensajeDTO = value as MensajeIncompletoDTO;
             }
         }
     }

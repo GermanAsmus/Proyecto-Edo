@@ -19,7 +19,7 @@ namespace Modelo
         //Colección de mensjes que se relacionan con la cuenta.
         public virtual ICollection<IMensajeDTO> Mensajes { get; set; }
 
-        public IServidorDTO Servidor { get; set; }
+        public IServidorDAO Servidor { get; set; }
 
     }
 }

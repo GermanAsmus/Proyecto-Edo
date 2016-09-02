@@ -1,15 +1,18 @@
 ﻿using System;
 using CapaInterfaces.Modelo;
-using Modelo.Mensaje.Creador;
 
 namespace Modelo
 {
     public class MensajeUsuarioCreador : CreadorMensaje
     {
-        protected override IMensajeDTO CrearMensaje()
+        public MensajeUsuarioCreador(string pTipoEstructura) : base(pTipoEstructura)
         {
-            IMensajeFactory factoryMensaje = new MensajeUsuarioFactory();
-            return new MensajeUsuario(factoryMensaje).MensajeDTO;
+        }
+
+        protected override IMensajeDAO CrearEntidad()
+        {
+            MensajeFactory factoryMensaje = new MensajeFactory(this.iTipoEstructura);
+            return new MensajeUsuario(factoryMensaje);
         }
     }
 }

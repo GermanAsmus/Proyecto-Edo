@@ -6,33 +6,21 @@ namespace Modelo
 {
     public class MensajeUsuario : MensajePertenecienteDAO
     {
-        private MensajeUsuarioDTO iMensajeUsuarioDTO;
-
         public override IMensajeDTO MensajeDTO
         {
             get
             {
-                return this.iMensajeUsuarioDTO;
+                return base.MensajeDTO as MensajeUsuarioDTO;
             }
 
             set
             {
-                try
-                {
-                    this.iMensajeUsuarioDTO = value as MensajeUsuarioDTO;
-                }
-                catch (Exception ex)
-                {
-
-                    throw new MensajeSetException("No se pudo realizar la operación", ex);
-                }
-
+                    base.MensajeDTO = value as MensajeUsuarioDTO;
             }
         }
 
-        public MensajeUsuario(IMensajeFactory pMensajeFactory) : base(pMensajeFactory)
+        public MensajeUsuario(MensajeFactory pMensajeFactory) : base(pMensajeFactory)
         {
-            this.iMensajeUsuarioDTO = new MensajeUsuarioDTO();
             (this.MensajeDTO as MensajeUsuarioDTO).EstadoComunicacion = new KeyValuePair<DateTime, EstadoComunicacion>(DateTime.Today, EstadoComunicacion.No_Enviado);
         }
 

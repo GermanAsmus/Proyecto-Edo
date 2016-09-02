@@ -2,12 +2,12 @@
 
 namespace Modelo
 {
-    public abstract class CreadorMensaje
+    public abstract class CreadorMensaje : Creador<IMensajeDAO>
     {
-        protected abstract IMensajeDTO CrearMensaje();
-        public IMensajeDTO ObtenerMensaje()
+        protected string iTipoEstructura;
+        public CreadorMensaje(string pTipoEstructura)
         {
-            return this.CrearMensaje();
+            this.iTipoEstructura = pTipoEstructura;
         }
     }
 }

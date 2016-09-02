@@ -4,28 +4,12 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class CuentaUsuarioFactory : ICuentaFactory
+    //Si CuentaFactory puede resolver todo entonces hay que eliminar esta clase
+    public class CuentaUsuarioFactory : CuentaFactory
     {
-        private IDictionary<string, CreadorServidor> Creadores;
-        public CuentaUsuarioFactory()
-        {
-            this.Creadores = new ControlCreadoresServidor().ObtenerCreadores();
-        }
-        public IServidorDTO AgregarServidor(string pNombre)
+        public CuentaUsuarioFactory(string pNombre) : base(pNombre)
         {
 
-            IServidorDTO servidor = null;
-            try
-            {
-                servidor = this.Creadores[pNombre].ObtenerServidor();
-            }
-            catch (KeyNotFoundException)
-            {
-                CreadorServidor creador = new CreadorServidorNulo();
-                servidor = creador.ObtenerServidor();
-            }
-
-            return servidor;
         }
     }
 }

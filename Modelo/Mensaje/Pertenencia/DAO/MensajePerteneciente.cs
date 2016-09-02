@@ -5,7 +5,7 @@ namespace Modelo
 {
     public abstract class MensajePertenecienteDAO : MensajeDAO, IMensajePertenecienteDAO
     {
-        public MensajePertenecienteDAO(IMensajeFactory pMensajeFactory) : base(pMensajeFactory)
+        public MensajePertenecienteDAO(MensajeFactory pMensajeFactory) : base(pMensajeFactory)
         {
 
         }

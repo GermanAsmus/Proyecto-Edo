@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class MensajeDTO : IMensajeDTO
+    public abstract class MensajeDTO : IMensajeDTO
     {
         //Identificador único del mensaje
         public int Id { get; set; }

@@ -10,6 +10,6 @@ namespace CapaInterfaces.Modelo
 
         ICollection<IMensajeDTO> Mensajes { get; set; }
 
-        IServidorDTO Servidor { get; set; }
+        IServidorDAO Servidor { get; set; }
     }
 }

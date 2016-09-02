@@ -3,13 +3,11 @@ using CapaInterfaces.Modelo;
 
 namespace Modelo
 {
-    public class CuentaExternaFactory : ICuentaFactory
+    //Si CuentaFactory puede resolver todo entonces hay que eliminar esta clase
+    public class CuentaExternaFactory : CuentaFactory
     {
-        public IServidorDTO AgregarServidor(string pNombre)
+        public CuentaExternaFactory(string pNombre) : base(pNombre)
         {
-            CreadorServidor creador = new CreadorServidorNulo();
-            IServidorDTO servidorNulo = creador.ObtenerServidor();
-            return servidorNulo;
         }
     }
 }

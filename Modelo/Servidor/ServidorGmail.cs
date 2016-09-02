@@ -5,7 +5,7 @@ namespace Modelo
 {
     public class ServidorGmail : ServidorDAO
     {
-        public ServidorGmail(IServidorFactory pServidorFactory) : base(pServidorFactory)
+        public ServidorGmail(ServidorFactory pServidorFactory) : base(pServidorFactory)
         {
             this.ServidorDTO.Nombre = "gmail";
         }

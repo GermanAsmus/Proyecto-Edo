@@ -1,6 +1,6 @@
 ﻿using CapaInterfaces.Modelo;
 
-namespace Modelo.Mensaje.Creador
+namespace Modelo
 {
     public class MensajeNuloDTO : MensajeDTO
     {

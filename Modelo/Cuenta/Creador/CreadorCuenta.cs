@@ -1,18 +1,14 @@
-﻿using System;
-using CapaInterfaces.Modelo;
+﻿using CapaInterfaces.Modelo;
 using System.Collections.Generic;
 
 namespace Modelo
 {
-    public abstract class CreadorCuenta
+    public abstract class CreadorCuenta : Creador<ICuentaDAO>
     {
-
-        protected abstract ICuentaDTO CrearCuenta(string pDireccion);
-
-        public ICuentaDTO ObtenerCuenta(string pDireccion)
+        protected virtual ICuentaDTO iCuentaDTO { get; set; }
+        public CreadorCuenta(string pDireccion, ICollection<IMensajeDTO> pMensajes) : base()
         {
-            return this.CrearCuenta(pDireccion);
-        }
 
+        }
     }
 }

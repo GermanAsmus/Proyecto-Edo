@@ -14,18 +14,21 @@ namespace Modelo
     {
         protected IEntidadDAO<IDireccionCorreoDTO> iServicioControlDirecciones;
 
-        public abstract IMensajeDTO MensajeDTO { get; set; }
-        protected IMensajeFactory iMensajeFactory;
+        public virtual IMensajeDTO MensajeDTO { get; set; }
+        protected MensajeFactory iMensajeFactory;
 
         protected void RealizarMensaje()
         {
-            this.MensajeDTO = this.iMensajeFactory.AgregarEstructura(typeof(MensajeCompletoDTO).Name);
+            if (this.iMensajeFactory != null)
+                this.MensajeDTO = this.iMensajeFactory.AgregarEntidad();
+            else
+                this.MensajeDTO = new MensajeNuloDTO();                
         }
         /// <summary>
         /// Constructor de la clase.
         /// El estado de persistencia por defecto es "No_Guardado".
         /// </summary>
-        public MensajeDAO(IMensajeFactory pMensajeFactory)
+        public MensajeDAO(MensajeFactory pMensajeFactory)
         {
             this.iServicioControlDirecciones = new EntidadDAO<IDireccionCorreoDTO>(new List<IDireccionCorreoDTO>());
             this.iMensajeFactory = pMensajeFactory;

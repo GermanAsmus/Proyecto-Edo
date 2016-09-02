@@ -15,16 +15,16 @@ namespace Modelo
 
         public IServidorDTO ServidorDTO { get; set; }
 
-        protected IServidorFactory iServidorFactory;
+        protected ServidorFactory iServidorFactory;
 
         protected void RealizarServidor()
         {
             this.iServicioControlProtocolos = new EntidadDAO<IProtocoloDTO>(new List<IProtocoloDTO>());
-            this.ServidorDTO.Protocolos = this.iServidorFactory.AgregarProtocolo();
+            this.ServidorDTO.Protocolos = this.iServidorFactory.AgregarEntidad();
         }
 
         //Constructor
-        public ServidorDAO(IServidorFactory pServidorFactory)
+        public ServidorDAO(ServidorFactory pServidorFactory)
         {
             this.ServidorDTO = new ServidorDTO();
             this.iServidorFactory = pServidorFactory; //Si el parametro es nulo, el servidor será del tipo nulo.

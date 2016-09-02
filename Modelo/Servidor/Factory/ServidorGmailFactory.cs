@@ -4,16 +4,8 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class ServidorGmailFactory : IServidorFactory
+    public class ServidorGmailFactory : ServidorFactory
     {
-        public ICollection<IProtocoloDTO> AgregarProtocolo()
-        {
-            IList<IProtocoloDTO> protocolos = new List<IProtocoloDTO>()
-            {
-                new ProtocoloSMTP(),
-                new ProtocoloPOP()
-            };
-            return protocolos;
-        }
+
     }
 }

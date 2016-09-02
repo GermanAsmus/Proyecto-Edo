@@ -8,7 +8,7 @@ namespace Tests
     [TestClass]
     public class ServidorTDD
     {
-        private static IServidorDTO servidor;
+        private static IServidorDAO servidor;
         private static CreadorServidor creador;
         [TestInitialize]
         public void Initialize()
@@ -19,14 +19,14 @@ namespace Tests
         public void ObtenerServidorGmail()
         {
             creador = new CreadorServidorGmail();
-            servidor = creador.ObtenerServidor();
+            servidor = creador.ObtenerEntidad();
             Assert.IsNotNull(servidor);
         }
         [TestMethod]
         public void ObtenerServidorYahoo()
         {
             creador = new CreadorServidorYahoo();
-            servidor = creador.ObtenerServidor();
+            servidor = creador.ObtenerEntidad();
             Assert.IsNotNull(servidor);
         }
     }

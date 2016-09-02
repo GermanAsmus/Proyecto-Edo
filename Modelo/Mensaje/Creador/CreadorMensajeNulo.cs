@@ -1,14 +1,17 @@
 ﻿using System;
 using CapaInterfaces.Modelo;
-using Modelo.Mensaje.Creador;
 
 namespace Modelo
 {
     public class CreadorMensajeNulo : CreadorMensaje
     {
-        protected override IMensajeDTO CrearMensaje()
+        public CreadorMensajeNulo(string pTipoEstructura) : base(pTipoEstructura)
         {
-            return new MensajeNuloDTO();
+        }
+
+        protected override IMensajeDAO CrearEntidad()
+        {
+            return new MensajeNulo(null);
         }
     }
 }

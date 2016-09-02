@@ -5,10 +5,14 @@ namespace Modelo
 {
     public class MensajeExternoCreador : CreadorMensaje
     {
-        protected override IMensajeDTO CrearMensaje()
+        public MensajeExternoCreador(string pTipoEstructura) : base(pTipoEstructura)
         {
-            IMensajeFactory factoryMensaje = new MensajeExternoFactory();
-            return new MensajeExterno(factoryMensaje).MensajeDTO;
+        }
+
+        protected override IMensajeDAO CrearEntidad()
+        {
+            MensajeFactory factoryMensaje = new MensajeFactory(this.iTipoEstructura);
+            return new MensajeExterno(factoryMensaje);
         }
     }
 }

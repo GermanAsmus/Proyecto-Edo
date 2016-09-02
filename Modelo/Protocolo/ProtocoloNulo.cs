@@ -3,7 +3,7 @@ using CapaInterfaces.Modelo;
 
 namespace Modelo
 {
-    internal class ProtocoloNulo : ProtocoloDTO
+    public class ProtocoloNulo : ProtocoloDTO
     {
         public ProtocoloNulo()
         {

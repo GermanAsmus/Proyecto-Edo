@@ -8,7 +8,7 @@ namespace Modelo
     public class CuentaUsuarioDAO : CuentaDAO
     {
         //Entidad de la direccion de correo a la que está relacionada la cuenta.
-        public CuentaUsuarioDAO(ICuentaFactory pCuentaFactory, string pDireccion) : base(pCuentaFactory, pDireccion) { }
-
+        //public CuentaUsuarioDAO(CuentaFactory pCuentaFactory) : base(pCuentaFactory) { }
+        public CuentaUsuarioDAO() : base() { }
     }
 }

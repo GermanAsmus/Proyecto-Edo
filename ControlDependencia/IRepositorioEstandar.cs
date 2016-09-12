@@ -8,10 +8,6 @@ namespace CapaInterfaces
     {
 
         /// <summary>
-        /// Actualiza el repositorio;
-        /// </summary>
-        int Actualizar();
-        /// <summary>
         /// Elimina una instancia del tipo <typeparamref name="TEntity"/> que persistirá el repositorio
         /// </summary>
         /// <param name="pEntidad">entidad del tipo <typeparamref name="TEntity"/></param>

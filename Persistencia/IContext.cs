@@ -2,7 +2,9 @@
 
 namespace Persistencia
 {
-    public interface IContext : CapaInterfaces.Persistencia.IContext, IObjectContextAdapter
+    public interface IContext : IObjectContextAdapter
     {
+        int Commit();
+        void Dispose();
     }
 }

@@ -12,30 +12,26 @@ namespace Persistencia
 {
     public class Repositorio<TEntity> : IRepositorioCompleto<TEntity> where TEntity : class, IEntidadModelo
     {
-        protected IContext iContext;
-        protected IDbSet<TEntity> iDbSet;
+        //Disparador para que UoW realize el commit.
+        public Action Actualizar;
 
-        public Repositorio(IUnitOfWork pUnitOfWork)
+        private IDbSet<TEntity> iDbSet;
+
+        public Repositorio(IDbSet<TEntity> pDbset)
         {
-            this.iContext = (IContext)pUnitOfWork.Context;
-            this.iDbSet = ((DbContext)this.iContext).Set<TEntity>();
+            this.iDbSet = pDbset;
         }
 
-        public int Agregar(TEntity entity)
+        public void Agregar(TEntity entity)
         {
             iDbSet.Add(entity);
-            return this.iContext.ObjectContext.SaveChanges();
+            Actualizar();
         }
 
-        public int Actualizar()
-        {
-            return this.iContext.ObjectContext.SaveChanges();
-        }
-
-        public int Eliminar(TEntity entity)
+        public void Eliminar(TEntity entity)
         {
             iDbSet.Remove(entity);
-            return ((DbContext)this.iContext).SaveChanges();
+            Actualizar();
         }
 
         public IEnumerable<TEntity> ObtenerSegun(Expression<Func<TEntity, bool>> criterio)

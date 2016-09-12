@@ -62,7 +62,7 @@
     <Compile Include="Modelo\DAO\IMensajeCompleto.cs" />
     <Compile Include="Modelo\DTO\IProtocoloDTO.cs" />
     <Compile Include="Modelo\DTO\IServidorDTO.cs" />
-    <Compile Include="Persistencia\IContext.cs" />
+    <Compile Include="Persistencia\IControlador.cs" />
     <Compile Include="Utilidades\IBuzon.cs" />
     <Compile Include="Dominio\IControlador.cs" />
     <Compile Include="Utilidades\ICriterio.cs" />
@@ -73,7 +73,6 @@
     <Compile Include="IRepositorioEstandar.cs" />
     <Compile Include="Servicio\IServicio.cs" />
     <Compile Include="IRepositorioRaiz.cs" />
-    <Compile Include="Persistencia\IUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

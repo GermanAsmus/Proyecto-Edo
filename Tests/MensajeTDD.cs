@@ -19,15 +19,15 @@ namespace Tests
         [TestMethod]
         public void ObtenerMensajeExterno()
         {
-            //creador = new MensajeExternoCreador();
-            //mensajeTDD = creador.ObtenerEntidad();
+            creador = new MensajeExternoCreador("completo");
+            mensajeTDD = creador.ObtenerEntidad();
             Assert.IsNotNull(mensajeTDD);
         }
         [TestMethod]
         public void ObtenerMensajeUsuario()
         {
-            //creador = new MensajeUsuarioCreador();
-            //mensajeTDD = creador.ObtenerEntidad();
+            creador = new MensajeUsuarioCreador("completo");
+            mensajeTDD = creador.ObtenerEntidad();
             Assert.IsNotNull(mensajeTDD);
         }
     }

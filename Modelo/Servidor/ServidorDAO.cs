@@ -43,14 +43,17 @@ namespace Modelo
             throw new NotImplementedException();
         }
 
-        public void Agregar(IProtocoloDTO pEntidad)
+        public ICollection<IProtocoloDTO> Agregar(IProtocoloDTO pEntidad)
         {
-            iServicioControlProtocolos.Agregar(pEntidad);
+            this.ServidorDTO.Protocolos = iServicioControlProtocolos.Agregar(pEntidad);
+            return this.ServidorDTO.Protocolos;
         }
 
-        public void Eliminar(IProtocoloDTO pEntidad)
+        public ICollection<IProtocoloDTO> Eliminar(Expression<Func<IProtocoloDTO, bool>> pCriterio)
         {
-            iServicioControlProtocolos.Eliminar(pEntidad);
+            this.ServidorDTO.Protocolos = iServicioControlProtocolos.Eliminar(pCriterio);
+            return this.ServidorDTO.Protocolos;
+
         }
 
         public IEnumerable<IProtocoloDTO> ObtenerSegun(Expression<Func<IProtocoloDTO, bool>> pCriterio)

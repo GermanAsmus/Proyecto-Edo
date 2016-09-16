@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace Modelo
 {
-    public class MensajeExternoIncompletoDTO : MensajeIncompletoDTO, IMensajeExternoDTO
+    public class IMensajeExternoDTO: MensajeDTO
     {
         public KeyValuePair<DateTime,EstadoVisibilidad> EstadoVisibilidad { get; set; }
     }

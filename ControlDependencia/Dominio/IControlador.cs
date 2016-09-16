@@ -38,14 +38,12 @@ namespace CapaInterfaces.Dominio
         /// Elimina una dirección de correo existente en el sistema.
         /// </summary>
         /// <param name="pId">Identificador único de la dirección de correo</param>
-        /// <returns>0 si no se pudo completar la operación, sino la operación fue exitosa</returns>
-        int EliminarDireccionDeCorreo(int pId);
+        void EliminarDireccionDeCorreo(int pId);
         /// <summary>
         /// Elimina una dirección de correo existente en el sistema.
         /// </summary>
         /// <param name="pDireccionDeCorreo">Dirección de correo real de la dirección de correo, ej: miCorreo@correo.com</param>
-        /// <returns>0 si no se pudo completar la operación, sino la operación fue exitosa</returns>
-        int EliminarDireccionDeCorreo(string pDireccionDeCorreo);
+        void EliminarDireccionDeCorreo(string pDireccionDeCorreo);
         /// <summary>
         /// Obtiene una dirección de correo existente en el sistema.
         /// </summary>
@@ -67,8 +65,7 @@ namespace CapaInterfaces.Dominio
         /// Elimina un mensaje del sistema.
         /// </summary>
         /// <param name="pId">Identificador único del mensaje a eliminar</param>
-        /// <returns>0 si no se pudo completar la operación, sino la operación fue exitosa</returns>
-        int EliminarMensaje(int pId);
+        void EliminarMensaje(int pId);
         /// <summary>
         /// Obtiene un mensje existente en el sistema.
         /// </summary>
@@ -84,14 +81,12 @@ namespace CapaInterfaces.Dominio
         /// Elimina una cuenta existente en el sistema.
         /// </summary>
         /// <param name="pId">Identificador único de la cuenta</param>
-        /// <returns>0 si no se pudo completar la operación, sino la operación fue exitosa</returns>
-        int EliminarCuenta(int pId);
+        void EliminarCuenta(int pId);
         /// <summary>
         /// Elimina una cuenta existente en el sistema.
         /// </summary>
         /// <param name="pNombre">Nombre de la cuenta</param>
-        /// <returns>0 si no se pudo completar la operación, sino la operación fue exitosa</returns>
-        int EliminarCuenta(string pNombre);
+        void EliminarCuenta(string pNombre);
         /// <summary>
         /// Obtiene una cuenta existente en el sistema.
         /// </summary>

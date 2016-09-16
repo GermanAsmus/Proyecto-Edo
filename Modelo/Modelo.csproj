@@ -45,31 +45,18 @@
   <ItemGroup>
     <Compile Include="AdjuntoDTO.cs" />
     <Compile Include="Creador.cs" />
+    <Compile Include="Cuenta\ConfiguradorCuenta.cs" />
     <Compile Include="Cuenta\CuentaExternaDAO.cs" />
     <Compile Include="Cuenta\CuentaUsuarioDAO.cs" />
     <Compile Include="Factory.cs" />
-    <Compile Include="Mensaje\Pertenencia\DTO\IMensajeExternoDTO.cs" />
-    <Compile Include="Mensaje\Pertenencia\DTO\MensajeExternoCompletoDTO.cs" />
     <Compile Include="Servidor\ServidorNuloDTO.cs" />
-    <Compile Include="Mensaje\Estructura\DAO\MensajeNuloDAO.cs" />
-    <Compile Include="Mensaje\Creador\MensajeUsuarioCreador.cs" />
-    <Compile Include="Mensaje\Estructura\DAO\MensajeEstructuradoDAO.cs" />
-    <Compile Include="Mensaje\Estructura\ControlEstructurasMensaje.cs" />
     <Compile Include="CriterioException.cs" />
     <Compile Include="Cuenta\CuentaUsuarioDTO .cs" />
     <Compile Include="Cuenta\CuentaDTO.cs" />
-    <Compile Include="Mensaje\Creador\CreadorMensajeNulo.cs" />
-    <Compile Include="Mensaje\MensajeNuloDTO.cs" />
-    <Compile Include="Mensaje\MensajeFactory.cs" />
-    <Compile Include="Mensaje\Creador\CreadorMensaje.cs" />
-    <Compile Include="Mensaje\Creador\MensajeExternoCreador.cs" />
+    <Compile Include="Mensaje\Mensajeria.cs" />
     <Compile Include="Mensaje\MensajeDTO.cs" />
-    <Compile Include="Mensaje\Estructura\EstructurasMensaje.cs" />
-    <Compile Include="Mensaje\Estructura\DAO\MensajeCompletoDAO.cs" />
-    <Compile Include="Mensaje\Estructura\DAO\MensajeIncompletoDAO.cs" />
-    <Compile Include="Mensaje\Pertenencia\MensajeSetException.cs" />
-    <Compile Include="Mensaje\Pertenencia\DTO\MensajeExternoIncompletoDTO.cs" />
-    <Compile Include="Mensaje\Pertenencia\DTO\MensajeUsuarioDTO.cs" />
+    <Compile Include="Mensaje\Estructura\MensajeCompleto.cs" />
+    <Compile Include="Mensaje\Estructura\MensajeIncompleto.cs" />
     <Compile Include="PathInexistenteException.cs" />
     <Compile Include="Servidor\ServidorDTO.cs" />
     <Compile Include="EntidadDAO.cs" />
@@ -85,26 +72,16 @@
     <Compile Include="Servidor\Factory\ServidorGmailFactory.cs" />
     <Compile Include="Servidor\ServidorNulo.cs" />
     <Compile Include="Servidor\Creador\CreadorServidor.cs" />
-    <Compile Include="Cuenta\Creador\CreadorCuenta.cs" />
-    <Compile Include="Cuenta\Creador\CreadorCuentaExterna.cs" />
-    <Compile Include="Cuenta\Creador\CreadorCuentaUsuario.cs" />
+    <Compile Include="Cuenta\CreadorCuenta.cs" />
     <Compile Include="Cuenta\CuentaDAO.cs" />
     <Compile Include="DireccionCorreo.cs" />
-    <Compile Include="Cuenta\CuentaFactory.cs" />
-    <Compile Include="Mensaje\EstadoComunicacion.cs" />
-    <Compile Include="Mensaje\Estructura\DTO\IMensajeEstructuradoDTO.cs" />
-    <Compile Include="Mensaje\Estructura\DTO\MensajeEstructuradoDTO.cs" />
-    <Compile Include="Mensaje\Pertenencia\EstrategiaPertenencia.cs" />
-    <Compile Include="Mensaje\Pertenencia\DAO\IMensajePertenecienteDAO.cs" />
+    <Compile Include="Mensaje\Estados\EstadoComunicacion.cs" />
+    <Compile Include="Mensaje\Estados\IEstadoMensaje.cs" />
     <Compile Include="Mensaje\MensajeDAO.cs" />
-    <Compile Include="Mensaje\Estructura\DTO\MensajeCompletoDTO.cs" />
-    <Compile Include="Mensaje\Pertenencia\DAO\MensajeExterno.cs" />
-    <Compile Include="Mensaje\Estructura\DTO\MensajeIncompletoDTO.cs" />
-    <Compile Include="Mensaje\Pertenencia\DAO\MensajePerteneciente.cs" />
-    <Compile Include="Mensaje\Pertenencia\DAO\MensajeUsuario.cs" />
-    <Compile Include="Mensaje\EstadoPersistencia.cs" />
-    <Compile Include="Mensaje\EstadoVisibilidad.cs" />
-    <Compile Include="Mensaje\Pertenencia\TipoCuentaException.cs" />
+    <Compile Include="Mensaje\Estados\Visibilidad.cs" />
+    <Compile Include="Mensaje\Estados\Comunicacion.cs" />
+    <Compile Include="Mensaje\Estados\EstadoPersistencia.cs" />
+    <Compile Include="Mensaje\Estados\EstadoVisibilidad.cs" />
     <Compile Include="Protocolo\ProtocoloDTO.cs" />
     <Compile Include="Protocolo\ProtocoloNulo.cs" />
     <Compile Include="Servidor\Creador\CreadorServidorGmail.cs" />
@@ -124,9 +101,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Mensaje\SobreMensaje.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ControlDependencia\CapaInterfaces.csproj">

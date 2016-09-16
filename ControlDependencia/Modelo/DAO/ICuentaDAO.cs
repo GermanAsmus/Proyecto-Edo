@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CapaInterfaces.Modelo
 {
-    public interface ICuentaDAO
+    public interface ICuentaDAO : IEntidadDAO<IMensajeDTO>
     {
-        ICuentaDTO CuentaDTO { get; set; }
+        ICuentaDTO Cuenta { get; set; }
     }
 }

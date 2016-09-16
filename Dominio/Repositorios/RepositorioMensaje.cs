@@ -23,7 +23,7 @@ namespace Dominio.Repositorios
             this.iRepositorioCuenta = pRepositorioCuenta;
         }
 
-        public int Agregar(IMensajeDTO pEntidad)
+        public void Agregar(IMensajeDTO pEntidad)
         {
             if (pEntidad == null)
                 throw new ArgumentNullException(nameof(pEntidad));
@@ -58,7 +58,6 @@ namespace Dominio.Repositorios
             //Se completa la propiedad requerida del entidadHija, respectiva al id de la cuenta.
             pEntidad.CuentaId = iCuenta.Id;
             //Se actualiza la cuenta, que mantiene una colección de mensajes.
-            return iRepositorioCuenta.Actualizar();
         }
     }
 }

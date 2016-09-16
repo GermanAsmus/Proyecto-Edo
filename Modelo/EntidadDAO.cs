@@ -16,18 +16,23 @@ namespace Modelo
             this.iColeccionFuente = pColeccionFuente;
         }
 
-        public void Agregar(TEntity pEntidad)
+        public ICollection<TEntity> Agregar(TEntity pEntidad)
         {
             if (pEntidad == null)
                 throw new ArgumentNullException(nameof(pEntidad));
             this.iColeccionFuente.Add(pEntidad);
+            return this.iColeccionFuente;
         }
 
-        public void Eliminar(TEntity pEntidad)
+        public ICollection<TEntity> Eliminar(Expression<Func<TEntity, bool>> pCriterio)
         {
-            if (pEntidad == null)
-                throw new ArgumentNullException(nameof(pEntidad));
+            if (pCriterio == null)
+                throw new ArgumentNullException(nameof(pCriterio));
+
+            TEntity pEntidad = this.Obtener(pCriterio);
+
             this.iColeccionFuente.Remove(pEntidad);
+            return this.iColeccionFuente;
         }
         public TEntity Obtener(Expression<Func<TEntity, bool>> pCriterio)
         {

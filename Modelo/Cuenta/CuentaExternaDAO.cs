@@ -5,28 +5,17 @@ namespace Modelo
 {
     public class CuentaExternaDAO : CuentaDAO
     {
-        //public CuentaExternaDAO(CuentaFactory pCuentaFactory) : base(pCuentaFactory) { }
-        public CuentaExternaDAO(ICuentaDTO pCuentaDTO) : base(pCuentaDTO)
-        {
-            this.CuentaDTO = pCuentaDTO;
-
-            string host = DireccionCorreo.ObtenerHost(this.CuentaDTO.DireccionCorreo);
-
-            this.iServicioControlMensajes = new EntidadDAO<IMensajeDTO>(this.CuentaDTO.Mensajes);
-
-            this.iCuentaFactory = new CuentaFactory(host);
-            this.RealizarCuenta();
-        }
-        public override ICuentaDTO CuentaDTO
+        public CuentaExternaDAO(ICuentaDTO pCuentaDTO) : base(pCuentaDTO) { }
+        public override ICuentaDTO Cuenta
         {
             get
             {
-                return base.CuentaDTO;
+                return base.Cuenta;
             }
 
             set
             {
-                base.CuentaDTO = value;
+                base.Cuenta = value;
             }
         }
     }

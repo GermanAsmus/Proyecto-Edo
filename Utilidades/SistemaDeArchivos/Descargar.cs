@@ -120,7 +120,7 @@ namespace Utilidades.SistemaDeArchivos
 
             string destinatario = string.Empty;
 
-            pMensaje.Destinatario.ToList().ForEach(x => destinatario += string.Format("> {0}{1}", x.DireccionDeCorreo, Environment.NewLine));
+            pMensaje.Destinatario.ToList().ForEach(x => destinatario += string.Format("> {0}{1}", x.DireccionCorreo.DireccionDeCorreo, Environment.NewLine));
 
             object[] param =
            {
@@ -149,7 +149,7 @@ namespace Utilidades.SistemaDeArchivos
             };
             foreach (var item in pMensajeCast.Destinatario)
             {
-                message.To.Add(item.DireccionDeCorreo);
+                message.To.Add(item.DireccionCorreo.DireccionDeCorreo);
             }
             try
             {

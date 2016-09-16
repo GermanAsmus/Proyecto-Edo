@@ -35,14 +35,14 @@ namespace Persistencia
 
         #region Control de cuentas
 
-        public int Agregar(ICuentaDTO pEntidad)
+        public void Agregar(ICuentaDTO pEntidad)
         {
-            return iRepositorioCuenta.Agregar(pEntidad);
+            iRepositorioCuenta.Agregar(pEntidad);
         }
 
-        public int Eliminar(ICuentaDTO pEntidad)
+        public void Eliminar(ICuentaDTO pEntidad)
         {
-            return iRepositorioCuenta.Eliminar(pEntidad);
+            iRepositorioCuenta.Eliminar(pEntidad);
         }
 
         public IEnumerable<ICuentaDTO> Todos()
@@ -64,14 +64,14 @@ namespace Persistencia
 
         #region Control de mensajes
 
-        public int Agregar(IMensajeDTO pEntidad)
+        public void Agregar(IMensajeDTO pEntidad)
         {
-            return iRepositorioMensaje.Agregar(pEntidad);
+            iRepositorioMensaje.Agregar(pEntidad);
         }
 
-        public int Eliminar(IMensajeDTO pEntidad)
+        public void Eliminar(IMensajeDTO pEntidad)
         {
-            return iRepositorioMensaje.Eliminar(pEntidad);
+            iRepositorioMensaje.Eliminar(pEntidad);
         }
 
         IEnumerable<IMensajeDTO> IRepositorioEstandar<IMensajeDTO>.Todos()
@@ -94,14 +94,14 @@ namespace Persistencia
 
         #region Control de adjuntos
 
-        public int Agregar(IAdjuntoDTO pEntidad)
+        public void Agregar(IAdjuntoDTO pEntidad)
         {
-            return iRepositorioAdjunto.Agregar(pEntidad);
+            iRepositorioAdjunto.Agregar(pEntidad);
         }
 
-        public int Eliminar(IAdjuntoDTO pEntidad)
+        public void Eliminar(IAdjuntoDTO pEntidad)
         {
-            return iRepositorioAdjunto.Eliminar(pEntidad);
+            iRepositorioAdjunto.Eliminar(pEntidad);
         }
 
         IEnumerable<IAdjuntoDTO> IRepositorioEstandar<IAdjuntoDTO>.Todos()
@@ -123,14 +123,14 @@ namespace Persistencia
 
         #region Control de direcciones de correo
 
-        public int Agregar(IDireccionCorreoDTO pEntidad)
+        public void Agregar(IDireccionCorreoDTO pEntidad)
         {
-            return iRepositorioDireccionCorreo.Agregar(pEntidad);
+            iRepositorioDireccionCorreo.Agregar(pEntidad);
         }
 
-        public int Eliminar(IDireccionCorreoDTO pEntidad)
+        public void Eliminar(IDireccionCorreoDTO pEntidad)
         {
-            return iRepositorioDireccionCorreo.Eliminar(pEntidad);
+            iRepositorioDireccionCorreo.Eliminar(pEntidad);
         }
 
         IEnumerable<IDireccionCorreoDTO> IRepositorioEstandar<IDireccionCorreoDTO>.Todos()

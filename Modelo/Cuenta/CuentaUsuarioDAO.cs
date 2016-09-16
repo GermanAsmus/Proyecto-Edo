@@ -7,28 +7,19 @@ namespace Modelo
 {
     public class CuentaUsuarioDAO : CuentaDAO
     {
-        public CuentaUsuarioDAO(ICuentaDTO pCuentaDTO) : base(pCuentaDTO)
-        {
-            this.CuentaDTO = pCuentaDTO as ICuentaUsuarioDTO;
-
-            string host = DireccionCorreo.ObtenerHost(this.CuentaDTO.DireccionCorreo);
-
-            this.iServicioControlMensajes = new EntidadDAO<IMensajeDTO>(this.CuentaDTO.Mensajes);
-
-            this.iCuentaFactory = new CuentaFactory(host);
-            this.RealizarCuenta();
-        }
-        public override ICuentaDTO CuentaDTO
+        public CuentaUsuarioDAO(ICuentaDTO pCuentaDTO) : base(pCuentaDTO) { }
+        public override ICuentaDTO Cuenta
         {
             get
             {
-                return base.CuentaDTO as ICuentaUsuarioDTO;
+                return base.Cuenta as ICuentaUsuarioDTO;
             }
 
             set
             {
-                base.CuentaDTO = value as ICuentaUsuarioDTO;
+                base.Cuenta = value as ICuentaUsuarioDTO;
             }
         }
+
     }
 }

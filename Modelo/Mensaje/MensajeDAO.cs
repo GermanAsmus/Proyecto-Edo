@@ -10,29 +10,22 @@ namespace Modelo
     /// Modela un menaje (correo), como una entidad de base y no concluyente.
     /// Sus clases derivadas concretan el mensaje (agregando significado y siendo más responsables).
     /// </summary>
-    public abstract class MensajeDAO : IEntidadDAO<IDireccionCorreoDTO>, IMensajeDAO
+    public abstract class MensajeDAO : IMensajeDAO, IEstadoMensaje
     {
-        protected IEntidadDAO<IDireccionCorreoDTO> iServicioControlDirecciones;
+        protected IEntidadDAO<ICuentaDTO> iServicioControlDirecciones;
 
         public virtual IMensajeDTO MensajeDTO { get; set; }
-        protected MensajeFactory iMensajeFactory;
+        //protected MensajeFactory iMensajeFactory;
 
-        protected void RealizarMensaje()
-        {
-            if (this.iMensajeFactory != null)
-                this.MensajeDTO = this.iMensajeFactory.AgregarEntidad();
-            else
-                this.MensajeDTO = new MensajeNuloDTO();                
-        }
         /// <summary>
         /// Constructor de la clase.
         /// El estado de persistencia por defecto es "No_Guardado".
         /// </summary>
-        public MensajeDAO(MensajeFactory pMensajeFactory)
+        public MensajeDAO(IMensajeDTO pMensajeDTO)
         {
-            this.iServicioControlDirecciones = new EntidadDAO<IDireccionCorreoDTO>(new List<IDireccionCorreoDTO>());
-            this.iMensajeFactory = pMensajeFactory;
-            this.RealizarMensaje();
+            this.MensajeDTO = pMensajeDTO;
+
+            this.iServicioControlDirecciones = new EntidadDAO<ICuentaDTO>(this.MensajeDTO.Destinatario);
         }
         /// <summary>
         /// Cambia el estado de persistencia del mensaje.
@@ -55,24 +48,37 @@ namespace Modelo
             return (this.MensajeDTO as MensajeDTO).EstadoPersistencia.ToString();
         }
 
-        public void Agregar(IDireccionCorreoDTO pEntidad)
+        public ICollection<ICuentaDTO> Agregar(ICuentaDTO pEntidad)
         {
-            iServicioControlDirecciones.Agregar(pEntidad);
+            this.MensajeDTO.Destinatario = iServicioControlDirecciones.Agregar(pEntidad);
+            return this.MensajeDTO.Destinatario;
         }
 
-        public void Eliminar(IDireccionCorreoDTO pEntidad)
+        public ICollection<ICuentaDTO> Eliminar(Expression<Func<ICuentaDTO, bool>> pCriterio)
         {
-            iServicioControlDirecciones.Eliminar(pEntidad);
+            this.MensajeDTO.Destinatario = iServicioControlDirecciones.Eliminar(pCriterio);
+            return this.MensajeDTO.Destinatario;
+
         }
 
-        public IEnumerable<IDireccionCorreoDTO> ObtenerSegun(Expression<Func<IDireccionCorreoDTO, bool>> pCriterio)
+        public IEnumerable<ICuentaDTO> ObtenerSegun(Expression<Func<ICuentaDTO, bool>> pCriterio)
         {
             return iServicioControlDirecciones.ObtenerSegun(pCriterio);
         }
 
-        public IDireccionCorreoDTO Obtener(Expression<Func<IDireccionCorreoDTO, bool>> pCriterio)
+        public ICuentaDTO Obtener(Expression<Func<ICuentaDTO, bool>> pCriterio)
         {
             return iServicioControlDirecciones.Obtener(pCriterio);
+        }
+
+        public string ObtenerEstado()
+        {
+            return (this.MensajeDTO as MensajeDTO).Estado.ObtenerEstado();
+        }
+
+        public void CambiarEstado()
+        {
+            (this.MensajeDTO as MensajeDTO).Estado.CambiarEstado();
         }
     }
 }

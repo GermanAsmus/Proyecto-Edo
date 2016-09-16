@@ -14,16 +14,16 @@ namespace Dominio.Repositorios
 
         }
 
-        public int Agregar(IDireccionCorreoDTO pEntidad)
+        public void Agregar(IDireccionCorreoDTO pEntidad)
         {
             if(pEntidad==null)
                 throw new ArgumentNullException(nameof(pEntidad));
 
             IDireccionCorreoDTO iDireccion = this.iRepositorio.Obtener(x => BuscarDireccionDeCorreo.BuscarPorId(x, pEntidad.Id));
-            if (iDireccion != null)
-               return this.iRepositorio.Agregar(pEntidad);
-            else
+            if (iDireccion == null)
                 throw new InvalidOperationException("ya existe la direccion en la bd");
+            this.iRepositorio.Agregar(pEntidad);
+
         }
     }
 }

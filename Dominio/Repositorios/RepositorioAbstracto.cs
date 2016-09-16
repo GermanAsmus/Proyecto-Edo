@@ -43,18 +43,18 @@ namespace Dominio.Repositorios
         /// Implementación virtual del método Actualizar.
         /// </summary>
         /// <returns>0 si se completó la operación, sino se realizó correctamente</returns>
-        public virtual int Actualizar()
-        {
-            return iRepositorio.Actualizar();
-        }
+        //public virtual int Actualizar()
+        //{
+        //    return iRepositorio.Actualizar();
+        //}
         /// <summary>
         /// Implementación virtual del método Eliminar.
         /// </summary>
         /// <param name="pEntidad">entidad a eliminar</param>
         /// <returns>0 si se completó la operación, sino se realizó correctamente</returns>
-        public virtual int Eliminar(T pEntidad)
+        public virtual void Eliminar(T pEntidad)
         {
-            return iRepositorio.Eliminar(pEntidad);
+            iRepositorio.Eliminar(pEntidad);
         }
         /// <summary>
         /// Implementación virtual del método ObtenerSegun.

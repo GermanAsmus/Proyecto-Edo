@@ -14,7 +14,7 @@ namespace Dominio.Repositorios
             this.iRepositorioExterno = pRepositorioExterno;
         }
 
-        public int Agregar(ICuentaDTO pEntidad)
+        public void Agregar(ICuentaDTO pEntidad)
         {
 
             if (pEntidad == null)
@@ -42,7 +42,7 @@ namespace Dominio.Repositorios
             //IServidor iServidor = new Servidor();
             //pEntidad.IServidor = iServidor;
 
-            return iRepositorio.Agregar(pEntidad);
+            iRepositorio.Agregar(pEntidad);
         }
     }
 }

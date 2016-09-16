@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public abstract class MensajeDTO : IMensajeDTO
+    public class MensajeDTO : IMensajeCompletoDTO
     {
+
+        #region Atributos Mensaje Estandar
+        
         //Identificador único del mensaje
         public int Id { get; set; }
         //Asunto del mensaje.
@@ -20,10 +23,42 @@ namespace Modelo
         // Colección de direcciones de correo como direcciones destinatarios.
         public virtual ICollection<ICuentaDTO> Destinatario { get; set; }
 
+        #endregion
+
+        #region Atributos Mensaje Completo
+
+        // Contenido en Texto Plano
+        public string Contenido { get; set; }
+
+        // Coleccion de adjuntos del mensaje.
+        public virtual ICollection<IAdjuntoDTO> Adjuntos { get; set; }
+
+        #endregion
+
         /// <summary>
         /// Estado de persistencia del mensaje. (Guardado/No_Guardado).
         /// </summary>
         public EstadoPersistencia EstadoPersistencia { get; set; }
+               
+        public string Estructura
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Contenido) && Adjuntos == null)
+                    return "incompleto";
 
+                return "completo";
+            }
+        }
+
+        public IEstadoMensaje Estado { get; set; }
+
+
+        public MensajeDTO()
+        {
+            this.Adjuntos = new List<IAdjuntoDTO>();
+            this.Destinatario = new List<ICuentaDTO>();
+
+        }
     }
 }

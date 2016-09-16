@@ -11,19 +11,23 @@ namespace Modelo
     /// <summary>
     /// Entidad abstracta que modela una cuenta de correo.
     /// </summary>
-    public abstract class CuentaDAO : IEntidadDAO<IMensajeDTO>, ICuentaDAO
+    public class CuentaDAO : ICuentaDAO
     {
-
-        protected IEntidadDAO<IMensajeDTO> iServicioControlMensajes;
+        #region Atributos
+        protected IEntidadDAO<IMensajeDTO> iServicioControlMensajes { get; set; }
 
         /// <summary>
         /// Mantiene los atributos de la cuenta modelada.
         /// </summary>
-        public virtual ICuentaDTO CuentaDTO { get; set; }
-        /// <summary>
-        /// Atributo responsable de realizar la cuenta cuando se instancie la clase.
-        /// </summary>
-        protected CuentaFactory iCuentaFactory;
+        protected ICuentaDTO iCuentaDTO;
+
+        ///// <summary>
+        ///// Atributo responsable de realizar la cuenta cuando se instancie la clase.
+        ///// </summary>
+        //protected CuentaFactory iCuentaFactory;
+
+        #endregion
+
 
         /// <summary>
         /// 
@@ -35,27 +39,52 @@ namespace Modelo
         /// <param name="pCuentaFactory">Clase responsable de definir el ServidorDAO correspondiente</param>
         public CuentaDAO(ICuentaDTO pCuentaDTO)
         {
-            if (pCuentaDTO==null)
+            if (pCuentaDTO == null)
                 throw new ArgumentNullException(nameof(pCuentaDTO));
+
+            this.iCuentaDTO = pCuentaDTO;
+
+            this.Configurar();
         }
 
         /// <summary>
         /// Al realizar la cuenta se instancia el servidor.
         /// El servidor se obtiene de la misma direccion de correo (ej: correo@gmail.com --> host = gmail)
         /// </summary>
-        protected void RealizarCuenta()
+        protected void Configurar()
         {
-            this.CuentaDTO.Servidor = this.iCuentaFactory.AgregarEntidad();
+            string host = DireccionCorreo.ObtenerHost(this.iCuentaDTO.DireccionCorreo);
+
+            this.iServicioControlMensajes = new EntidadDAO<IMensajeDTO>(this.iCuentaDTO.Mensajes);
+
+            this.iCuentaDTO.Servidor = ConfiguradorCuenta.ConfigurarServidor(host);
         }
 
-        public void Agregar(IMensajeDTO pEntidad)
+        public virtual ICuentaDTO Cuenta
         {
-            iServicioControlMensajes.Agregar(pEntidad);
+            get
+            {
+                return this.iCuentaDTO;
+            }
+            set
+            {
+                this.iCuentaDTO = value;
+            }
         }
 
-        public void Eliminar(IMensajeDTO pEntidad)
+
+        #region Control de los mensajes
+        public ICollection<IMensajeDTO> Agregar(IMensajeDTO pEntidad)
         {
-            iServicioControlMensajes.Eliminar(pEntidad);
+            this.iCuentaDTO.Mensajes = iServicioControlMensajes.Agregar(pEntidad);
+            return this.iCuentaDTO.Mensajes;
+        }
+
+        public ICollection<IMensajeDTO> Eliminar(Expression<Func<IMensajeDTO, bool>> pCriterio)
+        {
+            this.iCuentaDTO.Mensajes = iServicioControlMensajes.Eliminar(pCriterio);
+            return this.iCuentaDTO.Mensajes;
+
         }
 
         public IEnumerable<IMensajeDTO> ObtenerSegun(Expression<Func<IMensajeDTO, bool>> pCriterio)
@@ -67,5 +96,6 @@ namespace Modelo
         {
             return iServicioControlMensajes.Obtener(pCriterio);
         }
+        #endregion
     }
 }

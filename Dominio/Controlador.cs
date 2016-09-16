@@ -13,42 +13,45 @@ using CapaInterfaces.Modelo;
 
 namespace Dominio
 {
-    public class Controlador : IControlador
+    public class Controlador : CapaInterfaces.Dominio.IControlador
     {
         public IGestorRespositorios GestorRepositorios { get; private set; }
         private IServicio iServicio;
 
-        public Controlador(IUnitOfWork pUnitOfWork)
+        public Controlador(/*IUnitOfWork pUnitOfWork*/)
         {
             iServicio = IoC_CL.Resolver<IServicio>();
-            GestorRepositorios = new GestorRepositorios(pUnitOfWork);
+            //GestorRepositorios = new GestorRepositorios(pUnitOfWork);
         }
         public int AregarCuenta(IDireccionCorreoDTO pDireccion, ICuentaDTO pCuenta)
         {
             IRepositorioCompleto<ICuentaDTO> aRepositorioCuenta = this.GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
-            return aRepositorioCuenta.Agregar(pCuenta);
+            /*return*/ aRepositorioCuenta.Agregar(pCuenta);
+            return 0;
         }
         public int EditarCuenta(ICuentaDTO pCuenta)
         {
             RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
-            return aRepositorio.Actualizar();
+            //return aRepositorio.Actualizar();
+            return 0;
         }
         public int EditarDireccionDeCorreo(IDireccionCorreoDTO pDireccionCorreo)
         {
             RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
-            return aRepositorio.Actualizar();
+            //return aRepositorio.Actualizar();
+            return 0;
         }
-        public int EliminarDireccionDeCorreo(int pId)
+        public void EliminarDireccionDeCorreo(int pId)
         {
             RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
             IDireccionCorreoDTO unaDireccion = this.ObtenerDireccionDeCorreo(pId);
-            return aRepositorio.Eliminar(unaDireccion);
+            aRepositorio.Eliminar(unaDireccion);
         }
-        public int EliminarDireccionDeCorreo(string pDireccionDeCorreo)
+        public void EliminarDireccionDeCorreo(string pDireccionDeCorreo)
         {
             RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
             IDireccionCorreoDTO unaDireccion = this.ObtenerDireccionDeCorreo(pDireccionDeCorreo);
-            return aRepositorio.Eliminar(unaDireccion);
+            aRepositorio.Eliminar(unaDireccion);
         }
         public IDireccionCorreoDTO ObtenerDireccionDeCorreo(int pId)
         {
@@ -71,17 +74,17 @@ namespace Dominio
             RepositorioDireccion aRepositorio = (RepositorioDireccion)GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
             return aRepositorio.Todos();
         }
-        public int EliminarMensaje(int pId)
+        public void EliminarMensaje(int pId)
         {
             RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensajeDTO>();
             IMensajeDTO unMensaje = this.ObtenerMensaje(pId);
-            return aRepositorio.Eliminar(unMensaje);
+            aRepositorio.Eliminar(unMensaje);
         }
-        public int EliminarMensaje(string pAsunto)
+        public void EliminarMensaje(string pAsunto)
         {
             RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensajeDTO>();
             IMensajeDTO unMensaje = this.ObtenerMensaje(pAsunto);
-            return aRepositorio.Eliminar(unMensaje);
+            aRepositorio.Eliminar(unMensaje);
         }
         public IMensajeDTO ObtenerMensaje(int pId)
         {
@@ -104,17 +107,17 @@ namespace Dominio
             RepositorioMensaje aRepositorio = (RepositorioMensaje)GestorRepositorios.ObtenerRepositorio<IMensajeDTO>();
             return aRepositorio.Todos();
         }
-        public int EliminarCuenta(int pId)
+        public void EliminarCuenta(int pId)
         {
             RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
             ICuentaDTO unaCuenta = this.ObtenerCuenta(pId);
-            return aRepositorio.Eliminar(unaCuenta);
+            aRepositorio.Eliminar(unaCuenta);
         }
-        public int EliminarCuenta(string pNombre)
+        public void EliminarCuenta(string pNombre)
         {
             RepositorioCuenta aRepositorio = (RepositorioCuenta)GestorRepositorios.ObtenerRepositorio<ICuentaDTO>();
             ICuentaDTO unaCuenta = this.ObtenerCuenta(pNombre);
-            return aRepositorio.Eliminar(unaCuenta);
+            aRepositorio.Eliminar(unaCuenta);
         }
         public ICuentaDTO ObtenerCuenta(int pId)
         {
@@ -156,7 +159,7 @@ namespace Dominio
             var destinatarios = pMensaje.Destinatario.GetEnumerator();
 
             IRepositorioCompleto<IDireccionCorreoDTO> aRepositorioDireccionCorreo = this.GestorRepositorios.ObtenerRepositorio<IDireccionCorreoDTO>();
-            IDireccionCorreoDTO iDireccion = null;
+            //IDireccionCorreoDTO iDireccion = null;
 
             //Rehacer, ahora los destinatarios son cuentas
 
@@ -177,7 +180,7 @@ namespace Dominio
             //Se completa la propiedad requerida del entidadHija, respectiva al id de la ICuenta.
             pMensaje.CuentaId = iCuenta.Id;
             //Se actualiza la ICuenta, que mantiene una colección de mensajes.
-            aRepositorioCuenta.Actualizar();
+            //aRepositorioCuenta.Actualizar();
 
             IProtocoloTransmision iProtocoloTransmision = IoC_CL.Resolver<IProtocoloTransmision>();
             this.iServicio.Enviar(pMensaje, pCuenta, iProtocoloTransmision);

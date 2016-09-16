@@ -56,7 +56,7 @@
     <Compile Include="CuentaTDD.cs" />
     <Compile Include="ServidorTDD.cs" />
     <Compile Include="ProtocoloTDD.cs" />
-    <Compile Include="MensajeTDD.cs" />
+    <Compile Include="MensajeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ControlDependencia\CapaInterfaces.csproj">
@@ -68,7 +68,9 @@
       <Name>Modelo</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Playlists\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

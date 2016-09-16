@@ -6,6 +6,7 @@ using System.Linq;
 using Modelo;
 using EdoUI;
 using CapaInterfaces.Modelo;
+using System.Data.Entity;
 //using UnityDI;
 
 namespace Persistencia
@@ -33,7 +34,7 @@ namespace Persistencia
 
             #region Instaciar repositorio cuenta
 
-            IRepositorioCompleto<ICuentaDTO> rCuenta = new Repositorio<ICuentaDTO>(((DbContext)this.iContext).Set<ICuentaDTO>());
+            IRepositorioCompleto<ICuentaDTO> rCuenta = new Repositorio<ICuentaDTO>((this.iContext as DbContext).Set<ICuentaDTO>());
             (rCuenta as Repositorio<ICuentaDTO>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rCuenta);
@@ -42,7 +43,7 @@ namespace Persistencia
 
             #region Instanciar repositorio mensaje
 
-            IRepositorioCompleto<IMensajeDTO> rMensaje = new Repositorio<IMensajeDTO>(((DbContext)this.iContext).Set<IMensajeDTO>());
+            IRepositorioCompleto<IMensajeDTO> rMensaje = new Repositorio<IMensajeDTO>((this.iContext as DbContext).Set<IMensajeDTO>());
             (rMensaje as Repositorio<IMensajeDTO>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rMensaje);
@@ -51,7 +52,7 @@ namespace Persistencia
 
             #region Instanciar repositorio adjunto
 
-            IRepositorioCompleto<IAdjuntoDTO> rAdjunto = new Repositorio<IAdjuntoDTO>(((DbContext)this.iContext).Set<IAdjuntoDTO>());
+            IRepositorioCompleto<IAdjuntoDTO> rAdjunto = new Repositorio<IAdjuntoDTO>((this.iContext as DbContext).Set<IAdjuntoDTO>());
             (rAdjunto as Repositorio<IAdjuntoDTO>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rAdjunto);
@@ -60,7 +61,7 @@ namespace Persistencia
 
             #region Instanciar repositorio direccion
 
-            IRepositorioCompleto<IDireccionCorreoDTO> rDireccion = new Repositorio<IDireccionCorreoDTO>(((DbContext)this.iContext).Set<IDireccionCorreoDTO>());
+            IRepositorioCompleto<IDireccionCorreoDTO> rDireccion = new Repositorio<IDireccionCorreoDTO>((this.iContext as DbContext).Set<IDireccionCorreoDTO>());
             (rDireccion as Repositorio<IDireccionCorreoDTO>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rDireccion);

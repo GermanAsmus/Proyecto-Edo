@@ -1,9 +1,11 @@
-﻿using System;
+﻿using CapaInterfaces.Modelo;
+using Modelo;
+using System;
 using System.Collections.Generic;
 namespace Modelo
 {
-    public class MensajeUsuarioDTO : MensajeCompletoDTO
+    public class MensajeUsuarioDTO : MensajeDTO
     {
-        public KeyValuePair<DateTime,EstadoComunicacion> EstadoComunicacion { get; set; }
+        public KeyValuePair<DateTime,IEstado> EstadoComunicacion { get; set; }
     }
 }

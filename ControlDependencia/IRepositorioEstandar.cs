@@ -12,7 +12,7 @@ namespace CapaInterfaces
         /// </summary>
         /// <param name="pEntidad">entidad del tipo <typeparamref name="TEntity"/></param>
         /// <returns>void</returns>
-        int Eliminar(TEntity pEntidad);
+        void Eliminar(TEntity pEntidad);
         /// <summary>
         /// Obtiene todas las entidades <typeparamref name="TEntity"/> que persisten en el repositorio
         /// </summary>

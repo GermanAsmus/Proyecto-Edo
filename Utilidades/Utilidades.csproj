@@ -44,6 +44,7 @@
     <Compile Include="CriteriosDeBusqueda\BuscarCuenta.cs" />
     <Compile Include="CriteriosDeBusqueda\BuscarDireccionDeCorreo.cs" />
     <Compile Include="CriteriosDeBusqueda\BuscarMensaje.cs" />
+    <Compile Include="EntornoAplicacion.cs" />
     <Compile Include="ExpandoObjectUtil.cs" />
     <Compile Include="Misc\Buzon.cs" />
     <Compile Include="Excepciones\CreateDirectoryException.cs" />
@@ -58,10 +59,6 @@
     <ProjectReference Include="..\ControlDependencia\CapaInterfaces.csproj">
       <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
       <Name>CapaInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modelo\Modelo.csproj">
-      <Project>{c7f74b31-7843-4997-82e0-0e9d00b3df1b}</Project>
-      <Name>Modelo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

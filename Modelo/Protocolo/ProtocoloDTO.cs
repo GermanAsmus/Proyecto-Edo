@@ -1,17 +1,19 @@
 ﻿using CapaInterfaces.Modelo;
+using System;
+using System.Xml.Serialization;
 
 namespace Modelo
 {
-    public abstract class ProtocoloDTO : IProtocoloDTO
+    public class ProtocoloDTO : IProtocoloDTO
     {
         #region Propiedades
-        public string Nombre { get; protected set; }
+        public string Tipo { get; set; }
         //Host del servidor.
-        public string Host { get; protected set; }
+        public string Host { get; set; }
         //Puerto del servidor.
-        public int Puerto { get; protected set; }
+        public int Puerto { get; set; }
         //SSL, capa de puertos de seguridad, del servidor.
-        public bool SSL { get; protected set; }
+        public bool SSL { get; set; }
         
         public int Id { get; set; }
         #endregion

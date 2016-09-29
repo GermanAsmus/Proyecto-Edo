@@ -24,7 +24,7 @@ namespace EdoUI
         //    InitializeComponent();
         //    iNuevaCuenta = new Cuenta();
         //    iControlador = pControlador;
-        //    //comboBoxServidores.Items.AddRange(this.iControlador.ObtenerTodosLosServidores().Select(x => x.Nombre).ToArray());
+        //    //comboBoxServidores.Items.AddRange(this.iControlador.ObtenerTodosLosServidores().Select(x => x.Tipo).ToArray());
         //}
 
         private void toolStripButtonAceptar_Click(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace EdoUI
 
         private void textBoxNombre_TextChanged(object sender, EventArgs e)
         {
-            //iNuevaCuenta.Nombre = textBoxNombre.Text;
+            //iNuevaCuenta.Tipo = textBoxNombre.Text;
         }
 
         private void textBoxDireccion_TextChanged(object sender, EventArgs e)

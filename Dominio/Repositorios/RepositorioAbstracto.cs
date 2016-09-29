@@ -94,7 +94,7 @@ namespace Dominio.Repositorios
         //    if (pPadre == null)
         //        throw new ArgumentNullException(nameof(pPadre));
 
-        //    if (string.IsNullOrEmpty(pPadre.Contraseña) || string.IsNullOrEmpty(pPadre.Nombre))
+        //    if (string.IsNullOrEmpty(pPadre.Contraseña) || string.IsNullOrEmpty(pPadre.Tipo))
         //        throw new NullReferenceException("Los atributos contraseña, nombre, no pueden ser nulos o vacíos");
 
         //    IRepositorioEstandar<DireccionCorreo> aRepositorioDireccion = this.GestorRepositorios.ObtenerRepositorio<DireccionCorreo>();

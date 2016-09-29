@@ -53,11 +53,12 @@ namespace Modelo
         /// </summary>
         protected void Configurar()
         {
-            string host = DireccionCorreo.ObtenerHost(this.iCuentaDTO.DireccionCorreo);
+            string host = DireccionCorreoDTO.ObtenerHost(this.iCuentaDTO.DireccionCorreo);
 
             this.iServicioControlMensajes = new EntidadDAO<IMensajeDTO>(this.iCuentaDTO.Mensajes);
 
-            this.iCuentaDTO.Servidor = ConfiguradorCuenta.ConfigurarServidor(host);
+            this.iCuentaDTO.Servidor = new CreadorServidor().ObtenerServidor(host);
+                
         }
 
         public virtual ICuentaDTO Cuenta

@@ -53,9 +53,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CuentaTDD.cs" />
-    <Compile Include="ServidorTDD.cs" />
-    <Compile Include="ProtocoloTDD.cs" />
+    <Compile Include="CuentaTests.cs" />
+    <Compile Include="ServidorTests.cs" />
     <Compile Include="MensajeTests.cs" />
   </ItemGroup>
   <ItemGroup>

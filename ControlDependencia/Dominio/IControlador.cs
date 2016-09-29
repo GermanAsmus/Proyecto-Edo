@@ -85,7 +85,7 @@ namespace CapaInterfaces.Dominio
         /// <summary>
         /// Elimina una cuenta existente en el sistema.
         /// </summary>
-        /// <param name="pNombre">Nombre de la cuenta</param>
+        /// <param name="pNombre">Tipo de la cuenta</param>
         void EliminarCuenta(string pNombre);
         /// <summary>
         /// Obtiene una cuenta existente en el sistema.
@@ -96,7 +96,7 @@ namespace CapaInterfaces.Dominio
         /// <summary>
         /// Obtiene una cuenta existente en el sistema.
         /// </summary>
-        /// <param name="pNombre">Nombre de la cuenta</param>
+        /// <param name="pNombre">Tipo de la cuenta</param>
         /// <returns>La cuenta correspondiente al nombre</returns>
         ICuentaDTO ObtenerCuenta(string pNombre);
         /// <summary>

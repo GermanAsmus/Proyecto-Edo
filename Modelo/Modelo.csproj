@@ -43,13 +43,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdjuntoDTO.cs" />
-    <Compile Include="Creador.cs" />
-    <Compile Include="Cuenta\ConfiguradorCuenta.cs" />
-    <Compile Include="Cuenta\CuentaExternaDAO.cs" />
-    <Compile Include="Cuenta\CuentaUsuarioDAO.cs" />
-    <Compile Include="Factory.cs" />
-    <Compile Include="Servidor\ServidorNuloDTO.cs" />
+    <Compile Include="Adjunto\AdjuntoDTO.cs" />
+    <Compile Include="Cuenta\Pertenencia\CuentaExterna.cs" />
+    <Compile Include="Cuenta\Pertenencia\CuentaUsuario.cs" />
     <Compile Include="CriterioException.cs" />
     <Compile Include="Cuenta\CuentaUsuarioDTO .cs" />
     <Compile Include="Cuenta\CuentaDTO.cs" />
@@ -60,21 +56,10 @@
     <Compile Include="PathInexistenteException.cs" />
     <Compile Include="Servidor\ServidorDTO.cs" />
     <Compile Include="EntidadDAO.cs" />
-    <Compile Include="Protocolo\Creador\CreadorProtocoloSMTP.cs" />
-    <Compile Include="Protocolo\Creador\CreadorProtocoloPOP.cs" />
-    <Compile Include="Protocolo\Creador\CreadorProtocolo.cs" />
-    <Compile Include="Servidor\Creador\ControlCreadoresServidor.cs" />
-    <Compile Include="Servidor\Creador\CreadorServidorNulo.cs" />
-    <Compile Include="Servidor\Factory\ServidorYahooFactory.cs" />
-    <Compile Include="Servidor\Factory\ServidorFactory.cs" />
-    <Compile Include="Protocolo\ProtocoloPOP.cs" />
-    <Compile Include="Protocolo\ProtocoloSMTP.cs" />
-    <Compile Include="Servidor\Factory\ServidorGmailFactory.cs" />
-    <Compile Include="Servidor\ServidorNulo.cs" />
-    <Compile Include="Servidor\Creador\CreadorServidor.cs" />
+    <Compile Include="Servidor\CreadorServidor.cs" />
     <Compile Include="Cuenta\CreadorCuenta.cs" />
     <Compile Include="Cuenta\CuentaDAO.cs" />
-    <Compile Include="DireccionCorreo.cs" />
+    <Compile Include="DireccionCorreo\DireccionCorreoDTO.cs" />
     <Compile Include="Mensaje\Estados\EstadoComunicacion.cs" />
     <Compile Include="Mensaje\Estados\IEstadoMensaje.cs" />
     <Compile Include="Mensaje\MensajeDAO.cs" />
@@ -83,12 +68,7 @@
     <Compile Include="Mensaje\Estados\EstadoPersistencia.cs" />
     <Compile Include="Mensaje\Estados\EstadoVisibilidad.cs" />
     <Compile Include="Protocolo\ProtocoloDTO.cs" />
-    <Compile Include="Protocolo\ProtocoloNulo.cs" />
-    <Compile Include="Servidor\Creador\CreadorServidorGmail.cs" />
-    <Compile Include="Servidor\Creador\CreadorServidorYahoo.cs" />
     <Compile Include="Servidor\ServidorDAO.cs" />
-    <Compile Include="Servidor\ServidorGmail.cs" />
-    <Compile Include="Servidor\ServidorYahoo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -98,6 +78,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -107,8 +88,11 @@
       <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
       <Name>CapaInterfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{a815539c-52f2-4d68-8759-ac6cbd74905c}</Project>
+      <Name>Utilidades</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

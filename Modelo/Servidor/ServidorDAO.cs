@@ -9,40 +9,20 @@ namespace Modelo
     /// <summary>
     /// Entidad ServidorDAO, modela un servidor de correo. Ej: gmail, yahoo, hotmail.
     /// </summary>
-    public abstract class ServidorDAO : IEntidadDAO<IProtocoloDTO>, IServidorDAO
+    public class ServidorDAO : IServidorDAO
     {
         protected IEntidadDAO<IProtocoloDTO> iServicioControlProtocolos;
 
         public IServidorDTO ServidorDTO { get; set; }
 
-        protected ServidorFactory iServidorFactory;
-
-        protected void RealizarServidor()
-        {
-            this.iServicioControlProtocolos = new EntidadDAO<IProtocoloDTO>(new List<IProtocoloDTO>());
-            this.ServidorDTO.Protocolos = this.iServidorFactory.AgregarEntidad();
-        }
-
         //Constructor
-        public ServidorDAO(ServidorFactory pServidorFactory)
+        public ServidorDAO(IServidorDTO pServidorDTO)
         {
-            this.ServidorDTO = new ServidorDTO();
-            this.iServidorFactory = pServidorFactory; //Si el parametro es nulo, el servidor será del tipo nulo.
-            if (this.iServidorFactory != null)
-                this.RealizarServidor();
-
+            this.ServidorDTO = pServidorDTO;
+            this.iServicioControlProtocolos = new EntidadDAO<IProtocoloDTO>(this.ServidorDTO.Protocolos);
         }
 
-        public virtual IProtocoloDTO ObtenerProtocolo(string nombre)
-        {
-            return this.ServidorDTO.Protocolos.FirstOrDefault(p => p.Nombre == nombre.ToLower());
-        }
-
-        IProtocoloDTO IServidorDAO.ObtenerProtocolo(string nombre)
-        {
-            throw new NotImplementedException();
-        }
-
+        #region Control protocolos
         public ICollection<IProtocoloDTO> Agregar(IProtocoloDTO pEntidad)
         {
             this.ServidorDTO.Protocolos = iServicioControlProtocolos.Agregar(pEntidad);
@@ -64,6 +44,8 @@ namespace Modelo
         public IProtocoloDTO Obtener(Expression<Func<IProtocoloDTO, bool>> pCriterio)
         {
             return iServicioControlProtocolos.Obtener(pCriterio);
-        }
+        } 
+        #endregion
+
     }
 }

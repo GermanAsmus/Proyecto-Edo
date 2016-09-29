@@ -23,7 +23,7 @@ namespace Tests
 
             creador = new Mensajeria();
 
-            cuentaDTO = new CuentaUsuarioDTO() { DireccionCorreo = new DireccionCorreo("tdd@gmail.com") };
+            cuentaDTO = new CuentaUsuarioDTO() { DireccionCorreo = new DireccionCorreoDTO("tdd@gmail.com") };
 
             mensajeDTO = new MensajeDTO()
             {
@@ -34,7 +34,7 @@ namespace Tests
         [TestMethod]
         public void ObtenerMensajeExterno()
         {
-            ICuentaDTO cuentaDestinatario = new CuentaDTO() { DireccionCorreo = new DireccionCorreo("destino1@gmail.com") };
+            ICuentaDTO cuentaDestinatario = new CuentaDTO() { DireccionCorreo = new DireccionCorreoDTO("destino1@gmail.com") };
 
             (mensajeDTO as IMensajeCompletoDTO).Contenido = "contenido tdd";
 
@@ -45,7 +45,7 @@ namespace Tests
         [TestMethod]
         public void ObtenerEstadoVisibilidad_MensajeExterno()
         {
-            ICuentaDTO cuentaDestinatario = new CuentaDTO() { DireccionCorreo = new DireccionCorreo("destino1@gmail.com") };
+            ICuentaDTO cuentaDestinatario = new CuentaDTO() { DireccionCorreo = new DireccionCorreoDTO("destino1@gmail.com") };
             mensajeDAO = creador.CrearMensaje(cuentaDTO, "Asunto: tdd", cuentaDestinatario);
             Assert.AreEqual(EstadoVisibilidad.No_Visto.ToString(), (mensajeDAO.MensajeDTO as MensajeDTO).Estado.ObtenerEstado());
         }
@@ -55,8 +55,8 @@ namespace Tests
         {
             ICollection<ICuentaDTO> destinatarios = new List<ICuentaDTO>()
             {
-            new CuentaDTO() { DireccionCorreo = new DireccionCorreo("destino1@gmail.com") },
-            new CuentaDTO() { DireccionCorreo = new DireccionCorreo("destino2@gmail.com") }
+            new CuentaDTO() { DireccionCorreo = new DireccionCorreoDTO("destino1@gmail.com") },
+            new CuentaDTO() { DireccionCorreo = new DireccionCorreoDTO("destino2@gmail.com") }
             };
 
             (cuentaDTO as ICuentaUsuarioDTO).Nombre = "vadim";
@@ -76,8 +76,8 @@ namespace Tests
         {
             ICollection<ICuentaDTO> destinatarios = new List<ICuentaDTO>()
             {
-            new CuentaDTO() { DireccionCorreo = new DireccionCorreo("destino1@gmail.com") },
-            new CuentaDTO() { DireccionCorreo = new DireccionCorreo("destino2@gmail.com") }
+            new CuentaDTO() { DireccionCorreo = new DireccionCorreoDTO("destino1@gmail.com") },
+            new CuentaDTO() { DireccionCorreo = new DireccionCorreoDTO("destino2@gmail.com") }
             };
 
             (cuentaDTO as ICuentaUsuarioDTO).Nombre = "vadim";
@@ -92,13 +92,13 @@ namespace Tests
         [TestMethod]
         public void AgregarNuevoDestinatario()
         {
-            ICuentaDTO cuentaDestinatario = new CuentaDTO() { DireccionCorreo = new DireccionCorreo("destino1@gmail.com") };
+            ICuentaDTO cuentaDestinatario = new CuentaDTO() { DireccionCorreo = new DireccionCorreoDTO("destino1@gmail.com") };
 
             (mensajeDTO as IMensajeCompletoDTO).Contenido = "contenido tdd";
 
             mensajeDAO = creador.CrearMensaje(cuentaDTO, "Asunto: tdd", cuentaDestinatario);
 
-            ICuentaDTO nuevaCuentaDestinatario = new CuentaDTO() { DireccionCorreo = new DireccionCorreo("destino2@gmail.com") };
+            ICuentaDTO nuevaCuentaDestinatario = new CuentaDTO() { DireccionCorreo = new DireccionCorreoDTO("destino2@gmail.com") };
 
             mensajeDAO.Agregar(nuevaCuentaDestinatario);
 
@@ -107,7 +107,7 @@ namespace Tests
         [TestMethod]
         public void EliminarDestinatario()
         {
-            ICuentaDTO cuentaDestinatario = new CuentaDTO() { DireccionCorreo = new DireccionCorreo("destino1@gmail.com") };
+            ICuentaDTO cuentaDestinatario = new CuentaDTO() { DireccionCorreo = new DireccionCorreoDTO("destino1@gmail.com") };
 
             (mensajeDTO as IMensajeCompletoDTO).Contenido = "contenido tdd";
 

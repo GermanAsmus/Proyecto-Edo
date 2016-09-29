@@ -5,9 +5,9 @@ using System.Net.Mail;
 
 namespace Modelo
 {
-    public class CuentaUsuarioDAO : CuentaDAO
+    public class CuentaUsuario : CuentaDAO
     {
-        public CuentaUsuarioDAO(ICuentaDTO pCuentaDTO) : base(pCuentaDTO) { }
+        public CuentaUsuario(ICuentaDTO pCuentaDTO) : base(pCuentaDTO) { }
         public override ICuentaDTO Cuenta
         {
             get

@@ -10,7 +10,7 @@ namespace Modelo
     /// <summary>
     /// Entidad DireccionCorreo, modela una dirección de correo. Ej: miCorreo@correo.com
     /// </summary>
-    public class DireccionCorreo : IDireccionCorreoDTO
+    public class DireccionCorreoDTO : IDireccionCorreoDTO
     {
 
         #region Propiedades
@@ -28,7 +28,7 @@ namespace Modelo
         public virtual ICollection<IMensajeDTO> MensajesRemitente { get; set; }
         #endregion
         
-        public DireccionCorreo(string pDireccionDeCorreo)
+        public DireccionCorreoDTO(string pDireccionDeCorreo)
         {
             if (string.IsNullOrEmpty(pDireccionDeCorreo))
                 throw new ArgumentNullException(string.Format("El parámetro {0} no puede ser nula", nameof(pDireccionDeCorreo)));

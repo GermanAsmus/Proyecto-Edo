@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Collections.Concurrent;
-using Modelo;
 using System.Net.Mail;
 using Utilidades.Excepciones;
 using Utilidades.Misc;
@@ -134,7 +133,7 @@ namespace Utilidades.SistemaDeArchivos
 
             return DescargarArchivo(textoPlano, Path.Combine(DireccionRaiz, "Edo", param[4].ToString() + ".txt"));
         }
-        public static string DescargarMensaje(MensajeDAO pMensaje)
+        public static string DescargarMensaje(IMensajeDAO pMensaje)
         {
             if (pMensaje == null)
                 throw new ArgumentNullException(nameof(pMensaje));

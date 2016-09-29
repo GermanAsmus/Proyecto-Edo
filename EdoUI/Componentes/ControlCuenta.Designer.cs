@@ -176,7 +176,7 @@
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(234, 13);
             this.labelNombre.TabIndex = 1;
-            this.labelNombre.Text = "Nombre";
+            this.labelNombre.Text = "Tipo";
             // 
             // textBoxNombre
             // 

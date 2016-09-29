@@ -42,7 +42,7 @@ namespace EdoUI
 
         private void toolStripComboBoxCuenta_Click(object sender, EventArgs e)
         {
-            //this.toolStripComboBoxCuenta.Items.AddRange(this.iControlador.ObtenerTodasLasCuentas().Select(x => x.Nombre).ToArray());
+            //this.toolStripComboBoxCuenta.Items.AddRange(this.iControlador.ObtenerTodasLasCuentas().Select(x => x.Tipo).ToArray());
         }
 
         private void toolStripComboBoxCuenta_SelectedIndexChanged(object sender, EventArgs e)

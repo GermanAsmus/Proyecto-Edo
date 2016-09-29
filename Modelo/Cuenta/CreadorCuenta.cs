@@ -28,9 +28,9 @@ namespace Modelo
         {
             this.iCuentaDTO = new CuentaDTO()
             {
-                DireccionCorreo = new DireccionCorreo(pDireccionCuenta)
+                DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta)
             };
-            return new CuentaExternaDAO(iCuentaDTO);
+            return new CuentaExterna(iCuentaDTO);
         }
 
         /// <summary>
@@ -44,10 +44,10 @@ namespace Modelo
         {
             this.iCuentaDTO = new CuentaDTO()
             {
-                DireccionCorreo = new DireccionCorreo(pDireccionCuenta),
+                DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),
             };
 
-            return this.AgregarMensajes(new CuentaExternaDAO(iCuentaDTO), pMensajes);
+            return this.AgregarMensajes(new CuentaExterna(iCuentaDTO), pMensajes);
         }
 
         #endregion
@@ -57,7 +57,7 @@ namespace Modelo
         {
             foreach (IMensajeCompletoDTO mensaje in pMensajes)
             {
-                (pCuenta as CuentaUsuarioDAO).Agregar(mensaje);
+                (pCuenta as CuentaUsuario).Agregar(mensaje);
             }
             return pCuenta;
         }
@@ -67,18 +67,18 @@ namespace Modelo
         /// </summary>
         /// <param name="pDireccionCuenta">Direccion de correo asociada a la cuenta.</param>
         /// <param name="pContraseña">Contraseña de la cuenta.</param>
-        /// <param name="pNombre">Nombre que identifica a la cuenta.</param>
+        /// <param name="pNombre">Tipo que identifica a la cuenta.</param>
         /// <returns>Nueva cuenta de usuario.</returns>
         public ICuentaDAO CrearCuenta(string pDireccionCuenta, string pContraseña, string pNombre)
         {
             this.iCuentaDTO = new CuentaUsuarioDTO()
             {
-                DireccionCorreo = new DireccionCorreo(pDireccionCuenta),
+                DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),
                 Nombre = pNombre,
                 Contraseña = pContraseña
             };
 
-            return new CuentaUsuarioDAO(this.iCuentaDTO as ICuentaUsuarioDTO);
+            return new CuentaUsuario(this.iCuentaDTO as ICuentaUsuarioDTO);
         }
 
         /// <summary>
@@ -87,19 +87,19 @@ namespace Modelo
         /// </summary>
         /// <param name="pDireccionCuenta">Direccion de correo asociada a la cuenta.</param>
         /// <param name="pContraseña">Contraseña de la cuenta.</param>
-        /// <param name="pNombre">Nombre que identifica a la cuenta.</param>
+        /// <param name="pNombre">Tipo que identifica a la cuenta.</param>
         /// <param name="pMensajes">Mensajes correspondientes a la cuenta.</param>
         /// <returns>Nueva cuenta de usuario.</returns>
         public ICuentaDAO CrearCuenta(string pDireccionCuenta, string pContraseña, string pNombre, ICollection<IMensajeCompletoDTO> pMensajes)
         {
             this.iCuentaDTO = new CuentaUsuarioDTO()
             {
-                DireccionCorreo = new DireccionCorreo(pDireccionCuenta),
+                DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),
                 Nombre = pNombre,
                 Contraseña = pContraseña
             };
 
-            return this.AgregarMensajes(new CuentaUsuarioDAO(this.iCuentaDTO as ICuentaUsuarioDTO), pMensajes);
+            return this.AgregarMensajes(new CuentaUsuario(this.iCuentaDTO as ICuentaUsuarioDTO), pMensajes);
         } 
         #endregion
     }

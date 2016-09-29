@@ -13,7 +13,7 @@ namespace Persistencia
         public IDbSet<CuentaDAO> Cuenta { get; set; }
         public IDbSet<MensajeDAO> Mensaje { get; set; }
         //public IDbSet<ServidorDAO> ServidorDAO { get; set; }
-        public IDbSet<DireccionCorreo> DireccionCorreo { get; set; }
+        public IDbSet<DireccionCorreoDTO> DireccionCorreo { get; set; }
         public IDbSet<AdjuntoDTO> Adjunto { get; set; }
 
         public EntityFrameworkDBContext()
@@ -68,7 +68,7 @@ namespace Persistencia
 
             ////modelBuilder.Entity<ServidorDAO>().ToTable("ServidorDAO");
             ////modelBuilder.Entity<ServidorDAO>().HasKey<int>(x => x.Id);
-            ////modelBuilder.Entity<ServidorDAO>().Property(x => x.Nombre).IsRequired();
+            ////modelBuilder.Entity<ServidorDAO>().Property(x => x.Tipo).IsRequired();
             ////modelBuilder.Entity<ServidorDAO>().Property(x => x.HostPOP).IsRequired();
             ////modelBuilder.Entity<ServidorDAO>().Property(x => x.HostSMTP).IsRequired();
             ////modelBuilder.Entity<ServidorDAO>().Property(x => x.PuertoPOP).IsRequired();
@@ -77,7 +77,7 @@ namespace Persistencia
 
             //modelBuilder.Entity<CuentaDAO>().ToTable("CuentaDAO");
             //modelBuilder.Entity<CuentaDAO>().HasKey<int>(x => x.Id);
-            //modelBuilder.Entity<CuentaDAO>().Property(x => x.Nombre).IsRequired();
+            //modelBuilder.Entity<CuentaDAO>().Property(x => x.Tipo).IsRequired();
             //modelBuilder.Entity<CuentaDAO>().Property(x => x.DireccionId).IsRequired();
             //modelBuilder.Entity<CuentaDAO>().Property(x => x.Contraseña).IsRequired();
             ////modelBuilder.Entity<CuentaDAO>().HasRequired(x => x.ServidorDAO).WithMany(y => y.CuentaDAO).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);

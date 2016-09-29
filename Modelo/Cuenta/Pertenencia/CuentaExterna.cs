@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Modelo
 {
-    public class CuentaExternaDAO : CuentaDAO
+    public class CuentaExterna : CuentaDAO
     {
-        public CuentaExternaDAO(ICuentaDTO pCuentaDTO) : base(pCuentaDTO) { }
+        public CuentaExterna(ICuentaDTO pCuentaDTO) : base(pCuentaDTO) { }
         public override ICuentaDTO Cuenta
         {
             get

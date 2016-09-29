@@ -4,7 +4,7 @@ namespace CapaInterfaces.Modelo
 {
     public interface IServidorDTO
     {
-        //Nombre del servidor.
+        //Tipo del servidor.
         string Nombre { get; set; }
         
         //Protocolos que utiliza el servidor.

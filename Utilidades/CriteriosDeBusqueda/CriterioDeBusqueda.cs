@@ -1,6 +1,5 @@
 ﻿using CapaInterfaces;
 using CapaInterfaces.Utilidades;
-using Modelo;
 using System;
 using System.Linq.Expressions;
 

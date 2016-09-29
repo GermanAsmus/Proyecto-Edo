@@ -12,7 +12,6 @@ namespace Modelo
         public ServidorNuloDTO()
         {
             this.Nombre = string.Empty;
-
         }
     }
 }

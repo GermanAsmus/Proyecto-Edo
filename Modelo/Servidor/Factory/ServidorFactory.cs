@@ -10,8 +10,7 @@ namespace Modelo
         {
             IList<IProtocoloDTO> protocolos = new List<IProtocoloDTO>()
             {
-                new ProtocoloSMTP(),
-                new ProtocoloPOP()
+                
             };
             return protocolos;
         }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Tests
 {
     [TestClass]
-    public class CuentaTDD
+    public class CuentaTests
     {
         private static ICuentaDAO cuentaTdd;
         private static string direccion;

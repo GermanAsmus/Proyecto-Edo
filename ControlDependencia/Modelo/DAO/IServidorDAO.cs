@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CapaInterfaces.Modelo
 {
-    public interface IServidorDAO
+    public interface IServidorDAO : IEntidadDAO<IProtocoloDTO>
     {
-        IProtocoloDTO ObtenerProtocolo(string nombre);
+        IServidorDTO ServidorDTO { get; set; }
     }
 }

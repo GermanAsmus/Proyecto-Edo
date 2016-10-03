@@ -10,19 +10,27 @@ using System.Data.Entity.Core.Objects.DataClasses;
 
 namespace Persistencia
 {
-    public class Repositorio<TEntity> : IRepositorioCompleto<TEntity> where TEntity : class, IEntidadModelo
+    public abstract class Repositorio<TEntity> : IRepositorioCompleto<TEntity> where TEntity : class, IEntidadModelo
     {
         //Disparador para que UoW realize el commit.
         public Action Actualizar;
 
         private IDbSet<TEntity> iDbSet;
 
-        public Repositorio(IDbSet<TEntity> pDbset)
+
+
+        public Repositorio(IDbSet<TEntity> pDbSet)
         {
-            this.iDbSet = pDbset;
+            this.iDbSet = pDbSet;
         }
 
-        public void Agregar(TEntity entity)
+        public abstract void Agregar(TEntity entity);
+
+        /// <summary>
+        /// Agrega un elemento a la base de datos
+        /// </summary>
+        /// <param name="entity">entidad concreta del modelo</param>
+        protected void AgregarEntidad(TEntity entity)
         {
             iDbSet.Add(entity);
             Actualizar();

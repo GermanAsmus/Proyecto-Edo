@@ -63,7 +63,11 @@
       <DependentUpon>201605041931359_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Repositorio.cs" />
+    <Compile Include="Repositorios\Repositorio.cs" />
+    <Compile Include="Repositorios\RepositorioAdjunto.cs" />
+    <Compile Include="Repositorios\RepositorioCuenta.cs" />
+    <Compile Include="Repositorios\RepositorioDireccion.cs" />
+    <Compile Include="Repositorios\RepositorioMensaje.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +99,10 @@
     <ProjectReference Include="..\Modelo\Modelo.csproj">
       <Project>{c7f74b31-7843-4997-82e0-0e9d00b3df1b}</Project>
       <Name>Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{a815539c-52f2-4d68-8759-ac6cbd74905c}</Project>
+      <Name>Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

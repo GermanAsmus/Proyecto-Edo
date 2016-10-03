@@ -10,12 +10,12 @@ namespace Persistencia
     public class Controlador : IControlador
 
     {
-        internal IUnitOfWork iUnitOfWork;
+        private IUnitOfWork iUnitOfWork;
 
-        internal IRepositorioCompleto<ICuentaDTO> iRepositorioCuenta;
-        internal IRepositorioCompleto<IMensajeDTO> iRepositorioMensaje;
-        internal IRepositorioCompleto<IAdjuntoDTO> iRepositorioAdjunto;
-        internal IRepositorioCompleto<IDireccionCorreoDTO> iRepositorioDireccionCorreo;
+        private IRepositorioCompleto<ICuentaDTO> iRepositorioCuenta;
+        private IRepositorioCompleto<IMensajeDTO> iRepositorioMensaje;
+        private IRepositorioCompleto<IAdjuntoDTO> iRepositorioAdjunto;
+        private IRepositorioCompleto<IDireccionCorreoDTO> iRepositorioDireccionCorreo;
 
 
         public Controlador(IUnitOfWork pUnitOfWork)

@@ -21,5 +21,10 @@ namespace Modelo
 
         public IServidorDAO Servidor { get; set; }
 
+        public CuentaDTO()
+        {
+            this.Mensajes = new List<IMensajeDTO>();
+        }
+
     }
 }

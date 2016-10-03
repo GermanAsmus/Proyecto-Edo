@@ -16,12 +16,16 @@ namespace Persistencia
         /// <summary>
         /// El contexto en el que se ejecuta la aplicación.
         /// </summary>
-        internal IContext iContext;
+        private IContext iContext;
         /// <summary>
         /// Colección de repositorios, mantendrán los mensajes CRUD correspondientes.
         /// </summary>
-        internal ICollection<IRepositorioRaiz> iRepositorios;
+        private ICollection<IRepositorioRaiz> iRepositorios;
 
+        /// <summary>
+        /// Unit of Work instancia internamente los repositorios que necesita para actuar.
+        /// </summary>
+        /// <param name="pContext"></param>
         public UnitOfWork(IContext pContext)
         {
             this.iContext = pContext;
@@ -32,27 +36,11 @@ namespace Persistencia
             ///el repositorio correspondiente disparará la acción para avisarle al UoW,
             ///quien actualizará el contexto.
 
-            #region Instaciar repositorio cuenta
-
-            IRepositorioCompleto<ICuentaDTO> rCuenta = new Repositorio<ICuentaDTO>((this.iContext as DbContext).Set<ICuentaDTO>());
-            (rCuenta as Repositorio<ICuentaDTO>).Actualizar += Actualizar;
-
-            this.iRepositorios.Add(rCuenta);
-
-            #endregion
-
-            #region Instanciar repositorio mensaje
-
-            IRepositorioCompleto<IMensajeDTO> rMensaje = new Repositorio<IMensajeDTO>((this.iContext as DbContext).Set<IMensajeDTO>());
-            (rMensaje as Repositorio<IMensajeDTO>).Actualizar += Actualizar;
-
-            this.iRepositorios.Add(rMensaje);
-
-            #endregion
+            this.iRepositorios = new List<IRepositorioRaiz>();
 
             #region Instanciar repositorio adjunto
 
-            IRepositorioCompleto<IAdjuntoDTO> rAdjunto = new Repositorio<IAdjuntoDTO>((this.iContext as DbContext).Set<IAdjuntoDTO>());
+            IRepositorioCompleto<IAdjuntoDTO> rAdjunto = new RepositorioAdjunto((this.iContext as DbContext).Set<IAdjuntoDTO>());
             (rAdjunto as Repositorio<IAdjuntoDTO>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rAdjunto);
@@ -61,10 +49,29 @@ namespace Persistencia
 
             #region Instanciar repositorio direccion
 
-            IRepositorioCompleto<IDireccionCorreoDTO> rDireccion = new Repositorio<IDireccionCorreoDTO>((this.iContext as DbContext).Set<IDireccionCorreoDTO>());
+            IRepositorioCompleto<IDireccionCorreoDTO> rDireccion = new RepositorioDireccion((this.iContext as DbContext).Set<IDireccionCorreoDTO>());
             (rDireccion as Repositorio<IDireccionCorreoDTO>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rDireccion);
+
+            #endregion
+
+            #region Instaciar repositorio cuenta
+            //rCuenta necesita de rDireccion
+            IRepositorioCompleto<ICuentaDTO> rCuenta = new RepositorioCuenta(rDireccion, (this.iContext as DbContext).Set<ICuentaDTO>());
+
+            (rCuenta as Repositorio<ICuentaDTO>).Actualizar += Actualizar;
+
+            this.iRepositorios.Add(rCuenta);
+
+            #endregion
+
+            #region Instanciar repositorio mensaje
+            //rMensaje necesita de rCuenta
+            IRepositorioCompleto<IMensajeDTO> rMensaje = new RepositorioMensaje(rCuenta, (this.iContext as DbContext).Set<IMensajeDTO>());
+            (rMensaje as Repositorio<IMensajeDTO>).Actualizar += Actualizar;
+
+            this.iRepositorios.Add(rMensaje);
 
             #endregion
 

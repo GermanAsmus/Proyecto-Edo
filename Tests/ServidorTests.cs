@@ -21,14 +21,14 @@ namespace Tests
         {
             servidor = creador.CrearServidorGmail();
             Assert.AreEqual(servidor.Obtener(p => p.Tipo == "smtp").Host, "smtp.gmail.com");
-            Assert.AreEqual(servidor.Obtener(p => p.Tipo == "pop").Host, "pop.gmail.com");
+            Assert.AreEqual(servidor.Obtener(p => p.Tipo == "pop3").Host, "pop.gmail.com");
         }
         [TestMethod]
         public void ObtenerServidorYahoo()
         {
             servidor = creador.CrearServidorYahoo();
             Assert.AreEqual(servidor.Obtener(p => p.Tipo == "smtp").Host, "smtp.mail.yahoo.com");
-            Assert.AreEqual(servidor.Obtener(p => p.Tipo == "pop").Host, "pop.mail.yahoo.com");
+            Assert.AreEqual(servidor.Obtener(p => p.Tipo == "pop3").Host, "pop.mail.yahoo.com");
         }
     }
 }

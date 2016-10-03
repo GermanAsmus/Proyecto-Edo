@@ -1,4 +1,5 @@
 ﻿using CapaInterfaces.Modelo;
+using System;
 using System.Collections.Generic;
 
 namespace Modelo
@@ -14,7 +15,7 @@ namespace Modelo
         {
             foreach (IMensajeDTO mensaje in pMensajes)
             {
-                (pCuenta as CuentaDAO).Agregar(mensaje);
+                pCuenta.Agregar(mensaje);
             }
             return pCuenta;
         }
@@ -26,6 +27,11 @@ namespace Modelo
         /// <returns>Nueva cuenta extena.</returns>
         public ICuentaDAO CrearCuenta(string pDireccionCuenta)
         {
+            #region programacion defensiva
+            if (string.IsNullOrEmpty(pDireccionCuenta))
+                throw new NullReferenceException(nameof(pDireccionCuenta)); 
+            #endregion
+
             this.iCuentaDTO = new CuentaDTO()
             {
                 DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta)
@@ -42,6 +48,14 @@ namespace Modelo
         /// <returns>Nueva cuenta externa.</returns>
         public ICuentaDAO CrearCuenta(string pDireccionCuenta, ICollection<IMensajeDTO> pMensajes)
         {
+            #region programacion defensiva
+            if (string.IsNullOrEmpty(pDireccionCuenta))
+                throw new NullReferenceException(nameof(pDireccionCuenta));
+
+            if (pMensajes == null)
+                throw new NullReferenceException(nameof(pMensajes)); 
+            #endregion
+
             this.iCuentaDTO = new CuentaDTO()
             {
                 DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),
@@ -71,6 +85,17 @@ namespace Modelo
         /// <returns>Nueva cuenta de usuario.</returns>
         public ICuentaDAO CrearCuenta(string pDireccionCuenta, string pContraseña, string pNombre)
         {
+            #region programacion defensiva
+            if (string.IsNullOrEmpty(pDireccionCuenta))
+                throw new NullReferenceException(nameof(pDireccionCuenta));
+
+            if (string.IsNullOrEmpty(pContraseña))
+                throw new NullReferenceException(nameof(pContraseña));
+
+            if (string.IsNullOrEmpty(pNombre))
+                throw new NullReferenceException(nameof(pNombre)); 
+            #endregion
+
             this.iCuentaDTO = new CuentaUsuarioDTO()
             {
                 DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),
@@ -92,6 +117,20 @@ namespace Modelo
         /// <returns>Nueva cuenta de usuario.</returns>
         public ICuentaDAO CrearCuenta(string pDireccionCuenta, string pContraseña, string pNombre, ICollection<IMensajeCompletoDTO> pMensajes)
         {
+            #region programacion defensiva
+            if (string.IsNullOrEmpty(pDireccionCuenta))
+                throw new NullReferenceException(nameof(pDireccionCuenta));
+
+            if (string.IsNullOrEmpty(pContraseña))
+                throw new NullReferenceException(nameof(pContraseña));
+
+            if (string.IsNullOrEmpty(pNombre))
+                throw new NullReferenceException(nameof(pNombre));
+
+            if (pMensajes == null)
+                throw new NullReferenceException(nameof(pMensajes)); 
+            #endregion
+
             this.iCuentaDTO = new CuentaUsuarioDTO()
             {
                 DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),

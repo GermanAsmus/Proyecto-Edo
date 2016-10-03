@@ -9,39 +9,42 @@ namespace Tests
     [TestClass]
     public class CuentaTests
     {
-        private static ICuentaDAO cuentaTdd;
+        private static ICuentaDAO iCuenta;
         private static string direccion;
         private static CreadorCuenta creador;
-        private static ICollection<IMensajeDTO> mensajes;
-
 
         [TestInitialize]
         public void Initialize()
         {
-            direccion = "tdd@gmail.com";
-            mensajes = new List<IMensajeDTO>();
+            direccion = "test@gmail.com";
+            
         }
 
         [TestMethod]
         public void ObtenerCuenaExterna()
         {
-            //mensajes.Add(new MensajeExternoIncompletoDTO() { Asunto = "TDD" });
-            //mensajes.Add(new MensajeExternoCompletoDTO() { Asunto = "TDD" , Contenido = "Mensaje externo"});
+            ICollection<IMensajeDTO> mensajes = new List<IMensajeDTO>();
+            mensajes.Add(new MensajeDTO { Asunto = "test" });
+            mensajes.Add(new MensajeDTO { Asunto = "test" , Contenido = "Mensaje externo"});
 
-            //creador = new CreadorCuentaExterna(direccion, mensajes);
-            //cuentaTdd = creador.ObtenerEntidad();
-            Assert.IsNotNull(cuentaTdd);
+            creador = new CreadorCuenta();
+            iCuenta = creador.CrearCuenta(direccion, mensajes);
+            Assert.AreEqual("test@gmail.com", iCuenta.Cuenta.DireccionCorreo.DireccionDeCorreo);
+            Assert.AreEqual(2, iCuenta.Cuenta.Mensajes.Count);
         }
         [TestMethod]
         public void ObtenerCuentaUsuario()
         {
-            //mensajes.Add(new MensajeUsuarioDTO() { Asunto = "TDD", Contenido = "Mensaje usuario" });
-            //string nombre, contraseña;
-            //nombre = nameof(cuentaTdd);
-            //contraseña = "1234";
-            //creador = new CreadorCuentaUsuario(direccion, contraseña, nombre, mensajes);
-            //cuentaTdd = creador.ObtenerEntidad();
-            Assert.IsNotNull(cuentaTdd);
+            ICollection<IMensajeCompletoDTO> mensajes = new List<IMensajeCompletoDTO>();
+            mensajes.Add(new MensajeDTO() { Asunto = "test", Contenido = "Mensaje usuario" });
+            string nombre, contraseña;
+            nombre = nameof(iCuenta);
+            contraseña = "1234";
+            creador = new CreadorCuenta();
+            iCuenta = creador.CrearCuenta(direccion, contraseña, nombre, mensajes);
+            Assert.AreEqual("test@gmail.com", iCuenta.Cuenta.DireccionCorreo.DireccionDeCorreo);
+            Assert.AreEqual("iCuenta", (iCuenta.Cuenta as ICuentaUsuarioDTO).Nombre);
+            Assert.AreEqual("1234", (iCuenta.Cuenta as ICuentaUsuarioDTO).Contraseña);
         }
     }
 }

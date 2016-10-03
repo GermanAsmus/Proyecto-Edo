@@ -45,12 +45,7 @@
   <ItemGroup>
     <Compile Include="Controlador.cs" />
     <Compile Include="Excepciones\AddOperationException.cs" />
-    <Compile Include="GestorRepositorios.cs" />
     <Compile Include="Excepciones\InvalidRepositoryOperationException.cs" />
-    <Compile Include="Repositorios\RepositorioMensaje.cs" />
-    <Compile Include="Repositorios\RepositorioCuenta.cs" />
-    <Compile Include="Repositorios\RepositorioDireccion.cs" />
-    <Compile Include="Repositorios\RepositorioAbstracto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

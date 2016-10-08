@@ -7,7 +7,7 @@ using CapaInterfaces.Persistencia;
 
 namespace Persistencia
 {
-    public class Controlador : IControlador
+    public class Controlador : CapaInterfaces.Persistencia.IControlador
 
     {
         private IUnitOfWork iUnitOfWork;

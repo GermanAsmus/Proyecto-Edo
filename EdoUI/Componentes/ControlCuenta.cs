@@ -9,65 +9,57 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //using ControlDependencia;
 using Modelo;
+using CapaInterfaces.Modelo;
 //using ControlDependencia.Dominio;
 
 namespace EdoUI
 {
     public partial class ControlCuenta : UserControl
     {
-        public CuentaDTO iNuevaCuenta { get; }
-        //private IControlador iControlador;
-        private string iDireccion;
 
-        //public ControlCuenta(ref IControlador pControlador)
-        //{
-        //    InitializeComponent();
-        //    iNuevaCuenta = new Cuenta();
-        //    iControlador = pControlador;
-        //    //comboBoxServidores.Items.AddRange(this.iControlador.ObtenerTodosLosServidores().Select(x => x.Tipo).ToArray());
-        //}
+        public ICuentaUsuarioDTO Cuenta { get; set; }
+
+        public ControlCuenta(string[] pNombreServidores)
+        {
+            InitializeComponent();
+            this.Cuenta = new CuentaUsuarioDTO();
+
+
+            if (pNombreServidores != null)
+                this.comboBoxServidores.Items.AddRange(pNombreServidores);
+        }
 
         private void toolStripButtonAceptar_Click(object sender, EventArgs e)
         {
-            //if (comboBoxServidores.SelectedItem == null)
-            //    MessageBox.Show("No ha seleccionado el servidor");
-            //else
-            //{
-            //    DireccionCorreo iDireccionCorreo = this.iControlador.ObtenerDireccionDeCorreo(this.iDireccion);
-            //    if (iDireccionCorreo == null)
-            //    {
-            //        iDireccionCorreo = new DireccionCorreo()
-            //        {
-            //            DireccionDeCorreo = this.iDireccion,
-            //        };
-            //    }
-            //    Servidor iServidor = this.iControlador.ObtenerServidor(comboBoxServidores.SelectedItem.ToString());
-            //    this.iControlador.AregarCuenta(iDireccionCorreo, iNuevaCuenta, iServidor);
-            //    Parent.Dispose();
-            //}
-            Parent.Dispose();
+            if (!this.CamposObligatoriosCompletos())
+                MessageBox.Show("Faltan completar campos obligatorios");
+            else
+            {
+                this.Cuenta.Nombre = textBoxNombre.Text;
 
+                this.Cuenta.DireccionCorreo = new DireccionCorreoDTO(textBoxDireccion.Text);
+
+                if (string.Equals(textBoxContrasenia.Text, textBoxContrasenia2.Text))
+                {
+                    this.Cuenta.Contraseña = textBoxContrasenia.Text;
+
+                    this.Hide();
+                }
+                else
+                    MessageBox.Show("La contraseña no coincide");
+            }
         }
 
-        private void textBoxNombre_TextChanged(object sender, EventArgs e)
+        private bool CamposObligatoriosCompletos()
         {
-            //iNuevaCuenta.Tipo = textBoxNombre.Text;
-        }
+            if (
+            string.IsNullOrEmpty(this.textBoxNombre.Text) &&
+            string.IsNullOrEmpty(this.textBoxDireccion.Text) &&
+            string.IsNullOrEmpty(this.textBoxContrasenia.Text) &&
+            string.IsNullOrEmpty(this.textBoxContrasenia2.Text))
+                return false;
+            return true;
 
-        private void textBoxDireccion_TextChanged(object sender, EventArgs e)
-        {
-            //iDireccion = textBoxDireccion.Text;
-        }
-
-        private void textBoxContrasenia2_TextChanged(object sender, EventArgs e)
-        {
-            //if (string.Compare(textBoxContrasenia.Text, textBoxContrasenia2.Text) > 0)
-            //    textBoxContrasenia.ForeColor = Color.Red;
-            //else if (string.Equals(textBoxContrasenia.Text, textBoxContrasenia2.Text))
-            //{
-            //    textBoxContrasenia.ForeColor = Color.Green;
-            //    iNuevaCuenta.Contraseña = textBoxContrasenia.Text;
-            //}
         }
     }
 }

@@ -72,6 +72,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Componentes\Bandeja\BandejaCuentas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\Bandeja\BandejaCuentas.Designer.cs">
+      <DependentUpon>BandejaCuentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Componentes\Bandeja\Bandeja.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\Bandeja\Bandeja.Designer.cs">
+      <DependentUpon>Bandeja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Componentes\Bloque\Bloque.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Componentes\Bloque\Bloque.Designer.cs">
+      <DependentUpon>Bloque.cs</DependentUpon>
+    </Compile>
     <Compile Include="IoC_CL.cs" />
     <Compile Include="Sobre.cs">
       <SubType>Form</SubType>
@@ -79,10 +97,10 @@
     <Compile Include="Sobre.Designer.cs">
       <DependentUpon>Sobre.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\BloqueUtilidad.cs">
+    <Compile Include="Componentes\Bloque\BloqueUtilidad.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componentes\BloqueUtilidad.Designer.cs">
+    <Compile Include="Componentes\Bloque\BloqueUtilidad.Designer.cs">
       <DependentUpon>BloqueUtilidad.cs</DependentUpon>
     </Compile>
     <Compile Include="Componentes\ControlRaiz.cs">
@@ -110,16 +128,16 @@
     <Compile Include="Componentes\ControlAdjuntos.Designer.cs">
       <DependentUpon>ControlAdjuntos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\BandejaMensajes.cs">
+    <Compile Include="Componentes\Bandeja\BandejaMensajes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componentes\BandejaMensajes.Designer.cs">
+    <Compile Include="Componentes\Bandeja\BandejaMensajes.Designer.cs">
       <DependentUpon>BandejaMensajes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\BloqueCuenta.cs">
+    <Compile Include="Componentes\Bloque\BloqueCuenta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componentes\BloqueCuenta.Designer.cs">
+    <Compile Include="Componentes\Bloque\BloqueCuenta.Designer.cs">
       <DependentUpon>BloqueCuenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Componentes\ControlCuenta.cs">
@@ -128,10 +146,10 @@
     <Compile Include="Componentes\ControlCuenta.Designer.cs">
       <DependentUpon>ControlCuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\BloqueMensaje.cs">
+    <Compile Include="Componentes\Bloque\BloqueMensaje.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componentes\BloqueMensaje.Designer.cs">
+    <Compile Include="Componentes\Bloque\BloqueMensaje.Designer.cs">
       <DependentUpon>BloqueMensaje.cs</DependentUpon>
     </Compile>
     <Compile Include="Componentes\ControlMensaje.cs">
@@ -140,16 +158,19 @@
     <Compile Include="Componentes\ControlMensaje.Designer.cs">
       <DependentUpon>ControlMensaje.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\PanelPrincipal.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Componentes\PanelPrincipal.Designer.cs">
-      <DependentUpon>PanelPrincipal.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Componentes\Bandeja\BandejaCuentas.resx">
+      <DependentUpon>BandejaCuentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Componentes\Bandeja\Bandeja.resx">
+      <DependentUpon>Bandeja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Componentes\Bloque\Bloque.resx">
+      <DependentUpon>Bloque.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sobre.resx">
       <DependentUpon>Sobre.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\BloqueUtilidad.resx">
+    <EmbeddedResource Include="Componentes\Bloque\BloqueUtilidad.resx">
       <DependentUpon>BloqueUtilidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Componentes\ControlRaiz.resx">
@@ -165,23 +186,20 @@
     <EmbeddedResource Include="Componentes\ControlAdjuntos.resx">
       <DependentUpon>ControlAdjuntos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\BandejaMensajes.resx">
+    <EmbeddedResource Include="Componentes\Bandeja\BandejaMensajes.resx">
       <DependentUpon>BandejaMensajes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\BloqueCuenta.resx">
+    <EmbeddedResource Include="Componentes\Bloque\BloqueCuenta.resx">
       <DependentUpon>BloqueCuenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Componentes\ControlCuenta.resx">
       <DependentUpon>ControlCuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\BloqueMensaje.resx">
+    <EmbeddedResource Include="Componentes\Bloque\BloqueMensaje.resx">
       <DependentUpon>BloqueMensaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Componentes\ControlMensaje.resx">
       <DependentUpon>ControlMensaje.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\PanelPrincipal.resx">
-      <DependentUpon>PanelPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -221,6 +239,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Todo lo que podes hacer con Go-Mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1453773768_19.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

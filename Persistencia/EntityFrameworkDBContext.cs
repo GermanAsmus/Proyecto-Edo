@@ -79,7 +79,7 @@ namespace Persistencia
             //modelBuilder.Entity<CuentaDAO>().HasKey<int>(x => x.Id);
             //modelBuilder.Entity<CuentaDAO>().Property(x => x.Tipo).IsRequired();
             //modelBuilder.Entity<CuentaDAO>().Property(x => x.DireccionId).IsRequired();
-            //modelBuilder.Entity<CuentaDAO>().Property(x => x.Contraseña).IsRequired();
+            //modelBuilder.Entity<CuentaDAO>().Property(x => x.Contrasenia).IsRequired();
             ////modelBuilder.Entity<CuentaDAO>().HasRequired(x => x.ServidorDAO).WithMany(y => y.CuentaDAO).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
             //modelBuilder.Entity<CuentaDAO>().HasRequired(x => x.DireccionCorreo).WithOptional(y => y.CuentaDAO);
 

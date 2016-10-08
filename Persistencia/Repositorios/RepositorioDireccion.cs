@@ -1,5 +1,4 @@
 ﻿using CapaInterfaces;
-using CapaInterfaces.Dominio;
 using CapaInterfaces.Modelo;
 using System;
 using System.Data.Entity;

@@ -53,7 +53,7 @@ namespace EdoUI
             this.tableLayoutPanelContenedorBandeja.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelContenedorBandeja.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelContenedorBandeja.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelContenedorBandeja.Size = new System.Drawing.Size(200, 160);
+            this.tableLayoutPanelContenedorBandeja.Size = new System.Drawing.Size(690, 81);
             this.tableLayoutPanelContenedorBandeja.TabIndex = 0;
             // 
             // toolStripCabecera
@@ -65,7 +65,7 @@ namespace EdoUI
             this.toolStripButtonRedactar});
             this.toolStripCabecera.Location = new System.Drawing.Point(0, 0);
             this.toolStripCabecera.Name = "toolStripCabecera";
-            this.toolStripCabecera.Size = new System.Drawing.Size(200, 25);
+            this.toolStripCabecera.Size = new System.Drawing.Size(690, 25);
             this.toolStripCabecera.TabIndex = 0;
             this.toolStripCabecera.Text = "toolStrip1";
             // 
@@ -85,16 +85,16 @@ namespace EdoUI
             this.tabControlMensajes.Location = new System.Drawing.Point(3, 28);
             this.tabControlMensajes.Name = "tabControlMensajes";
             this.tabControlMensajes.SelectedIndex = 0;
-            this.tabControlMensajes.Size = new System.Drawing.Size(194, 129);
+            this.tabControlMensajes.Size = new System.Drawing.Size(684, 50);
             this.tabControlMensajes.TabIndex = 1;
             // 
             // BloqueCuenta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoSize = true;
             this.Controls.Add(this.tableLayoutPanelContenedorBandeja);
             this.Name = "BloqueCuenta";
-            this.Size = new System.Drawing.Size(200, 160);
+            this.Size = new System.Drawing.Size(690, 81);
             this.tableLayoutPanelContenedorBandeja.ResumeLayout(false);
             this.tableLayoutPanelContenedorBandeja.PerformLayout();
             this.toolStripCabecera.ResumeLayout(false);

@@ -16,6 +16,9 @@ namespace EdoUI
     public partial class BloqueCuenta : UserControl
     {
         //private IControlador controlador;
+
+
+
         private BandejaMensajes bandeja;
         //public BloqueCuenta(CuentaDAO pCuenta, ref IControlador pControlador)
         //{

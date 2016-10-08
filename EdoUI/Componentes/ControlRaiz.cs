@@ -9,45 +9,68 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaInterfaces;
 using Modelo;
-using CapaInterfaces.Dominio;
-//using UnityDI;
+using CapaInterfaces.Modelo;
 
 namespace EdoUI
 {
     public partial class ControlRaiz : UserControl
     {
         private IControlador iControlador;
+        private BandejaCuentas iBandejaCuentas;
 
         public ControlRaiz()
         {
             InitializeComponent();
             tabControlContenedor.ImageList = imageList1;
-            iControlador = IoC_CL.Resolver<IControlador>();
+            //iControlador = IoC_CL.Resolver<IControlador>();
 
-            AgregarTab(new PictureBox() { Name="Primeros Pasos" });
+
+            this.iBandejaCuentas = new BandejaCuentas(null);
+            AgregarTab(this.iBandejaCuentas, "Cuentas");
+
+            //Cuando el controlador funcione debería listar las cuentas que están en la bbdd
+            //this.iBandejaCuentas.ListarCuentas(this.iControlador.ListarCuentas());
         }
-        private void AgregarTab(Control pControl)
+
+        private TabPage AgregarTab(Control pControl, string pNombre)
         {
 
-            TabPage tb = new TabPage(pControl.Name);
+            TabPage tb = new TabPage(pNombre);
             tb.ImageIndex = 0;
             pControl.Dock = DockStyle.Fill;
             tb.Controls.Add(pControl);
             tabControlContenedor.TabPages.Add(tb);
+            return tb;
         }
+
         private void toolStripButtonNuevaCuenta_Click(object sender, EventArgs e)
         {
-            //AgregarTab(new ControlCuenta(ref iControlador) { Name = "Nueva Cuenta" });
+            ControlCuenta controlNuevaCuenta = new ControlCuenta(null);
+            this.tabControlContenedor.SelectedTab = AgregarTab(controlNuevaCuenta, "Nueva Cuenta");
+            controlNuevaCuenta.VisibleChanged += ControlNuevaCuenta_VisibleChanged;
         }
 
-        private void toolStripComboBoxCuenta_Click(object sender, EventArgs e)
+        private void ControlNuevaCuenta_VisibleChanged(object sender, EventArgs e)
         {
-            //this.toolStripComboBoxCuenta.Items.AddRange(this.iControlador.ObtenerTodasLasCuentas().Select(x => x.Tipo).ToArray());
-        }
+            ControlCuenta controlDeLaCuentaCreada = (sender as ControlCuenta);
 
-        private void toolStripComboBoxCuenta_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            TabPage pestaniaPadreDelControl = controlDeLaCuentaCreada.Parent as TabPage;
 
+            //Se obtiene la información de la nueva cuenta.
+            ICuentaUsuarioDTO cuentaCreada = controlDeLaCuentaCreada.Cuenta;
+            //La pestaña se cierra antes de mostrar el mensaje.
+            pestaniaPadreDelControl.Dispose();
+
+            // se guarda la nueva cuenta;
+            //  this.iControlador.CrearCuentaNueva((sender as ControlCuenta).Cuenta);
+
+            string mensaje = string.Format(
+                @"La cuenta ha sido creada satisfactoriamente.
+                {0}Los datos ingresados fueron: 
+                {0}Nombre: {1},
+                {0}Correo: {2},
+                {0}Seleccione la pestaña cuentas para utilizar su nueva cuenta", Environment.NewLine, cuentaCreada.Nombre, cuentaCreada.DireccionCorreo.DireccionDeCorreo);
+            MessageBox.Show(this, mensaje, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

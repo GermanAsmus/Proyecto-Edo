@@ -43,8 +43,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICreador.cs" />
-    <Compile Include="IFactory.cs" />
+    <Compile Include="IControlador.cs" />
     <Compile Include="Modelo\DAO\IEntidadDAO.cs" />
     <Compile Include="Modelo\DAO\IServidorDAO.cs" />
     <Compile Include="Modelo\DTO\ICuentaDTO.cs" />
@@ -64,9 +63,7 @@
     <Compile Include="Modelo\DTO\IServidorDTO.cs" />
     <Compile Include="Persistencia\IControlador.cs" />
     <Compile Include="Utilidades\IBuzon.cs" />
-    <Compile Include="Dominio\IControlador.cs" />
     <Compile Include="Utilidades\ICriterio.cs" />
-    <Compile Include="Dominio\IGestorRespositorios.cs" />
     <Compile Include="Servicio\IProtocolo.cs" />
     <Compile Include="Servicio\IProtocoloRecepcion.cs" />
     <Compile Include="Servicio\IProtocoloTransmision.cs" />

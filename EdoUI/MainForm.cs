@@ -17,35 +17,24 @@ namespace EdoUI
 {
     public partial class MainForm : Form
     {
+        
         delegate void SetTextCallback(string text);
         static System.Timers.Timer iTimer;
 
-        PanelPrincipal controlPanelPrincipal;
+        ControlRaiz iControlRaiz;
 
         public MainForm()
         {
             InitializeComponent();
 
-            controlPanelPrincipal = new PanelPrincipal() { Dock = DockStyle.Fill };
-            controlPanelPrincipal.ContainerChanged += ContainerHasChanged;
-            controlPanelPrincipal.ContainerIsDisposed += ContainerHasBeenDisposed;
-            panelPrincipal.Controls.Add(controlPanelPrincipal);
+            this.iControlRaiz = new ControlRaiz() { Dock = DockStyle.Fill };
+
+            this.PanelRaiz.Controls.Add(this.iControlRaiz);
+
 
             iTimer = new System.Timers.Timer(5000);
             iTimer.Elapsed += new ElapsedEventHandler(iTimer_Elapsed);
             iTimer.Enabled = true;
-        }
-
-        private void ContainerHasChanged()
-        {
-            if (this.controlPanelPrincipal.contenedorPanel.IsDisposed && this.panelA.Controls.Count == 0)
-                panelA.Controls.Add(this.controlPanelPrincipal.contenedorPanel.Controls[0]);
-        }
-
-        private void ContainerHasBeenDisposed()
-        {
-            if (this.controlPanelPrincipal.contenedorPanel.IsDisposed && this.panelA.Controls.Count > 0)
-                panelA.Controls.RemoveAt(0);
         }
 
         private void iTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -64,5 +53,6 @@ namespace EdoUI
                 this.toolStripStatusLabelConexion.Text = pTexto;
             }
         }
+
     }
 }

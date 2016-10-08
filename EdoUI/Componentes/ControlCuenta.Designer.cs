@@ -107,7 +107,7 @@
             this.labelContrasenia2.Name = "labelContrasenia2";
             this.labelContrasenia2.Size = new System.Drawing.Size(234, 13);
             this.labelContrasenia2.TabIndex = 7;
-            this.labelContrasenia2.Text = "Contraseña (ingrese nuevamente)";
+            this.labelContrasenia2.Text = "Contrasenia (ingrese nuevamente)";
             // 
             // textBoxContrasenia
             // 
@@ -126,7 +126,7 @@
             this.labelContrasenia.Name = "labelContrasenia";
             this.labelContrasenia.Size = new System.Drawing.Size(234, 13);
             this.labelContrasenia.TabIndex = 5;
-            this.labelContrasenia.Text = "Contraseña";
+            this.labelContrasenia.Text = "Contrasenia";
             // 
             // textBoxDireccion
             // 
@@ -167,6 +167,7 @@
             this.toolStripButtonAceptar.Name = "toolStripButtonAceptar";
             this.toolStripButtonAceptar.Size = new System.Drawing.Size(52, 22);
             this.toolStripButtonAceptar.Text = "Aceptar";
+            this.toolStripButtonAceptar.Click += new System.EventHandler(this.toolStripButtonAceptar_Click);
             // 
             // labelNombre
             // 

@@ -1,10 +1,10 @@
-﻿using CapaInterfaces;
-using System;
-using Utilidades.CriteriosDeBusqueda;
-using CapaInterfaces.Modelo;
+﻿using System;
+using EdoUI.DTO;
+using Dominio.Persistencia.Repositorio;
+using Persistencia.Repositorios.CriteriosDeBusqueda;
 using System.Data.Entity;
 
-namespace Persistencia
+namespace Persistencia.Repositorios
 {
     public class RepositorioCuenta : Repositorio<ICuentaDTO>
     {

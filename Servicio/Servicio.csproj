@@ -49,6 +49,7 @@
     <Compile Include="Excepciones\SmtpClientException.cs" />
     <Compile Include="Excepciones\Pop3ClientException.cs" />
     <Compile Include="Excepciones\ProtocolException.cs" />
+    <Compile Include="Helper\VerificarConexion.cs" />
     <Compile Include="Pop3.cs" />
     <Compile Include="Excepciones\Pop3Exception.cs" />
     <Compile Include="Servicio.cs" />

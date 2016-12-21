@@ -43,32 +43,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adjunto\AdjuntoDTO.cs" />
-    <Compile Include="Cuenta\Pertenencia\CuentaExterna.cs" />
-    <Compile Include="Cuenta\Pertenencia\CuentaUsuario.cs" />
     <Compile Include="CriterioException.cs" />
-    <Compile Include="Cuenta\CuentaUsuarioDTO .cs" />
-    <Compile Include="Cuenta\CuentaDTO.cs" />
-    <Compile Include="Mensaje\Mensajeria.cs" />
-    <Compile Include="Mensaje\MensajeDTO.cs" />
-    <Compile Include="Mensaje\Estructura\MensajeCompleto.cs" />
-    <Compile Include="Mensaje\Estructura\MensajeIncompleto.cs" />
     <Compile Include="PathInexistenteException.cs" />
-    <Compile Include="Servidor\ServidorDTO.cs" />
-    <Compile Include="EntidadDAO.cs" />
-    <Compile Include="Servidor\CreadorServidor.cs" />
-    <Compile Include="Cuenta\CreadorCuenta.cs" />
-    <Compile Include="Cuenta\CuentaDAO.cs" />
-    <Compile Include="DireccionCorreo\DireccionCorreoDTO.cs" />
-    <Compile Include="Mensaje\Estados\EstadoComunicacion.cs" />
-    <Compile Include="Mensaje\Estados\IEstadoMensaje.cs" />
-    <Compile Include="Mensaje\MensajeDAO.cs" />
-    <Compile Include="Mensaje\Estados\Visibilidad.cs" />
-    <Compile Include="Mensaje\Estados\Comunicacion.cs" />
-    <Compile Include="Mensaje\Estados\EstadoPersistencia.cs" />
-    <Compile Include="Mensaje\Estados\EstadoVisibilidad.cs" />
-    <Compile Include="Protocolo\ProtocoloDTO.cs" />
-    <Compile Include="Servidor\ServidorDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -72,12 +72,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Componentes\Bandeja\BandejaCuentas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Componentes\Bandeja\BandejaCuentas.Designer.cs">
-      <DependentUpon>BandejaCuentas.cs</DependentUpon>
-    </Compile>
     <Compile Include="Componentes\Bandeja\Bandeja.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,6 +84,17 @@
     <Compile Include="Componentes\Bloque\Bloque.Designer.cs">
       <DependentUpon>Bloque.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\IControladorDominio.cs" />
+    <Compile Include="DTO\IAdjuntoDTO.cs" />
+    <Compile Include="DTO\IBuzon.cs" />
+    <Compile Include="DTO\ICuentaDTO.cs" />
+    <Compile Include="DTO\ICuentaUsuarioDTO.cs" />
+    <Compile Include="DTO\IDireccionCorreo.cs" />
+    <Compile Include="DTO\IEntidadModelo.cs" />
+    <Compile Include="DTO\IMensajeCompletoDTO.cs" />
+    <Compile Include="DTO\IMensajeDTO.cs" />
+    <Compile Include="DTO\IProtocoloDTO.cs" />
+    <Compile Include="DTO\IServidorDTO.cs" />
     <Compile Include="IoC_CL.cs" />
     <Compile Include="Sobre.cs">
       <SubType>Form</SubType>
@@ -128,29 +133,11 @@
     <Compile Include="Componentes\ControlAdjuntos.Designer.cs">
       <DependentUpon>ControlAdjuntos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\Bandeja\BandejaMensajes.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Componentes\Bandeja\BandejaMensajes.Designer.cs">
-      <DependentUpon>BandejaMensajes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Componentes\Bloque\BloqueCuenta.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Componentes\Bloque\BloqueCuenta.Designer.cs">
-      <DependentUpon>BloqueCuenta.cs</DependentUpon>
-    </Compile>
     <Compile Include="Componentes\ControlCuenta.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Componentes\ControlCuenta.Designer.cs">
       <DependentUpon>ControlCuenta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Componentes\Bloque\BloqueMensaje.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Componentes\Bloque\BloqueMensaje.Designer.cs">
-      <DependentUpon>BloqueMensaje.cs</DependentUpon>
     </Compile>
     <Compile Include="Componentes\ControlMensaje.cs">
       <SubType>UserControl</SubType>
@@ -158,9 +145,6 @@
     <Compile Include="Componentes\ControlMensaje.Designer.cs">
       <DependentUpon>ControlMensaje.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Componentes\Bandeja\BandejaCuentas.resx">
-      <DependentUpon>BandejaCuentas.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Componentes\Bandeja\Bandeja.resx">
       <DependentUpon>Bandeja.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,17 +170,8 @@
     <EmbeddedResource Include="Componentes\ControlAdjuntos.resx">
       <DependentUpon>ControlAdjuntos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\Bandeja\BandejaMensajes.resx">
-      <DependentUpon>BandejaMensajes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\Bloque\BloqueCuenta.resx">
-      <DependentUpon>BloqueCuenta.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Componentes\ControlCuenta.resx">
       <DependentUpon>ControlCuenta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\Bloque\BloqueMensaje.resx">
-      <DependentUpon>BloqueMensaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Componentes\ControlMensaje.resx">
       <DependentUpon>ControlMensaje.cs</DependentUpon>

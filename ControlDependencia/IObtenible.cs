@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace CapaInterfaces
 {
+    using CapaInterfaces.Modelo;
+
     public interface IObtenible<TEntity> where TEntity : IEntidadModelo
     {
        

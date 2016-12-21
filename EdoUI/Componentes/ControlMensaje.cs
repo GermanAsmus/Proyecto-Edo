@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 //using ControlDependencia;
-using Modelo;
+using Persistencia;
 //using ControlDependencia.Dominio;
 
 namespace EdoUI

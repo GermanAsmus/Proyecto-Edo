@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using CapaInterfaces;
-using CapaInterfaces.Persistencia;
+using Dominio.Persistencia.Repositorio;
 using System.Linq;
-using Modelo;
-using EdoUI;
-using CapaInterfaces.Modelo;
+using EdoUI.DTO;
 using System.Data.Entity;
-//using UnityDI;
+using Persistencia.Repositorios;
 
 namespace Persistencia
 {

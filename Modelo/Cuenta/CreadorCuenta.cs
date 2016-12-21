@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Modelo
+namespace Persistencia
 {
     // {Cuentero, AdministradorCuentas, CuentaManager}
     public class CreadorCuenta

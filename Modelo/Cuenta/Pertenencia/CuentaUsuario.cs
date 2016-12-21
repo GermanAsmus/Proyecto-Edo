@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 
-namespace Modelo
+namespace Persistencia
 {
     public class CuentaUsuario : CuentaDAO
     {

@@ -1,5 +1,4 @@
-﻿using CapaInterfaces;
-using CapaInterfaces.Modelo;
+﻿using EdoUI.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Persistencia
+namespace Persistencia.Repositorios
 {
     public class RepositorioAdjunto : Repositorio<IAdjuntoDTO>
     {

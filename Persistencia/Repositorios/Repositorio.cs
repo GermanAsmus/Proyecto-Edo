@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using CapaInterfaces;
+using EdoUI.DTO;
 using System.Data.Entity;
-using CapaInterfaces.Persistencia;
+using Dominio.Persistencia.Repositorio;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects.DataClasses;
 
-namespace Persistencia
+namespace Persistencia.Repositorios
 {
     public abstract class Repositorio<TEntity> : IRepositorioCompleto<TEntity> where TEntity : class, IEntidadModelo
     {

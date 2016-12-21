@@ -28,38 +28,92 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.bloqueTablePanel = new System.Windows.Forms.TableLayoutPanel();
+            this.botonEliminar = new System.Windows.Forms.Button();
+            this.botonModificar = new System.Windows.Forms.Button();
+            this.botonNuevoMensaje = new System.Windows.Forms.Button();
+            this.Sincronizar = new System.Windows.Forms.Button();
+            this.bloqueTablePanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // bloqueTablePanel
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(150, 150);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.bloqueTablePanel.AutoSize = true;
+            this.bloqueTablePanel.ColumnCount = 4;
+            this.bloqueTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.bloqueTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.bloqueTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.bloqueTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.bloqueTablePanel.Controls.Add(this.botonNuevoMensaje, 2, 0);
+            this.bloqueTablePanel.Controls.Add(this.botonEliminar, 0, 0);
+            this.bloqueTablePanel.Controls.Add(this.Sincronizar, 3, 0);
+            this.bloqueTablePanel.Controls.Add(this.botonModificar, 1, 0);
+            this.bloqueTablePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bloqueTablePanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
+            this.bloqueTablePanel.Location = new System.Drawing.Point(0, 0);
+            this.bloqueTablePanel.Name = "bloqueTablePanel";
+            this.bloqueTablePanel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.bloqueTablePanel.RowCount = 1;
+            this.bloqueTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.bloqueTablePanel.Size = new System.Drawing.Size(803, 26);
+            this.bloqueTablePanel.TabIndex = 0;
+            // 
+            // botonEliminar
+            // 
+            this.botonEliminar.Location = new System.Drawing.Point(780, 3);
+            this.botonEliminar.Name = "botonEliminar";
+            this.botonEliminar.Size = new System.Drawing.Size(20, 20);
+            this.botonEliminar.TabIndex = 4;
+            this.botonEliminar.Text = "Eliminar";
+            this.botonEliminar.UseVisualStyleBackColor = true;
+            // 
+            // botonModificar
+            // 
+            this.botonModificar.Location = new System.Drawing.Point(754, 3);
+            this.botonModificar.Name = "botonModificar";
+            this.botonModificar.Size = new System.Drawing.Size(20, 20);
+            this.botonModificar.TabIndex = 5;
+            this.botonModificar.Text = "Modificar";
+            this.botonModificar.UseVisualStyleBackColor = true;
+            // 
+            // botonNuevoMensaje
+            // 
+            this.botonNuevoMensaje.Location = new System.Drawing.Point(728, 3);
+            this.botonNuevoMensaje.Name = "botonNuevoMensaje";
+            this.botonNuevoMensaje.Size = new System.Drawing.Size(20, 20);
+            this.botonNuevoMensaje.TabIndex = 6;
+            this.botonNuevoMensaje.Text = "Nuevo Mensaje";
+            this.botonNuevoMensaje.UseVisualStyleBackColor = true;
+            // 
+            // Sincronizar
+            // 
+            this.Sincronizar.Location = new System.Drawing.Point(702, 3);
+            this.Sincronizar.Name = "Sincronizar";
+            this.Sincronizar.Size = new System.Drawing.Size(20, 20);
+            this.Sincronizar.TabIndex = 7;
+            this.Sincronizar.Text = "Sincronizar";
+            this.Sincronizar.UseVisualStyleBackColor = true;
             // 
             // Bloque
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.bloqueTablePanel);
             this.Name = "Bloque";
+            this.Size = new System.Drawing.Size(803, 32);
+            this.bloqueTablePanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel bloqueTablePanel;
+        private System.Windows.Forms.Button botonNuevoMensaje;
+        private System.Windows.Forms.Button botonEliminar;
+        private System.Windows.Forms.Button Sincronizar;
+        private System.Windows.Forms.Button botonModificar;
     }
 }

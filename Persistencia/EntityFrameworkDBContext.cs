@@ -1,5 +1,6 @@
 ﻿using System;
-using Modelo;
+using Dominio.Entidades;
+
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Validation;
@@ -10,8 +11,8 @@ namespace Persistencia
 {
     public class EntityFrameworkDBContext : DbContext, IContext
     {
-        public IDbSet<CuentaDAO> Cuenta { get; set; }
-        public IDbSet<MensajeDAO> Mensaje { get; set; }
+        public IDbSet<CuentaDTO> Cuenta { get; set; }
+        public IDbSet<MensajeDTO> Mensaje { get; set; }
         //public IDbSet<ServidorDAO> ServidorDAO { get; set; }
         public IDbSet<DireccionCorreoDTO> DireccionCorreo { get; set; }
         public IDbSet<AdjuntoDTO> Adjunto { get; set; }

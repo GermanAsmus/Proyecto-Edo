@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using CapaInterfaces.Modelo;
 
-namespace Modelo
+namespace Persistencia
 {
     public class MensajeCompleto : MensajeDAO, IMensajeCompletoDAO, IEntidadDAO<IAdjuntoDTO>
     {

@@ -1,8 +1,11 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CapaInterfaces.Modelo;
-using Modelo;
+using Persistencia;
 using System.Collections.Generic;
+using EdoUI.DTO;
+using Persistencia.Entidades.Mensaje.Estados;
+using Dominio.Entidades.DAO;
+using Persistencia.Entidades.Mensaje;
 
 namespace Tests
 {

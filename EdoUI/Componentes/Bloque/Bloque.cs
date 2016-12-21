@@ -16,29 +16,43 @@ namespace EdoUI
 {
     public partial class Bloque<T> : UserControl where T : class
     {
-        public Bloque(string[] pArgumentos, Button[] pBotones)
+        T iEntidad;
+        public Bloque(ICollection<Control> pControles, T pEntidad)
         {
             InitializeComponent();
 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.RowCount = 1;
+            if (pEntidad == null)
+                MessageBox.Show("Las acciones no pueden ser dirigidas a ninguna entidad");
 
-            foreach (string argumento in pArgumentos)
-            {
-                this.AgregarColumna(new Label() { Text = argumento });
-            }
+            if (pControles == null)
+                MessageBox.Show("Los controles de informacion no pueden estar vacios");
 
-            foreach (Button boton in pBotones)
+            this.iEntidad = pEntidad;
+
+            foreach (Control control in pControles)
             {
-                this.AgregarColumna(boton);
+                this.AgregarColumna(control);
             }
+        }
+
+        private void NuevoMensaje_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Modificar_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Eliminar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
 
         private void AgregarColumna(Control pControl)
         {
-            this.tableLayoutPanel1.ColumnCount++;
-            this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(pControl);
+            this.bloqueTablePanel.Controls.Add(pControl);
         }
 
     }

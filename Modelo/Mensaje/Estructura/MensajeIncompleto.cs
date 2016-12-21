@@ -1,7 +1,7 @@
 ﻿using System;
 using CapaInterfaces.Modelo;
 
-namespace Modelo
+namespace Persistencia
 {
     public class MensajeIncompleto : MensajeDAO
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using CapaInterfaces;
 
-namespace Modelo
+namespace Persistencia
 {
     public class EntidadDAO<TEntity> : IEntidadDAO<TEntity> where TEntity : IEntidadModelo
     {

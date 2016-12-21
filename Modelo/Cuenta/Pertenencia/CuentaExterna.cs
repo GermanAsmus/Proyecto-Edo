@@ -1,7 +1,7 @@
 ﻿using CapaInterfaces.Modelo;
 using System.Collections.Generic;
 
-namespace Modelo
+namespace Persistencia
 {
     public class CuentaExterna : CuentaDAO
     {

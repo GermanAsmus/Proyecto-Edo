@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CapaInterfaces;
-using Utilidades.CriteriosDeBusqueda;
-using CapaInterfaces.Modelo;
+using EdoUI.DTO;
+using Dominio.Persistencia.Repositorio;
+using Persistencia.Repositorios.CriteriosDeBusqueda;
 using System.Data.Entity;
 
-namespace Persistencia
+namespace Persistencia.Repositorios
 {
     public class RepositorioMensaje : Repositorio<IMensajeDTO>
     {

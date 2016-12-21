@@ -1,11 +1,9 @@
-﻿using CapaInterfaces;
-using CapaInterfaces.Modelo;
+﻿using EdoUI.DTO;
 using System;
 using System.Data.Entity;
-using Utilidades;
-using Utilidades.CriteriosDeBusqueda;
+using Persistencia.Repositorios.CriteriosDeBusqueda;
 
-namespace Persistencia
+namespace Persistencia.Repositorios
 {
     public class RepositorioDireccion : Repositorio<IDireccionCorreoDTO>
     {

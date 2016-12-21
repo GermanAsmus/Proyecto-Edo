@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Modelo
+namespace Persistencia
 {
     public class Comunicacion : IEstadoMensaje
     {

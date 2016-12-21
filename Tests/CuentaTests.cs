@@ -1,8 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CapaInterfaces.Modelo;
-using Modelo;
+using Persistencia;
 using System.Collections.Generic;
+using EdoUI.DTO;
+using Persistencia.Entidades.Cuenta;
+using Dominio.Entidades.DAO;
 
 namespace Tests
 {

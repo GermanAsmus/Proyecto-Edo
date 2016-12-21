@@ -3,7 +3,7 @@ using CapaInterfaces.Modelo;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Modelo
+namespace Persistencia
 {
     public class Visibilidad : IEstadoMensaje
     {

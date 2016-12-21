@@ -1,4 +1,4 @@
-﻿namespace Modelo
+﻿namespace Persistencia
 {
     public enum EstadoVisibilidad
     {

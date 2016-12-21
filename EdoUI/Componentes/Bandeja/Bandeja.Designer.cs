@@ -32,7 +32,7 @@ namespace EdoUI
         {
             this.tableLayoutPanelBandeja = new System.Windows.Forms.TableLayoutPanel();
             this.toolStripCabecera = new System.Windows.Forms.ToolStrip();
-            this.flowLayoutPanelMensajes = new System.Windows.Forms.FlowLayoutPanel();
+            this.BandejaTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelBandeja.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,7 +42,7 @@ namespace EdoUI
             this.tableLayoutPanelBandeja.ColumnCount = 1;
             this.tableLayoutPanelBandeja.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelBandeja.Controls.Add(this.toolStripCabecera, 0, 0);
-            this.tableLayoutPanelBandeja.Controls.Add(this.flowLayoutPanelMensajes, 0, 1);
+            this.tableLayoutPanelBandeja.Controls.Add(this.BandejaTablePanel, 0, 1);
             this.tableLayoutPanelBandeja.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelBandeja.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelBandeja.Name = "tableLayoutPanelBandeja";
@@ -63,14 +63,17 @@ namespace EdoUI
             this.toolStripCabecera.TabIndex = 0;
             this.toolStripCabecera.Text = "toolStrip1";
             // 
-            // flowLayoutPanelMensajes
+            // BandejaTablePanel
             // 
-            this.flowLayoutPanelMensajes.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanelMensajes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelMensajes.Location = new System.Drawing.Point(3, 28);
-            this.flowLayoutPanelMensajes.Name = "flowLayoutPanelMensajes";
-            this.flowLayoutPanelMensajes.Size = new System.Drawing.Size(162, 67);
-            this.flowLayoutPanelMensajes.TabIndex = 1;
+            this.BandejaTablePanel.ColumnCount = 1;
+            this.BandejaTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.BandejaTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BandejaTablePanel.Location = new System.Drawing.Point(3, 28);
+            this.BandejaTablePanel.Name = "BandejaTablePanel";
+            this.BandejaTablePanel.RowCount = 1;
+            this.BandejaTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.BandejaTablePanel.Size = new System.Drawing.Size(162, 67);
+            this.BandejaTablePanel.TabIndex = 1;
             // 
             // Bandeja
             // 
@@ -90,6 +93,6 @@ namespace EdoUI
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBandeja;
         private System.Windows.Forms.ToolStrip toolStripCabecera;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMensajes;
+        public TableLayoutPanel BandejaTablePanel;
     }
 }

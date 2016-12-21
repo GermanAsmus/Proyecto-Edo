@@ -140,7 +140,7 @@
             this.toolStripButtonNuevaCuenta.Name = "toolStripButtonNuevaCuenta";
             this.toolStripButtonNuevaCuenta.Size = new System.Drawing.Size(118, 36);
             this.toolStripButtonNuevaCuenta.Text = "Nueva Cuenta";
-            this.toolStripButtonNuevaCuenta.Click += new System.EventHandler(this.toolStripButtonNuevaCuenta_Click);
+            this.toolStripButtonNuevaCuenta.Click += new System.EventHandler(this.NuevaCuenta_Click);
             // 
             // GoMailPicture
             // 

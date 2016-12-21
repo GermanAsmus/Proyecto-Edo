@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Linq.Expressions;
 using System.Linq;
 
-namespace Modelo
+namespace Persistencia
 {
     /// <summary>
     /// Entidad abstracta que modela una cuenta de correo.

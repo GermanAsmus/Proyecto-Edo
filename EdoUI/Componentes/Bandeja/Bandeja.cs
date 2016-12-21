@@ -7,32 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Modelo;
+using Persistencia;
 using Utilidades;
 using Utilidades.Misc;
 using CapaInterfaces;
 
 namespace EdoUI
 {
-    public abstract partial class Bandeja<T> : UserControl where T : class
+    public partial class Bandeja<T> : UserControl where T : class
     {
-        protected ICollection<T> iEntidades;
-        protected ControlCollection iBandejaElementos { get; set; }
-
-        public Bandeja(ICollection<T> pEntidades)
+        public Bandeja()
         {
             InitializeComponent();
-
-            this.iEntidades = pEntidades;
-
-            iBandejaElementos = new ControlCollection(this);
-
-            this.ActualizarBandaja();
         }
-
-        public void ActualizarBandaja()
+        /// <summary>
+        /// Crea un nuevo bloque para la bandeja.
+        /// </summary>
+        /// <param name="pDatos">todos los datos propios del bloque</param>
+        /// <param name="pAcciones">todas las acciones (botones) del bloque</param>
+        /// <returns></returns>
+        public void NuevoBloque(string[] pDatos, T pEntidad)
         {
-            this.iEntidades.ToList().ForEach(entidad => this.iBandejaElementos.Add( new Bloque<T>(new string[]{ },new Button[]{ })));
+            ICollection<Control> controles = new List<Control>();
+            pDatos.ToList().ForEach(dato => controles.Add(new Label() { Text = dato, Dock = DockStyle.Fill }));
+
+            this.BandejaTablePanel.Controls.Add(new Bloque<T>(controles, pEntidad) { Dock = DockStyle.Fill });
         }
     }
 }

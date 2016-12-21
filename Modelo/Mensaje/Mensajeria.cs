@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Modelo
+namespace Persistencia
 {
     /// <summary>
     /// La clase mensajeria tiene como responsabilidad crear el/los mensaje/s que corresponda en cada caso.

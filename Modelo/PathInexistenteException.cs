@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Modelo
+namespace Persistencia
 {
     public class PathInexistenteException : Exception
     {

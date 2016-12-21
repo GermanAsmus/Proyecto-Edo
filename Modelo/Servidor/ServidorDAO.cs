@@ -4,7 +4,7 @@ using System.Linq;
 using System;
 using System.Linq.Expressions;
 
-namespace Modelo
+namespace Persistencia
 {
     /// <summary>
     /// Entidad ServidorDAO, modela un servidor de correo. Ej: gmail, yahoo, hotmail.

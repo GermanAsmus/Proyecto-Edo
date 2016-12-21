@@ -48,7 +48,23 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controlador.cs" />
+    <Compile Include="ControladorPersistencia.cs" />
+    <Compile Include="Entidades\Cuenta\CreadorCuenta.cs" />
+    <Compile Include="Entidades\Cuenta\CuentaDAO.cs" />
+    <Compile Include="Entidades\Cuenta\Pertenencia\CuentaExterna.cs" />
+    <Compile Include="Entidades\Cuenta\Pertenencia\CuentaUsuario.cs" />
+    <Compile Include="Entidades\EntidadDAO.cs" />
+    <Compile Include="Entidades\Mensaje\Estados\Comunicacion.cs" />
+    <Compile Include="Entidades\Mensaje\Estados\EstadoComunicacion.cs" />
+    <Compile Include="Entidades\Mensaje\Estados\EstadoPersistencia.cs" />
+    <Compile Include="Entidades\Mensaje\Estados\EstadoVisibilidad.cs" />
+    <Compile Include="Entidades\Mensaje\Estados\Visibilidad.cs" />
+    <Compile Include="Entidades\Mensaje\Estructura\MensajeCompleto.cs" />
+    <Compile Include="Entidades\Mensaje\Estructura\MensajeIncompleto.cs" />
+    <Compile Include="Entidades\Mensaje\MensajeDAO.cs" />
+    <Compile Include="Entidades\Mensaje\Mensajeria.cs" />
+    <Compile Include="Entidades\Servidor\CreadorServidor.cs" />
+    <Compile Include="Entidades\Servidor\ServidorDAO.cs" />
     <Compile Include="Excepciones\ValidateDatabaseEntityException.cs" />
     <Compile Include="Excepciones\DatabaseException.cs" />
     <Compile Include="Excepciones\UpdateDatabase.cs" />
@@ -63,6 +79,11 @@
       <DependentUpon>201605041931359_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositorios\CriteriosDeBusqueda\BuscarAdjunto.cs" />
+    <Compile Include="Repositorios\CriteriosDeBusqueda\BuscarCuenta.cs" />
+    <Compile Include="Repositorios\CriteriosDeBusqueda\BuscarDireccionDeCorreo.cs" />
+    <Compile Include="Repositorios\CriteriosDeBusqueda\BuscarMensaje.cs" />
+    <Compile Include="Repositorios\CriteriosDeBusqueda\CriterioDeBusqueda.cs" />
     <Compile Include="Repositorios\Repositorio.cs" />
     <Compile Include="Repositorios\RepositorioAdjunto.cs" />
     <Compile Include="Repositorios\RepositorioCuenta.cs" />
@@ -91,6 +112,10 @@
     <ProjectReference Include="..\ControlDependencia\CapaInterfaces.csproj">
       <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
       <Name>CapaInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{7444c050-a853-4222-a41c-59d04ae23617}</Project>
+      <Name>Dominio</Name>
     </ProjectReference>
     <ProjectReference Include="..\EdoUI\EdoUI.csproj">
       <Project>{e1de0b46-38ae-42e5-ae58-33a9e5118899}</Project>

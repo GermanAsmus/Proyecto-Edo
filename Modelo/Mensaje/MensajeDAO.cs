@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Modelo
+namespace Persistencia
 {
     /// <summary>
     /// Modela un menaje (correo), como una entidad de base y no concluyente.

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaInterfaces;
-using Modelo;
+using Persistencia;
 using CapaInterfaces.Modelo;
 
 namespace EdoUI
@@ -16,7 +16,7 @@ namespace EdoUI
     public partial class ControlRaiz : UserControl
     {
         private IControlador iControlador;
-        private BandejaCuentas iBandejaCuentas;
+        private Bandeja<ICuentaUsuarioDTO> iBandejaCuentas;
 
         public ControlRaiz()
         {
@@ -24,12 +24,13 @@ namespace EdoUI
             tabControlContenedor.ImageList = imageList1;
             //iControlador = IoC_CL.Resolver<IControlador>();
 
-
-            this.iBandejaCuentas = new BandejaCuentas(null);
+            this.iBandejaCuentas = new Bandeja<ICuentaUsuarioDTO>();
             AgregarTab(this.iBandejaCuentas, "Cuentas");
 
             //Cuando el controlador funcione debería listar las cuentas que están en la bbdd
             //this.iBandejaCuentas.ListarCuentas(this.iControlador.ListarCuentas());
+
+            ActualizarBandejaCuentas();
         }
 
         private TabPage AgregarTab(Control pControl, string pNombre)
@@ -43,11 +44,34 @@ namespace EdoUI
             return tb;
         }
 
-        private void toolStripButtonNuevaCuenta_Click(object sender, EventArgs e)
+        private void NuevaCuenta_Click(object sender, EventArgs e)
         {
             ControlCuenta controlNuevaCuenta = new ControlCuenta(null);
             this.tabControlContenedor.SelectedTab = AgregarTab(controlNuevaCuenta, "Nueva Cuenta");
             controlNuevaCuenta.VisibleChanged += ControlNuevaCuenta_VisibleChanged;
+        }
+        /// <summary>
+        /// Se actualiza la bandeja de cuentas
+        /// </summary>
+        private void ActualizarBandejaCuentas()
+        {
+            //Primero limpia la bandeja
+            this.iBandejaCuentas.BandejaTablePanel.Controls.Clear();
+            //Agrega las cuentas a la bandeja
+            //this.iControlador.ListarCuentas().ToList().ForEach(
+            //    cuentaUsuario => this.iBandejaCuentas.iBandejaFlowPanel.Controls.Add(this.iBandejaCuentas.NuevoBloque(new string[]
+            //    {
+            //        cuentaUsuario.Nombre,
+            //        cuentaUsuario.DireccionCorreo.DireccionDeCorreo
+            //    }, cuentaUsuario)));
+
+            List<ICuentaUsuarioDTO> lista = new List<ICuentaUsuarioDTO>() { new CuentaUsuarioDTO() { Nombre = " Nombre: German", DireccionCorreo = new DireccionCorreoDTO("Direccion de correo: german@gmail.com") } };
+            lista.ForEach(
+                cuentaUsuario => this.iBandejaCuentas.NuevoBloque(new string[]
+                {
+                    cuentaUsuario.DireccionCorreo.DireccionDeCorreo,
+                    cuentaUsuario.Nombre
+                }, cuentaUsuario));
         }
 
         private void ControlNuevaCuenta_VisibleChanged(object sender, EventArgs e)
@@ -63,6 +87,7 @@ namespace EdoUI
 
             // se guarda la nueva cuenta;
             //  this.iControlador.CrearCuentaNueva((sender as ControlCuenta).Cuenta);
+            //this.ActualizarBandejaCuentas();
 
             string mensaje = string.Format(
                 @"La cuenta ha sido creada satisfactoriamente.

@@ -1,4 +1,5 @@
-﻿using CapaInterfaces;
+﻿using Dominio.Persistencia.Repositorio;
+using EdoUI.DTO;
 
 namespace Persistencia
 {

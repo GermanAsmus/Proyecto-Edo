@@ -2,22 +2,19 @@
 using Dominio.Entidades.DAO;
 using System;
 using System.Collections.Generic;
-using Persistencia.Entidades.Cuenta.Pertenencia;
+//using Persistencia.Entidades.Cuenta.Pertenencia;
 
 namespace Persistencia.Entidades.Cuenta
 {
-    // {Cuentero, AdministradorCuentas, CuentaManager}
     public class CreadorCuenta
     {
-        private ICuentaDTO iCuentaDTO;
-
         #region Crear cuenta externa
 
-        private ICuentaDAO AgregarMensajes(ICuentaDAO pCuenta, ICollection<IMensajeDTO> pMensajes)
+        private ICuentaDTO AgregarMensajes(ICuentaDTO pCuenta, ICollection<IMensajeDTO> pMensajes)
         {
             foreach (IMensajeDTO mensaje in pMensajes)
             {
-                pCuenta.Agregar(mensaje);
+                pCuenta.Mensajes.Add(mensaje);
             }
             return pCuenta;
         }
@@ -27,18 +24,17 @@ namespace Persistencia.Entidades.Cuenta
         /// </summary>
         /// <param name="pDireccionCuenta">Direccion de correo asociada a la cuenta.</param>
         /// <returns>Nueva cuenta extena.</returns>
-        public ICuentaDAO CrearCuenta(string pDireccionCuenta)
+        public ICuentaDTO CrearCuenta(string pDireccionCuenta)
         {
             #region programacion defensiva
             if (string.IsNullOrEmpty(pDireccionCuenta))
                 throw new NullReferenceException(nameof(pDireccionCuenta)); 
             #endregion
 
-            this.iCuentaDTO = new CuentaDTO()
+            return new CuentaDTO()
             {
                 DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta)
             };
-            return new CuentaExterna(iCuentaDTO);
         }
 
         /// <summary>
@@ -48,7 +44,7 @@ namespace Persistencia.Entidades.Cuenta
         /// <param name="pDireccionCuenta">Direccion de correo asociada a la cuenta.</param>
         /// <param name="pMensajes">Mensajes correspondientes a la cuenta.</param>
         /// <returns>Nueva cuenta externa.</returns>
-        public ICuentaDAO CrearCuenta(string pDireccionCuenta, ICollection<IMensajeDTO> pMensajes)
+        public ICuentaDTO CrearCuenta(string pDireccionCuenta, ICollection<IMensajeDTO> pMensajes)
         {
             #region programacion defensiva
             if (string.IsNullOrEmpty(pDireccionCuenta))
@@ -58,24 +54,24 @@ namespace Persistencia.Entidades.Cuenta
                 throw new NullReferenceException(nameof(pMensajes)); 
             #endregion
 
-            this.iCuentaDTO = new CuentaDTO()
+            ICuentaDTO iCuentaDTO = new CuentaDTO()
             {
                 DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),
             };
 
-            return this.AgregarMensajes(new CuentaExterna(iCuentaDTO), pMensajes);
+            return this.AgregarMensajes(iCuentaDTO, pMensajes);
         }
 
         #endregion
 
         #region Crear cuenta usuario
-        private ICuentaDAO AgregarMensajes(ICuentaDAO pCuenta, ICollection<IMensajeCompletoDTO> pMensajes)
+        private ICuentaUsuarioDTO AgregarMensajes(ICuentaDTO pCuenta, ICollection<IMensajeCompletoDTO> pMensajes)
         {
             foreach (IMensajeCompletoDTO mensaje in pMensajes)
             {
-                (pCuenta as CuentaUsuario).Agregar(mensaje);
+                pCuenta.Mensajes.Add(mensaje);
             }
-            return pCuenta;
+            return pCuenta as ICuentaUsuarioDTO;
         }
 
         /// <summary>
@@ -85,7 +81,7 @@ namespace Persistencia.Entidades.Cuenta
         /// <param name="pContraseña">Contraseña de la cuenta.</param>
         /// <param name="pNombre">Tipo que identifica a la cuenta.</param>
         /// <returns>Nueva cuenta de usuario.</returns>
-        public ICuentaDAO CrearCuenta(string pDireccionCuenta, string pContraseña, string pNombre)
+        public ICuentaUsuarioDTO CrearCuenta(string pDireccionCuenta, string pContraseña, string pNombre)
         {
             #region programacion defensiva
             if (string.IsNullOrEmpty(pDireccionCuenta))
@@ -98,14 +94,12 @@ namespace Persistencia.Entidades.Cuenta
                 throw new NullReferenceException(nameof(pNombre)); 
             #endregion
 
-            this.iCuentaDTO = new CuentaUsuarioDTO()
+            return new CuentaUsuarioDTO()
             {
                 DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),
                 Nombre = pNombre,
                 Contraseña = pContraseña
             };
-
-            return new CuentaUsuario(this.iCuentaDTO as ICuentaUsuarioDTO);
         }
 
         /// <summary>
@@ -117,7 +111,7 @@ namespace Persistencia.Entidades.Cuenta
         /// <param name="pNombre">Tipo que identifica a la cuenta.</param>
         /// <param name="pMensajes">Mensajes correspondientes a la cuenta.</param>
         /// <returns>Nueva cuenta de usuario.</returns>
-        public ICuentaDAO CrearCuenta(string pDireccionCuenta, string pContraseña, string pNombre, ICollection<IMensajeCompletoDTO> pMensajes)
+        public ICuentaUsuarioDTO CrearCuenta(string pDireccionCuenta, string pContraseña, string pNombre, ICollection<IMensajeCompletoDTO> pMensajes)
         {
             #region programacion defensiva
             if (string.IsNullOrEmpty(pDireccionCuenta))
@@ -133,14 +127,14 @@ namespace Persistencia.Entidades.Cuenta
                 throw new NullReferenceException(nameof(pMensajes)); 
             #endregion
 
-            this.iCuentaDTO = new CuentaUsuarioDTO()
+            ICuentaUsuarioDTO iCuentaDTO = new CuentaUsuarioDTO()
             {
                 DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),
                 Nombre = pNombre,
                 Contraseña = pContraseña
             };
 
-            return this.AgregarMensajes(new CuentaUsuario(this.iCuentaDTO as ICuentaUsuarioDTO), pMensajes);
+            return this.AgregarMensajes(iCuentaDTO, pMensajes) as ICuentaUsuarioDTO;
         } 
         #endregion
     }

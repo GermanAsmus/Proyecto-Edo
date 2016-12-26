@@ -20,10 +20,14 @@ namespace Persistencia
 
         public IServidorDTO Servidor { get; set; }
 
-        public CuentaDTO()
+        public CuentaDTO(IDireccionCorreoDTO pDireccion = null)
         {
             this.Mensajes = new List<IMensajeDTO>();
+            if (this.DireccionCorreo != null)
+            {
+                string host = DireccionCorreoDTO.ObtenerHost(this.DireccionCorreo);
+                this.Servidor = new CreadorServidor().ObtenerServidor(host);
+            }
         }
-
     }
 }

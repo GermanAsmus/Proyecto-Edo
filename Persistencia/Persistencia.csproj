@@ -50,9 +50,6 @@
   <ItemGroup>
     <Compile Include="ControladorPersistencia.cs" />
     <Compile Include="Entidades\Cuenta\CreadorCuenta.cs" />
-    <Compile Include="Entidades\Cuenta\CuentaDAO.cs" />
-    <Compile Include="Entidades\Cuenta\Pertenencia\CuentaExterna.cs" />
-    <Compile Include="Entidades\Cuenta\Pertenencia\CuentaUsuario.cs" />
     <Compile Include="Entidades\EntidadDAO.cs" />
     <Compile Include="Entidades\Mensaje\Estados\Comunicacion.cs" />
     <Compile Include="Entidades\Mensaje\Estados\EstadoComunicacion.cs" />

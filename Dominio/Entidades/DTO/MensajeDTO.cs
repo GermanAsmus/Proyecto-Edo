@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Persistencia
 {
-    public class MensajeDTO : IMensajeCompletoDTO
+    public class MensajeDTO : IMensajeCompletoDTO, IEstadoMensaje
     {
 
         #region Atributos Mensaje Estandar
-        
+
         //Identificador único del mensaje
         public int Id { get; set; }
         //Asunto del mensaje.
@@ -36,21 +36,33 @@ namespace Persistencia
 
         #endregion
 
-        /// <summary>
-        /// Estado de persistencia del mensaje. (Guardado/No_Guardado).
-        /// </summary>
-        public EstadoPersistencia EstadoPersistencia { get; set; }
+        private EstadoPersistencia iEstadoPersistencia;
+        public string EstadoDePersistencia
+        {
+            get { return this.iEstadoPersistencia.ToString(); }
+            set
+            {
+                this.iEstadoPersistencia =
+                    value == EstadoPersistencia.Guardado.ToString() ? 
+                        EstadoPersistencia.Guardado : EstadoPersistencia.No_Guardado;
+            }
+        }
 
-        public IEstadoMensaje Estado { get; set; }
+        private IEstadoMensaje iEstado;
+        public string Estado
+        {
+            get { return this.iEstado.ObtenerEstado(); }
+        }
+        public void CambiarEstado()
+        {
+            this.iEstado.CambiarEstado();
+        }
 
         public string Estructura
         {
             get
             {
-                if (string.IsNullOrEmpty(Contenido) && Adjuntos == null)
-                    return "incompleto";
-
-                return "completo";
+                return (string.IsNullOrEmpty(Contenido) && Adjuntos == null) ? "incompleto" : "completo";
             }
         }
 

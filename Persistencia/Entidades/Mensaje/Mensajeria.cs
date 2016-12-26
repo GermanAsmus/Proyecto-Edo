@@ -13,17 +13,15 @@ namespace Persistencia.Entidades.Mensaje
     public class Mensajeria
     {
 
-        private IMensajeDTO iMensajeDTO;
-
         public Mensajeria()
         {
         }
 
-        private IMensajeDAO AgregarDestinatarios(IMensajeDAO pMensajeDAO, ICollection<ICuentaDTO> pDestinatario)
+        private IMensajeDTO AgregarDestinatarios(IMensajeDTO pMensajeDAO, ICollection<ICuentaDTO> pDestinatario)
         {
             foreach (ICuentaDTO destinatario in pDestinatario)
             {
-                pMensajeDAO.Agregar(destinatario);
+                pMensajeDAO.Destinatario.Add(destinatario);
             }
 
             return pMensajeDAO;
@@ -38,15 +36,15 @@ namespace Persistencia.Entidades.Mensaje
         /// <param name="pAsunto">Asunto del mensaje</param>
         /// <param name="pDestinatario">Cuenta destinataria</param>
         /// <returns>Nuevo mensaje incompleto</returns>
-        public IMensajeDAO CrearMensaje(ICuentaDTO pCuentaDTO, string pAsunto, ICuentaDTO pDestinatario)
+        public IMensajeDTO CrearMensaje(ICuentaDTO pCuentaDTO, string pAsunto, ICuentaDTO pDestinatario)
         {
-            this.iMensajeDTO = new MensajeDTO()
+            IMensajeDTO iMensajeDTO = new MensajeDTO()
             {
                 Cuenta = pCuentaDTO,
                 Asunto = pAsunto,
             };
-
-            return AgregarDestinatarios(new MensajeIncompleto(this.iMensajeDTO), new List<ICuentaDTO>() { pDestinatario });
+            iMensajeDTO = new Visibilidad();
+            return AgregarDestinatarios(iMensajeDTO, new List<ICuentaDTO>() { pDestinatario });
         }
 
         /// <summary>
@@ -56,15 +54,15 @@ namespace Persistencia.Entidades.Mensaje
         /// <param name="pAsunto">Asunto del mensaje</param>
         /// <param name="pDestinatario">Lista de cuentas destinatarias</param>
         /// <returns>Nuevo mensaje incompleto</returns>
-        public IMensajeDAO CrearMensaje(ICuentaDTO pCuentaDTO, string pAsunto, ICollection<ICuentaDTO> pDestinatario)
+        public IMensajeDTO CrearMensaje(ICuentaDTO pCuentaDTO, string pAsunto, ICollection<ICuentaDTO> pDestinatario)
         {
-            this.iMensajeDTO = new MensajeDTO()
+            IMensajeDTO iMensajeDTO = new MensajeDTO()
             {
                 Cuenta = pCuentaDTO,
                 Asunto = pAsunto,
             };
 
-            return AgregarDestinatarios(new MensajeIncompleto(this.iMensajeDTO), pDestinatario);
+            return AgregarDestinatarios(iMensajeDTO, pDestinatario);
         }
 
         #endregion
@@ -75,11 +73,11 @@ namespace Persistencia.Entidades.Mensaje
         /// Crea un mensaje con cuerpo, es decir que cuenta con contenido (cuerpo del mensaje), pero no adjuntos.
         /// </summary>
         /// <returns>Nuevo mensaje completo</returns>
-        public IMensajeCompletoDAO CrearMensaje(ICuentaUsuarioDTO pCuentaDTO, string pAsunto, ICollection<ICuentaDTO> pDestinatario, string pContenido)
+        public IMensajeCompletoDTO CrearMensaje(ICuentaUsuarioDTO pCuentaDTO, string pAsunto, ICollection<ICuentaDTO> pDestinatario, string pContenido)
         {
-            this.iMensajeDTO = this.CrearMensajeDTO(pCuentaDTO, pAsunto, pDestinatario, pContenido);
+            IMensajeCompletoDTO iMensajeDTO = this.CrearMensajeDTO(pCuentaDTO, pAsunto, pDestinatario, pContenido);
 
-            return AgregarDestinatarios(new MensajeCompleto(this.iMensajeDTO as IMensajeCompletoDTO), pDestinatario) as IMensajeCompletoDAO;
+            return AgregarDestinatarios(iMensajeDTO, pDestinatario) as IMensajeCompletoDTO;
         }
         /// <summary>
         /// Crea un mensaje completo, es decir que cuenta con contenido (cuerpo del mensaje), y adjuntos asociados.
@@ -88,9 +86,9 @@ namespace Persistencia.Entidades.Mensaje
         /// <returns>Nuevo mensaje completo</returns>
         public IMensajeCompletoDAO CrearMensaje(ICuentaDTO pCuentaDTO, string pAsunto, ICollection<ICuentaDTO> pDestinatario, string pContenido, ICollection<IAdjuntoDTO> pAdjuntos)
         {
-            this.iMensajeDTO = this.CrearMensajeDTO(pCuentaDTO, pAsunto, pDestinatario, pContenido, pAdjuntos);
+            IMensajeCompletoDTO iMensajeDTO = this.CrearMensajeDTO(pCuentaDTO, pAsunto, pDestinatario, pContenido, pAdjuntos);
 
-            return AgregarDestinatarios(new MensajeCompleto(this.iMensajeDTO as IMensajeCompletoDTO), pDestinatario) as IMensajeCompletoDAO;
+            return AgregarDestinatarios(iMensajeDTO, pDestinatario) as IMensajeCompletoDAO;
         }
 
         /// <summary>
@@ -100,9 +98,9 @@ namespace Persistencia.Entidades.Mensaje
         /// <returns>Nuevo mensaje completo</returns>
         public IMensajeCompletoDAO CrearMensaje(ICuentaUsuarioDTO pCuentaDTO, string pAsunto, ICollection<ICuentaDTO> pDestinatario, string pContenido, ICollection<IAdjuntoDTO> pAdjuntos)
         {
-            this.iMensajeDTO = this.CrearMensajeDTO(pCuentaDTO, pAsunto, pDestinatario, pContenido, pAdjuntos);
+            IMensajeCompletoDTO iMensajeDTO = this.CrearMensajeDTO(pCuentaDTO, pAsunto, pDestinatario, pContenido, pAdjuntos);
 
-            return AgregarDestinatarios(new MensajeCompleto(this.iMensajeDTO as IMensajeCompletoDTO), pDestinatario) as IMensajeCompletoDAO;
+            return AgregarDestinatarios(iMensajeDTO, pDestinatario) as IMensajeCompletoDAO;
         }
 
         private IMensajeCompletoDTO CrearMensajeDTO(ICuentaDTO pCuentaDTO, string pAsunto, ICollection<ICuentaDTO> pDestinatario, string pContenido)

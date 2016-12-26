@@ -20,5 +20,11 @@ namespace EdoUI.DTO
         // Colección de direcciones de correo como direcciones destinatarios.
         ICollection<ICuentaDTO> Destinatario { get; set; }
 
+        //Estado de persistencia del mensaje. (Guardado/No_Guardado).
+        string EstadoDePersistencia { get; set; }
+
+        string Estado { get; }
+        void CambiarEstado();
+        string Estructura { get; }
     }
 }

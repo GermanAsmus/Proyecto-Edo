@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using EdoUI.DTO;
+using EdoUI.Entidades.DTO;
 
-namespace Persistencia
+namespace Dominio.Entidades.DTO
 {
     public class CuentaDTO : ICuentaDTO
     {
-        //Identificador único de la cuenta.
+        
         public int Id { get; set; }
 
-        //Identificador de la direccion de correo de la cuenta
         public int DireccionId { get; set; }
 
         public IDireccionCorreoDTO DireccionCorreo { get; set; }
 
-        //Colección de mensjes que se relacionan con la cuenta.
         public virtual ICollection<IMensajeDTO> Mensajes { get; set; }
 
         public IServidorDTO Servidor { get; set; }
@@ -26,7 +24,7 @@ namespace Persistencia
             if (this.DireccionCorreo != null)
             {
                 string host = DireccionCorreoDTO.ObtenerHost(this.DireccionCorreo);
-                this.Servidor = new CreadorServidor().ObtenerServidor(host);
+                this.Servidor = ServidorDTO.ObtenerServidor(host);
             }
         }
     }

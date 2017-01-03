@@ -1,11 +1,11 @@
-﻿using EdoUI.DTO;
-using CapaInterfaces;
+﻿using CapaInterfaces;
+using EdoUI.Entidades.DTO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mail;
 
-namespace Persistencia
+namespace Dominio.Entidades.DTO
 {
     /// <summary>
     /// Entidad DireccionCorreo, modela una dirección de correo. Ej: miCorreo@correo.com

@@ -3,8 +3,8 @@ using Dominio.ServicioCorreo;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using EdoUI.DTO;
 using EdoUI.Dominio;
+using EdoUI.Entidades.DTO;
 
 namespace Dominio
 {

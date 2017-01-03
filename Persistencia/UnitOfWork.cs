@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Dominio.Persistencia.Repositorio;
 using System.Linq;
-using EdoUI.DTO;
 using System.Data.Entity;
 using Persistencia.Repositorios;
+using EdoUI.Entidades.DTO;
+using EdoUI.Entidades;
 
 namespace Persistencia
 {
@@ -37,7 +37,7 @@ namespace Persistencia
 
             #region Instanciar repositorio adjunto
 
-            IRepositorioCompleto<IAdjuntoDTO> rAdjunto = new RepositorioAdjunto((this.iContext as DbContext).Set<IAdjuntoDTO>());
+            IRepositorioAdjunto rAdjunto = new RepositorioAdjunto((this.iContext as DbContext).Set<IAdjuntoDTO>());
             (rAdjunto as Repositorio<IAdjuntoDTO>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rAdjunto);
@@ -46,7 +46,7 @@ namespace Persistencia
 
             #region Instanciar repositorio direccion
 
-            IRepositorioCompleto<IDireccionCorreoDTO> rDireccion = new RepositorioDireccion((this.iContext as DbContext).Set<IDireccionCorreoDTO>());
+            IRepositorioDireccion rDireccion = new RepositorioDireccion((this.iContext as DbContext).Set<IDireccionCorreoDTO>());
             (rDireccion as Repositorio<IDireccionCorreoDTO>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rDireccion);
@@ -55,7 +55,7 @@ namespace Persistencia
 
             #region Instaciar repositorio cuenta
             //rCuenta necesita de rDireccion
-            IRepositorioCompleto<ICuentaDTO> rCuenta = new RepositorioCuenta(rDireccion, (this.iContext as DbContext).Set<ICuentaDTO>());
+            IRepositorioCuenta rCuenta = new RepositorioCuenta(rDireccion, (this.iContext as DbContext).Set<ICuentaDTO>());
 
             (rCuenta as Repositorio<ICuentaDTO>).Actualizar += Actualizar;
 

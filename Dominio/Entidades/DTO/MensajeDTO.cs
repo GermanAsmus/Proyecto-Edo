@@ -1,15 +1,24 @@
-﻿using EdoUI.DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Dominio.Entidades.DAO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EdoUI.Entidades.DTO;
+using EdoUI.Entidades;
 
-namespace Persistencia
+namespace Dominio.Entidades.DTO
 {
     public class MensajeDTO : IMensajeCompletoDTO, IEstadoMensaje
     {
+        /// <summary>
+        /// Devuelve el tipo de mensaje según su estructura
+        /// </summary>
+        /// <param name="pMensaje"></param>
+        /// <returns></returns>
+        public static string TipoMensaje(MensajeDTO pMensaje)
+        {
+            return (string.IsNullOrEmpty(pMensaje.Contenido) && pMensaje.Adjuntos == null) ? "incompleto" : "completo";
+        }
 
         #region Atributos Mensaje Estandar
 
@@ -36,48 +45,69 @@ namespace Persistencia
 
         #endregion
 
-        private EstadoPersistencia iEstadoPersistencia;
-        public string EstadoDePersistencia
-        {
-            get { return this.iEstadoPersistencia.ToString(); }
-            set
-            {
-                this.iEstadoPersistencia =
-                    value == EstadoPersistencia.Guardado.ToString() ? 
-                        EstadoPersistencia.Guardado : EstadoPersistencia.No_Guardado;
-            }
-        }
 
-        private IEstadoMensaje iEstado;
-        public string Estado
-        {
-            get { return this.iEstado.ObtenerEstado(); }
-        }
-        public void CambiarEstado()
-        {
-            this.iEstado.CambiarEstado();
-        }
-
-        public string Estructura
+        private DateTime iEstadoGuardado;
+        public string EstadoGuardado
         {
             get
             {
-                return (string.IsNullOrEmpty(Contenido) && Adjuntos == null) ? "incompleto" : "completo";
+                if (iEstadoGuardado != null)
+                    return string.Concat("Mensaje guardado: ",iEstadoGuardado.ToShortDateString());
+                else
+                    return "Mensaje no guardado";
+            }
+
+            set
+            {
+                if (!DateTime.TryParse(value, out this.iEstadoGuardado))
+                    throw new FormatException("El formato de la fecha ingresada no es válida");
             }
         }
 
+        private DateTime iEstadoEnviado;
+        public string EstadoEnviado
+        {
+            get
+            {
+                if (iEstadoEnviado != null)
+                    return string.Concat("Mensaje enviado: ", iEstadoEnviado.ToShortDateString());
+                else
+                    return "Mensaje no enviado";
+            }
+
+            set
+            {
+                if (!DateTime.TryParse(value, out this.iEstadoEnviado))
+                    throw new FormatException("El formato de la fecha ingresada no es válida");
+            }
+        }
+
+        private DateTime iEstadoVisto;
+        public string EstadoVisto
+        {
+            get
+            {
+                if (iEstadoVisto != null)
+                    return string.Concat("Mensaje visto: ", iEstadoVisto.ToShortDateString());
+                else
+                    return "Mensaje no visto";
+            }
+
+            set
+            {
+                if (!DateTime.TryParse(value, out this.iEstadoVisto))
+                    throw new FormatException("El formato de la fecha ingresada no es válida");
+            }
+        }
+
+
+        /// <summary>
+        /// Constructor de la clase, se inicializan las listas de adjuntos y los destinatarios
+        /// </summary>
         public MensajeDTO()
         {
             this.Adjuntos = new List<IAdjuntoDTO>();
             this.Destinatario = new List<ICuentaDTO>();
         }
-    }
-
-    //El estado de persistencia de un mensaje completo puede variar en guardado o no guardado,
-    //con persistencia se hace referencia a la capacidad de la entidad de permanecer en la base de datos.
-    public enum EstadoPersistencia
-    {
-        Guardado,
-        No_Guardado
     }
 }

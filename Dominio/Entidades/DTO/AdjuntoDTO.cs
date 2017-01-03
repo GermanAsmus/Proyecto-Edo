@@ -1,20 +1,17 @@
-﻿using EdoUI.DTO;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Dominio.Excepciones;
+using EdoUI.Entidades.DTO;
 
-namespace Dominio.Entidades
+namespace Dominio.Entidades.DTO
 {
-    /// <summary>
-    /// Entidad Adjunto, modela un archivo adjunto que pueda persistir en el sistema.
-    /// </summary>
+
     public class AdjuntoDTO : IAdjuntoDTO
     {
-        //Identificador único del Adjunto.
         public int Id { get; set; }
-        //Path o dirección en donde el archivo adjunto se encuentra persistido en el disco.
+        
         public string PathAdjunto
         {
             get
@@ -28,7 +25,7 @@ namespace Dominio.Entidades
             }
 
         }
-        //Colección de mensajes a los que el adjunto está relacionado.
+
         public virtual ICollection<IMensajeDTO> Mensajes { get; set; }
 
         public AdjuntoDTO()

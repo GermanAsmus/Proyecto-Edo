@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using EdoUI.DTO;
 using System.Data.Entity;
-using Dominio.Persistencia.Repositorio;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects.DataClasses;
+using EdoUI.Entidades;
 
 namespace Persistencia.Repositorios
 {
@@ -17,14 +16,18 @@ namespace Persistencia.Repositorios
 
         private IDbSet<TEntity> iDbSet;
 
-
-
         public Repositorio(IDbSet<TEntity> pDbSet)
         {
             this.iDbSet = pDbSet;
         }
 
         public abstract void Agregar(TEntity entity);
+
+        public void Eliminar(TEntity entity)
+        {
+            iDbSet.Remove(entity);
+            Actualizar();
+        }
 
         /// <summary>
         /// Agrega un elemento a la base de datos
@@ -36,29 +39,18 @@ namespace Persistencia.Repositorios
             Actualizar();
         }
 
-        public void Eliminar(TEntity entity)
-        {
-            iDbSet.Remove(entity);
-            Actualizar();
-        }
-
-        public IEnumerable<TEntity> ObtenerSegun(Expression<Func<TEntity, bool>> criterio)
+        protected IEnumerable<TEntity> ObtenerSegun(Expression<Func<TEntity, bool>> criterio = null)
         {
             if (criterio == null)
-                throw new ArgumentNullException("El criterio es nulo, no se puede evaluar la expresión");
+                return iDbSet;
             return iDbSet.Where(criterio);
         }
 
-        public TEntity Obtener(Expression<Func<TEntity, bool>> criterio)
+        protected TEntity Obtener(Expression<Func<TEntity, bool>> criterio = null)
         {
             if (criterio == null)
                 throw new ArgumentNullException("El criterio es nulo, no se puede evaluar la expresión");
            return iDbSet.SingleOrDefault(criterio);
-        }
-
-        public IEnumerable<TEntity> Todos()
-        {
-            return iDbSet;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EdoUI.DTO
+namespace EdoUI.Entidades.DTO
 {
     public interface IDireccionCorreoDTO : IEntidadModelo
     {

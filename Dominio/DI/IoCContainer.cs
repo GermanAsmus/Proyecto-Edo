@@ -8,6 +8,9 @@ namespace Dominio.DI
 {
     public class IoCContainer
     {
-
+        public static T Resolver<T>()
+        {
+            return Activator.CreateInstance<T>();
+        }
     }
 }

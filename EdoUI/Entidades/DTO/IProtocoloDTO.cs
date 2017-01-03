@@ -1,4 +1,4 @@
-﻿namespace EdoUI.DTO
+﻿namespace EdoUI.Entidades.DTO
 {
     public interface IProtocoloDTO : IEntidadModelo
     {

@@ -44,13 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControladorDominio.cs" />
-    <Compile Include="Entidades\DAO\IEstadoMensaje.cs" />
     <Compile Include="Entidades\DTO\AdjuntoDTO.cs" />
-    <Compile Include="Entidades\DAO\ICuentaDAO.cs" />
-    <Compile Include="Entidades\DAO\IEntidadDAO.cs" />
-    <Compile Include="Entidades\DAO\IMensajeCompleto.cs" />
-    <Compile Include="Entidades\DAO\IMensajeDAO.cs" />
-    <Compile Include="Entidades\DAO\IServidorDAO.cs" />
     <Compile Include="DI\IoCContainer.cs" />
     <Compile Include="Entidades\DTO\CuentaDTO.cs" />
     <Compile Include="Entidades\DTO\CuentaUsuarioDTO .cs" />
@@ -59,15 +53,13 @@
     <Compile Include="Entidades\DTO\ProtocoloDTO.cs" />
     <Compile Include="Entidades\DTO\ServidorDTO.cs" />
     <Compile Include="Entidades\Helper\Buzon.cs" />
+    <Compile Include="Entidades\Helper\CreadorCuenta.cs" />
     <Compile Include="Entidades\Helper\InfoAdjunto.cs" />
+    <Compile Include="Entidades\Helper\CreadorMensajes.cs" />
     <Compile Include="Excepciones\AddOperationException.cs" />
     <Compile Include="Excepciones\InvalidRepositoryOperationException.cs" />
     <Compile Include="Excepciones\PathInexistenteException.cs" />
-    <Compile Include="IObtenible.cs" />
     <Compile Include="Persistencia\IControladorPersistencia.cs" />
-    <Compile Include="Persistencia\Repositorio\IRepositorioCompleto.cs" />
-    <Compile Include="Persistencia\Repositorio\IRepositorioEstandar.cs" />
-    <Compile Include="Persistencia\Repositorio\IRepositorioRaiz.cs" />
     <Compile Include="ServicioCorreo\IProtocolo.cs" />
     <Compile Include="ServicioCorreo\IProtocoloRecepcion.cs" />
     <Compile Include="ServicioCorreo\IProtocoloTransmision.cs" />

@@ -1,4 +1,4 @@
-﻿namespace Dominio.Persistencia.Repositorio
+﻿namespace Persistencia.Repositorios
 {
     public interface IRepositorioRaiz
     {

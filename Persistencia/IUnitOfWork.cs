@@ -1,5 +1,5 @@
-﻿using Dominio.Persistencia.Repositorio;
-using EdoUI.DTO;
+﻿using EdoUI.Entidades;
+using Persistencia.Repositorios;
 
 namespace Persistencia
 {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EdoUI.DTO
+namespace EdoUI.Entidades.DTO
 {
-    public interface IMensajeDTO : IEntidadModelo
+    public interface IMensajeDTO : IEntidadModelo, IEstadoMensaje
     {
         //Asunto del mensaje.
         string Asunto { get; set; }
@@ -20,11 +20,5 @@ namespace EdoUI.DTO
         // Colección de direcciones de correo como direcciones destinatarios.
         ICollection<ICuentaDTO> Destinatario { get; set; }
 
-        //Estado de persistencia del mensaje. (Guardado/No_Guardado).
-        string EstadoDePersistencia { get; set; }
-
-        string Estado { get; }
-        void CambiarEstado();
-        string Estructura { get; }
     }
 }

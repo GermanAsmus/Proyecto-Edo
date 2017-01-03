@@ -1,7 +1,7 @@
-﻿using EdoUI.DTO;
+﻿using EdoUI.Entidades.DTO;
 using System;
 
-namespace Persistencia
+namespace Dominio.Entidades.DTO
 {
     public class ProtocoloDTO : IProtocoloDTO
     {

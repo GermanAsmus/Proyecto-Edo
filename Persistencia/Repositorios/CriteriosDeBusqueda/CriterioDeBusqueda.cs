@@ -1,4 +1,4 @@
-﻿using EdoUI.DTO;
+﻿using EdoUI.Entidades;
 using System;
 using System.Linq.Expressions;
 

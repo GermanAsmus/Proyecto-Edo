@@ -1,7 +1,8 @@
-﻿using System;
+﻿using EdoUI.Entidades.DTO;
+using System;
 using System.Collections.Concurrent;
 
-namespace EdoUI.DTO
+namespace EdoUI.Entidades.Helper
 {
     /// <summary>
     /// Interfaz que mantiene dos colecciones concurrentes que se actualizan mediante la agregación de Mensajes.

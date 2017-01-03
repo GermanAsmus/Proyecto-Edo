@@ -1,11 +1,18 @@
-﻿using EdoUI.DTO;
+﻿using EdoUI.Entidades.DTO;
 using System;
+using System.Linq.Expressions;
+using System.Linq;
 
 namespace Persistencia.Repositorios.CriteriosDeBusqueda
 {
-    public abstract class BuscarAdjunto : CriterioDeBusqueda<IAdjuntoDTO>
+    public abstract class BuscarAdjunto
     {
-        public new static Func<IAdjuntoDTO, int, bool> BuscarPorId = (pEntidad, pId) => pEntidad.Id == pId;
-        public static Func<IAdjuntoDTO, string, bool> BuscarPorCodigo = (pEntidad, pCodigo) => pEntidad.PathAdjunto == pCodigo;
+        public Predicate<IAdjuntoDTO> BuscarPorId(int pId)
+        {
+            return adjunto => adjunto.Id == pId;
+        }
+        //public Func<IAdjuntoDTO, string, bool> BuscarPorCodigo = (pEntidad, pCodigo) => pEntidad.PathAdjunto == pCodigo;
+        
     }
+
 }

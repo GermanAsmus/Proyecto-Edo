@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using CapaInterfaces;
-using EdoUI.DTO;
 using Dominio.Persistencia;
-using Dominio.Persistencia.Repositorio;
-
+using EdoUI.Entidades.DTO;
+using Persistencia.Repositorios;
 
 namespace Persistencia
 {
@@ -14,20 +12,20 @@ namespace Persistencia
     {
         private IUnitOfWork iUnitOfWork;
 
-        private IRepositorioCompleto<ICuentaDTO> iRepositorioCuenta;
-        private IRepositorioCompleto<IMensajeDTO> iRepositorioMensaje;
-        private IRepositorioCompleto<IAdjuntoDTO> iRepositorioAdjunto;
-        private IRepositorioCompleto<IDireccionCorreoDTO> iRepositorioDireccionCorreo;
+        private IRepositorioCuenta iRepositorioCuenta;
+        private IRepositorioMensaje iRepositorioMensaje;
+        private IRepositorioAdjunto iRepositorioAdjunto;
+        private IRepositorioDireccion iRepositorioDireccionCorreo;
 
 
         public ControladorPersistencia(IUnitOfWork pUnitOfWork)
         {
             this.iUnitOfWork = pUnitOfWork;
 
-            this.iRepositorioCuenta = this.iUnitOfWork.ObtenerRepositorio<ICuentaDTO>();
-            this.iRepositorioMensaje = this.iUnitOfWork.ObtenerRepositorio<IMensajeDTO>();
-            this.iRepositorioAdjunto = this.iUnitOfWork.ObtenerRepositorio<IAdjuntoDTO>();
-            this.iRepositorioDireccionCorreo = this.iUnitOfWork.ObtenerRepositorio<IDireccionCorreoDTO>();
+            this.iRepositorioCuenta = this.iUnitOfWork.ObtenerRepositorio<ICuentaDTO>() as IRepositorioCuenta;
+            this.iRepositorioMensaje = this.iUnitOfWork.ObtenerRepositorio<IMensajeDTO>() as IRepositorioMensaje;
+            this.iRepositorioAdjunto = this.iUnitOfWork.ObtenerRepositorio<IAdjuntoDTO>() as IRepositorioAdjunto;
+            this.iRepositorioDireccionCorreo = this.iUnitOfWork.ObtenerRepositorio<IDireccionCorreoDTO>() as IRepositorioDireccion;
         }
 
         public int Actualizar()
@@ -35,123 +33,134 @@ namespace Persistencia
             return this.iUnitOfWork.Commit();
         }
 
-        #region Control de cuentas
+        #region manejo de cuenta
+        public ICuentaDTO ObtenerCuenta(int? pId)
+        {
+            return this.iRepositorioCuenta.Obtener(pId);
+        }
+
+        public ICuentaDTO ObtenerCuenta(string pNombre = null)
+        {
+            return this.iRepositorioCuenta.Obtener(pNombre);
+        }
+
+        public IEnumerable<ICuentaDTO> ObtenerCuentaSegun(int? pId)
+        {
+            return this.iRepositorioCuenta.ObtenerSegun(pId);
+        }
+
+        public IEnumerable<ICuentaDTO> ObtenerCuentaSegun(string pNombre = null)
+        {
+            return this.iRepositorioCuenta.ObtenerSegun(pNombre);
+        }
 
         public void Agregar(ICuentaDTO pEntidad)
         {
-            iRepositorioCuenta.Agregar(pEntidad);
+            this.iRepositorioCuenta.Agregar(pEntidad);
         }
 
         public void Eliminar(ICuentaDTO pEntidad)
         {
-            iRepositorioCuenta.Eliminar(pEntidad);
-        }
-
-        public IEnumerable<ICuentaDTO> Todos()
-        {
-            return iRepositorioCuenta.Todos();
-        }
-
-        public IEnumerable<ICuentaDTO> ObtenerSegun(Expression<Func<ICuentaDTO, bool>> pCriterio)
-        {
-            return iRepositorioCuenta.ObtenerSegun(pCriterio);
-        }
-
-        public ICuentaDTO Obtener(Expression<Func<ICuentaDTO, bool>> pCriterio)
-        {
-            return iRepositorioCuenta.Obtener(pCriterio);
+            this.iRepositorioCuenta.Eliminar(pEntidad);
         }
 
         #endregion
 
-        #region Control de mensajes
-
-        public void Agregar(IMensajeDTO pEntidad)
+        #region manejo de direccion de correo
+        public IDireccionCorreoDTO ObtenerCuentaDireccionDeCorreo(int? pId)
         {
-            iRepositorioMensaje.Agregar(pEntidad);
+            return this.iRepositorioDireccionCorreo.Obtener(pId);
         }
 
-        public void Eliminar(IMensajeDTO pEntidad)
+        public IDireccionCorreoDTO ObtenerCuentaDireccionDeCorreo(string pDireccion)
         {
-            iRepositorioMensaje.Eliminar(pEntidad);
+            return this.iRepositorioDireccionCorreo.Obtener(pDireccion);
         }
 
-        IEnumerable<IMensajeDTO> IRepositorioEstandar<IMensajeDTO>.Todos()
+        public IEnumerable<IDireccionCorreoDTO> ObtenerCuentaDireccionDeCorreoSegun(int? pId)
         {
-            return iRepositorioMensaje.Todos();
+            return this.iRepositorioDireccionCorreo.ObtenerSegun(pId);
         }
 
-        public IEnumerable<IMensajeDTO> ObtenerSegun(Expression<Func<IMensajeDTO, bool>> pCriterio)
+        public IEnumerable<IDireccionCorreoDTO> ObtenerCuentaDireccionDeCorreoSegun(string pDireccion)
         {
-            return iRepositorioMensaje.ObtenerSegun(pCriterio);
+            return this.iRepositorioDireccionCorreo.ObtenerSegun(pDireccion);
         }
-
-        public IMensajeDTO Obtener(Expression<Func<IMensajeDTO, bool>> pCriterio)
-        {
-            return iRepositorioMensaje.Obtener(pCriterio);
-        }
-
-
-        #endregion
-
-        #region Control de adjuntos
-
-        public void Agregar(IAdjuntoDTO pEntidad)
-        {
-            iRepositorioAdjunto.Agregar(pEntidad);
-        }
-
-        public void Eliminar(IAdjuntoDTO pEntidad)
-        {
-            iRepositorioAdjunto.Eliminar(pEntidad);
-        }
-
-        IEnumerable<IAdjuntoDTO> IRepositorioEstandar<IAdjuntoDTO>.Todos()
-        {
-            return iRepositorioAdjunto.Todos();
-        }
-
-        public IEnumerable<IAdjuntoDTO> ObtenerSegun(Expression<Func<IAdjuntoDTO, bool>> pCriterio)
-        {
-            return iRepositorioAdjunto.ObtenerSegun(pCriterio);
-        }
-
-        public IAdjuntoDTO Obtener(Expression<Func<IAdjuntoDTO, bool>> pCriterio)
-        {
-            return iRepositorioAdjunto.Obtener(pCriterio);
-        }
-
-        #endregion
-
-        #region Control de direcciones de correo
 
         public void Agregar(IDireccionCorreoDTO pEntidad)
         {
-            iRepositorioDireccionCorreo.Agregar(pEntidad);
+            this.iRepositorioDireccionCorreo.Agregar(pEntidad);
         }
 
         public void Eliminar(IDireccionCorreoDTO pEntidad)
         {
-            iRepositorioDireccionCorreo.Eliminar(pEntidad);
-        }
+            this.iRepositorioDireccionCorreo.Eliminar(pEntidad);
+        } 
+        #endregion
 
-        IEnumerable<IDireccionCorreoDTO> IRepositorioEstandar<IDireccionCorreoDTO>.Todos()
+        #region manejo de mensajes
+        public IMensajeDTO ObtenerMensaje(int? pId)
         {
-            return iRepositorioDireccionCorreo.Todos();
+            return this.iRepositorioMensaje.Obtener(pId);
         }
 
-        public IEnumerable<IDireccionCorreoDTO> ObtenerSegun(Expression<Func<IDireccionCorreoDTO, bool>> pCriterio)
+        public IMensajeDTO ObtenerMensaje(string pAsunto = null)
         {
-            return iRepositorioDireccionCorreo.ObtenerSegun(pCriterio);
+            return this.iRepositorioMensaje.Obtener(pAsunto);
         }
 
-        public IDireccionCorreoDTO Obtener(Expression<Func<IDireccionCorreoDTO, bool>> pCriterio)
+        public IEnumerable<IMensajeDTO> ObtenerMensajeSegun(int? pId)
         {
-            return iRepositorioDireccionCorreo.Obtener(pCriterio);
+            return this.iRepositorioMensaje.ObtenerSegun(pId);
         }
 
+        public IEnumerable<IMensajeDTO> ObtenerMensajeSegun(string Asunto = null)
+        {
+            return this.iRepositorioMensaje.ObtenerSegun(Asunto);
+        }
+
+        public void Agregar(IMensajeDTO pEntidad)
+        {
+            this.iRepositorioMensaje.Agregar(pEntidad);
+        }
+
+        public void Eliminar(IMensajeDTO pEntidad)
+        {
+            this.iRepositorioMensaje.Eliminar(pEntidad);
+        }
 
         #endregion
 
+        #region manejo de adjuntos
+        public IAdjuntoDTO ObtenerAdjunto(int pId)
+        {
+            return this.iRepositorioAdjunto.Obtener(pId);
+        }
+
+        public IAdjuntoDTO ObtenerAdjunto(string pCodigo)
+        {
+            return this.iRepositorioAdjunto.Obtener(pCodigo);
+        }
+
+        public IEnumerable<IAdjuntoDTO> ObtenerAdjuntoSegun(int? pId)
+        {
+            return this.iRepositorioAdjunto.ObtenerSegun(pId);
+        }
+
+        public IEnumerable<IAdjuntoDTO> ObtenerAdjuntoSegun(string pCodigo = null)
+        {
+            return this.iRepositorioAdjunto.ObtenerSegun(pCodigo);
+        }
+
+        public void Agregar(IAdjuntoDTO pEntidad)
+        {
+            this.iRepositorioAdjunto.Agregar(pEntidad);
+        }
+
+        public void Eliminar(IAdjuntoDTO pEntidad)
+        {
+            this.iRepositorioAdjunto.Eliminar(pEntidad);
+        } 
+        #endregion
     }
 }

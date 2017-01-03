@@ -85,16 +85,17 @@
       <DependentUpon>Bloque.cs</DependentUpon>
     </Compile>
     <Compile Include="Dominio\IControladorDominio.cs" />
-    <Compile Include="DTO\IAdjuntoDTO.cs" />
-    <Compile Include="DTO\IBuzon.cs" />
-    <Compile Include="DTO\ICuentaDTO.cs" />
-    <Compile Include="DTO\ICuentaUsuarioDTO.cs" />
-    <Compile Include="DTO\IDireccionCorreo.cs" />
-    <Compile Include="DTO\IEntidadModelo.cs" />
-    <Compile Include="DTO\IMensajeCompletoDTO.cs" />
-    <Compile Include="DTO\IMensajeDTO.cs" />
-    <Compile Include="DTO\IProtocoloDTO.cs" />
-    <Compile Include="DTO\IServidorDTO.cs" />
+    <Compile Include="Entidades\DTO\IAdjuntoDTO.cs" />
+    <Compile Include="Entidades\Helper\IBuzon.cs" />
+    <Compile Include="Entidades\DTO\ICuentaDTO.cs" />
+    <Compile Include="Entidades\DTO\ICuentaUsuarioDTO.cs" />
+    <Compile Include="Entidades\DTO\IDireccionCorreoDTO.cs" />
+    <Compile Include="Entidades\IEntidadModelo.cs" />
+    <Compile Include="Entidades\DTO\IMensajeCompletoDTO.cs" />
+    <Compile Include="Entidades\DTO\IMensajeDTO.cs" />
+    <Compile Include="Entidades\DTO\IProtocoloDTO.cs" />
+    <Compile Include="Entidades\DTO\IServidorDTO.cs" />
+    <Compile Include="Entidades\IEstadoMensaje.cs" />
     <Compile Include="IoC_CL.cs" />
     <Compile Include="Sobre.cs">
       <SubType>Form</SubType>

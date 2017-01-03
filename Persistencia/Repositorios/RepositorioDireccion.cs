@@ -1,11 +1,11 @@
-﻿using EdoUI.DTO;
-using System;
+﻿using System;
 using System.Data.Entity;
-using Persistencia.Repositorios.CriteriosDeBusqueda;
+using EdoUI.Entidades.DTO;
+using System.Collections.Generic;
 
 namespace Persistencia.Repositorios
 {
-    public class RepositorioDireccion : Repositorio<IDireccionCorreoDTO>
+    public class RepositorioDireccion : Repositorio<IDireccionCorreoDTO>, IRepositorioDireccion
     {
         public RepositorioDireccion(IDbSet<IDireccionCorreoDTO> pDbSet) : base(pDbSet)
         {
@@ -19,12 +19,44 @@ namespace Persistencia.Repositorios
                 throw new ArgumentNullException(nameof(pEntidad)); 
             #endregion
 
-            IDireccionCorreoDTO iDireccion = this.Obtener(x => BuscarDireccionDeCorreo.BuscarPorId(x, pEntidad.Id));
+            IDireccionCorreoDTO iDireccion = this.Obtener(pEntidad.Id);
             if (iDireccion == null)
                 throw new InvalidOperationException("ya existe la direccion en la bd");
 
             this.AgregarEntidad(pEntidad);
 
+        }
+
+        public IDireccionCorreoDTO Obtener(int? pId)
+        {
+            if (pId.HasValue)
+                return base.Obtener(direccion => direccion.Id == pId);
+            else
+                return base.Obtener();
+        }
+
+        public IDireccionCorreoDTO Obtener(string pDireccion = null)
+        {
+            if (string.IsNullOrEmpty(pDireccion))
+                return base.Obtener(direccion => direccion.DireccionDeCorreo == pDireccion);
+            else
+                return base.Obtener();
+        }
+
+        public IEnumerable<IDireccionCorreoDTO> ObtenerSegun(int? pId)
+        {
+            if (pId.HasValue)
+                return base.ObtenerSegun(direccion => direccion.Id == pId);
+            else
+                return base.ObtenerSegun();
+        }
+
+        public IEnumerable<IDireccionCorreoDTO> ObtenerSegun(string pDireccion = null)
+        {
+            if (string.IsNullOrEmpty(pDireccion))
+                return base.ObtenerSegun(direccion => direccion.DireccionDeCorreo == pDireccion);
+            else
+                return base.ObtenerSegun();
         }
     }
 }

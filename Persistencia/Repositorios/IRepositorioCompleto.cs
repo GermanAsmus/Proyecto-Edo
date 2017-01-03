@@ -1,6 +1,6 @@
-﻿using EdoUI.DTO;
+﻿using EdoUI.Entidades;
 
-namespace Dominio.Persistencia.Repositorio
+namespace Persistencia.Repositorios
 {
     public interface IRepositorioCompleto<TEntity> : IRepositorioEstandar<TEntity> where TEntity : class, IEntidadModelo
     {

@@ -1,6 +1,6 @@
-﻿using EdoUI.DTO;
+﻿using EdoUI.Entidades.DTO;
 
-namespace Persistencia
+namespace Dominio.Entidades.DTO
 {
     public class CuentaUsuarioDTO : CuentaDTO, ICuentaUsuarioDTO
     {

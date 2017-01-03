@@ -1,7 +1,7 @@
-﻿using System;
+﻿using EdoUI.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using EdoUI.DTO;
 
 namespace Dominio
 {
@@ -14,8 +14,10 @@ namespace Dominio
         /// </summary>
         /// <param name="pCriterio">pCriterio de busqueda</param>
         /// <returns>Coleccion enumerable de las entidades obtenidas</returns>
+        //IEnumerable<TEntity> ObtenerSegun(Expression<Func<TEntity, bool>> pCriterio);
         IEnumerable<TEntity> ObtenerSegun(Expression<Func<TEntity, bool>> pCriterio);
-       
+
+
         /// <summary>
         /// Obtiene la entidad <typeparamref name="TEntity"/> que cumple con el <paramref name="pCriterio"/>
         /// que persiste en el repositorio

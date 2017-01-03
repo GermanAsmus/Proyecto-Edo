@@ -1,16 +1,15 @@
 ﻿using System;
-using EdoUI.DTO;
-using Dominio.Persistencia.Repositorio;
-using Persistencia.Repositorios.CriteriosDeBusqueda;
 using System.Data.Entity;
+using EdoUI.Entidades.DTO;
+using System.Collections.Generic;
 
 namespace Persistencia.Repositorios
 {
-    public class RepositorioCuenta : Repositorio<ICuentaDTO>
+    public class RepositorioCuenta : Repositorio<ICuentaDTO>, IRepositorioCuenta
     {
-        private IRepositorioCompleto<IDireccionCorreoDTO> iRepositorioExterno;
+        private IRepositorioDireccion iRepositorioExterno;
 
-        public RepositorioCuenta(IRepositorioCompleto<IDireccionCorreoDTO> pRepositorioExterno, IDbSet<ICuentaDTO> pDbSet) : base(pDbSet)
+        public RepositorioCuenta(IRepositorioDireccion pRepositorioExterno, IDbSet<ICuentaDTO> pDbSet) : base(pDbSet)
         {
             this.iRepositorioExterno = pRepositorioExterno;
         }
@@ -33,7 +32,7 @@ namespace Persistencia.Repositorios
             } 
             #endregion
 
-            IDireccionCorreoDTO iDireccion = iRepositorioExterno.Obtener(direccion => BuscarDireccionDeCorreo.BuscarPorDireccion(direccion, pEntidad.DireccionCorreo.DireccionDeCorreo));
+            IDireccionCorreoDTO iDireccion = iRepositorioExterno.Obtener(pEntidad.DireccionCorreo.DireccionDeCorreo);
             //de no existir la direccion, se agrega a la base de datos
             if (iDireccion == null)
                 iRepositorioExterno.Agregar(iDireccion);
@@ -47,6 +46,38 @@ namespace Persistencia.Repositorios
             //pEntidad.IServidor = iServidor;
 
             base.AgregarEntidad(pEntidad);
+        }
+
+        public ICuentaDTO Obtener(int? pId)
+        {
+            if (pId.HasValue)
+                return base.Obtener(cuenta => cuenta.Id == pId);
+            else
+                return base.Obtener();
+        }
+
+        public ICuentaDTO Obtener(string pNombre = null)
+        {
+            if (string.IsNullOrEmpty(pNombre))
+                return base.Obtener(cuenta => (cuenta as ICuentaUsuarioDTO).Nombre == pNombre);
+            else
+                return base.Obtener();
+        }
+
+        public IEnumerable<ICuentaDTO> ObtenerSegun(int? pId)
+        {
+            if (pId.HasValue)
+                return base.ObtenerSegun(cuenta => cuenta.Id == pId);
+            else
+                return base.ObtenerSegun();
+        }
+
+        public IEnumerable<ICuentaDTO> ObtenerSegun(string pNombre = null)
+        {
+            if (string.IsNullOrEmpty(pNombre))
+                return base.ObtenerSegun(cuenta => (cuenta as ICuentaUsuarioDTO).Nombre == pNombre);
+            else
+                return base.ObtenerSegun();
         }
     }
 }

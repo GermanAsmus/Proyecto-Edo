@@ -9,29 +9,29 @@ using System.Linq.Expressions;
 
 namespace Persistencia.Repositorios
 {
-    public class RepositorioAdjunto : Repositorio<IAdjuntoDTO>, IRepositorioAdjunto
+    public class RepositorioAdjunto : Repositorio<IAdjunto>, IRepositorioAdjunto
     {
-        public RepositorioAdjunto(IDbSet<IAdjuntoDTO> pDbSet) : base(pDbSet)
+        public RepositorioAdjunto(IDbSet<IAdjunto> pDbSet) : base(pDbSet)
         {
 
         }
 
-        public override void Agregar(IAdjuntoDTO entity)
+        public override void Agregar(IAdjunto entity)
         {
             this.AgregarEntidad(entity);
         }
 
-        public IAdjuntoDTO Obtener(int pId)
+        public IAdjunto Obtener(int pId)
         {
            return base.Obtener(adjunto => adjunto.Id == pId);
         }
 
-        public IAdjuntoDTO Obtener(string pCodigo)
+        public IAdjunto Obtener(string pCodigo)
         {
             return base.Obtener(adjunto => adjunto.PathAdjunto == pCodigo);
         }
 
-        public IEnumerable<IAdjuntoDTO> ObtenerSegun(int? pId)
+        public IEnumerable<IAdjunto> ObtenerSegun(int? pId)
         {
             if (pId.HasValue)
                 return base.ObtenerSegun(adjunto => adjunto.Id == pId);
@@ -39,7 +39,7 @@ namespace Persistencia.Repositorios
                 return base.ObtenerSegun();
         }
 
-        public IEnumerable<IAdjuntoDTO> ObtenerSegun(string pCodigo = null)
+        public IEnumerable<IAdjunto> ObtenerSegun(string pCodigo = null)
         {
             if (!string.IsNullOrEmpty(pCodigo))
                 return base.ObtenerSegun(adjunto => adjunto.PathAdjunto == pCodigo);

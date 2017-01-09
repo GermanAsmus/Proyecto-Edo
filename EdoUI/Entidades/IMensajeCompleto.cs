@@ -2,9 +2,9 @@
 
 namespace EdoUI.Entidades.DTO
 {
-    public interface IMensajeCompletoDTO : IMensajeDTO
+    public interface IMensajeCompleto : IMensaje
     {
-        ICollection<IAdjuntoDTO> Adjuntos { get; set; }
+        ICollection<IAdjunto> Adjuntos { get; set; }
         string Contenido { get; set; }
     }
 }

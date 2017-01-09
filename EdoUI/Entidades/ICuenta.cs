@@ -2,12 +2,12 @@
 
 namespace EdoUI.Entidades.DTO
 {
-    public interface ICuentaDTO : IEntidadModelo
+    public interface ICuenta : IEntidadModelo
     {
         /// <summary>
         /// Refiere a la dirección de correo de la cuenta del usuario.
         /// </summary>
-        IDireccionCorreoDTO DireccionCorreo { get; set; }
+        IDireccionCorreo DireccionCorreo { get; set; }
         /// <summary>
         /// Identificador de la dirección de correo de la cuenta del usuario.
         /// </summary>
@@ -15,11 +15,15 @@ namespace EdoUI.Entidades.DTO
         /// <summary>
         ///Colección de mensjes que se relacionan con la cuenta.
         /// </summary>
-        ICollection<IMensajeDTO> Mensajes { get; set; }
+        ICollection<IMensaje> Mensajes { get; set; }
 
-/// <summary>
+        string Contraseña { get; set; }
+
+        string Nombre { get; set; }
+
+        /// <summary>
         /// Servidor asociado a la cuenta. Mantiene los datos del servicio de mensajería remota.
         /// </summary>
-        IServidorDTO Servidor { get; set; }
+        IServidor Servidor { get; set; }
     }
 }

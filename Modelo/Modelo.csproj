@@ -64,10 +64,6 @@
       <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
       <Name>CapaInterfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
-      <Project>{a815539c-52f2-4d68-8759-ac6cbd74905c}</Project>
-      <Name>Utilidades</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

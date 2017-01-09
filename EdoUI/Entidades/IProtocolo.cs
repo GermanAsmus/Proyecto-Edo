@@ -1,6 +1,6 @@
 ﻿namespace EdoUI.Entidades.DTO
 {
-    public interface IProtocoloDTO : IEntidadModelo
+    public interface IProtocolo : IEntidadModelo
     {
         string Tipo { get; set; }
         //Host del servidor.

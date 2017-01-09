@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using EdoUI.Entidades.DTO;
-using Dominio.Entidades.DTO;
 //using Persistencia.Entidades.Cuenta.Pertenencia;
 
 namespace Dominio.Entidades.Helper
@@ -17,22 +16,22 @@ namespace Dominio.Entidades.Helper
         /// <param name="pDireccionCuenta">Direccion de correo asociada a la cuenta.</param>
         /// <param name="pMensajes">Mensajes correspondientes a la cuenta.</param>
         /// <returns>Nueva cuenta externa.</returns>
-        public ICuentaDTO CrearCuenta(string pDireccionCuenta, ICollection<IMensajeDTO> pMensajes = null)
+        public ICuenta CrearCuenta(string pDireccionCuenta, ICollection<IMensaje> pMensajes = null)
         {
             #region programacion defensiva
             if (string.IsNullOrEmpty(pDireccionCuenta))
                 throw new NullReferenceException(nameof(pDireccionCuenta));
 
             if (pMensajes == null)
-                throw new NullReferenceException(nameof(pMensajes)); 
+                throw new NullReferenceException(nameof(pMensajes));
             #endregion
 
-            ICuentaDTO iCuentaDTO = new CuentaDTO()
+            ICuenta iCuentaDTO = new Entidades.Cuenta()
             {
-                DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),
+                DireccionCorreo = new DireccionCorreo(pDireccionCuenta),
             };
             if(pMensajes!=null)
-                foreach (IMensajeDTO mensaje in pMensajes)
+                foreach (IMensaje mensaje in pMensajes)
                 {
                     iCuentaDTO.Mensajes.Add(mensaje);
                 }
@@ -53,7 +52,7 @@ namespace Dominio.Entidades.Helper
         /// <param name="pNombre">Tipo que identifica a la cuenta.</param>
         /// <param name="pMensajes">Mensajes correspondientes a la cuenta.</param>
         /// <returns>Nueva cuenta de usuario.</returns>
-        public ICuentaUsuarioDTO CrearCuenta(string pDireccionCuenta, string pContraseña, string pNombre, ICollection<IMensajeCompletoDTO> pMensajes = null)
+        public ICuenta CrearCuenta(string pDireccionCuenta, string pContraseña, string pNombre, ICollection<IMensaje> pMensajes = null)
         {
             #region programacion defensiva
             if (string.IsNullOrEmpty(pDireccionCuenta))
@@ -69,15 +68,15 @@ namespace Dominio.Entidades.Helper
                 throw new NullReferenceException(nameof(pMensajes)); 
             #endregion
 
-            ICuentaUsuarioDTO iCuentaDTO = new CuentaUsuarioDTO()
+            ICuenta iCuentaDTO = new Cuenta()
             {
-                DireccionCorreo = new DireccionCorreoDTO(pDireccionCuenta),
+                DireccionCorreo = new DireccionCorreo(pDireccionCuenta),
                 Nombre = pNombre,
                 Contraseña = pContraseña
             };
 
             if(pMensajes!=null)
-                foreach (IMensajeCompletoDTO mensaje in pMensajes)
+                foreach (IMensaje mensaje in pMensajes)
                 {
                     iCuentaDTO.Mensajes.Add(mensaje);
                 }

@@ -10,72 +10,72 @@ namespace Dominio
 {
     public class ControladorDominio : IControladorDominio
     {
-        public void ActualizarInformacionCuentaDestinatarioSeleccionada(ICuentaDTO pCuenta)
+        public void ActualizarInformacionCuentaDestinatarioSeleccionada(ICuenta pCuenta)
         {
             throw new NotImplementedException();
         }
 
-        public void ActualizarInformacionCuentaSeleccionada(ICuentaUsuarioDTO pCuentaUsuario)
+        public void ActualizarInformacionCuentaSeleccionada(ICuenta pCuentaUsuario)
         {
             throw new NotImplementedException();
         }
 
-        public void CrearCuentaNueva(ICuentaUsuarioDTO pCuentaUsuario)
+        public void CrearCuentaNueva(ICuenta pCuentaUsuario)
         {
             throw new NotImplementedException();
         }
 
-        public IMensajeCompletoDTO CrearMensajeNuevo(IMensajeCompletoDTO pMensajeNuevo)
+        public IMensaje CrearMensajeNuevo(IMensaje pMensajeNuevo)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<IMensajeDTO> DescargarMenajes(ICuentaUsuarioDTO pCuentaUsuario)
+        public ICollection<IMensaje> DescargarMenajes(ICuenta pCuentaUsuario)
         {
             throw new NotImplementedException();
         }
 
-        public void EliminarCuentaDestinatarioSeleccionada(ICuentaDTO pCuenta)
+        public void EliminarCuentaDestinatarioSeleccionada(ICuenta pCuenta)
         {
             throw new NotImplementedException();
         }
 
-        public void EliminarCuentaSeleccionada(ICuentaUsuarioDTO pCuentaUsuario)
+        public void EliminarCuentaSeleccionada(ICuenta pCuentaUsuario)
         {
             throw new NotImplementedException();
         }
 
-        public void EliminarMensajeSeleccionado(IMensajeDTO pMensaje)
+        public void EliminarMensajeSeleccionado(IMensaje pMensaje)
         {
             throw new NotImplementedException();
         }
 
-        public void EnviarMensaje(IMensajeCompletoDTO pMensaje)
+        public void EnviarMensaje(IMensaje pMensaje)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<ICuentaUsuarioDTO> ListarCuentas()
+        public ICollection<ICuenta> ListarCuentas()
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<ICuentaDTO> ListarDestinatariosAsociados(ICuentaUsuarioDTO pCuentaUsuario)
+        public ICollection<ICuenta> ListarDestinatariosAsociados(ICuenta pCuentaUsuario)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<IMensajeDTO> ListarMensajes(ICuentaUsuarioDTO pCuentaUsaurio)
+        public ICollection<IMensaje> ListarMensajes(ICuenta pCuentaUsaurio)
         {
             throw new NotImplementedException();
         }
 
-        public void ReenviarMensajeSeleccionado(IMensajeDTO pMensaje)
+        public void ReenviarMensajeSeleccionado(IMensaje pMensaje)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<IMensajeDTO> Sincronizar(ICuentaUsuarioDTO pCuentaUsuario)
+        public ICollection<IMensaje> Sincronizar(ICuenta pCuentaUsuario)
         {
             throw new NotImplementedException();
         }

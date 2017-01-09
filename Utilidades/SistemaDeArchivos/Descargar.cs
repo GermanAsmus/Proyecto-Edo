@@ -7,7 +7,7 @@ using System.IO;
 using System.Collections.Concurrent;
 using System.Net.Mail;
 using Utilidades.Excepciones;
-using Utilidades.Misc;
+//using Utilidades.Misc;
 
 namespace Utilidades.SistemaDeArchivos
 {

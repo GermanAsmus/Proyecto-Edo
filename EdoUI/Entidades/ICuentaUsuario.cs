@@ -2,7 +2,7 @@
 
 namespace EdoUI.Entidades.DTO
 {
-    public interface ICuentaUsuarioDTO : ICuentaDTO
+    public interface ICuentaUsuario : ICuenta
     {
         string Contraseña { get; set; }
 

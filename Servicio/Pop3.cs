@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using OpenPop.Pop3;
 using OpenPop.Pop3.Exceptions;
 using System.Threading.Tasks;
-using Modelo;
 using OpenPop.Mime.Header;
 using OpenPop.Mime;
 using Servicio.Excepciones;
-using CapaInterfaces.Servicio;
-using CapaInterfaces.Utilidades;
-using Utilidades.Misc;
 using System.Threading;
+using EdoUI.Entidades.Helper;
+using EdoUI.Entidades.DTO;
+using Dominio.ServicioCorreo;
+using Dominio.Entidades;
+using EdoUI.Entidades.Automapper_DTO;
 
 namespace Servicio
 {
@@ -19,7 +20,7 @@ namespace Servicio
     {
         public Action ActualizacionBuzon;
 
-        public Cuenta CuentaUsuario { get; set; }
+        public ICuentaUsuario CuentaUsuario { get; set; }
         public IBuzon Buzon { get; set; }
 
         public Pop3()
@@ -77,12 +78,11 @@ namespace Servicio
             if (pMensaje == null)
                 throw new ArgumentNullException(nameof(pMensaje));
 
-            Mensaje mensaje = new Mensaje()
+            InfoMensajeDTO mensaje = new Mensaje()
             {
-                Fecha = pMensaje.Headers.Date,
+                EstadoEnviado = pMensaje.Headers.Date,
                 Asunto = pMensaje.Headers.Subject,
-                DireccionCorreo = new DireccionCorreo() { DireccionDeCorreo = pMensaje.Headers.From.Address },
-                CodigoMensaje = pMensaje.Headers.MessageId,
+                Remitente = new DireccionCorreo() { DireccionDeCorreo = pMensaje.Headers.From.Address },
             };
 
             if (pMensaje.MessagePart.Body != null)

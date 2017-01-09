@@ -37,8 +37,8 @@ namespace Persistencia
 
             #region Instanciar repositorio adjunto
 
-            IRepositorioAdjunto rAdjunto = new RepositorioAdjunto((this.iContext as DbContext).Set<IAdjuntoDTO>());
-            (rAdjunto as Repositorio<IAdjuntoDTO>).Actualizar += Actualizar;
+            IRepositorioAdjunto rAdjunto = new RepositorioAdjunto((this.iContext as DbContext).Set<IAdjunto>());
+            (rAdjunto as Repositorio<IAdjunto>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rAdjunto);
 
@@ -46,8 +46,8 @@ namespace Persistencia
 
             #region Instanciar repositorio direccion
 
-            IRepositorioDireccion rDireccion = new RepositorioDireccion((this.iContext as DbContext).Set<IDireccionCorreoDTO>());
-            (rDireccion as Repositorio<IDireccionCorreoDTO>).Actualizar += Actualizar;
+            IRepositorioDireccion rDireccion = new RepositorioDireccion((this.iContext as DbContext).Set<IDireccionCorreo>());
+            (rDireccion as Repositorio<IDireccionCorreo>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rDireccion);
 
@@ -55,9 +55,9 @@ namespace Persistencia
 
             #region Instaciar repositorio cuenta
             //rCuenta necesita de rDireccion
-            IRepositorioCuenta rCuenta = new RepositorioCuenta(rDireccion, (this.iContext as DbContext).Set<ICuentaDTO>());
+            IRepositorioCuenta rCuenta = new RepositorioCuenta(rDireccion, (this.iContext as DbContext).Set<ICuenta>());
 
-            (rCuenta as Repositorio<ICuentaDTO>).Actualizar += Actualizar;
+            (rCuenta as Repositorio<ICuenta>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rCuenta);
 
@@ -65,8 +65,8 @@ namespace Persistencia
 
             #region Instanciar repositorio mensaje
             //rMensaje necesita de rCuenta
-            IRepositorioCompleto<IMensajeDTO> rMensaje = new RepositorioMensaje(rCuenta, (this.iContext as DbContext).Set<IMensajeDTO>());
-            (rMensaje as Repositorio<IMensajeDTO>).Actualizar += Actualizar;
+            IRepositorioCompleto<IMensaje> rMensaje = new RepositorioMensaje(rCuenta, (this.iContext as DbContext).Set<IMensaje>());
+            (rMensaje as Repositorio<IMensaje>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rMensaje);
 

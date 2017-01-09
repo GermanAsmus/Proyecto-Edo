@@ -2,19 +2,19 @@
 using System;
 using System.Collections.Generic;
 
-namespace Dominio.Entidades.DTO
+namespace Dominio.Entidades
 {
-    public class ServidorDTO : IServidorDTO
+    public class Servidor : IServidor
     {
         //Tipo del servidor.
         public string Nombre { get; set; }
 
         //Protocolos de comunicacion del servidor
-        public ICollection<IProtocoloDTO> Protocolos { get; set; }
+        public ICollection<IProtocolo> Protocolos { get; set; }
 
-        public ServidorDTO()
+        public Servidor()
         {
-            this.Protocolos = new List<IProtocoloDTO>();
+            this.Protocolos = new List<IProtocolo>();
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace Dominio.Entidades.DTO
         /// </summary>
         /// <param name="pNombreHost"></param>
         /// <returns>El servidor correspondiente al host, o NullReferenceException</returns>
-        public static IServidorDTO ObtenerServidor(string pNombreHost)
+        public static IServidor ObtenerServidor(string pNombreHost)
         {
             switch (pNombreHost)
             {
@@ -33,9 +33,9 @@ namespace Dominio.Entidades.DTO
             }
         }
 
-        private static IServidorDTO CrearServidorGmail()
+        private static IServidor CrearServidorGmail()
         {
-            IServidorDTO servidor = new ServidorDTO
+            IServidor servidor = new Servidor
             {
                 Nombre = "gmail"
             };
@@ -46,9 +46,9 @@ namespace Dominio.Entidades.DTO
 
         }
 
-        private static IServidorDTO CrearServidorYahoo()
+        private static IServidor CrearServidorYahoo()
         {
-            IServidorDTO servidor = new ServidorDTO
+            IServidor servidor = new Servidor
             {
                 Nombre = "yahoo"
             };
@@ -58,9 +58,9 @@ namespace Dominio.Entidades.DTO
             return servidor;
         }
 
-        private static IProtocoloDTO AgregarProtocolo(string pTipoProtocolo, string pHost, int pPuerto, bool pSSL)
+        private static IProtocolo AgregarProtocolo(string pTipoProtocolo, string pHost, int pPuerto, bool pSSL)
         {
-            return new ProtocoloDTO()
+            return new Protocolo()
             {
                 Tipo = pTipoProtocolo,
                 Host = pHost,

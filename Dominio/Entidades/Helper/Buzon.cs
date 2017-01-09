@@ -1,4 +1,5 @@
-﻿using EdoUI.DTO;
+﻿using EdoUI.Entidades.DTO;
+using EdoUI.Entidades.Helper;
 using System;
 using System.Collections.Concurrent;
 
@@ -13,10 +14,10 @@ namespace Dominio.Entidades.Helper
         // Esta accion sera el trigger para los observadores
         public Action BagChanged;
 
-        public IProducerConsumerCollection<IMensajeDTO> Cabeceras { get; }
-        public IProducerConsumerCollection<IMensajeDTO> Mensajes { get; }
+        public IProducerConsumerCollection<IMensaje> Cabeceras { get; }
+        public IProducerConsumerCollection<IMensaje> Mensajes { get; }
 
-        public void AgregarCabecera(IMensajeDTO pCabecera)
+        public void AgregarCabecera(IMensaje pCabecera)
         {
             if (pCabecera == null)
                 throw new ArgumentNullException(nameof(pCabecera));
@@ -25,7 +26,7 @@ namespace Dominio.Entidades.Helper
             else
                 BagChanged();
         }
-        public void AgregarMensaje(IMensajeDTO pMensaje)
+        public void AgregarMensaje(IMensaje pMensaje)
         {
             if (pMensaje == null)
                 throw new ArgumentNullException(nameof(pMensaje));
@@ -37,8 +38,8 @@ namespace Dominio.Entidades.Helper
         }
         public Buzon()
         {
-            Cabeceras = new ConcurrentBag<IMensajeDTO>();
-            Mensajes = new ConcurrentBag<IMensajeDTO>();
+            Cabeceras = new ConcurrentBag<IMensaje>();
+            Mensajes = new ConcurrentBag<IMensaje>();
         }
     }
 }

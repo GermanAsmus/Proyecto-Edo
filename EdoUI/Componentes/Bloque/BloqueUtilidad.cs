@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Utilidades;
-using System.Threading;
+﻿using System.Windows.Forms;
 using System.Timers;
-using Utilidades.Internet;
 
 namespace EdoUI
 {
@@ -29,7 +18,7 @@ namespace EdoUI
 
         private void iTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            this.SetText(VerificarConexion.ObtenerEstadoConexion() ? "Conectado" : "Sin Conexion");
+           // this.SetText(VerificarConexion.ObtenerEstadoConexion() ? "Conectado" : "Sin Conexion");
         }
         private void SetText(string pTexto)
         {

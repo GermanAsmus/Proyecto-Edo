@@ -1,9 +1,9 @@
 ﻿using EdoUI.Entidades.DTO;
 using System;
 
-namespace Dominio.Entidades.DTO
+namespace Dominio.Entidades
 {
-    public class ProtocoloDTO : IProtocoloDTO
+    public class Protocolo : IProtocolo
     {
         #region Propiedades
         public string Tipo { get; set; }
@@ -17,7 +17,7 @@ namespace Dominio.Entidades.DTO
         public int Id { get; set; }
         #endregion
 
-        public ProtocoloDTO()
+        public Protocolo()
         {
             this.Id = 0;
         }

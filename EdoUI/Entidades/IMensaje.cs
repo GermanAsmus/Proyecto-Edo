@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EdoUI.Entidades.DTO
 {
-    public interface IMensajeDTO : IEntidadModelo, IEstadoMensaje
+    public interface IMensaje : IEntidadModelo, IEstadoMensaje
     {
         //Asunto del mensaje.
         string Asunto { get; set; }
@@ -15,10 +15,14 @@ namespace EdoUI.Entidades.DTO
         int CuentaId { get; set; }
 
         //Entidad de la cuenta asociada.
-        ICuentaDTO Cuenta { get; set; }
+        ICuenta Cuenta { get; set; }
 
         // Colección de direcciones de correo como direcciones destinatarios.
-        ICollection<ICuentaDTO> Destinatario { get; set; }
+        ICollection<ICuenta> Destinatario { get; set; }
+
+        ICollection<IAdjunto> Adjuntos { get; set; }
+
+        string Contenido { get; set; }
 
     }
 }

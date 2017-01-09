@@ -8,16 +8,16 @@ using EdoUI.Entidades.DTO;
 
 namespace Persistencia.Repositorios
 {
-    public class RepositorioMensaje : Repositorio<IMensajeDTO>, IRepositorioMensaje
+    public class RepositorioMensaje : Repositorio<IMensaje>, IRepositorioMensaje
     {
         private IRepositorioCuenta iRepositorioCuenta;
 
-        public RepositorioMensaje(IRepositorioCuenta pRepositorioCuenta, IDbSet<IMensajeDTO> pDbSet) : base(pDbSet)
+        public RepositorioMensaje(IRepositorioCuenta pRepositorioCuenta, IDbSet<IMensaje> pDbSet) : base(pDbSet)
         {
             this.iRepositorioCuenta = pRepositorioCuenta;
         }
 
-        public override void Agregar(IMensajeDTO pEntidad)
+        public override void Agregar(IMensaje pEntidad)
         {
             #region programacion defensiva
             if (pEntidad == null)
@@ -32,11 +32,11 @@ namespace Persistencia.Repositorios
             #endregion
 
             //crea una lista donde se guardaran los destinatarios que sean validos
-            List<ICuentaDTO> destinatariosValidos = new List<ICuentaDTO>();
+            List<ICuenta> destinatariosValidos = new List<ICuenta>();
             //obtiene todos los destinatarios que tiene el mensaje
             var destinatarios = pEntidad.Destinatario.GetEnumerator();
 
-            ICuentaDTO iDireccion = null;
+            ICuenta iDireccion = null;
             while (destinatarios.MoveNext())
             {
                 //obtiene los destinatarios que existan en la base de datos
@@ -48,7 +48,7 @@ namespace Persistencia.Repositorios
             pEntidad.Destinatario = destinatariosValidos;
 
             //obtiene la cuenta del usuario
-            ICuentaUsuarioDTO iCuenta = (ICuentaUsuarioDTO)this.iRepositorioCuenta.Obtener(pEntidad.Cuenta.Id);
+            ICuenta iCuenta = (ICuenta)this.iRepositorioCuenta.Obtener(pEntidad.Cuenta.Id);
 
             if (iCuenta == null)
                 throw new NullReferenceException(nameof(iCuenta));
@@ -59,7 +59,7 @@ namespace Persistencia.Repositorios
             //Se actualiza la cuenta, que mantiene una colección de mensajes.
         }
 
-        public IMensajeDTO Obtener(int? pId)
+        public IMensaje Obtener(int? pId)
         {
             if (pId.HasValue)
                 return base.Obtener(mensaje => mensaje.Id == pId);
@@ -67,7 +67,7 @@ namespace Persistencia.Repositorios
                 return base.Obtener();
         }
 
-        public IMensajeDTO Obtener(string pAsunto = null)
+        public IMensaje Obtener(string pAsunto = null)
         {
             if (string.IsNullOrEmpty(pAsunto))
                 return base.Obtener(mensaje => mensaje.Asunto == pAsunto);
@@ -75,7 +75,7 @@ namespace Persistencia.Repositorios
                 return base.Obtener();
         }
 
-        public IEnumerable<IMensajeDTO> ObtenerSegun(int? pId)
+        public IEnumerable<IMensaje> ObtenerSegun(int? pId)
         {
             if (pId.HasValue)
                 return base.ObtenerSegun(mensaje => mensaje.Id == pId);
@@ -83,7 +83,7 @@ namespace Persistencia.Repositorios
                 return base.ObtenerSegun();
         }
 
-        public IEnumerable<IMensajeDTO> ObtenerSegun(string Asunto = null)
+        public IEnumerable<IMensaje> ObtenerSegun(string Asunto = null)
         {
             if (string.IsNullOrEmpty(Asunto))
                 return base.ObtenerSegun(mensaje => mensaje.Asunto == Asunto);

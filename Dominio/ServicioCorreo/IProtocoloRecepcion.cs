@@ -1,5 +1,5 @@
-﻿using Dominio.Entidades.DAO;
-using EdoUI.DTO;
+﻿using EdoUI.Entidades.DTO;
+using EdoUI.Entidades.Helper;
 using System.Threading;
 
 namespace Dominio.ServicioCorreo
@@ -12,7 +12,7 @@ namespace Dominio.ServicioCorreo
         /// <summary>
         /// Cuenta del usuario que utiliza el protocolo.
         /// </summary>
-        ICuentaDAO CuentaUsuario { get; set; }
+        ICuenta Cuenta { get; set; }
         /// <summary>
         /// Entidad que mantiene los mensajes descargados.
         /// </summary>

@@ -1,17 +1,5 @@
-﻿using CapaInterfaces;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
+﻿using System.Timers;
 using System.Windows.Forms;
-using Utilidades;
-using Utilidades.Internet;
 
 namespace EdoUI
 {
@@ -39,7 +27,7 @@ namespace EdoUI
 
         private void iTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            this.SetText(VerificarConexion.ObtenerEstadoConexion() ? "Conectado" : "Sin Conexion");
+            //this.SetText(VerificarConexion.ObtenerEstadoConexion() ? "Conectado" : "Sin Conexion");
         }
         private void SetText(string pTexto)
         {

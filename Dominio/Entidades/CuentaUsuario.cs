@@ -1,8 +1,8 @@
 ﻿using EdoUI.Entidades.DTO;
 
-namespace Dominio.Entidades.DTO
+namespace Dominio.Entidades
 {
-    public class CuentaUsuarioDTO : CuentaDTO, ICuentaUsuarioDTO
+    public class CuentaUsuario : Cuenta, ICuentaUsuario
     {
         public string Contraseña { get; set; }
 

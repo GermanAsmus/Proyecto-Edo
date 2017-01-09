@@ -10,62 +10,62 @@ namespace Dominio.Persistencia
         int Actualizar();
 
         #region manejo de cuenta
-        ICuentaDTO ObtenerCuenta(int? pId);
+        ICuenta ObtenerCuenta(int? pId);
 
-        ICuentaDTO ObtenerCuenta(string pNombre = null);
+        ICuenta ObtenerCuenta(string pNombre = null);
 
-        IEnumerable<ICuentaDTO> ObtenerCuentaSegun(int? pId);
+        IEnumerable<ICuenta> ObtenerCuentaSegun(int? pId);
 
-        IEnumerable<ICuentaDTO> ObtenerCuentaSegun(string pNombre = null);
+        IEnumerable<ICuenta> ObtenerCuentaSegun(string pNombre = null);
 
-        void Agregar(ICuentaDTO pEntidad);
+        void Agregar(ICuenta pEntidad);
 
-        void Eliminar(ICuentaDTO pEntidad);
+        void Eliminar(ICuenta pEntidad);
 
         #endregion
 
         #region manejo de direccion de correo
-        IDireccionCorreoDTO ObtenerCuentaDireccionDeCorreo(int? pId);
+        IDireccionCorreo ObtenerCuentaDireccionDeCorreo(int? pId);
 
-        IDireccionCorreoDTO ObtenerCuentaDireccionDeCorreo(string pDireccion);
+        IDireccionCorreo ObtenerCuentaDireccionDeCorreo(string pDireccion);
 
-        IEnumerable<IDireccionCorreoDTO> ObtenerCuentaDireccionDeCorreoSegun(int? pId);
+        IEnumerable<IDireccionCorreo> ObtenerCuentaDireccionDeCorreoSegun(int? pId);
 
-        IEnumerable<IDireccionCorreoDTO> ObtenerCuentaDireccionDeCorreoSegun(string pDireccion);
+        IEnumerable<IDireccionCorreo> ObtenerCuentaDireccionDeCorreoSegun(string pDireccion);
 
-        void Agregar(IDireccionCorreoDTO pEntidad);
+        void Agregar(IDireccionCorreo pEntidad);
 
-        void Eliminar(IDireccionCorreoDTO pEntidad);
+        void Eliminar(IDireccionCorreo pEntidad);
 
         #endregion
 
         #region manejo de mensajes
-        IMensajeDTO ObtenerMensaje(int? pId);
+        IMensaje ObtenerMensaje(int? pId);
 
-        IMensajeDTO ObtenerMensaje(string pAsunto = null);
+        IMensaje ObtenerMensaje(string pAsunto = null);
 
-        IEnumerable<IMensajeDTO> ObtenerMensajeSegun(int? pId);
+        IEnumerable<IMensaje> ObtenerMensajeSegun(int? pId);
 
-        IEnumerable<IMensajeDTO> ObtenerMensajeSegun(string Asunto = null);
+        IEnumerable<IMensaje> ObtenerMensajeSegun(string Asunto = null);
 
-        void Agregar(IMensajeDTO pEntidad);
+        void Agregar(IMensaje pEntidad);
 
-        void Eliminar(IMensajeDTO pEntidad);
+        void Eliminar(IMensaje pEntidad);
 
         #endregion
 
         #region manejo de adjuntos
-        IAdjuntoDTO ObtenerAdjunto(int pId);
+        IAdjunto ObtenerAdjunto(int pId);
 
-        IAdjuntoDTO ObtenerAdjunto(string pCodigo);
+        IAdjunto ObtenerAdjunto(string pCodigo);
 
-        IEnumerable<IAdjuntoDTO> ObtenerAdjuntoSegun(int? pId);
+        IEnumerable<IAdjunto> ObtenerAdjuntoSegun(int? pId);
 
-        IEnumerable<IAdjuntoDTO> ObtenerAdjuntoSegun(string pCodigo = null);
+        IEnumerable<IAdjunto> ObtenerAdjuntoSegun(string pCodigo = null);
 
-        void Agregar(IAdjuntoDTO pEntidad);
+        void Agregar(IAdjunto pEntidad);
 
-        void Eliminar(IAdjuntoDTO pEntidad);
+        void Eliminar(IAdjunto pEntidad);
         #endregion
     }
 }

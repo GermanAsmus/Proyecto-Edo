@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using EdoUI.Entidades.DTO;
 using EdoUI.Entidades;
 
-namespace Dominio.Entidades.DTO
+namespace Dominio.Entidades
 {
-    public class MensajeDTO : IMensajeCompletoDTO, IEstadoMensaje
+    public class Mensaje : IMensaje, IEstadoMensaje
     {
         /// <summary>
         /// Devuelve el tipo de mensaje según su estructura
         /// </summary>
         /// <param name="pMensaje"></param>
         /// <returns></returns>
-        public static string TipoMensaje(MensajeDTO pMensaje)
+        public static string TipoMensaje(Mensaje pMensaje)
         {
             return (string.IsNullOrEmpty(pMensaje.Contenido) && pMensaje.Adjuntos == null) ? "incompleto" : "completo";
         }
@@ -29,9 +29,9 @@ namespace Dominio.Entidades.DTO
         //Identificador de la cuenta asociada.
         public int CuentaId { get; set; }
         //Entidad de la cuenta asociada.
-        public ICuentaDTO Cuenta { get; set; }
+        public ICuenta Cuenta { get; set; }
         // Colección de direcciones de correo como direcciones destinatarios.
-        public virtual ICollection<ICuentaDTO> Destinatario { get; set; }
+        public virtual ICollection<ICuenta> Destinatario { get; set; }
 
         #endregion
 
@@ -41,7 +41,7 @@ namespace Dominio.Entidades.DTO
         public string Contenido { get; set; }
 
         // Coleccion de adjuntos del mensaje.
-        public virtual ICollection<IAdjuntoDTO> Adjuntos { get; set; }
+        public virtual ICollection<IAdjunto> Adjuntos { get; set; }
 
         #endregion
 
@@ -104,10 +104,10 @@ namespace Dominio.Entidades.DTO
         /// <summary>
         /// Constructor de la clase, se inicializan las listas de adjuntos y los destinatarios
         /// </summary>
-        public MensajeDTO()
+        public Mensaje()
         {
-            this.Adjuntos = new List<IAdjuntoDTO>();
-            this.Destinatario = new List<ICuentaDTO>();
+            this.Adjuntos = new List<IAdjunto>();
+            this.Destinatario = new List<ICuenta>();
         }
     }
 }

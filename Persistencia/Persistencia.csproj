@@ -58,10 +58,6 @@
     <Compile Include="EntityFrameworkDBContext.cs" />
     <Compile Include="IContext.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="Migrations\201605041931359_InitialCreate.cs" />
-    <Compile Include="Migrations\201605041931359_InitialCreate.Designer.cs">
-      <DependentUpon>201605041931359_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\IRepositorioAdjunto.cs" />
     <Compile Include="Repositorios\IRepositorioCuenta.cs" />
@@ -115,11 +111,6 @@
       <Project>{a815539c-52f2-4d68-8759-ac6cbd74905c}</Project>
       <Name>Utilidades</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605041931359_InitialCreate.resx">
-      <DependentUpon>201605041931359_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

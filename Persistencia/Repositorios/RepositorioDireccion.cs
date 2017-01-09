@@ -5,21 +5,21 @@ using System.Collections.Generic;
 
 namespace Persistencia.Repositorios
 {
-    public class RepositorioDireccion : Repositorio<IDireccionCorreoDTO>, IRepositorioDireccion
+    public class RepositorioDireccion : Repositorio<IDireccionCorreo>, IRepositorioDireccion
     {
-        public RepositorioDireccion(IDbSet<IDireccionCorreoDTO> pDbSet) : base(pDbSet)
+        public RepositorioDireccion(IDbSet<IDireccionCorreo> pDbSet) : base(pDbSet)
         {
 
         }
 
-        public override void Agregar(IDireccionCorreoDTO pEntidad)
+        public override void Agregar(IDireccionCorreo pEntidad)
         {
             #region programacion defensiva
             if (pEntidad == null)
                 throw new ArgumentNullException(nameof(pEntidad)); 
             #endregion
 
-            IDireccionCorreoDTO iDireccion = this.Obtener(pEntidad.Id);
+            IDireccionCorreo iDireccion = this.Obtener(pEntidad.Id);
             if (iDireccion == null)
                 throw new InvalidOperationException("ya existe la direccion en la bd");
 
@@ -27,7 +27,7 @@ namespace Persistencia.Repositorios
 
         }
 
-        public IDireccionCorreoDTO Obtener(int? pId)
+        public IDireccionCorreo Obtener(int? pId)
         {
             if (pId.HasValue)
                 return base.Obtener(direccion => direccion.Id == pId);
@@ -35,7 +35,7 @@ namespace Persistencia.Repositorios
                 return base.Obtener();
         }
 
-        public IDireccionCorreoDTO Obtener(string pDireccion = null)
+        public IDireccionCorreo Obtener(string pDireccion = null)
         {
             if (string.IsNullOrEmpty(pDireccion))
                 return base.Obtener(direccion => direccion.DireccionDeCorreo == pDireccion);
@@ -43,7 +43,7 @@ namespace Persistencia.Repositorios
                 return base.Obtener();
         }
 
-        public IEnumerable<IDireccionCorreoDTO> ObtenerSegun(int? pId)
+        public IEnumerable<IDireccionCorreo> ObtenerSegun(int? pId)
         {
             if (pId.HasValue)
                 return base.ObtenerSegun(direccion => direccion.Id == pId);
@@ -51,7 +51,7 @@ namespace Persistencia.Repositorios
                 return base.ObtenerSegun();
         }
 
-        public IEnumerable<IDireccionCorreoDTO> ObtenerSegun(string pDireccion = null)
+        public IEnumerable<IDireccionCorreo> ObtenerSegun(string pDireccion = null)
         {
             if (string.IsNullOrEmpty(pDireccion))
                 return base.ObtenerSegun(direccion => direccion.DireccionDeCorreo == pDireccion);

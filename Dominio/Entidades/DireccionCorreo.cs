@@ -5,12 +5,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mail;
 
-namespace Dominio.Entidades.DTO
+namespace Dominio.Entidades
 {
     /// <summary>
     /// Entidad DireccionCorreo, modela una dirección de correo. Ej: miCorreo@correo.com
     /// </summary>
-    public class DireccionCorreoDTO : IDireccionCorreoDTO
+    public class DireccionCorreo : IDireccionCorreo
     {
 
         #region Propiedades
@@ -21,14 +21,14 @@ namespace Dominio.Entidades.DTO
         //Identificador de la cuenta a la que está asociada la dirección de correo.
         public int CuentaId { get; set; }
         //Entidad CuentaDAO a la que está asociada la dirección de correo.
-        public ICuentaDTO Cuenta { get; set; }
+        public ICuenta Cuenta { get; set; }
         //Colección de mensajes en los que la dirección de correo está asociada como dirección de correo destinatario.
-        public virtual ICollection<IMensajeDTO> MensajesDestinatario { get; set; }
+        public virtual ICollection<IMensaje> MensajesDestinatario { get; set; }
         //Colección de mensajes en los que la dirección de correo está asociada como dirección de correo remitente.
-        public virtual ICollection<IMensajeDTO> MensajesRemitente { get; set; }
+        public virtual ICollection<IMensaje> MensajesRemitente { get; set; }
         #endregion
         
-        public DireccionCorreoDTO(string pDireccionDeCorreo)
+        public DireccionCorreo(string pDireccionDeCorreo)
         {
             if (string.IsNullOrEmpty(pDireccionDeCorreo))
                 throw new ArgumentNullException(string.Format("El parámetro {0} no puede ser nula", nameof(pDireccionDeCorreo)));
@@ -42,11 +42,11 @@ namespace Dominio.Entidades.DTO
                 throw new FormatException("El formato de la direccion de correo no es valida", ex);
             }
 
-            MensajesRemitente = new List<IMensajeDTO>();
-            MensajesDestinatario = new List<IMensajeDTO>();
+            MensajesRemitente = new List<IMensaje>();
+            MensajesDestinatario = new List<IMensaje>();
         }
 
-        public static string ObtenerHost(IDireccionCorreoDTO pDireccion)
+        public static string ObtenerHost(IDireccionCorreo pDireccion)
         {
             return new MailAddress(pDireccion.DireccionDeCorreo).Host.Split('.')[0];
         }

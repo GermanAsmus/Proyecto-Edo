@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaInterfaces;
 using Persistencia;
-using CapaInterfaces.Modelo;
+using EdoUI.Dominio;
+using EdoUI.Entidades.DTO;
 
 namespace EdoUI
 {
     public partial class ControlRaiz : UserControl
     {
-        private IControlador iControlador;
-        private Bandeja<ICuentaUsuarioDTO> iBandejaCuentas;
+        private IControladorDominio iControlador;
+        private Bandeja<ICuenta> iBandejaCuentas;
 
         public ControlRaiz()
         {
@@ -24,7 +25,7 @@ namespace EdoUI
             tabControlContenedor.ImageList = imageList1;
             //iControlador = IoC_CL.Resolver<IControlador>();
 
-            this.iBandejaCuentas = new Bandeja<ICuentaUsuarioDTO>();
+            this.iBandejaCuentas = new Bandeja<ICuenta>();
             AgregarTab(this.iBandejaCuentas, "Cuentas");
 
             //Cuando el controlador funcione debería listar las cuentas que están en la bbdd
@@ -57,6 +58,8 @@ namespace EdoUI
         {
             //Primero limpia la bandeja
             this.iBandejaCuentas.BandejaTablePanel.Controls.Clear();
+
+            #region old
             //Agrega las cuentas a la bandeja
             //this.iControlador.ListarCuentas().ToList().ForEach(
             //    cuentaUsuario => this.iBandejaCuentas.iBandejaFlowPanel.Controls.Add(this.iBandejaCuentas.NuevoBloque(new string[]
@@ -65,13 +68,15 @@ namespace EdoUI
             //        cuentaUsuario.DireccionCorreo.DireccionDeCorreo
             //    }, cuentaUsuario)));
 
-            List<ICuentaUsuarioDTO> lista = new List<ICuentaUsuarioDTO>() { new CuentaUsuarioDTO() { Nombre = " Nombre: German", DireccionCorreo = new DireccionCorreoDTO("Direccion de correo: german@gmail.com") } };
-            lista.ForEach(
-                cuentaUsuario => this.iBandejaCuentas.NuevoBloque(new string[]
-                {
-                    cuentaUsuario.DireccionCorreo.DireccionDeCorreo,
-                    cuentaUsuario.Nombre
-                }, cuentaUsuario));
+            #endregion
+
+            //List<ICuenta> lista = new List<ICuenta>() { new Cuenta() { Nombre = " Nombre: German", DireccionCorreo = new DireccionCorreo("Direccion de correo: german@gmail.com") } };
+            //lista.ForEach(
+            //    cuentaUsuario => this.iBandejaCuentas.NuevoBloque(new string[]
+            //    {
+            //        cuentaUsuario.DireccionCorreo.DireccionDeCorreo,
+            //        cuentaUsuario.Nombre
+            //    }, cuentaUsuario));
         }
 
         private void ControlNuevaCuenta_VisibleChanged(object sender, EventArgs e)
@@ -81,7 +86,7 @@ namespace EdoUI
             TabPage pestaniaPadreDelControl = controlDeLaCuentaCreada.Parent as TabPage;
 
             //Se obtiene la información de la nueva cuenta.
-            ICuentaUsuarioDTO cuentaCreada = controlDeLaCuentaCreada.Cuenta;
+            ICuenta cuentaCreada = controlDeLaCuentaCreada.Cuenta;
             //La pestaña se cierra antes de mostrar el mensaje.
             pestaniaPadreDelControl.Dispose();
 

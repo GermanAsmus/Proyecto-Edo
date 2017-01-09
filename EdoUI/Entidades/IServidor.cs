@@ -2,12 +2,12 @@
 
 namespace EdoUI.Entidades.DTO
 { 
-    public interface IServidorDTO
+    public interface IServidor
     {
         //Tipo del servidor.
         string Nombre { get; set; }
         
         //Protocolos que utiliza el servidor.
-        ICollection<IProtocoloDTO> Protocolos { get; set; }        
+        ICollection<IProtocolo> Protocolos { get; set; }        
     }
 }

@@ -44,14 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControladorDominio.cs" />
-    <Compile Include="Entidades\DTO\AdjuntoDTO.cs" />
+    <Compile Include="Entidades\Adjunto.cs" />
     <Compile Include="DI\IoCContainer.cs" />
-    <Compile Include="Entidades\DTO\CuentaDTO.cs" />
-    <Compile Include="Entidades\DTO\CuentaUsuarioDTO .cs" />
-    <Compile Include="Entidades\DTO\DireccionCorreoDTO.cs" />
-    <Compile Include="Entidades\DTO\MensajeDTO.cs" />
-    <Compile Include="Entidades\DTO\ProtocoloDTO.cs" />
-    <Compile Include="Entidades\DTO\ServidorDTO.cs" />
+    <Compile Include="Entidades\Cuenta.cs" />
+    <Compile Include="Entidades\DireccionCorreo.cs" />
+    <Compile Include="Entidades\Mensaje.cs" />
+    <Compile Include="Entidades\Protocolo.cs" />
+    <Compile Include="Entidades\Servidor.cs" />
     <Compile Include="Entidades\Helper\Buzon.cs" />
     <Compile Include="Entidades\Helper\CreadorCuenta.cs" />
     <Compile Include="Entidades\Helper\InfoAdjunto.cs" />
@@ -81,6 +80,9 @@
       <Project>{a815539c-52f2-4d68-8759-ac6cbd74905c}</Project>
       <Name>Utilidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entidades\DTO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

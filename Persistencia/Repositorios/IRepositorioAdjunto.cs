@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace Persistencia.Repositorios
 {
-    public interface IRepositorioAdjunto : IRepositorioCompleto<IAdjuntoDTO>
+    public interface IRepositorioAdjunto : IRepositorioCompleto<IAdjunto>
     {
-        IAdjuntoDTO Obtener(int pId);
+        IAdjunto Obtener(int pId);
 
 
-        IAdjuntoDTO Obtener(string pCodigo);
+        IAdjunto Obtener(string pCodigo);
 
 
-        IEnumerable<IAdjuntoDTO> ObtenerSegun(int? pId);
+        IEnumerable<IAdjunto> ObtenerSegun(int? pId);
 
 
-        IEnumerable<IAdjuntoDTO> ObtenerSegun(string pCodigo = null);
+        IEnumerable<IAdjunto> ObtenerSegun(string pCodigo = null);
       
     }
 }

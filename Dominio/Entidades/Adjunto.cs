@@ -5,10 +5,10 @@ using System.IO;
 using Dominio.Excepciones;
 using EdoUI.Entidades.DTO;
 
-namespace Dominio.Entidades.DTO
+namespace Dominio.Entidades
 {
 
-    public class AdjuntoDTO : IAdjuntoDTO
+    public class Adjunto : IAdjunto
     {
         public int Id { get; set; }
         
@@ -26,11 +26,11 @@ namespace Dominio.Entidades.DTO
 
         }
 
-        public virtual ICollection<IMensajeDTO> Mensajes { get; set; }
+        public virtual ICollection<IMensaje> Mensajes { get; set; }
 
-        public AdjuntoDTO()
+        public Adjunto()
         {
-            Mensajes = new List<IMensajeDTO>();
+            Mensajes = new List<IMensaje>();
         }
 
         private static bool Existe(string pCodigo)

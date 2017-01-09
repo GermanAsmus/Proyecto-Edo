@@ -5,16 +5,16 @@ using System.Collections.Generic;
 
 namespace Persistencia.Repositorios
 {
-    public class RepositorioCuenta : Repositorio<ICuentaDTO>, IRepositorioCuenta
+    public class RepositorioCuenta : Repositorio<ICuenta>, IRepositorioCuenta
     {
         private IRepositorioDireccion iRepositorioExterno;
 
-        public RepositorioCuenta(IRepositorioDireccion pRepositorioExterno, IDbSet<ICuentaDTO> pDbSet) : base(pDbSet)
+        public RepositorioCuenta(IRepositorioDireccion pRepositorioExterno, IDbSet<ICuenta> pDbSet) : base(pDbSet)
         {
             this.iRepositorioExterno = pRepositorioExterno;
         }
 
-        public override void Agregar(ICuentaDTO pEntidad)
+        public override void Agregar(ICuenta pEntidad)
         {
 
             #region programacion defensiva
@@ -24,15 +24,15 @@ namespace Persistencia.Repositorios
             if (pEntidad.DireccionCorreo == null)
                 throw new ArgumentNullException(nameof(pEntidad.DireccionCorreo));
 
-            if (pEntidad.GetType() == typeof(ICuentaUsuarioDTO))
+            if (pEntidad.GetType() == typeof(ICuenta))
             {
-                var pEntidadCast = pEntidad as ICuentaUsuarioDTO;
+                var pEntidadCast = pEntidad as ICuenta;
                 if (string.IsNullOrEmpty(pEntidadCast.Contraseña) || string.IsNullOrEmpty(pEntidadCast.Nombre))
                     throw new NullReferenceException("los atributos contraseña, nombre, no pueden ser nulos o vacíos");
             } 
             #endregion
 
-            IDireccionCorreoDTO iDireccion = iRepositorioExterno.Obtener(pEntidad.DireccionCorreo.DireccionDeCorreo);
+            IDireccionCorreo iDireccion = iRepositorioExterno.Obtener(pEntidad.DireccionCorreo.DireccionDeCorreo);
             //de no existir la direccion, se agrega a la base de datos
             if (iDireccion == null)
                 iRepositorioExterno.Agregar(iDireccion);
@@ -48,7 +48,7 @@ namespace Persistencia.Repositorios
             base.AgregarEntidad(pEntidad);
         }
 
-        public ICuentaDTO Obtener(int? pId)
+        public ICuenta Obtener(int? pId)
         {
             if (pId.HasValue)
                 return base.Obtener(cuenta => cuenta.Id == pId);
@@ -56,15 +56,15 @@ namespace Persistencia.Repositorios
                 return base.Obtener();
         }
 
-        public ICuentaDTO Obtener(string pNombre = null)
+        public ICuenta Obtener(string pNombre = null)
         {
             if (string.IsNullOrEmpty(pNombre))
-                return base.Obtener(cuenta => (cuenta as ICuentaUsuarioDTO).Nombre == pNombre);
+                return base.Obtener(cuenta => (cuenta as ICuenta).Nombre == pNombre);
             else
                 return base.Obtener();
         }
 
-        public IEnumerable<ICuentaDTO> ObtenerSegun(int? pId)
+        public IEnumerable<ICuenta> ObtenerSegun(int? pId)
         {
             if (pId.HasValue)
                 return base.ObtenerSegun(cuenta => cuenta.Id == pId);
@@ -72,10 +72,10 @@ namespace Persistencia.Repositorios
                 return base.ObtenerSegun();
         }
 
-        public IEnumerable<ICuentaDTO> ObtenerSegun(string pNombre = null)
+        public IEnumerable<ICuenta> ObtenerSegun(string pNombre = null)
         {
             if (string.IsNullOrEmpty(pNombre))
-                return base.ObtenerSegun(cuenta => (cuenta as ICuentaUsuarioDTO).Nombre == pNombre);
+                return base.ObtenerSegun(cuenta => (cuenta as ICuenta).Nombre == pNombre);
             else
                 return base.ObtenerSegun();
         }

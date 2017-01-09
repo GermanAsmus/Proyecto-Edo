@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace Persistencia.Repositorios
 {
-    public interface IRepositorioDireccion : IRepositorioCompleto<IDireccionCorreoDTO>
+    public interface IRepositorioDireccion : IRepositorioCompleto<IDireccionCorreo>
     {
-        IDireccionCorreoDTO Obtener(int? pId);
+        IDireccionCorreo Obtener(int? pId);
 
-        IDireccionCorreoDTO Obtener(string pDireccion = null);
+        IDireccionCorreo Obtener(string pDireccion = null);
 
-        IEnumerable<IDireccionCorreoDTO> ObtenerSegun(int? pId);
+        IEnumerable<IDireccionCorreo> ObtenerSegun(int? pId);
 
-        IEnumerable<IDireccionCorreoDTO> ObtenerSegun(string pDireccion = null);
+        IEnumerable<IDireccionCorreo> ObtenerSegun(string pDireccion = null);
     }
 }

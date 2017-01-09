@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //using ControlDependencia;
 using Persistencia;
-using CapaInterfaces.Modelo;
+using EdoUI.Entidades.DTO;
+//using CapaInterfaces.Modelo;
 //using ControlDependencia.Dominio;
 
 namespace EdoUI
@@ -17,12 +18,12 @@ namespace EdoUI
     public partial class ControlCuenta : UserControl
     {
 
-        public ICuentaUsuarioDTO Cuenta { get; set; }
+        public ICuenta Cuenta { get; set; }
 
         public ControlCuenta(string[] pNombreServidores)
         {
             InitializeComponent();
-            this.Cuenta = new CuentaUsuarioDTO();
+            //this.Cuenta = new Cuenta();
 
 
             if (pNombreServidores != null)
@@ -37,7 +38,7 @@ namespace EdoUI
             {
                 this.Cuenta.Nombre = textBoxNombre.Text;
 
-                this.Cuenta.DireccionCorreo = new DireccionCorreoDTO(textBoxDireccion.Text);
+                //this.Cuenta.DireccionCorreo = new DireccionCorreo(textBoxDireccion.Text);
 
                 if (string.Equals(textBoxContrasenia.Text, textBoxContrasenia2.Text))
                 {

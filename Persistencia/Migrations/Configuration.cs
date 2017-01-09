@@ -9,7 +9,7 @@ namespace Persistencia.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Persistencia.EntityFrameworkDBContext context)

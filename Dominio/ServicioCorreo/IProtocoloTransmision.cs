@@ -1,4 +1,4 @@
-﻿using Dominio.Entidades.DAO;
+﻿using EdoUI.Entidades.DTO;
 
 namespace Dominio.ServicioCorreo
 {
@@ -12,6 +12,6 @@ namespace Dominio.ServicioCorreo
         /// </summary>
         /// <param name="pMensaje">Mensaje a enviar</param>
         /// <param name="pCuenta">Cuenta del usuario</param>
-        void Enviar(IMensajeDAO pMensaje, ICuentaDAO pCuenta);
+        void Enviar(IMensaje pMensaje, ICuenta pCuenta);
     }
 }

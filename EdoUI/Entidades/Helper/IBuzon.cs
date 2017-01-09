@@ -12,20 +12,20 @@ namespace EdoUI.Entidades.Helper
         /// <summary>
         /// Coleccion Concurrente de cabeceras de mensajes
         /// </summary>
-        IProducerConsumerCollection<IMensajeDTO> Cabeceras { get; }
+        IProducerConsumerCollection<IMensaje> Cabeceras { get; }
         /// <summary>
         /// Coleccion Concurrente de mensajes
         /// </summary>
-        IProducerConsumerCollection<IMensajeDTO> Mensajes { get; }
+        IProducerConsumerCollection<IMensaje> Mensajes { get; }
         /// <summary>
         /// Agrega una cabecera a la coleccion Cabeceras
         /// </summary>
         /// <param name="pCabecera">Cabecera de un mensaje</param>
-        void AgregarCabecera(IMensajeDTO pCabecera);
+        void AgregarCabecera(IMensaje pCabecera);
         /// <summary>
         /// Agrega un mensaje a la coleccion Mensajes
         /// </summary>
         /// <param name="pMensaje">Un mensaje</param>
-        void AgregarMensaje(IMensajeDTO pMensaje);
+        void AgregarMensaje(IMensaje pMensaje);
     }
 }

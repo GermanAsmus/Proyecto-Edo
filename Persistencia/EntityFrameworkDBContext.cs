@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Dominio.Entidades;
 
 using System.Data.Entity;
@@ -12,11 +13,11 @@ namespace Persistencia
 {
     public class EntityFrameworkDBContext : DbContext, IContext
     {
-        public IDbSet<ICuentaDTO> Cuenta { get; set; }
-        public IDbSet<IMensajeDTO> Mensaje { get; set; }
+        public IDbSet<Cuenta> Cuentas { get; set; }
+        public IDbSet<Mensaje> Mensajes { get; set; }
         //public IDbSet<ServidorDAO> ServidorDAO { get; set; }
-        public IDbSet<IDireccionCorreoDTO> DireccionCorreo { get; set; }
-        public IDbSet<IAdjuntoDTO> Adjunto { get; set; }
+        public IDbSet<DireccionCorreo> DireccionesCorreo { get; set; }
+        public IDbSet<Adjunto> Adjuntos { get; set; }
 
         public EntityFrameworkDBContext()
             : base("DataBase")
@@ -68,6 +69,7 @@ namespace Persistencia
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
+            #region old
             ////modelBuilder.Entity<ServidorDAO>().ToTable("ServidorDAO");
             ////modelBuilder.Entity<ServidorDAO>().HasKey<int>(x => x.Id);
             ////modelBuilder.Entity<ServidorDAO>().Property(x => x.Tipo).IsRequired();
@@ -75,35 +77,35 @@ namespace Persistencia
             ////modelBuilder.Entity<ServidorDAO>().Property(x => x.HostSMTP).IsRequired();
             ////modelBuilder.Entity<ServidorDAO>().Property(x => x.PuertoPOP).IsRequired();
             ////modelBuilder.Entity<ServidorDAO>().Property(x => x.PuertoSMTP).IsRequired();
-            ////modelBuilder.Entity<ServidorDAO>().Property(x => x.SSL).IsRequired();
+            ////modelBuilder.Entity<ServidorDAO>().Property(x => x.SSL).IsRequired(); 
+            #endregion
 
-            //modelBuilder.Entity<CuentaDAO>().ToTable("CuentaDAO");
-            //modelBuilder.Entity<CuentaDAO>().HasKey<int>(x => x.Id);
-            //modelBuilder.Entity<CuentaDAO>().Property(x => x.Tipo).IsRequired();
-            //modelBuilder.Entity<CuentaDAO>().Property(x => x.DireccionId).IsRequired();
-            //modelBuilder.Entity<CuentaDAO>().Property(x => x.Contrasenia).IsRequired();
-            ////modelBuilder.Entity<CuentaDAO>().HasRequired(x => x.ServidorDAO).WithMany(y => y.CuentaDAO).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
-            //modelBuilder.Entity<CuentaDAO>().HasRequired(x => x.DireccionCorreo).WithOptional(y => y.CuentaDAO);
+            modelBuilder.Entity<Cuenta>().ToTable("Cuentas");
+            modelBuilder.Entity<Cuenta>().HasKey<int>(x => x.Id);
+            modelBuilder.Entity<Cuenta>().Property(x => x.DireccionId).IsRequired();
+            //modelBuilder.Entity<ICuenta>().HasRequired(x => x.ServidorDAO).WithMany(y => y.ICuenta).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Cuenta>().HasRequired(x => x.DireccionCorreo).WithOptional();
 
-            //modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionCorreo");
-            //modelBuilder.Entity<DireccionCorreo>().HasKey<int>(x => x.Id);
-            //modelBuilder.Entity<DireccionCorreo>().Property(x => x.DireccionDeCorreo).IsRequired();
-            //modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesRemitente).WithRequired(y => y.DireccionCorreo).HasForeignKey(z => z.DireccionId).WillCascadeOnDelete(false);
-            //modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesDestinatario).WithMany(y => y.Destinatario).Map(t => { t.ToTable("DireccionCorreoMensaje"); });
+            modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionesDeCorreo");
+            modelBuilder.Entity<DireccionCorreo>().HasKey<int>(x => x.Id);
+            modelBuilder.Entity<DireccionCorreo>().Property(x => x.DireccionDeCorreo).IsRequired();
+            modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesRemitente).WithRequired().HasForeignKey(z => z.Cuenta.DireccionCorreo).WillCascadeOnDelete(false);
+            modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesDestinatario).WithMany();
+                //(y => y.Destinatario.Select(d => d.DireccionCorreo)).Map(t => { t.ToTable("DireccionDeCorreoMensaje"); });
 
-            //modelBuilder.Entity<MensajeDAO>().ToTable("MensajeDAO");
-            //modelBuilder.Entity<MensajeDAO>().HasKey<int>(x => x.Id);
-            //modelBuilder.Entity<MensajeDAO>().Property(x => x.Asunto).IsRequired();
-            //modelBuilder.Entity<MensajeDAO>().Property(x => x.CodigoMensaje).IsOptional();
-            //modelBuilder.Entity<MensajeDAO>().Property(x => x.Contenido).IsOptional();
-            //modelBuilder.Entity<MensajeDAO>().Property(x => x.Leido).IsOptional();
-            //modelBuilder.Entity<MensajeDAO>().Property(x => x.Fecha).IsRequired();
-            //modelBuilder.Entity<MensajeDAO>().HasRequired(x => x.CuentaDAO).WithMany(y => y.Mensajes).HasForeignKey(z => z.CuentaId);
-            //modelBuilder.Entity<MensajeDAO>().HasMany(x => x.Adjuntos).WithMany(y => y.Mensajes).Map(t => { t.ToTable("AdjuntoMensaje"); });
+            modelBuilder.Entity<Mensaje>().ToTable("Mensajes");
+            modelBuilder.Entity<Mensaje>().HasKey<int>(x => x.Id);
+            modelBuilder.Entity<Mensaje>().Property(x => x.Asunto).IsRequired();
+            modelBuilder.Entity<Mensaje>().Property(x => x.Contenido).IsOptional();
+                modelBuilder.Entity<Mensaje>().Property(x => x.EstadoEnviado).IsOptional();
+                modelBuilder.Entity<Mensaje>().Property(x => x.EstadoGuardado).IsOptional();
+                modelBuilder.Entity<Mensaje>().Property(x => x.EstadoVisto).IsOptional();
+            modelBuilder.Entity<Mensaje>().HasRequired(x => x.Cuenta).WithMany().HasForeignKey(z => z.CuentaId);
+            modelBuilder.Entity<Mensaje>().HasMany(x => x.Adjuntos).WithMany().Map(t => { t.ToTable("AdjuntosMensajes"); });
 
-            //modelBuilder.Entity<AdjuntoDTO>().ToTable("AdjuntoDTO");
-            //modelBuilder.Entity<AdjuntoDTO>().HasKey<int>(x => x.Id);
-            //modelBuilder.Entity<AdjuntoDTO>().Property(x => x.CodigoAdjunto).IsRequired();
+            modelBuilder.Entity<Adjunto>().ToTable("Adjuntos");
+            modelBuilder.Entity<Adjunto>().HasKey<int>(x => x.Id);
+            modelBuilder.Entity<Adjunto>().Property(x => x.PathAdjunto).IsRequired();
         }
     }
 }

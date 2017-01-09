@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace Persistencia.Repositorios
 {
-    public interface IRepositorioMensaje : IRepositorioCompleto<IMensajeDTO>
+    public interface IRepositorioMensaje : IRepositorioCompleto<IMensaje>
     {
-        IMensajeDTO Obtener(int? pId);
+        IMensaje Obtener(int? pId);
 
-        IMensajeDTO Obtener(string pAsunto = null);
+        IMensaje Obtener(string pAsunto = null);
 
-        IEnumerable<IMensajeDTO> ObtenerSegun(int? pId);
+        IEnumerable<IMensaje> ObtenerSegun(int? pId);
 
-        IEnumerable<IMensajeDTO> ObtenerSegun(string Asunto = null);
+        IEnumerable<IMensaje> ObtenerSegun(string Asunto = null);
     }
 }

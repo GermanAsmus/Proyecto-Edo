@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Dominio.Entidades.Interfaces;
+using System;
 using System.Collections.Generic;
-using EdoUI.Entidades.DTO;
 
 namespace Dominio.Entidades.Helper
 {

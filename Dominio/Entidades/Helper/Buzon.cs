@@ -1,5 +1,4 @@
-﻿using EdoUI.Entidades.DTO;
-using EdoUI.Entidades.Helper;
+﻿using Dominio.Entidades.Interfaces;
 using System;
 using System.Collections.Concurrent;
 

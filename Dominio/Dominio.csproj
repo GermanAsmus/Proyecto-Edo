@@ -45,9 +45,17 @@
   <ItemGroup>
     <Compile Include="ControladorDominio.cs" />
     <Compile Include="Entidades\Adjunto.cs" />
-    <Compile Include="DI\IoCContainer.cs" />
     <Compile Include="Entidades\Cuenta.cs" />
     <Compile Include="Entidades\DireccionCorreo.cs" />
+    <Compile Include="Entidades\Helper\IBuzon.cs" />
+    <Compile Include="Entidades\Interfaces\IAdjunto.cs" />
+    <Compile Include="Entidades\Interfaces\ICuenta.cs" />
+    <Compile Include="Entidades\Interfaces\IDireccionCorreo.cs" />
+    <Compile Include="Entidades\Interfaces\IEntidadModelo.cs" />
+    <Compile Include="Entidades\Interfaces\IEstadoMensaje.cs" />
+    <Compile Include="Entidades\Interfaces\IMensaje.cs" />
+    <Compile Include="Entidades\Interfaces\IProtocolo.cs" />
+    <Compile Include="Entidades\Interfaces\IServidor.cs" />
     <Compile Include="Entidades\Mensaje.cs" />
     <Compile Include="Entidades\Protocolo.cs" />
     <Compile Include="Entidades\Servidor.cs" />
@@ -58,6 +66,7 @@
     <Compile Include="Excepciones\AddOperationException.cs" />
     <Compile Include="Excepciones\InvalidRepositoryOperationException.cs" />
     <Compile Include="Excepciones\PathInexistenteException.cs" />
+    <Compile Include="IControladorDominio.cs" />
     <Compile Include="Persistencia\IControladorPersistencia.cs" />
     <Compile Include="ServicioCorreo\IProtocolo.cs" />
     <Compile Include="ServicioCorreo\IProtocoloRecepcion.cs" />
@@ -66,23 +75,14 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ControlDependencia\CapaInterfaces.csproj">
-      <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
-      <Name>CapaInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EdoUI\EdoUI.csproj">
-      <Project>{e1de0b46-38ae-42e5-ae58-33a9e5118899}</Project>
-      <Name>EdoUI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
-      <Project>{a815539c-52f2-4d68-8759-ac6cbd74905c}</Project>
-      <Name>Utilidades</Name>
-    </ProjectReference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entidades\DTO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

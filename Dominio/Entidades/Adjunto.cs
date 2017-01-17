@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Dominio.Excepciones;
-using EdoUI.Entidades.DTO;
+using Dominio.Entidades.Interfaces;
 
 namespace Dominio.Entidades
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EdoUI.Entidades
+namespace Dominio.Entidades.Interfaces
 {
     public interface IEstadoMensaje
     {

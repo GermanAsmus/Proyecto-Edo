@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EdoUI.Entidades.DTO
+namespace Dominio.Entidades.Interfaces
 { 
     public interface IServidor
     {

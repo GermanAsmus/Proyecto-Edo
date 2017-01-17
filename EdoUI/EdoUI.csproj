@@ -84,22 +84,7 @@
     <Compile Include="Componentes\Bloque\Bloque.Designer.cs">
       <DependentUpon>Bloque.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\IControladorDominio.cs" />
-    <Compile Include="Entidades\Automapper_DTO\AdjuntoDTO.cs" />
-    <Compile Include="Entidades\Automapper_DTO\CuentaDTO.cs" />
-    <Compile Include="Entidades\Automapper_DTO\ServidorDTO.cs" />
-    <Compile Include="Entidades\Automapper_DTO\MensajeDTO.cs" />
-    <Compile Include="Entidades\Automapper_DTO\InfoMensajeDTO.cs" />
-    <Compile Include="Entidades\IAdjunto.cs" />
-    <Compile Include="Entidades\Helper\IBuzon.cs" />
-    <Compile Include="Entidades\ICuenta.cs" />
-    <Compile Include="Entidades\IDireccionCorreo.cs" />
-    <Compile Include="Entidades\IEntidadModelo.cs" />
-    <Compile Include="Entidades\IMensaje.cs" />
-    <Compile Include="Entidades\IProtocolo.cs" />
-    <Compile Include="Entidades\IServidor.cs" />
-    <Compile Include="Entidades\IEstadoMensaje.cs" />
-    <Compile Include="IoC_CL.cs" />
+    <Compile Include="DI\IoCContainer.cs" />
     <Compile Include="Sobre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,9 +192,13 @@
       <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
       <Name>CapaInterfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modelo\Modelo.csproj">
-      <Project>{c7f74b31-7843-4997-82e0-0e9d00b3df1b}</Project>
-      <Name>Modelo</Name>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{7444c050-a853-4222-a41c-59d04ae23617}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistencia\Persistencia.csproj">
+      <Project>{274f7ca7-58c2-4caa-9232-cc370c9e9271}</Project>
+      <Name>Persistencia</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +213,7 @@
   <ItemGroup>
     <None Include="Resources\1453773768_19.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

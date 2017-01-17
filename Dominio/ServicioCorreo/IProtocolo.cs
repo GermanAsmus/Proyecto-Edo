@@ -1,4 +1,4 @@
-﻿using EdoUI.Entidades.DTO;
+﻿using Dominio.Entidades.Interfaces;
 using System.Threading;
 
 namespace Dominio.ServicioCorreo

@@ -1,10 +1,8 @@
-﻿using CapaInterfaces;
-using Dominio.ServicioCorreo;
+﻿using Dominio.ServicioCorreo;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using EdoUI.Dominio;
-using EdoUI.Entidades.DTO;
+using Dominio.Entidades.Interfaces;
 
 namespace Dominio
 {

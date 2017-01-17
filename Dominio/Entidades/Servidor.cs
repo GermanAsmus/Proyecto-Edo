@@ -1,4 +1,4 @@
-﻿using EdoUI.Entidades.DTO;
+﻿using Dominio.Entidades.Interfaces;
 using System;
 using System.Collections.Generic;
 

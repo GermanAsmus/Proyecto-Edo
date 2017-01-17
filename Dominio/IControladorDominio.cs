@@ -1,7 +1,7 @@
-﻿using EdoUI.Entidades.DTO;
+﻿using Dominio.Entidades.Interfaces;
 using System.Collections.Generic;
 
-namespace EdoUI.Dominio
+namespace Dominio
 {
     public interface IControladorDominio
     {

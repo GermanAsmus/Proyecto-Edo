@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EdoUI.Entidades.DTO
+namespace Dominio.Entidades.Interfaces
 {
     public interface IMensaje : IEntidadModelo, IEstadoMensaje
     {

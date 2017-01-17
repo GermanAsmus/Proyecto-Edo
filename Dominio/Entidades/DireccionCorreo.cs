@@ -1,5 +1,4 @@
-﻿using CapaInterfaces;
-using EdoUI.Entidades.DTO;
+﻿using Dominio.Entidades.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;

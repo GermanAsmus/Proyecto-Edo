@@ -1,5 +1,5 @@
-﻿using EdoUI.Entidades.DTO;
-using EdoUI.Entidades.Helper;
+﻿using Dominio.Entidades.Helper;
+using Dominio.Entidades.Interfaces;
 using System.Threading;
 
 namespace Dominio.ServicioCorreo

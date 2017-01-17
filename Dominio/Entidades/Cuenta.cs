@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using EdoUI.Entidades.DTO;
+using Dominio.Entidades.Interfaces;
 
 namespace Dominio.Entidades
 {

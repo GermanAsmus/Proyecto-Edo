@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EdoUI.Entidades.DTO
+namespace Dominio.Entidades.Interfaces
 {
     /// <summary>
     /// Un Adjunto modela un archivo adjunto que pueda persistir en el sistema.

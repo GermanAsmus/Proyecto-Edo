@@ -72,36 +72,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Componentes\Bandeja\Bandeja.cs">
+    <Compile Include="Bloque\Conexion.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componentes\Bandeja\Bandeja.Designer.cs">
-      <DependentUpon>Bandeja.cs</DependentUpon>
+    <Compile Include="Bloque\Conexion.Designer.cs">
+      <DependentUpon>Conexion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\Bloque\Bloque.cs">
+    <Compile Include="Cuenta\BandejaCuenta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componentes\Bloque\Bloque.Designer.cs">
-      <DependentUpon>Bloque.cs</DependentUpon>
+    <Compile Include="Cuenta\BandejaCuenta.Designer.cs">
+      <DependentUpon>BandejaCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cuenta\btn_AbrirCuenta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cuenta\btn_AbrirCuenta.Designer.cs">
+      <DependentUpon>btn_AbrirCuenta.cs</DependentUpon>
     </Compile>
     <Compile Include="DI\IoCContainer.cs" />
+    <Compile Include="Cuenta\FormCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cuenta\FormCuenta.Designer.cs">
+      <DependentUpon>FormCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mensaje\BandejaMensaje.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mensaje\BandejaMensaje.Designer.cs">
+      <DependentUpon>BandejaMensaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mensaje\btn_AbrirMensaje.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mensaje\btn_AbrirMensaje.Designer.cs">
+      <DependentUpon>btn_AbrirMensaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mensaje\FormMensaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mensaje\FormMensaje.Designer.cs">
+      <DependentUpon>FormMensaje.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sobre.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sobre.Designer.cs">
       <DependentUpon>Sobre.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\Bloque\BloqueUtilidad.cs">
+    <Compile Include="Bloque\BloqueUtilidad.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componentes\Bloque\BloqueUtilidad.Designer.cs">
+    <Compile Include="Bloque\BloqueUtilidad.Designer.cs">
       <DependentUpon>BloqueUtilidad.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Componentes\ControlRaiz.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Componentes\ControlRaiz.Designer.cs">
-      <DependentUpon>ControlRaiz.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -116,38 +140,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Componentes\ControlAdjuntos.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Componentes\ControlAdjuntos.Designer.cs">
-      <DependentUpon>ControlAdjuntos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Componentes\ControlCuenta.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Componentes\ControlCuenta.Designer.cs">
-      <DependentUpon>ControlCuenta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Componentes\ControlMensaje.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Componentes\ControlMensaje.Designer.cs">
-      <DependentUpon>ControlMensaje.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Componentes\Bandeja\Bandeja.resx">
-      <DependentUpon>Bandeja.cs</DependentUpon>
+    <EmbeddedResource Include="Bloque\Conexion.resx">
+      <DependentUpon>Conexion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\Bloque\Bloque.resx">
-      <DependentUpon>Bloque.cs</DependentUpon>
+    <EmbeddedResource Include="Cuenta\BandejaCuenta.resx">
+      <DependentUpon>BandejaCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cuenta\btn_AbrirCuenta.resx">
+      <DependentUpon>btn_AbrirCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cuenta\FormCuenta.resx">
+      <DependentUpon>FormCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mensaje\BandejaMensaje.resx">
+      <DependentUpon>BandejaMensaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mensaje\btn_AbrirMensaje.resx">
+      <DependentUpon>btn_AbrirMensaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mensaje\FormMensaje.resx">
+      <DependentUpon>FormMensaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sobre.resx">
       <DependentUpon>Sobre.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\Bloque\BloqueUtilidad.resx">
+    <EmbeddedResource Include="Bloque\BloqueUtilidad.resx">
       <DependentUpon>BloqueUtilidad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\ControlRaiz.resx">
-      <DependentUpon>ControlRaiz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -155,15 +173,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\ControlAdjuntos.resx">
-      <DependentUpon>ControlAdjuntos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\ControlCuenta.resx">
-      <DependentUpon>ControlCuenta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Componentes\ControlMensaje.resx">
-      <DependentUpon>ControlMensaje.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

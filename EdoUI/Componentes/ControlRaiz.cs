@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaInterfaces;
-using Persistencia;
-using EdoUI.Dominio;
-using EdoUI.Entidades.DTO;
+using Dominio;
+using Dominio.Entidades.Interfaces;
 
 namespace EdoUI
 {
@@ -23,13 +14,13 @@ namespace EdoUI
         {
             InitializeComponent();
             tabControlContenedor.ImageList = imageList1;
-            //iControlador = IoC_CL.Resolver<IControlador>();
-
+            iControlador = DI.IoCContainer.Resolve<IControladorDominio>();
+            
             this.iBandejaCuentas = new Bandeja<ICuenta>();
             AgregarTab(this.iBandejaCuentas, "Cuentas");
 
             //Cuando el controlador funcione debería listar las cuentas que están en la bbdd
-            //this.iBandejaCuentas.ListarCuentas(this.iControlador.ListarCuentas());
+            this.iBandejaCuentas.ListarCuentas(this.iControlador.ListarCuentas());
 
             ActualizarBandejaCuentas();
         }

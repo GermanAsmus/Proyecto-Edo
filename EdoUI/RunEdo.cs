@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace EdoUI.Entidades.DTOEdoUI
+namespace EdoUI
 {
     public static class RunEdo
     {

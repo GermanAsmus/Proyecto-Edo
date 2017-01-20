@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //using ControlDependencia;
 using Persistencia;
-using EdoUI.Entidades.DTO;
 //using CapaInterfaces.Modelo;
 //using ControlDependencia.Dominio;
 

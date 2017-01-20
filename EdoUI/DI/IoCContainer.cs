@@ -1,10 +1,14 @@
 ﻿using Dominio;
+using Dominio.Entidades.Interfaces;
 using Dominio.Persistencia;
+using EdoUI;
+using EdoUI.Cuenta;
+using EdoUI.Mensaje;
 using Microsoft.Practices.Unity;
 using Persistencia;
 using System;
 
-namespace EdoUi.DI
+namespace EdoUI.DI
 {
     public class IoCContainer
     {
@@ -24,6 +28,11 @@ namespace EdoUi.DI
         {
             pContainer.RegisterType<IControladorDominio, ControladorDominio>();
             pContainer.RegisterType<IControladorPersistencia, ControladorPersistencia>();
+
+            pContainer.RegisterType<BandejaCuenta>(new InjectionFactory(b => new BandejaCuenta()));
+            pContainer.RegisterType<BandejaMensaje>(new InjectionFactory(b => new BandejaMensaje()));
+
+
         }
 
         public static T Resolve<T>()

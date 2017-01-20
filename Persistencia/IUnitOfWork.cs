@@ -1,4 +1,4 @@
-﻿using EdoUI.Entidades;
+﻿using Dominio.Entidades.Interfaces;
 using Persistencia.Repositorios;
 
 namespace Persistencia

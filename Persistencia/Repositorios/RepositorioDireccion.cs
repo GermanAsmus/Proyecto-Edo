@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
-using EdoUI.Entidades.DTO;
 using System.Collections.Generic;
+using Dominio.Entidades.Interfaces;
 
 namespace Persistencia.Repositorios
 {

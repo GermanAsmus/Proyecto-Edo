@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using EdoUI.Entidades.DTO;
+using Dominio.Entidades.Interfaces;
 
 namespace Persistencia.Repositorios
 {

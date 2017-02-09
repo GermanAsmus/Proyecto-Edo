@@ -44,13 +44,18 @@ namespace EdoUI.Cuenta
             //control.ShowDialog();
         }
 
-        public void CrearMensaje(ICuenta pCuenta)
+        private void btn_NuevaCuenta_Click(object sender, EventArgs e)
         {
-            //ControlMensaje control = IoCContainer.Resolve<ControlMensaje>();
-            //set all the properties
-            //control.Cuenta = pCuenta;
-            //insert the control into a container on the form
-
+            FormCuenta form = new FormCuenta();
+            DialogResult r = form.ShowDialog();
+            if (r == DialogResult.OK)
+            {
+                //add the account
+            }
+            else
+            {
+                this.Focus();
+            }
         }
     }
 }

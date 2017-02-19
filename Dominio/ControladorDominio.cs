@@ -1,5 +1,4 @@
-﻿using Dominio.ServicioCorreo;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using Dominio.Entidades.Interfaces;

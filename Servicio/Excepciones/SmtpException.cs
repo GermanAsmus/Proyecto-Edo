@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Servicio.Excepciones
 {
     [Serializable]
-    internal class SmtpException : ProtocolException
+    public class SmtpException : ProtocolException
     {
         public SmtpException(string message) : base(message) { }
 

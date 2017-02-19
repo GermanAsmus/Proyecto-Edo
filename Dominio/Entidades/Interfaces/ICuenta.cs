@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Dominio.Entidades.Interfaces
 {
     public interface ICuenta : IEntidadModelo
     {
+        #region propiedades
         /// <summary>
         /// Refiere a la dirección de correo de la cuenta del usuario.
         /// </summary>
@@ -25,5 +27,17 @@ namespace Dominio.Entidades.Interfaces
         /// Servidor asociado a la cuenta. Mantiene los datos del servicio de mensajería remota.
         /// </summary>
         IServidor Servidor { get; set; }
+        #endregion
+
+        /// <summary>
+        /// Crea un mensaje y lo almacena en Mensajes (no envía el mensaje).
+        /// </summary>
+        IMensaje NuevoMensaje(string pAsunto, ICollection<ICuenta> pDestinatario, string pContenido = "");
+
+        void NuevaDireccionDeCorreo(string pDireccion);
+        IMensaje DescargarMensaje(int pIdMensaje);
+        IEnumerable<IMensaje> Descargar(int pCantidad = 0);
+        void EnviarMensaje(IMensaje pMensaje);
+        void EliminarMensaje(int pIdMensaje);
     }
 }

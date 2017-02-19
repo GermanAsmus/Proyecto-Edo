@@ -54,18 +54,18 @@ namespace Dominio.Persistencia
 
         #endregion
 
-        #region manejo de adjuntos
-        IAdjunto ObtenerAdjunto(int pId);
+        //#region manejo de adjuntos
+        //IAdjunto ObtenerAdjunto(int pId);
 
-        IAdjunto ObtenerAdjunto(string pCodigo);
+        //IAdjunto ObtenerAdjunto(string pCodigo);
 
-        IEnumerable<IAdjunto> ObtenerAdjuntoSegun(int? pId);
+        //IEnumerable<IAdjunto> ObtenerAdjuntoSegun(int? pId);
 
-        IEnumerable<IAdjunto> ObtenerAdjuntoSegun(string pCodigo = null);
+        //IEnumerable<IAdjunto> ObtenerAdjuntoSegun(string pCodigo = null);
 
-        void Agregar(IAdjunto pEntidad);
+        //void Agregar(IAdjunto pEntidad);
 
-        void Eliminar(IAdjunto pEntidad);
-        #endregion
+        //void Eliminar(IAdjunto pEntidad);
+        //#endregion
     }
 }

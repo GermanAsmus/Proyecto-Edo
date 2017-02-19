@@ -14,7 +14,7 @@ namespace Persistencia
 
         private IRepositorioCuenta iRepositorioCuenta;
         private IRepositorioMensaje iRepositorioMensaje;
-        private IRepositorioAdjunto iRepositorioAdjunto;
+        //private IRepositorioAdjunto iRepositorioAdjunto;
         private IRepositorioDireccion iRepositorioDireccionCorreo;
 
 
@@ -24,7 +24,7 @@ namespace Persistencia
 
             this.iRepositorioCuenta = this.iUnitOfWork.ObtenerRepositorio<ICuenta>() as IRepositorioCuenta;
             this.iRepositorioMensaje = this.iUnitOfWork.ObtenerRepositorio<IMensaje>() as IRepositorioMensaje;
-            this.iRepositorioAdjunto = this.iUnitOfWork.ObtenerRepositorio<IAdjunto>() as IRepositorioAdjunto;
+            //this.iRepositorioAdjunto = this.iUnitOfWork.ObtenerRepositorio<IAdjunto>() as IRepositorioAdjunto;
             this.iRepositorioDireccionCorreo = this.iUnitOfWork.ObtenerRepositorio<IDireccionCorreo>() as IRepositorioDireccion;
         }
 
@@ -131,36 +131,36 @@ namespace Persistencia
 
         #endregion
 
-        #region manejo de adjuntos
-        public IAdjunto ObtenerAdjunto(int pId)
-        {
-            return this.iRepositorioAdjunto.Obtener(pId);
-        }
+        //#region manejo de adjuntos
+        //public IAdjunto ObtenerAdjunto(int pId)
+        //{
+        //    return this.iRepositorioAdjunto.Obtener(pId);
+        //}
 
-        public IAdjunto ObtenerAdjunto(string pCodigo)
-        {
-            return this.iRepositorioAdjunto.Obtener(pCodigo);
-        }
+        //public IAdjunto ObtenerAdjunto(string pCodigo)
+        //{
+        //    return this.iRepositorioAdjunto.Obtener(pCodigo);
+        //}
 
-        public IEnumerable<IAdjunto> ObtenerAdjuntoSegun(int? pId)
-        {
-            return this.iRepositorioAdjunto.ObtenerSegun(pId);
-        }
+        //public IEnumerable<IAdjunto> ObtenerAdjuntoSegun(int? pId)
+        //{
+        //    return this.iRepositorioAdjunto.ObtenerSegun(pId);
+        //}
 
-        public IEnumerable<IAdjunto> ObtenerAdjuntoSegun(string pCodigo = null)
-        {
-            return this.iRepositorioAdjunto.ObtenerSegun(pCodigo);
-        }
+        //public IEnumerable<IAdjunto> ObtenerAdjuntoSegun(string pCodigo = null)
+        //{
+        //    return this.iRepositorioAdjunto.ObtenerSegun(pCodigo);
+        //}
 
-        public void Agregar(IAdjunto pEntidad)
-        {
-            this.iRepositorioAdjunto.Agregar(pEntidad);
-        }
+        //public void Agregar(IAdjunto pEntidad)
+        //{
+        //    this.iRepositorioAdjunto.Agregar(pEntidad);
+        //}
 
-        public void Eliminar(IAdjunto pEntidad)
-        {
-            this.iRepositorioAdjunto.Eliminar(pEntidad);
-        } 
-        #endregion
+        //public void Eliminar(IAdjunto pEntidad)
+        //{
+        //    this.iRepositorioAdjunto.Eliminar(pEntidad);
+        //} 
+        //#endregion
     }
 }

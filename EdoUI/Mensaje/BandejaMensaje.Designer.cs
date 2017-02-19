@@ -28,93 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tlp_Mensaje = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_ModificarCuenta = new System.Windows.Forms.Button();
-            this.btn_NuevoMensaje = new System.Windows.Forms.Button();
-            this.rtb_informacion = new System.Windows.Forms.RichTextBox();
-            this.flp_Mensaje = new System.Windows.Forms.FlowLayoutPanel();
-            this.tlp_Mensaje.SuspendLayout();
+            this.tlp_BandejaMensaje = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_BandejaMensaje_NuevoMensaje = new System.Windows.Forms.Button();
+            this.dgv_BandejaMensaje_Bandeja = new System.Windows.Forms.DataGridView();
+            this.tlp_BandejaMensaje.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_BandejaMensaje_Bandeja)).BeginInit();
             this.SuspendLayout();
             // 
-            // tlp_Mensaje
+            // tlp_BandejaMensaje
             // 
-            this.tlp_Mensaje.ColumnCount = 1;
-            this.tlp_Mensaje.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlp_Mensaje.Controls.Add(this.btn_ModificarCuenta, 0, 1);
-            this.tlp_Mensaje.Controls.Add(this.btn_NuevoMensaje, 0, 2);
-            this.tlp_Mensaje.Controls.Add(this.rtb_informacion, 0, 0);
-            this.tlp_Mensaje.Controls.Add(this.flp_Mensaje, 0, 3);
-            this.tlp_Mensaje.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlp_Mensaje.Location = new System.Drawing.Point(0, 0);
-            this.tlp_Mensaje.Name = "tlp_Mensaje";
-            this.tlp_Mensaje.RowCount = 4;
-            this.tlp_Mensaje.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlp_Mensaje.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlp_Mensaje.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlp_Mensaje.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlp_Mensaje.Size = new System.Drawing.Size(200, 400);
-            this.tlp_Mensaje.TabIndex = 0;
+            this.tlp_BandejaMensaje.ColumnCount = 1;
+            this.tlp_BandejaMensaje.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlp_BandejaMensaje.Controls.Add(this.btn_BandejaMensaje_NuevoMensaje, 0, 0);
+            this.tlp_BandejaMensaje.Controls.Add(this.dgv_BandejaMensaje_Bandeja, 0, 1);
+            this.tlp_BandejaMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlp_BandejaMensaje.Location = new System.Drawing.Point(0, 0);
+            this.tlp_BandejaMensaje.Name = "tlp_BandejaMensaje";
+            this.tlp_BandejaMensaje.RowCount = 2;
+            this.tlp_BandejaMensaje.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlp_BandejaMensaje.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlp_BandejaMensaje.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlp_BandejaMensaje.Size = new System.Drawing.Size(200, 400);
+            this.tlp_BandejaMensaje.TabIndex = 0;
             // 
-            // btn_ModificarCuenta
+            // btn_BandejaMensaje_NuevoMensaje
             // 
-            this.btn_ModificarCuenta.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_ModificarCuenta.Location = new System.Drawing.Point(3, 105);
-            this.btn_ModificarCuenta.Name = "btn_ModificarCuenta";
-            this.btn_ModificarCuenta.Size = new System.Drawing.Size(194, 23);
-            this.btn_ModificarCuenta.TabIndex = 1;
-            this.btn_ModificarCuenta.Text = "Modificar Cuenta";
-            this.btn_ModificarCuenta.UseVisualStyleBackColor = true;
+            this.btn_BandejaMensaje_NuevoMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_BandejaMensaje_NuevoMensaje.Location = new System.Drawing.Point(3, 3);
+            this.btn_BandejaMensaje_NuevoMensaje.Name = "btn_BandejaMensaje_NuevoMensaje";
+            this.btn_BandejaMensaje_NuevoMensaje.Size = new System.Drawing.Size(194, 23);
+            this.btn_BandejaMensaje_NuevoMensaje.TabIndex = 2;
+            this.btn_BandejaMensaje_NuevoMensaje.Text = "Nuevo Mensaje";
+            this.btn_BandejaMensaje_NuevoMensaje.UseVisualStyleBackColor = true;
+            this.btn_BandejaMensaje_NuevoMensaje.Click += new System.EventHandler(this.btn_BandejaMensaje_NuevoMensaje_Click);
             // 
-            // btn_NuevoMensaje
+            // dgv_BandejaMensaje_Bandeja
             // 
-            this.btn_NuevoMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_NuevoMensaje.Location = new System.Drawing.Point(3, 134);
-            this.btn_NuevoMensaje.Name = "btn_NuevoMensaje";
-            this.btn_NuevoMensaje.Size = new System.Drawing.Size(194, 23);
-            this.btn_NuevoMensaje.TabIndex = 2;
-            this.btn_NuevoMensaje.Text = "Nuevo Mensaje";
-            this.btn_NuevoMensaje.UseVisualStyleBackColor = true;
+            this.dgv_BandejaMensaje_Bandeja.AllowUserToAddRows = false;
+            this.dgv_BandejaMensaje_Bandeja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_BandejaMensaje_Bandeja.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_BandejaMensaje_Bandeja.Location = new System.Drawing.Point(3, 32);
+            this.dgv_BandejaMensaje_Bandeja.Name = "dgv_BandejaMensaje_Bandeja";
+            this.dgv_BandejaMensaje_Bandeja.ReadOnly = true;
+            this.dgv_BandejaMensaje_Bandeja.Size = new System.Drawing.Size(194, 365);
+            this.dgv_BandejaMensaje_Bandeja.TabIndex = 4;
             // 
-            // rtb_informacion
-            // 
-            this.rtb_informacion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtb_informacion.Location = new System.Drawing.Point(3, 3);
-            this.rtb_informacion.Name = "rtb_informacion";
-            this.rtb_informacion.ReadOnly = true;
-            this.rtb_informacion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.rtb_informacion.ShowSelectionMargin = true;
-            this.rtb_informacion.Size = new System.Drawing.Size(194, 96);
-            this.rtb_informacion.TabIndex = 3;
-            this.rtb_informacion.Text = "Información de la cuenta";
-            // 
-            // flp_Mensaje
-            // 
-            this.flp_Mensaje.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp_Mensaje.Location = new System.Drawing.Point(3, 163);
-            this.flp_Mensaje.MaximumSize = new System.Drawing.Size(194, 234);
-            this.flp_Mensaje.MinimumSize = new System.Drawing.Size(194, 234);
-            this.flp_Mensaje.Name = "flp_Mensaje";
-            this.flp_Mensaje.Size = new System.Drawing.Size(194, 234);
-            this.flp_Mensaje.TabIndex = 4;
-            // 
-            // BandejaCuenta
+            // BandejaMensaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tlp_Mensaje);
-            this.Name = "BandejaCuenta";
+            this.Controls.Add(this.tlp_BandejaMensaje);
+            this.MinimumSize = new System.Drawing.Size(200, 400);
+            this.Name = "BandejaMensaje";
             this.Size = new System.Drawing.Size(200, 400);
-            this.tlp_Mensaje.ResumeLayout(false);
+            this.tlp_BandejaMensaje.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_BandejaMensaje_Bandeja)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tlp_Mensaje;
-        private System.Windows.Forms.Button btn_ModificarCuenta;
-        private System.Windows.Forms.Button btn_NuevoMensaje;
-        private System.Windows.Forms.RichTextBox rtb_informacion;
-        private System.Windows.Forms.FlowLayoutPanel flp_Mensaje;
+        private System.Windows.Forms.TableLayoutPanel tlp_BandejaMensaje;
+        private System.Windows.Forms.Button btn_BandejaMensaje_NuevoMensaje;
+        private System.Windows.Forms.DataGridView dgv_BandejaMensaje_Bandeja;
     }
 }

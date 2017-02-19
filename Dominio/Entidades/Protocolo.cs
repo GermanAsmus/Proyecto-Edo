@@ -1,12 +1,15 @@
-﻿using Dominio.Entidades.Interfaces;
+﻿using Dominio.Entidades.Helper;
+using Dominio.Entidades.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace Dominio.Entidades
 {
     public class Protocolo : IProtocolo
     {
         #region Propiedades
-        public string Tipo { get; set; }
+        public TipoProtocolo Tipo { get; set; }
         //Host del servidor.
         public string Host { get; set; }
         //Puerto del servidor.
@@ -21,6 +24,5 @@ namespace Dominio.Entidades
         {
             this.Id = 0;
         }
-        
     }
 }

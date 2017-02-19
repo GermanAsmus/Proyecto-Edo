@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio.Entidades.Interfaces;
+using System.Net.Mail;
 
 namespace Dominio.Entidades
 {
     public class Mensaje : IMensaje, IEstadoMensaje
     {
+        #region Metodos estáticos
         /// <summary>
         /// Devuelve el tipo de mensaje según su estructura
         /// </summary>
@@ -16,8 +18,9 @@ namespace Dominio.Entidades
         /// <returns></returns>
         public static string TipoMensaje(Mensaje pMensaje)
         {
-            return (string.IsNullOrEmpty(pMensaje.Contenido) && pMensaje.Adjuntos == null) ? "incompleto" : "completo";
+            return (string.IsNullOrEmpty(pMensaje.Contenido)/* && pMensaje.Adjuntos == null*/) ? "incompleto" : "completo";
         }
+        #endregion
 
         #region Atributos Mensaje Estandar
 
@@ -40,12 +43,15 @@ namespace Dominio.Entidades
         public string Contenido { get; set; }
 
         // Coleccion de adjuntos del mensaje.
-        public virtual ICollection<IAdjunto> Adjuntos { get; set; }
+       // public virtual ICollection<IAdjunto> Adjuntos { get; set; }
 
         #endregion
 
 
         private DateTime iEstadoGuardado;
+        /// <summary>
+        /// Fecha del estado de guardado
+        /// </summary>
         public string EstadoGuardado
         {
             get
@@ -64,6 +70,9 @@ namespace Dominio.Entidades
         }
 
         private DateTime iEstadoEnviado;
+        /// <summary>
+        /// Fecha del estado de enviado
+        /// </summary>
         public string EstadoEnviado
         {
             get
@@ -82,6 +91,9 @@ namespace Dominio.Entidades
         }
 
         private DateTime iEstadoVisto;
+        /// <summary>
+        /// Fecha del estado de visto
+        /// </summary>
         public string EstadoVisto
         {
             get
@@ -99,14 +111,29 @@ namespace Dominio.Entidades
             }
         }
 
-
         /// <summary>
         /// Constructor de la clase, se inicializan las listas de adjuntos y los destinatarios
         /// </summary>
         public Mensaje()
         {
-            this.Adjuntos = new List<IAdjunto>();
             this.Destinatario = new List<ICuenta>();
+        }
+        public Mensaje(MailMessage pMailMessage)
+        {
+            this.Destinatario = new List<ICuenta>();
+
+            if (pMailMessage == null)
+                throw new ArgumentNullException(nameof(pMailMessage));
+
+            this.EstadoGuardado = DateTime.Today.ToShortDateString();
+            this.Asunto = pMailMessage.Subject;
+            this.Cuenta = new Cuenta(pMailMessage.From.Address);
+               
+
+            if(!string.IsNullOrEmpty(pMailMessage.Body))
+                this.Contenido = pMailMessage.Body;
+
+            pMailMessage.To.ToList().ForEach(x => this.Destinatario.Add(new Cuenta(x.Address)));
         }
     }
 }

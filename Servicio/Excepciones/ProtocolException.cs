@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Servicio.Excepciones
 {
     [Serializable]
-    internal class ProtocolException : ApplicationException
+    public class ProtocolException : ApplicationException
     {
         public ProtocolException(string message) : base(message) { }
 

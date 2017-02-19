@@ -1,6 +1,6 @@
 ﻿using Dominio.Entidades.Interfaces;
 
-namespace Dominio.ServicioCorreo
+namespace Dominio.Servicio
 {
     /// <summary>
     /// Protocolo de transmisión de correos.
@@ -10,8 +10,6 @@ namespace Dominio.ServicioCorreo
         /// <summary>
         /// Envía un mensaje utilizando la cuenta del usuario.
         /// </summary>
-        /// <param name="pMensaje">Mensaje a enviar</param>
-        /// <param name="pCuenta">Cuenta del usuario</param>
-        void Enviar(IMensaje pMensaje, ICuenta pCuenta);
+        void Enviar(IMensaje pMensaje, string pDireccion, string pContraseña);
     }
 }

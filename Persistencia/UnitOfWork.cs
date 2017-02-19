@@ -34,14 +34,14 @@ namespace Persistencia
 
             this.iRepositorios = new List<IRepositorioRaiz>();
 
-            #region Instanciar repositorio adjunto
+            //#region Instanciar repositorio adjunto
 
-            IRepositorioAdjunto rAdjunto = new RepositorioAdjunto((this.iContext as DbContext).Set<IAdjunto>());
-            (rAdjunto as Repositorio<IAdjunto>).Actualizar += Actualizar;
+            //IRepositorioAdjunto rAdjunto = new RepositorioAdjunto((this.iContext as DbContext).Set<IAdjunto>());
+            //(rAdjunto as Repositorio<IAdjunto>).Actualizar += Actualizar;
 
-            this.iRepositorios.Add(rAdjunto);
+            //this.iRepositorios.Add(rAdjunto);
 
-            #endregion
+            //#endregion
 
             #region Instanciar repositorio direccion
 

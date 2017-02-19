@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio.Entidades.Helper
+namespace Dominio.Entidades
 {
-    public class CreadorCuenta
+    public enum TipoProtocolo
     {
-
+        smtp,
+        pop3
     }
 }

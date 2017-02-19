@@ -16,7 +16,7 @@ namespace Persistencia
         public IDbSet<Mensaje> Mensajes { get; set; }
         //public IDbSet<ServidorDAO> ServidorDAO { get; set; }
         public IDbSet<DireccionCorreo> DireccionesCorreo { get; set; }
-        public IDbSet<Adjunto> Adjuntos { get; set; }
+        //public IDbSet<Adjunto> Adjuntos { get; set; }
 
         public EntityFrameworkDBContext()
             : base("DataBase")
@@ -100,11 +100,11 @@ namespace Persistencia
                 modelBuilder.Entity<Mensaje>().Property(x => x.EstadoGuardado).IsOptional();
                 modelBuilder.Entity<Mensaje>().Property(x => x.EstadoVisto).IsOptional();
             modelBuilder.Entity<Mensaje>().HasRequired(x => x.Cuenta).WithMany().HasForeignKey(z => z.CuentaId);
-            modelBuilder.Entity<Mensaje>().HasMany(x => x.Adjuntos).WithMany().Map(t => { t.ToTable("AdjuntosMensajes"); });
+            //modelBuilder.Entity<Mensaje>().HasMany(x => x.Adjuntos).WithMany().Map(t => { t.ToTable("AdjuntosMensajes"); });
 
-            modelBuilder.Entity<Adjunto>().ToTable("Adjuntos");
-            modelBuilder.Entity<Adjunto>().HasKey<int>(x => x.Id);
-            modelBuilder.Entity<Adjunto>().Property(x => x.PathAdjunto).IsRequired();
+            //modelBuilder.Entity<Adjunto>().ToTable("Adjuntos");
+            //modelBuilder.Entity<Adjunto>().HasKey<int>(x => x.Id);
+            //modelBuilder.Entity<Adjunto>().Property(x => x.PathAdjunto).IsRequired();
         }
     }
 }

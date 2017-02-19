@@ -40,6 +40,7 @@
             this.btn_Cuenta.TabIndex = 0;
             this.btn_Cuenta.Text = "Nombre Cuenta";
             this.btn_Cuenta.UseVisualStyleBackColor = true;
+            this.btn_Cuenta.Click += new System.EventHandler(this.btn_Cuenta_Click);
             // 
             // btn_AbrirCuenta
             // 

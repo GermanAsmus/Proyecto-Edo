@@ -20,7 +20,7 @@ namespace Dominio.Entidades.Interfaces
         // Colección de direcciones de correo como direcciones destinatarios.
         ICollection<ICuenta> Destinatario { get; set; }
 
-        ICollection<IAdjunto> Adjuntos { get; set; }
+        //ICollection<IAdjunto> Adjuntos { get; set; }
 
         string Contenido { get; set; }
 

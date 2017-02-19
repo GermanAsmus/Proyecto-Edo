@@ -2,7 +2,7 @@
 {
     public interface IProtocolo : IEntidadModelo
     {
-        string Tipo { get; set; }
+        TipoProtocolo Tipo { get; set; }
         //Host del servidor.
         string Host { get; set; }
         //Puerto del servidor.

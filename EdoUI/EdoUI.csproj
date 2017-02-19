@@ -61,6 +61,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -102,12 +103,6 @@
     </Compile>
     <Compile Include="Mensaje\BandejaMensaje.Designer.cs">
       <DependentUpon>BandejaMensaje.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mensaje\btn_AbrirMensaje.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Mensaje\btn_AbrirMensaje.Designer.cs">
-      <DependentUpon>btn_AbrirMensaje.cs</DependentUpon>
     </Compile>
     <Compile Include="Mensaje\FormMensaje.cs">
       <SubType>Form</SubType>
@@ -155,9 +150,6 @@
     <EmbeddedResource Include="Mensaje\BandejaMensaje.resx">
       <DependentUpon>BandejaMensaje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mensaje\btn_AbrirMensaje.resx">
-      <DependentUpon>btn_AbrirMensaje.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mensaje\FormMensaje.resx">
       <DependentUpon>FormMensaje.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,10 +189,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ControlDependencia\CapaInterfaces.csproj">
-      <Project>{bfd4eea3-bd06-457d-8b8d-935d4a47c37e}</Project>
-      <Name>CapaInterfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
       <Project>{7444c050-a853-4222-a41c-59d04ae23617}</Project>
       <Name>Dominio</Name>

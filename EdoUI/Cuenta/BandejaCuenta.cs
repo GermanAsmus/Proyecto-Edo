@@ -9,53 +9,67 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EdoUI.DI;
 using Dominio.Entidades.Interfaces;
+using Dominio;
 
 namespace EdoUI.Cuenta
 {
     public partial class BandejaCuenta : UserControl
     {
-
-        /// <summary>
-        /// Componentes:
-        /// Información de la cuenta *
-        /// Modificación de la cuenta *
-        /// Bandeja de mensajes de la cuenta *
-        /// Crear mensaje *
-        /// </summary>
+        internal IControladorDominio iControlador;
 
         public BandejaCuenta()
         {
             InitializeComponent();
-        }
-
-        public void BandejaMensajes(ICuenta pCuenta)
-        {
-
-        }
-
-        public void FormCuenta(ICuenta pCuenta, bool pEditable = false)
-        {
-            //FormCuenta control = IoCContainer.Resolve<FormCuenta>();
-            //set all the properties
-            //control.Cuenta = pCuenta;
-            //control.isEditable = pEditable;
-            //insert the control into a container on the form
-
-            //control.ShowDialog();
+            this.iControlador = IoCContainer.Resolve<IControladorDominio>();
         }
 
         private void btn_NuevaCuenta_Click(object sender, EventArgs e)
         {
-            FormCuenta form = new FormCuenta();
-            DialogResult r = form.ShowDialog();
-            if (r == DialogResult.OK)
+            using (FormCuenta form = new FormCuenta())
             {
-                //add the account
+                DialogResult r = form.ShowDialog();
+                if (r == DialogResult.OK)
+                {
+                    MessageBox.Show(
+                        String.Format(@"La cuenta fue creada satisfactoriamente:
+                    Nombre: {0},
+                    Dirección de correo: {1}", form.Nombre, form.Direccion));
+
+                    //agregar la cuenta a la bd.
+                    ICuenta nuevaCuenta = IoCContainer.Resolve<ICuenta>();
+                        nuevaCuenta.Nombre = form.Nombre;
+                        nuevaCuenta.NuevaDireccionDeCorreo(form.Direccion);
+                        nuevaCuenta.Contraseña = form.Contrasenia;
+
+                    this.iControlador.CrearCuentaNueva(nuevaCuenta);
+                }
             }
-            else
+        }
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            using (FormCuenta form = new FormCuenta())
             {
-                this.Focus();
+                //pasar datos de la cuenta.
+                form.ModificarCuenta("","");
+
+                DialogResult r = form.ShowDialog();
+                if (r == DialogResult.OK)
+                {
+                    MessageBox.Show(
+                        String.Format(@"La cuenta fue modificada satisfactoriamente:
+                    Nombre: {0},
+                    Dirección de correo: {1}", form.Nombre, form.Direccion));
+
+                    //modificar los valores en la bd.
+                    //this.iControlador.ActualizarInformacionCuentaSeleccionada();
+                }
             }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            //cambiar la cuenta seleccionada.
         }
     }
 }

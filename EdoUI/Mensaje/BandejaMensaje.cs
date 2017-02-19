@@ -18,5 +18,20 @@ namespace EdoUI.Mensaje
         {
             InitializeComponent();
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btn_BandejaMensaje_NuevoMensaje_Click(object sender, EventArgs e)
+        {
+            FormMensaje nuevoMensaje = new FormMensaje();
+            DialogResult result = nuevoMensaje.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                //send
+            }
+        }
     }
 }

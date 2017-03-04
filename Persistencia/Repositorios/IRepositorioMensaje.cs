@@ -5,12 +5,12 @@ namespace Persistencia.Repositorios
 {
     public interface IRepositorioMensaje : IRepositorioCompleto<IMensaje>
     {
-        IMensaje Obtener(int? pId);
+        IMensaje ObtenerUno(int? pId);
 
-        IMensaje Obtener(string pAsunto = null);
+        IMensaje ObtenerUno(string pAsunto = null);
 
-        IEnumerable<IMensaje> ObtenerSegun(int? pId);
+        IEnumerable<IMensaje> ObtenerTodos(int? pId);
 
-        IEnumerable<IMensaje> ObtenerSegun(string Asunto = null);
+        IEnumerable<IMensaje> ObtenerTodos(string Asunto = null);
     }
 }

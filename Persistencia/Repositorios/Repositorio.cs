@@ -39,14 +39,14 @@ namespace Persistencia.Repositorios
             Actualizar();
         }
 
-        protected IEnumerable<TEntity> ObtenerSegun(Expression<Func<TEntity, bool>> criterio = null)
+        protected IEnumerable<TEntity> ObtenerTodos(Expression<Func<TEntity, bool>> criterio = null)
         {
             if (criterio == null)
                 return iDbSet;
             return iDbSet.Where(criterio);
         }
 
-        protected TEntity Obtener(Expression<Func<TEntity, bool>> criterio = null)
+        protected TEntity ObtenerUno(Expression<Func<TEntity, bool>> criterio = null)
         {
             if (criterio == null)
                 throw new ArgumentNullException("El criterio es nulo, no se puede evaluar la expresión");

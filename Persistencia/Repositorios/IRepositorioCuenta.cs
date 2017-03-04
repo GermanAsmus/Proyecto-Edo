@@ -5,12 +5,12 @@ namespace Persistencia.Repositorios
 {
     public interface IRepositorioCuenta : IRepositorioCompleto<ICuenta>
     {
-        ICuenta Obtener(int? pId);
+        ICuenta ObtenerUno(int? pId);
 
-        ICuenta Obtener(string pNombre = null);
+        ICuenta ObtenerUno(string pNombre = null);
 
-        IEnumerable<ICuenta> ObtenerSegun(int? pId);
+        IEnumerable<ICuenta> ObtenerTodos(int? pId);
 
-        IEnumerable<ICuenta> ObtenerSegun(string pNombre = null);
+        IEnumerable<ICuenta> ObtenerTodos(string pNombre = null);
     }
 }

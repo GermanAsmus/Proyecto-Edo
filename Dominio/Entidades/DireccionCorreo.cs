@@ -1,10 +1,9 @@
-﻿using Dominio.Entidades.Interfaces;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mail;
 
-namespace Dominio.Entidades
+namespace Dominio
 {
     /// <summary>
     /// Entidad DireccionCorreo, modela una dirección de correo. Ej: miCorreo@correo.com
@@ -14,13 +13,9 @@ namespace Dominio.Entidades
 
         #region Propiedades
         //Identificador único de la direccion de correo.
-        public int Id { get; set; }
+        public byte Id { get; set; }
         //Direccion de correo real de la entidad. Ej: miCorreo@correo.com
         public string DireccionDeCorreo { get; set; }
-        //Identificador de la cuenta a la que está asociada la dirección de correo.
-        public int CuentaId { get; set; }
-        //Entidad CuentaDAO a la que está asociada la dirección de correo.
-        public ICuenta Cuenta { get; set; }
         //Colección de mensajes en los que la dirección de correo está asociada como dirección de correo destinatario.
         public virtual ICollection<IMensaje> MensajesDestinatario { get; set; }
         //Colección de mensajes en los que la dirección de correo está asociada como dirección de correo remitente.
@@ -49,5 +44,6 @@ namespace Dominio.Entidades
         {
             return new MailAddress(pDireccion.DireccionDeCorreo).Host.Split('.')[0];
         }
+
     }
 }

@@ -73,6 +73,46 @@ namespace EdoUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap congruent_pentagon {
+            get {
+                object obj = ResourceManager.GetObject("congruent_pentagon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap diagmonds {
+            get {
+                object obj = ResourceManager.GetObject("diagmonds", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap free_delivery_man_vector {
+            get {
+                object obj = ResourceManager.GetObject("free-delivery-man-vector", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap free_package_delivery_vector {
+            get {
+                object obj = ResourceManager.GetObject("free-package-delivery-vector", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap go_mail {
             get {
                 object obj = ResourceManager.GetObject("go-mail", resourceCulture);
@@ -83,9 +123,39 @@ namespace EdoUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap paven {
+            get {
+                object obj = ResourceManager.GetObject("paven", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Todo_lo_que_podes_hacer_con_Go_Mail {
             get {
                 object obj = ResourceManager.GetObject("Todo lo que podes hacer con Go-Mail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tree_bark {
+            get {
+                object obj = ResourceManager.GetObject("tree_bark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap whitediamond {
+            get {
+                object obj = ResourceManager.GetObject("whitediamond", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

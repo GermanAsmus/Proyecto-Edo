@@ -1,11 +1,7 @@
-﻿using Dominio;
-using Dominio.Entidades.Interfaces;
-using Dominio.Persistencia;
-using EdoUI;
-using EdoUI.Cuenta;
+﻿using EdoUI;
+using EdoUI.UICuenta;
 using EdoUI.Mensaje;
 using Microsoft.Practices.Unity;
-using Persistencia;
 using System;
 
 namespace EdoUI.DI
@@ -15,7 +11,6 @@ namespace EdoUI.DI
         private static readonly Lazy<IUnityContainer> cInstance = new Lazy<IUnityContainer>(() =>
         {
             var container = new UnityContainer();
-            RegisterTypes(container);
             return container;
         });
 
@@ -24,15 +19,9 @@ namespace EdoUI.DI
             get { return cInstance.Value; }
         }
 
-        private static void RegisterTypes(IUnityContainer pContainer)
+        public static void RegisterType<TFrom, TTo>(IUnityContainer pContainer)
         {
-            pContainer.RegisterType<IControladorDominio, ControladorDominio>();
-            pContainer.RegisterType<IControladorPersistencia, ControladorPersistencia>();
-
-            pContainer.RegisterType<BandejaCuenta>(new InjectionFactory(b => new BandejaCuenta()));
-            pContainer.RegisterType<BandejaMensaje>(new InjectionFactory(b => new BandejaMensaje()));
-
-
+            Container.RegisterType<TFrom>(new InjectionFactory(r => Activator.CreateInstance<TTo>()));
         }
 
         public static T Resolve<T>()

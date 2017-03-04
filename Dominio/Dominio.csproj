@@ -43,32 +43,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControladorDominio.cs" />
-    <Compile Include="Entidades\Cuenta.cs" />
+    <Compile Include="Entidades\CuentaDeUsuario.cs" />
     <Compile Include="Entidades\DireccionCorreo.cs" />
-    <Compile Include="Entidades\Helper\CreadorServidor.cs" />
-    <Compile Include="Entidades\Interfaces\ICuenta.cs" />
-    <Compile Include="Entidades\Interfaces\IDireccionCorreo.cs" />
-    <Compile Include="Entidades\Interfaces\IEntidadModelo.cs" />
-    <Compile Include="Entidades\Interfaces\IEstadoMensaje.cs" />
-    <Compile Include="Entidades\Interfaces\IMensaje.cs" />
-    <Compile Include="Entidades\Interfaces\IProtocolo.cs" />
-    <Compile Include="Entidades\Interfaces\IServidor.cs" />
+    <Compile Include="Helper\CreadorServidor.cs" />
+    <Compile Include="Interfaces\ICuentaDeUsuario.cs" />
+    <Compile Include="Interfaces\IDireccionCorreo.cs" />
+    <Compile Include="Interfaces\IEntidadModelo.cs" />
+    <Compile Include="Interfaces\IMensaje.cs" />
+    <Compile Include="Interfaces\IProtocolo.cs" />
+    <Compile Include="Interfaces\IServidor.cs" />
     <Compile Include="Entidades\Mensaje.cs" />
     <Compile Include="Entidades\Protocolo.cs" />
     <Compile Include="Entidades\Servidor.cs" />
-    <Compile Include="Entidades\Helper\CreadorCuenta.cs" />
-    <Compile Include="Entidades\Helper\CreadorMensajes.cs" />
+    <Compile Include="Helper\CreadorCuenta.cs" />
+    <Compile Include="Helper\CreadorMensajes.cs" />
     <Compile Include="Entidades\TipoProtocolo.cs" />
-    <Compile Include="Excepciones\AddOperationException.cs" />
-    <Compile Include="Excepciones\InvalidRepositoryOperationException.cs" />
-    <Compile Include="Excepciones\PathInexistenteException.cs" />
-    <Compile Include="IControladorDominio.cs" />
-    <Compile Include="Persistencia\IControladorPersistencia.cs" />
-    <Compile Include="Servicio\IProtocoloRecepcion.cs" />
-    <Compile Include="Servicio\IProtocoloTransmision.cs" />
-    <Compile Include="Servicio\Pop3.cs" />
-    <Compile Include="Servicio\Smtp.cs" />
+    <Compile Include="FachadaDominio.cs" />
+    <Compile Include="Interfaces\IProtocoloRecepcion.cs" />
+    <Compile Include="Interfaces\IProtocoloTransmision.cs" />
+    <Compile Include="Entidades\Pop3.cs" />
+    <Compile Include="Entidades\Smtp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -77,6 +71,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\EdoUI\EdoUI.csproj">
+      <Project>{e1de0b46-38ae-42e5-ae58-33a9e5118899}</Project>
+      <Name>EdoUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Servicio\Servicio.csproj">
       <Project>{3fa000c1-478d-4b59-b1f0-076427d48ffc}</Project>
       <Name>Servicio</Name>

@@ -36,22 +36,22 @@ namespace Persistencia
         #region manejo de cuenta
         public ICuenta ObtenerCuenta(int? pId)
         {
-            return this.iRepositorioCuenta.Obtener(pId);
+            return this.iRepositorioCuenta.ObtenerUno(pId);
         }
 
         public ICuenta ObtenerCuenta(string pNombre = null)
         {
-            return this.iRepositorioCuenta.Obtener(pNombre);
+            return this.iRepositorioCuenta.ObtenerUno(pNombre);
         }
 
-        public IEnumerable<ICuenta> ObtenerCuentaSegun(int? pId)
+        public IEnumerable<ICuenta> ObtenerCuentaTodos(int? pId)
         {
-            return this.iRepositorioCuenta.ObtenerSegun(pId);
+            return this.iRepositorioCuenta.ObtenerTodos(pId);
         }
 
-        public IEnumerable<ICuenta> ObtenerCuentaSegun(string pNombre = null)
+        public IEnumerable<ICuenta> ObtenerCuentaTodos(string pNombre = null)
         {
-            return this.iRepositorioCuenta.ObtenerSegun(pNombre);
+            return this.iRepositorioCuenta.ObtenerTodos(pNombre);
         }
 
         public void Agregar(ICuenta pEntidad)
@@ -69,22 +69,22 @@ namespace Persistencia
         #region manejo de direccion de correo
         public IDireccionCorreo ObtenerCuentaDireccionDeCorreo(int? pId)
         {
-            return this.iRepositorioDireccionCorreo.Obtener(pId);
+            return this.iRepositorioDireccionCorreo.ObtenerUno(pId);
         }
 
         public IDireccionCorreo ObtenerCuentaDireccionDeCorreo(string pDireccion)
         {
-            return this.iRepositorioDireccionCorreo.Obtener(pDireccion);
+            return this.iRepositorioDireccionCorreo.ObtenerUno(pDireccion);
         }
 
-        public IEnumerable<IDireccionCorreo> ObtenerCuentaDireccionDeCorreoSegun(int? pId)
+        public IEnumerable<IDireccionCorreo> ObtenerCuentaDireccionDeCorreoTodos(int? pId)
         {
-            return this.iRepositorioDireccionCorreo.ObtenerSegun(pId);
+            return this.iRepositorioDireccionCorreo.ObtenerTodos(pId);
         }
 
-        public IEnumerable<IDireccionCorreo> ObtenerCuentaDireccionDeCorreoSegun(string pDireccion)
+        public IEnumerable<IDireccionCorreo> ObtenerCuentaDireccionDeCorreoTodos(string pDireccion)
         {
-            return this.iRepositorioDireccionCorreo.ObtenerSegun(pDireccion);
+            return this.iRepositorioDireccionCorreo.ObtenerTodos(pDireccion);
         }
 
         public void Agregar(IDireccionCorreo pEntidad)
@@ -101,22 +101,22 @@ namespace Persistencia
         #region manejo de mensajes
         public IMensaje ObtenerMensaje(int? pId)
         {
-            return this.iRepositorioMensaje.Obtener(pId);
+            return this.iRepositorioMensaje.ObtenerUno(pId);
         }
 
         public IMensaje ObtenerMensaje(string pAsunto = null)
         {
-            return this.iRepositorioMensaje.Obtener(pAsunto);
+            return this.iRepositorioMensaje.ObtenerUno(pAsunto);
         }
 
-        public IEnumerable<IMensaje> ObtenerMensajeSegun(int? pId)
+        public IEnumerable<IMensaje> ObtenerMensajeTodos(int? pId)
         {
-            return this.iRepositorioMensaje.ObtenerSegun(pId);
+            return this.iRepositorioMensaje.ObtenerTodos(pId);
         }
 
-        public IEnumerable<IMensaje> ObtenerMensajeSegun(string Asunto = null)
+        public IEnumerable<IMensaje> ObtenerMensajeTodos(string Asunto = null)
         {
-            return this.iRepositorioMensaje.ObtenerSegun(Asunto);
+            return this.iRepositorioMensaje.ObtenerTodos(Asunto);
         }
 
         public void Agregar(IMensaje pEntidad)
@@ -142,14 +142,14 @@ namespace Persistencia
         //    return this.iRepositorioAdjunto.Obtener(pCodigo);
         //}
 
-        //public IEnumerable<IAdjunto> ObtenerAdjuntoSegun(int? pId)
+        //public IEnumerable<IAdjunto> ObtenerAdjuntoTodos(int? pId)
         //{
-        //    return this.iRepositorioAdjunto.ObtenerSegun(pId);
+        //    return this.iRepositorioAdjunto.ObtenerTodos(pId);
         //}
 
-        //public IEnumerable<IAdjunto> ObtenerAdjuntoSegun(string pCodigo = null)
+        //public IEnumerable<IAdjunto> ObtenerAdjuntoTodos(string pCodigo = null)
         //{
-        //    return this.iRepositorioAdjunto.ObtenerSegun(pCodigo);
+        //    return this.iRepositorioAdjunto.ObtenerTodos(pCodigo);
         //}
 
         //public void Agregar(IAdjunto pEntidad)

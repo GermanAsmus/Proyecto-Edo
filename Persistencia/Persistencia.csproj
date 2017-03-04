@@ -58,7 +58,7 @@
     <Compile Include="EntityFrameworkDBContext.cs" />
     <Compile Include="IContext.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositorio.cs" />
     <Compile Include="Repositorios\IRepositorioCuenta.cs" />
     <Compile Include="Repositorios\IRepositorioDireccion.cs" />
     <Compile Include="Repositorios\IRepositorioMensaje.cs" />

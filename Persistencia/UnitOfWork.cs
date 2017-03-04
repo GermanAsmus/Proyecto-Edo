@@ -64,7 +64,7 @@ namespace Persistencia
 
             #region Instanciar repositorio mensaje
             //rMensaje necesita de rCuenta
-            IRepositorioCompleto<IMensaje> rMensaje = new RepositorioMensaje(rCuenta, (this.iContext as DbContext).Set<IMensaje>());
+            IRepositorioCompleto<IMensaje> rMensaje = new RepositorioMensaje(rDireccion, (this.iContext as DbContext).Set<IMensaje>());
             (rMensaje as Repositorio<IMensaje>).Actualizar += Actualizar;
 
             this.iRepositorios.Add(rMensaje);

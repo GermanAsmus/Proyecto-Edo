@@ -73,41 +73,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bloque\Conexion.cs">
+    <Compile Include="DTO\CuentaDTO.cs" />
+    <Compile Include="DTO\DireccionCorreoDTO.cs" />
+    <Compile Include="DTO\MensajeDTO.cs" />
+    <Compile Include="UI\UICuenta\UICuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UICuenta\UICuenta.Designer.cs">
+      <DependentUpon>UICuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ProbarConexion.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Bloque\Conexion.Designer.cs">
-      <DependentUpon>Conexion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Cuenta\BandejaCuenta.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Cuenta\BandejaCuenta.Designer.cs">
-      <DependentUpon>BandejaCuenta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Cuenta\btn_AbrirCuenta.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Cuenta\btn_AbrirCuenta.Designer.cs">
-      <DependentUpon>btn_AbrirCuenta.cs</DependentUpon>
+    <Compile Include="UI\ProbarConexion.Designer.cs">
+      <DependentUpon>ProbarConexion.cs</DependentUpon>
     </Compile>
     <Compile Include="DI\IoCContainer.cs" />
-    <Compile Include="Cuenta\FormCuenta.cs">
+    <Compile Include="UI\UICuenta\FormCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cuenta\FormCuenta.Designer.cs">
+    <Compile Include="UI\UICuenta\FormCuenta.Designer.cs">
       <DependentUpon>FormCuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mensaje\BandejaMensaje.cs">
+    <Compile Include="UI\Mensaje\BandejaMensaje.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Mensaje\BandejaMensaje.Designer.cs">
+    <Compile Include="UI\Mensaje\BandejaMensaje.Designer.cs">
       <DependentUpon>BandejaMensaje.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mensaje\FormMensaje.cs">
+    <Compile Include="UI\Mensaje\FormMensaje.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mensaje\FormMensaje.Designer.cs">
+    <Compile Include="UI\Mensaje\FormMensaje.Designer.cs">
       <DependentUpon>FormMensaje.cs</DependentUpon>
     </Compile>
     <Compile Include="Sobre.cs">
@@ -116,55 +113,43 @@
     <Compile Include="Sobre.Designer.cs">
       <DependentUpon>Sobre.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bloque\BloqueUtilidad.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Bloque\BloqueUtilidad.Designer.cs">
-      <DependentUpon>BloqueUtilidad.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RunEdo.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Bloque\Conexion.resx">
-      <DependentUpon>Conexion.cs</DependentUpon>
+    <Compile Include="UI\UI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UI.Designer.cs">
+      <DependentUpon>UI.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\UICuenta\UICuenta.resx">
+      <DependentUpon>UICuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cuenta\BandejaCuenta.resx">
-      <DependentUpon>BandejaCuenta.cs</DependentUpon>
+    <EmbeddedResource Include="UI\ProbarConexion.resx">
+      <DependentUpon>ProbarConexion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cuenta\btn_AbrirCuenta.resx">
-      <DependentUpon>btn_AbrirCuenta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Cuenta\FormCuenta.resx">
+    <EmbeddedResource Include="UI\UICuenta\FormCuenta.resx">
       <DependentUpon>FormCuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mensaje\BandejaMensaje.resx">
+    <EmbeddedResource Include="UI\Mensaje\BandejaMensaje.resx">
       <DependentUpon>BandejaMensaje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mensaje\FormMensaje.resx">
+    <EmbeddedResource Include="UI\Mensaje\FormMensaje.resx">
       <DependentUpon>FormMensaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sobre.resx">
       <DependentUpon>Sobre.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bloque\BloqueUtilidad.resx">
-      <DependentUpon>BloqueUtilidad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UI.resx">
+      <DependentUpon>UI.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -189,19 +174,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dominio\Dominio.csproj">
-      <Project>{7444c050-a853-4222-a41c-59d04ae23617}</Project>
-      <Name>Dominio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Persistencia\Persistencia.csproj">
-      <Project>{274f7ca7-58c2-4caa-9232-cc370c9e9271}</Project>
-      <Name>Persistencia</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\go-mail.png" />
   </ItemGroup>
   <ItemGroup>
@@ -210,7 +182,27 @@
   <ItemGroup>
     <None Include="Resources\1453773768_19.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\congruent_pentagon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree_bark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diagmonds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whitediamond.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paven.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-package-delivery-vector.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\free-delivery-man-vector.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

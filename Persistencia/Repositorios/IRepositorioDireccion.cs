@@ -5,12 +5,12 @@ namespace Persistencia.Repositorios
 {
     public interface IRepositorioDireccion : IRepositorioCompleto<IDireccionCorreo>
     {
-        IDireccionCorreo Obtener(int? pId);
+        IDireccionCorreo ObtenerUno(int? pId);
 
-        IDireccionCorreo Obtener(string pDireccion = null);
+        IDireccionCorreo ObtenerUno(string pDireccion = null);
 
-        IEnumerable<IDireccionCorreo> ObtenerSegun(int? pId);
+        IEnumerable<IDireccionCorreo> ObtenerTodos(int? pId);
 
-        IEnumerable<IDireccionCorreo> ObtenerSegun(string pDireccion = null);
+        IEnumerable<IDireccionCorreo> ObtenerTodos(string pDireccion = null);
     }
 }

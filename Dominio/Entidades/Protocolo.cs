@@ -1,28 +1,24 @@
-﻿using Dominio.Entidades.Helper;
-using Dominio.Entidades.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Net.Mail;
-
-namespace Dominio.Entidades
+﻿namespace Dominio
 {
     public class Protocolo : IProtocolo
     {
         #region Propiedades
+        /// <summary>
+        /// Tipo del protocolo. SMTP o POP3
+        /// </summary>
         public TipoProtocolo Tipo { get; set; }
-        //Host del servidor.
+        /// <summary>
+        /// Host del servidor.
+        /// </summary>
         public string Host { get; set; }
-        //Puerto del servidor.
+        ///<summary>
+        ///Puerto del servidor.
+        ///</summary>
         public int Puerto { get; set; }
-        //SSL, capa de puertos de seguridad, del servidor.
+        /// <summary>
+        /// SSL, capa de puertos de seguridad, del servidor.
+        /// </summary>
         public bool SSL { get; set; }
-        
-        public int Id { get; set; }
         #endregion
-
-        public Protocolo()
-        {
-            this.Id = 0;
-        }
     }
 }

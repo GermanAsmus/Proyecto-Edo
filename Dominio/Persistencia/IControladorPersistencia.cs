@@ -10,17 +10,17 @@ namespace Dominio.Persistencia
         int Actualizar();
 
         #region manejo de cuenta
-        ICuenta ObtenerCuenta(int? pId);
+        ICuentaDeUsuario ObtenerCuenta(int? pId);
 
-        ICuenta ObtenerCuenta(string pNombre = null);
+        ICuentaDeUsuario ObtenerCuenta(string pNombre = null);
 
-        IEnumerable<ICuenta> ObtenerCuentaSegun(int? pId);
+        IEnumerable<ICuentaDeUsuario> ObtenerCuentaTodos(int? pId);
 
-        IEnumerable<ICuenta> ObtenerCuentaSegun(string pNombre = null);
+        IEnumerable<ICuentaDeUsuario> ObtenerCuentaTodos(string pNombre = null);
 
-        void Agregar(ICuenta pEntidad);
+        void Agregar(ICuentaDeUsuario pEntidad);
 
-        void Eliminar(ICuenta pEntidad);
+        void Eliminar(ICuentaDeUsuario pEntidad);
 
         #endregion
 
@@ -29,9 +29,9 @@ namespace Dominio.Persistencia
 
         IDireccionCorreo ObtenerCuentaDireccionDeCorreo(string pDireccion);
 
-        IEnumerable<IDireccionCorreo> ObtenerCuentaDireccionDeCorreoSegun(int? pId);
+        IEnumerable<IDireccionCorreo> ObtenerCuentaDireccionDeCorreoTodos(int? pId);
 
-        IEnumerable<IDireccionCorreo> ObtenerCuentaDireccionDeCorreoSegun(string pDireccion);
+        IEnumerable<IDireccionCorreo> ObtenerCuentaDireccionDeCorreoTodos(string pDireccion);
 
         void Agregar(IDireccionCorreo pEntidad);
 
@@ -44,28 +44,14 @@ namespace Dominio.Persistencia
 
         IMensaje ObtenerMensaje(string pAsunto = null);
 
-        IEnumerable<IMensaje> ObtenerMensajeSegun(int? pId);
+        IEnumerable<IMensaje> ObtenerMensajeTodos(int? pId);
 
-        IEnumerable<IMensaje> ObtenerMensajeSegun(string Asunto = null);
+        IEnumerable<IMensaje> ObtenerMensajeTodos(string Asunto = null);
 
         void Agregar(IMensaje pEntidad);
 
         void Eliminar(IMensaje pEntidad);
 
         #endregion
-
-        //#region manejo de adjuntos
-        //IAdjunto ObtenerAdjunto(int pId);
-
-        //IAdjunto ObtenerAdjunto(string pCodigo);
-
-        //IEnumerable<IAdjunto> ObtenerAdjuntoSegun(int? pId);
-
-        //IEnumerable<IAdjunto> ObtenerAdjuntoSegun(string pCodigo = null);
-
-        //void Agregar(IAdjunto pEntidad);
-
-        //void Eliminar(IAdjunto pEntidad);
-        //#endregion
     }
 }

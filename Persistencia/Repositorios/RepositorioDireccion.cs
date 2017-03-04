@@ -19,7 +19,7 @@ namespace Persistencia.Repositorios
                 throw new ArgumentNullException(nameof(pEntidad)); 
             #endregion
 
-            IDireccionCorreo iDireccion = this.Obtener(pEntidad.Id);
+            IDireccionCorreo iDireccion = this.ObtenerUno(pEntidad.Id);
             if (iDireccion == null)
                 throw new InvalidOperationException("ya existe la direccion en la bd");
 
@@ -27,36 +27,36 @@ namespace Persistencia.Repositorios
 
         }
 
-        public IDireccionCorreo Obtener(int? pId)
+        public IDireccionCorreo ObtenerUno(int? pId)
         {
             if (pId.HasValue)
-                return base.Obtener(direccion => direccion.Id == pId);
+                return base.ObtenerUno(direccion => direccion.Id == pId);
             else
-                return base.Obtener();
+                return base.ObtenerUno();
         }
 
-        public IDireccionCorreo Obtener(string pDireccion = null)
+        public IDireccionCorreo ObtenerUno(string pDireccion = null)
         {
             if (string.IsNullOrEmpty(pDireccion))
-                return base.Obtener(direccion => direccion.DireccionDeCorreo == pDireccion);
+                return base.ObtenerUno(direccion => direccion.DireccionDeCorreo == pDireccion);
             else
-                return base.Obtener();
+                return base.ObtenerUno();
         }
 
-        public IEnumerable<IDireccionCorreo> ObtenerSegun(int? pId)
+        public IEnumerable<IDireccionCorreo> ObtenerTodos(int? pId)
         {
             if (pId.HasValue)
-                return base.ObtenerSegun(direccion => direccion.Id == pId);
+                return base.ObtenerTodos(direccion => direccion.Id == pId);
             else
-                return base.ObtenerSegun();
+                return base.ObtenerTodos();
         }
 
-        public IEnumerable<IDireccionCorreo> ObtenerSegun(string pDireccion = null)
+        public IEnumerable<IDireccionCorreo> ObtenerTodos(string pDireccion = null)
         {
             if (string.IsNullOrEmpty(pDireccion))
-                return base.ObtenerSegun(direccion => direccion.DireccionDeCorreo == pDireccion);
+                return base.ObtenerTodos(direccion => direccion.DireccionDeCorreo == pDireccion);
             else
-                return base.ObtenerSegun();
+                return base.ObtenerTodos();
         }
     }
 }

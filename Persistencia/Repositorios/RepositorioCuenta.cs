@@ -32,52 +32,44 @@ namespace Persistencia.Repositorios
             } 
             #endregion
 
-            IDireccionCorreo iDireccion = iRepositorioExterno.Obtener(pEntidad.DireccionCorreo.DireccionDeCorreo);
+            IDireccionCorreo iDireccion = iRepositorioExterno.ObtenerUno(pEntidad.DireccionCorreo.DireccionDeCorreo);
             //de no existir la direccion, se agrega a la base de datos
             if (iDireccion == null)
                 iRepositorioExterno.Agregar(iDireccion);
 
-            iDireccion.Cuenta = pEntidad;
-            iDireccion.CuentaId = pEntidad.Id;
-            pEntidad.DireccionId = iDireccion.Id;
-
-            //cargar el servidor
-            //IServidor iServidor = new Servidor();
-            //pEntidad.IServidor = iServidor;
-
             base.AgregarEntidad(pEntidad);
         }
 
-        public ICuenta Obtener(int? pId)
+        public ICuenta ObtenerUno(int? pId)
         {
             if (pId.HasValue)
-                return base.Obtener(cuenta => cuenta.Id == pId);
+                return base.ObtenerUno(cuenta => cuenta.Id == pId);
             else
-                return base.Obtener();
+                return base.ObtenerUno();
         }
 
-        public ICuenta Obtener(string pNombre = null)
+        public ICuenta ObtenerUno(string pNombre = null)
         {
             if (string.IsNullOrEmpty(pNombre))
-                return base.Obtener(cuenta => (cuenta as ICuenta).Nombre == pNombre);
+                return base.ObtenerUno(cuenta => (cuenta as ICuenta).Nombre == pNombre);
             else
-                return base.Obtener();
+                return base.ObtenerUno();
         }
 
-        public IEnumerable<ICuenta> ObtenerSegun(int? pId)
+        public IEnumerable<ICuenta> ObtenerTodos(int? pId)
         {
             if (pId.HasValue)
-                return base.ObtenerSegun(cuenta => cuenta.Id == pId);
+                return base.ObtenerTodos(cuenta => cuenta.Id == pId);
             else
-                return base.ObtenerSegun();
+                return base.ObtenerTodos();
         }
 
-        public IEnumerable<ICuenta> ObtenerSegun(string pNombre = null)
+        public IEnumerable<ICuenta> ObtenerTodos(string pNombre = null)
         {
             if (string.IsNullOrEmpty(pNombre))
-                return base.ObtenerSegun(cuenta => (cuenta as ICuenta).Nombre == pNombre);
+                return base.ObtenerTodos(cuenta => (cuenta as ICuenta).Nombre == pNombre);
             else
-                return base.ObtenerSegun();
+                return base.ObtenerTodos();
         }
     }
 }

@@ -5,90 +5,76 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Dominio.Entidades.Interfaces;
+using Dominio.Entidades;
 
 namespace Persistencia.Repositorios
 {
     public class RepositorioMensaje : Repositorio<IMensaje>, IRepositorioMensaje
     {
-        private IRepositorioCuenta iRepositorioCuenta;
+        private IRepositorioDireccion iRepositorioDireccion;
 
-        public RepositorioMensaje(IRepositorioCuenta pRepositorioCuenta, IDbSet<IMensaje> pDbSet) : base(pDbSet)
+        public RepositorioMensaje(IRepositorioDireccion pRepositorioDireccion, IDbSet<IMensaje> pDbSet) : base(pDbSet)
         {
-            this.iRepositorioCuenta = pRepositorioCuenta;
+            this.iRepositorioDireccion = pRepositorioDireccion;
         }
 
         public override void Agregar(IMensaje pEntidad)
         {
             #region programacion defensiva
-            if (pEntidad == null)
+            if (pEntidad == null || pEntidad.Remitente == null)
                 throw new ArgumentNullException(nameof(pEntidad));
-
-            if (pEntidad.Cuenta == null)
-                throw new ArgumentNullException(nameof(pEntidad.Cuenta));
-
-            //verifica que los string no sean nulos o vacios
-            if (string.IsNullOrEmpty(pEntidad.Asunto))
-                throw new NullReferenceException("El asunto del mensaje no puede ser vacío o nulo");
             #endregion
 
-            //crea una lista donde se guardaran los destinatarios que sean validos
-            List<ICuenta> destinatariosValidos = new List<ICuenta>();
-            //obtiene todos los destinatarios que tiene el mensaje
-            var destinatarios = pEntidad.Destinatario.GetEnumerator();
+            //agrega aquellas direcciones que no existen en la base de datos
+            pEntidad.Destinatario.ToList().ForEach(d=> {
+                if (this.iRepositorioDireccion.ObtenerUno(d.DireccionDeCorreo) == null)
+                    this.iRepositorioDireccion.Agregar(new DireccionCorreo(d.DireccionDeCorreo));
+            });
 
-            ICuenta iDireccion = null;
-            while (destinatarios.MoveNext())
+            //agrega la direccion del remitente si no existe en la base de datos
+            IDireccionCorreo aRemitente = this.iRepositorioDireccion.ObtenerUno(pEntidad.Remitente.DireccionDeCorreo);
+            if (aRemitente == null)
             {
-                //obtiene los destinatarios que existan en la base de datos
-                iDireccion = this.iRepositorioCuenta.Obtener(destinatarios.Current.DireccionCorreo.Id);
-                //verifica que el destino no sea nulo
-                if (iDireccion != null)
-                    destinatariosValidos.Add(destinatarios.Current);
+                this.iRepositorioDireccion.Agregar(new DireccionCorreo(pEntidad.Remitente.DireccionDeCorreo));
+                aRemitente = this.iRepositorioDireccion.ObtenerUno(pEntidad.Remitente.DireccionDeCorreo);
             }
-            pEntidad.Destinatario = destinatariosValidos;
 
-            //obtiene la cuenta del usuario
-            ICuenta iCuenta = (ICuenta)this.iRepositorioCuenta.Obtener(pEntidad.Cuenta.Id);
-
-            if (iCuenta == null)
-                throw new NullReferenceException(nameof(iCuenta));
-
-            iCuenta.Mensajes.Add(pEntidad);
+            base.AgregarEntidad(pEntidad);
             //Se completa la propiedad requerida del entidadHija, respectiva al id de la cuenta.
-            pEntidad.CuentaId = iCuenta.Id;
+            pEntidad.RemitenteId = aRemitente.Id;
             //Se actualiza la cuenta, que mantiene una colección de mensajes.
         }
 
-        public IMensaje Obtener(int? pId)
+        public IMensaje ObtenerUno(int? pId)
         {
             if (pId.HasValue)
-                return base.Obtener(mensaje => mensaje.Id == pId);
+                return base.ObtenerUno(mensaje => mensaje.Id == pId);
             else
-                return base.Obtener();
+                return base.ObtenerUno();
         }
 
-        public IMensaje Obtener(string pAsunto = null)
+        public IMensaje ObtenerUno(string pAsunto = null)
         {
             if (string.IsNullOrEmpty(pAsunto))
-                return base.Obtener(mensaje => mensaje.Asunto == pAsunto);
+                return base.ObtenerUno(mensaje => mensaje.Asunto == pAsunto);
             else
-                return base.Obtener();
+                return base.ObtenerUno();
         }
 
-        public IEnumerable<IMensaje> ObtenerSegun(int? pId)
+        public IEnumerable<IMensaje> ObtenerTodos(int? pId)
         {
             if (pId.HasValue)
-                return base.ObtenerSegun(mensaje => mensaje.Id == pId);
+                return base.ObtenerTodos(mensaje => mensaje.Id == pId);
             else
-                return base.ObtenerSegun();
+                return base.ObtenerTodos();
         }
 
-        public IEnumerable<IMensaje> ObtenerSegun(string Asunto = null)
+        public IEnumerable<IMensaje> ObtenerTodos(string Asunto = null)
         {
             if (string.IsNullOrEmpty(Asunto))
-                return base.ObtenerSegun(mensaje => mensaje.Asunto == Asunto);
+                return base.ObtenerTodos(mensaje => mensaje.Asunto == Asunto);
             else
-                return base.ObtenerSegun();
+                return base.ObtenerTodos();
         }
     }
 }

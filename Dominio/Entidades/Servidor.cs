@@ -1,12 +1,8 @@
-﻿using Dominio.Entidades.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Dominio.Entidades.Helper;
-using System.Threading;
-using Dominio.Servicio;
 using System.Linq;
 
-namespace Dominio.Entidades
+namespace Dominio
 {
     public class Servidor : IServidor
     {
@@ -26,12 +22,12 @@ namespace Dominio.Entidades
 
         public IProtocoloRecepcion ObtenerProtocoloRecepcion(TipoProtocolo pTipo = TipoProtocolo.pop3)
         {
-            return (Pop3)this.Protocolos.Single(p => p.Tipo == pTipo);
+            return (Pop3)this.Protocolos.First(p => p.Tipo == pTipo);
         }
 
         public IProtocoloTransmision ObtenerProtocoloTransmision(TipoProtocolo pTipo = TipoProtocolo.smtp)
         {
-            return (Smtp)this.Protocolos.Single(p => p.Tipo == pTipo);
+            return (Smtp)this.Protocolos.First(p => p.Tipo == pTipo);
         }
 
     }

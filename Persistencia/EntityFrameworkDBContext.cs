@@ -79,32 +79,27 @@ namespace Persistencia
             ////modelBuilder.Entity<ServidorDAO>().Property(x => x.SSL).IsRequired(); 
             #endregion
 
-            modelBuilder.Entity<Cuenta>().ToTable("Cuentas");
-            modelBuilder.Entity<Cuenta>().HasKey<int>(x => x.Id);
-            modelBuilder.Entity<Cuenta>().Property(x => x.DireccionId).IsRequired();
-            //modelBuilder.Entity<ICuenta>().HasRequired(x => x.ServidorDAO).WithMany(y => y.ICuenta).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<Cuenta>().HasRequired(x => x.DireccionCorreo).WithOptional();
+            //modelBuilder.Entity<Cuenta>().ToTable("Cuentas");
+            //modelBuilder.Entity<Cuenta>().HasKey<int>(x => x.Id);
+            //modelBuilder.Entity<Cuenta>().Property(x => x.DireccionId).IsRequired();
+            ////modelBuilder.Entity<ICuenta>().HasRequired(x => x.ServidorDAO).WithMany(y => y.ICuenta).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Cuenta>().HasRequired(x => x.DireccionCorreo).WithOptional();
 
-            modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionesDeCorreo");
-            modelBuilder.Entity<DireccionCorreo>().HasKey<int>(x => x.Id);
-            modelBuilder.Entity<DireccionCorreo>().Property(x => x.DireccionDeCorreo).IsRequired();
-            modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesRemitente).WithRequired().HasForeignKey(z => z.Cuenta.DireccionCorreo).WillCascadeOnDelete(false);
-            modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesDestinatario).WithMany();
-                //(y => y.Destinatario.Select(d => d.DireccionCorreo)).Map(t => { t.ToTable("DireccionDeCorreoMensaje"); });
+            //modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionesDeCorreo");
+            //modelBuilder.Entity<DireccionCorreo>().HasKey<int>(x => x.Id);
+            //modelBuilder.Entity<DireccionCorreo>().Property(x => x.DireccionDeCorreo).IsRequired();
+            //modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesRemitente).WithRequired().HasForeignKey(z => z.Cuenta.DireccionCorreo).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesDestinatario).WithMany();
+            //    //(y => y.Destinatario.Select(d => d.DireccionCorreo)).Map(t => { t.ToTable("DireccionDeCorreoMensaje"); });
 
-            modelBuilder.Entity<Mensaje>().ToTable("Mensajes");
-            modelBuilder.Entity<Mensaje>().HasKey<int>(x => x.Id);
-            modelBuilder.Entity<Mensaje>().Property(x => x.Asunto).IsRequired();
-            modelBuilder.Entity<Mensaje>().Property(x => x.Contenido).IsOptional();
-                modelBuilder.Entity<Mensaje>().Property(x => x.EstadoEnviado).IsOptional();
-                modelBuilder.Entity<Mensaje>().Property(x => x.EstadoGuardado).IsOptional();
-                modelBuilder.Entity<Mensaje>().Property(x => x.EstadoVisto).IsOptional();
-            modelBuilder.Entity<Mensaje>().HasRequired(x => x.Cuenta).WithMany().HasForeignKey(z => z.CuentaId);
-            //modelBuilder.Entity<Mensaje>().HasMany(x => x.Adjuntos).WithMany().Map(t => { t.ToTable("AdjuntosMensajes"); });
-
-            //modelBuilder.Entity<Adjunto>().ToTable("Adjuntos");
-            //modelBuilder.Entity<Adjunto>().HasKey<int>(x => x.Id);
-            //modelBuilder.Entity<Adjunto>().Property(x => x.PathAdjunto).IsRequired();
+            //modelBuilder.Entity<Mensaje>().ToTable("Mensajes");
+            //modelBuilder.Entity<Mensaje>().HasKey<int>(x => x.Id);
+            //modelBuilder.Entity<Mensaje>().Property(x => x.Asunto).IsRequired();
+            //modelBuilder.Entity<Mensaje>().Property(x => x.Contenido).IsOptional();
+            //    modelBuilder.Entity<Mensaje>().Property(x => x.EstadoEnviado).IsOptional();
+            //    modelBuilder.Entity<Mensaje>().Property(x => x.EstadoGuardado).IsOptional();
+            //    modelBuilder.Entity<Mensaje>().Property(x => x.EstadoVisto).IsOptional();
+            //modelBuilder.Entity<Mensaje>().HasRequired(x => x.Cuenta).WithMany().HasForeignKey(z => z.CuentaId);
         }
     }
 }

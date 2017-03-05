@@ -1,4 +1,4 @@
-﻿namespace EdoUI.Mensaje
+﻿namespace EdoUI
 {
     partial class FormMensaje
     {

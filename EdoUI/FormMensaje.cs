@@ -8,32 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Mail;
-using EdoUI.DTO;
+using Dominio;
 
-namespace EdoUI.Mensaje
+namespace EdoUI
 {
     public partial class FormMensaje : Form
     {
-        private List<string> Destinatarios;
-        private string Asunto;
-        private string Contenido;
+        private List<string> iDestinatarios;
+        private string iAsunto;
+        private string iContenido;
 
         public FormMensaje()
         {
             InitializeComponent();
-            this.Destinatarios = new List<string>();
-            this.Asunto = string.Empty;
-            this.Contenido = string.Empty;
+            this.iDestinatarios = new List<string>();
+            this.iAsunto = string.Empty;
+            this.iContenido = string.Empty;
         }
 
         private void tbx_Mensaje_Asunto_TextChanged(object sender, EventArgs e)
         {
-            this.Asunto = (sender as TextBox).Text;
+            this.iAsunto = (sender as TextBox).Text;
         }
 
         private void rtbx_Mensaje_Contenido_TextChanged(object sender, EventArgs e)
         {
-            this.Contenido = (sender as RichTextBox).Text;
+            this.iContenido = (sender as RichTextBox).Text;
         }
 
         /// <summary>
@@ -47,15 +47,15 @@ namespace EdoUI.Mensaje
 
             if (e.KeyData == Keys.Delete)
             {
-                this.Destinatarios.Remove(aDestinatario);
+                this.iDestinatarios.Remove(aDestinatario);
                 this.cbx_Mensaje_Destinatario.Items.Remove(aDestinatario);
             }
-            else if (e.KeyData == Keys.Enter && !this.Destinatarios.Exists(d => string.Equals(d, aDestinatario)))
+            else if (e.KeyData == Keys.Enter && !this.iDestinatarios.Exists(d => string.Equals(d, aDestinatario)))
             {
                 try
                 {
                     MailAddress direccion = new MailAddress(aDestinatario);
-                    this.Destinatarios.Add(aDestinatario);
+                    this.iDestinatarios.Add(aDestinatario);
                     this.cbx_Mensaje_Destinatario.Items.Add(aDestinatario);
                 }
                 catch
@@ -64,21 +64,15 @@ namespace EdoUI.Mensaje
                 }
             }
         }
-
-        public MensajeDTO Mensaje
+        public string Asunto { get { return this.iAsunto; } }
+        public string Contenido { get { return this.iContenido; } }
+        public ICollection<IDireccionCorreo> Destinatario
         {
             get
             {
-                MensajeDTO aMensaje = new MensajeDTO()
-                {
-                    Asunto = this.Asunto,
-                    Contenido = this.Contenido
-                };
-                this.Destinatarios.ForEach(d => aMensaje.Destinatario.Add(new DireccionCorreoDTO()
-                {
-                    DireccionDeCorreo = d
-                }));
-                return aMensaje;
+                List<IDireccionCorreo> aDestinatarios = new List<IDireccionCorreo>();
+                this.iDestinatarios.ForEach(d => aDestinatarios.Add(new DireccionCorreo(d)));
+                return aDestinatarios;
             }
         }
 

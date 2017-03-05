@@ -15,11 +15,11 @@ namespace Dominio
         /// <summary>
         /// Descarga una colección de mensajes del servidor
         /// </summary>
-        IEnumerable<IMensaje> Descargar(string pDireccion, string pContraseña);
+        IEnumerable<IMensajeDTO> Descargar(string pDireccion, string pContraseña);
         /// <summary>
         /// Descarga un mensaje particular del servidor.
         /// </summary>
-        IMensaje Descargar(int pIdMensaje, string pDireccion, string pContraseña);
+        IMensajeDTO Descargar(int pIdMensaje, string pDireccion, string pContraseña);
         /// <summary>
         /// Elimina una cantidad de mensajes del servidor.
         /// </summary>

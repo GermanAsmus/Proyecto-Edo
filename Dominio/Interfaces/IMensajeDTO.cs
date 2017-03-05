@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public interface IMensaje : IEntidadModelo
+    public interface IMensajeDTO : IEntidadModelo
     {
         //Asunto del mensaje.
         string Asunto { get; set; }

@@ -7,7 +7,9 @@ namespace DataLayer
 {
     public class EF_Context : DbContext
     {
-        public IDbSet<CuentaDeUsuario> Cuentas { get; set; }
+        public IDbSet<CuentaDeUsuario> CuentasDeUsuario { get; set; }
+        public IDbSet<DireccionCorreo> DireccionesDeCorreo { get; set; }
+        public IDbSet<Mensaje> Mensajes { get; set; }
 
         public EF_Context()
             : base("DataBase")

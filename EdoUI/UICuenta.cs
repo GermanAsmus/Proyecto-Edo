@@ -1,6 +1,5 @@
-﻿using EdoUI.DTO;
-using EdoUI.Mensaje;
-using System;
+﻿using System;
+using Dominio;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,14 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EdoUI.UI.UICuenta
+namespace EdoUI
 {
     public partial class UICuenta : Form
     {
-        private CuentaDTO iCuenta;
-        public UICuenta(CuentaDTO pCuenta)
+        private ICuentaDeUsuario iCuenta;
+        private IFachadaDominio iFachadaDominio;
+
+        public UICuenta(ICuentaDeUsuario pCuenta, ref IFachadaDominio pFachadaDominio)
         {
             InitializeComponent();
+            this.iFachadaDominio = pFachadaDominio;
             this.iCuenta = pCuenta;
             this.Actualizar();
         }
@@ -61,15 +63,22 @@ namespace EdoUI.UI.UICuenta
                 
         }
 
-        private void nuevoMensajeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void redactarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormMensaje aFormMensaje = new FormMensaje();
             DialogResult result = aFormMensaje.ShowDialog(this);
             if (result == DialogResult.OK)
-            {
-                MensajeDTO aMensaje = aFormMensaje.Mensaje;
-                aMensaje.Remitente = this.iCuenta.DireccionCorreo;
-                //ControladorFachada.EnviarNuevoMensaje(aMensaje);
+            { 
+                bool aResult = this.iFachadaDominio.EnviarMensaje(this.iCuenta, aFormMensaje.Asunto, aFormMensaje.Destinatario, aFormMensaje.Contenido);
+                if (aResult)
+                {
+                    MessageBox.Show("El mensaje fue enviado con éxito");
+                }
+                else
+                {
+                    MessageBox.Show("Su mensaje no pudo ser enviado");
+                }
+
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace EdoUI.UI
+﻿namespace EdoUI
 {
     partial class UI
     {
@@ -32,17 +32,18 @@
             this.NewAccount = new System.Windows.Forms.ToolStripMenuItem();
             this.AccountsContainer = new System.Windows.Forms.TableLayoutPanel();
             this.AccountsDataGrid = new System.Windows.Forms.DataGridView();
+            this.probarConexion1 = new EdoUI.ProbarConexion();
             this.AccountMenu.SuspendLayout();
             this.AccountsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AccountsDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // Menu
+            // AccountMenu
             // 
             this.AccountMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewAccount});
             this.AccountMenu.Location = new System.Drawing.Point(0, 0);
-            this.AccountMenu.Name = "Menu";
+            this.AccountMenu.Name = "AccountMenu";
             this.AccountMenu.Size = new System.Drawing.Size(584, 24);
             this.AccountMenu.TabIndex = 0;
             this.AccountMenu.Text = "menuStrip1";
@@ -59,14 +60,16 @@
             this.AccountsContainer.BackColor = System.Drawing.Color.Transparent;
             this.AccountsContainer.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.AccountsContainer.ColumnCount = 1;
-            this.AccountsContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.AccountsContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.AccountsContainer.Controls.Add(this.AccountsDataGrid, 0, 0);
+            this.AccountsContainer.Controls.Add(this.probarConexion1, 0, 1);
             this.AccountsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AccountsContainer.Location = new System.Drawing.Point(0, 24);
             this.AccountsContainer.Name = "AccountsContainer";
             this.AccountsContainer.Padding = new System.Windows.Forms.Padding(5);
-            this.AccountsContainer.RowCount = 1;
-            this.AccountsContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.AccountsContainer.RowCount = 2;
+            this.AccountsContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.AccountsContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.AccountsContainer.Size = new System.Drawing.Size(584, 337);
             this.AccountsContainer.TabIndex = 2;
             // 
@@ -77,9 +80,17 @@
             this.AccountsDataGrid.Dock = System.Windows.Forms.DockStyle.Right;
             this.AccountsDataGrid.Location = new System.Drawing.Point(273, 11);
             this.AccountsDataGrid.Name = "AccountsDataGrid";
-            this.AccountsDataGrid.Size = new System.Drawing.Size(300, 315);
+            this.AccountsDataGrid.Size = new System.Drawing.Size(300, 280);
             this.AccountsDataGrid.TabIndex = 0;
             this.AccountsDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AccountsDataGrid_CellContentClick);
+            // 
+            // probarConexion1
+            // 
+            this.probarConexion1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.probarConexion1.Location = new System.Drawing.Point(11, 300);
+            this.probarConexion1.Name = "probarConexion1";
+            this.probarConexion1.Size = new System.Drawing.Size(562, 26);
+            this.probarConexion1.TabIndex = 1;
             // 
             // UI
             // 
@@ -108,5 +119,6 @@
         private System.Windows.Forms.ToolStripMenuItem NewAccount;
         private System.Windows.Forms.TableLayoutPanel AccountsContainer;
         private System.Windows.Forms.DataGridView AccountsDataGrid;
+        private ProbarConexion probarConexion1;
     }
 }

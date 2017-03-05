@@ -51,7 +51,7 @@ namespace Dominio
             this.Servidor = CreadorServidor.CrearServidor(host);
         }
 
-        public IMensaje ObtenerUnMensaje(int pIdMensaje, bool pRemoto = false)
+        public IMensajeDTO ObtenerUnMensaje(int pIdMensaje, bool pRemoto = false)
         {
             if (pIdMensaje < 1)
                 throw new ApplicationException();
@@ -62,20 +62,20 @@ namespace Dominio
                 return this.DireccionDeCorreo.MensajesRemitente.First(m => m.Id == pIdMensaje);
             
         }
-        private IMensaje DescargarMensajeRemoto(int pIdMensaje)
+        private IMensajeDTO DescargarMensajeRemoto(int pIdMensaje)
         {
             IProtocoloRecepcion aProtocoloPop = (Pop3)this.Servidor.ObtenerProtocoloRecepcion();
             return aProtocoloPop.Descargar(pIdMensaje, this.DireccionDeCorreo.DireccionDeCorreo, this.Contraseña);
         }
 
-        public IEnumerable<IMensaje> ObtenerMenasjes(int pCantidad = 0, bool pRemoto = false)
+        public IEnumerable<IMensajeDTO> ObtenerMenasjes(int pCantidad = 0, bool pRemoto = false)
         {
             if (pRemoto)
                 return this.DescargarMensajesRemotos(pCantidad);
             else
                 return this.DireccionDeCorreo.MensajesRemitente;
         }
-        private IEnumerable<IMensaje> DescargarMensajesRemotos(int pCantidad)
+        private IEnumerable<IMensajeDTO> DescargarMensajesRemotos(int pCantidad)
         {
             IProtocoloRecepcion aProtocoloRecepcion = this.Servidor.ObtenerProtocoloRecepcion() as Pop3;
             aProtocoloRecepcion.CantidadDescargas = pCantidad;
@@ -85,7 +85,7 @@ namespace Dominio
         public void EliminarMensaje(int pIdMensaje)
         {
             //se elimina de la bbdd
-            IMensaje aMensaje = this.DireccionDeCorreo.MensajesRemitente.First(m => m.Id == pIdMensaje);
+            IMensajeDTO aMensaje = this.DireccionDeCorreo.MensajesRemitente.First(m => m.Id == pIdMensaje);
             //puede ocurrir que el mensaje no esté en la bbdd
             if (aMensaje!=null)
                 this.DireccionDeCorreo.MensajesRemitente.Remove(aMensaje);
@@ -97,11 +97,11 @@ namespace Dominio
 
         public void EnviarMensaje(string pAsunto, ICollection<IDireccionCorreo> pDestinatario, string pContenido = "")
         {
-            IMensaje aMensaje = CreadorMensajes.CrearMensaje(this.DireccionDeCorreo, pAsunto, pDestinatario, pContenido);
+            IMensajeDTO aMensaje = CreadorMensajes.CrearMensaje(this.DireccionDeCorreo, pAsunto, pDestinatario, pContenido);
             this.DireccionDeCorreo.MensajesRemitente.Add(aMensaje);
             this.EnviarMensaje(aMensaje);
         }
-        private void EnviarMensaje(IMensaje pMensaje)
+        private void EnviarMensaje(IMensajeDTO pMensaje)
         {
             (this.Servidor.ObtenerProtocoloTransmision() as IProtocoloTransmision).Enviar(pMensaje, this.DireccionDeCorreo.DireccionDeCorreo, this.Contraseña);
         }

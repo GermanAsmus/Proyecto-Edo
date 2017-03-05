@@ -10,15 +10,15 @@ using System.Windows.Forms;
 using System.Net.Mail;
 using System.Security.Cryptography;
 
-namespace EdoUI.UICuenta
+namespace EdoUI
 {
-    public partial class FormCuenta : Form
+    public partial class FormNuevaCuenta : Form
     {
         public string Nombre { get; set; } = string.Empty;
         public string Direccion { get; set; } = string.Empty;
         public string Contrasenia { get; set; } = string.Empty;
 
-        public FormCuenta()
+        public FormNuevaCuenta()
         {
             InitializeComponent();
         }

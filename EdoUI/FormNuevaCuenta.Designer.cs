@@ -1,6 +1,6 @@
-﻿namespace EdoUI.UICuenta
+﻿namespace EdoUI
 {
-    partial class FormCuenta
+    partial class FormNuevaCuenta
     {
         /// <summary>
         /// Required designer variable.
@@ -105,6 +105,7 @@
             this.AcceptButton = this.btn_NuevaCuenta_Crear;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::EdoUI.Properties.Resources.paven;
             this.ClientSize = new System.Drawing.Size(180, 250);
             this.Controls.Add(this.btn_NuevaCuenta_Crear);
             this.Controls.Add(this.txbx_NuevaCuenta_Contrasenia);

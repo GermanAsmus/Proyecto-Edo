@@ -13,6 +13,7 @@ namespace DataLayer
 
         public UnitOfWork()
         {
+            this.iContext = new DataContext();
             this.RepositorioCuenta = new Repositorio<ICuentaDeUsuario>(ref this.iContext);
         }
     }

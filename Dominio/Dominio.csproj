@@ -9,13 +9,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dominio</RootNamespace>
     <AssemblyName>Dominio</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,10 +47,13 @@
     <Compile Include="Entidades\CuentaDeUsuario.cs" />
     <Compile Include="Entidades\DireccionCorreo.cs" />
     <Compile Include="Helper\CreadorServidor.cs" />
+    <Compile Include="IFachadaDominio.cs" />
+    <Compile Include="IFachadaPersistencia.cs" />
     <Compile Include="Interfaces\ICuentaDeUsuario.cs" />
+    <Compile Include="Interfaces\ICuentaDeUsuarioDTO.cs" />
     <Compile Include="Interfaces\IDireccionCorreo.cs" />
     <Compile Include="Interfaces\IEntidadModelo.cs" />
-    <Compile Include="Interfaces\IMensaje.cs" />
+    <Compile Include="Interfaces\IMensajeDTO.cs" />
     <Compile Include="Interfaces\IProtocolo.cs" />
     <Compile Include="Interfaces\IServidor.cs" />
     <Compile Include="Entidades\Mensaje.cs" />
@@ -71,10 +75,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\EdoUI\EdoUI.csproj">
-      <Project>{e1de0b46-38ae-42e5-ae58-33a9e5118899}</Project>
-      <Name>EdoUI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Servicio\Servicio.csproj">
       <Project>{3fa000c1-478d-4b59-b1f0-076427d48ffc}</Project>
       <Name>Servicio</Name>

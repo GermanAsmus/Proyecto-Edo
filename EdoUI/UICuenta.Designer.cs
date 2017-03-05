@@ -1,4 +1,4 @@
-﻿namespace EdoUI.UI.UICuenta
+﻿namespace EdoUI
 {
     partial class UICuenta
     {
@@ -51,6 +51,7 @@
             this.redactarToolStripMenuItem.Name = "redactarToolStripMenuItem";
             this.redactarToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.redactarToolStripMenuItem.Text = "Redactar";
+            this.redactarToolStripMenuItem.Click += new System.EventHandler(this.redactarToolStripMenuItem_Click);
             // 
             // mensajesToolStripMenuItem
             // 

@@ -25,7 +25,7 @@ namespace Dominio
             aProtocolo.Eliminar(pIdMensaje);
         }
 
-        public IEnumerable<IMensaje> Descargar(string pDireccion, string pContraseña)
+        public IEnumerable<IMensajeDTO> Descargar(string pDireccion, string pContraseña)
         {
             ProtocoloPop3 aProtocolo = new ProtocoloPop3(
                 pDireccion,
@@ -34,14 +34,14 @@ namespace Dominio
                 this.Puerto,
                 this.SSL);
 
-            ICollection<IMensaje> aMensajes = new List<IMensaje>();
+            ICollection<IMensajeDTO> aMensajes = new List<IMensajeDTO>();
 
             aProtocolo.DescargarCabeceras(CantidadDescargas).ToList().ForEach((mm => aMensajes.Add(new Mensaje(mm))));
 
             return aMensajes;
         }
 
-        public IMensaje Descargar(int pIdMensaje, string pDireccion, string pContraseña)
+        public IMensajeDTO Descargar(int pIdMensaje, string pDireccion, string pContraseña)
         {
             ProtocoloPop3 aProtocolo = new ProtocoloPop3(
                  pDireccion,

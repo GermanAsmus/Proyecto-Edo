@@ -8,6 +8,6 @@
         /// <summary>
         /// Envía un mensaje utilizando la cuenta del usuario.
         /// </summary>
-        void Enviar(IMensaje pMensaje, string pDireccion, string pContraseña);
+        void Enviar(IMensajeDTO pMensaje, string pDireccion, string pContraseña);
     }
 }

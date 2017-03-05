@@ -9,7 +9,7 @@ namespace Dominio.Helper
     public static class CreadorMensajes
     {
 
-        private static IMensaje AgregarDestinatarios(IMensaje pMensajeDTO, ICollection<IDireccionCorreo> pDestinatario)
+        private static IMensajeDTO AgregarDestinatarios(IMensajeDTO pMensajeDTO, ICollection<IDireccionCorreo> pDestinatario)
         {
             foreach (IDireccionCorreo destinatario in pDestinatario)
             {
@@ -19,9 +19,9 @@ namespace Dominio.Helper
             return pMensajeDTO;
         }
 
-        public static IMensaje CrearMensaje(IDireccionCorreo pRemitente, string pAsunto, ICollection<IDireccionCorreo> pDestinatario, string pContenido = "")
+        public static IMensajeDTO CrearMensaje(IDireccionCorreo pRemitente, string pAsunto, ICollection<IDireccionCorreo> pDestinatario, string pContenido = "")
         {
-            IMensaje iMensajeCompletoDTO = new Mensaje()
+            IMensajeDTO iMensajeCompletoDTO = new Mensaje()
             {
                 Remitente = pRemitente,
                 Asunto = pAsunto,

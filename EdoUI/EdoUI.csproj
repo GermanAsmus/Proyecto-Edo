@@ -9,13 +9,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EdoUI</RootNamespace>
     <AssemblyName>EdoUI</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -73,38 +74,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\CuentaDTO.cs" />
-    <Compile Include="DTO\DireccionCorreoDTO.cs" />
-    <Compile Include="DTO\MensajeDTO.cs" />
-    <Compile Include="UI\UICuenta\UICuenta.cs">
+    <Compile Include="UICuenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\UICuenta\UICuenta.Designer.cs">
+    <Compile Include="UICuenta.Designer.cs">
       <DependentUpon>UICuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ProbarConexion.cs">
+    <Compile Include="ProbarConexion.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\ProbarConexion.Designer.cs">
+    <Compile Include="ProbarConexion.Designer.cs">
       <DependentUpon>ProbarConexion.cs</DependentUpon>
     </Compile>
     <Compile Include="DI\IoCContainer.cs" />
-    <Compile Include="UI\UICuenta\FormCuenta.cs">
+    <Compile Include="FormNuevaCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\UICuenta\FormCuenta.Designer.cs">
-      <DependentUpon>FormCuenta.cs</DependentUpon>
+    <Compile Include="FormNuevaCuenta.Designer.cs">
+      <DependentUpon>FormNuevaCuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Mensaje\BandejaMensaje.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\Mensaje\BandejaMensaje.Designer.cs">
-      <DependentUpon>BandejaMensaje.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Mensaje\FormMensaje.cs">
+    <Compile Include="FormMensaje.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Mensaje\FormMensaje.Designer.cs">
+    <Compile Include="FormMensaje.Designer.cs">
       <DependentUpon>FormMensaje.cs</DependentUpon>
     </Compile>
     <Compile Include="Sobre.cs">
@@ -120,25 +112,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UI\UI.cs">
+    <Compile Include="UI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\UI.Designer.cs">
+    <Compile Include="UI.Designer.cs">
       <DependentUpon>UI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UI\UICuenta\UICuenta.resx">
+    <EmbeddedResource Include="UICuenta.resx">
       <DependentUpon>UICuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ProbarConexion.resx">
+    <EmbeddedResource Include="ProbarConexion.resx">
       <DependentUpon>ProbarConexion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\UICuenta\FormCuenta.resx">
-      <DependentUpon>FormCuenta.cs</DependentUpon>
+    <EmbeddedResource Include="FormNuevaCuenta.resx">
+      <DependentUpon>FormNuevaCuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Mensaje\BandejaMensaje.resx">
-      <DependentUpon>BandejaMensaje.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Mensaje\FormMensaje.resx">
+    <EmbeddedResource Include="FormMensaje.resx">
       <DependentUpon>FormMensaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sobre.resx">
@@ -148,7 +137,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\UI.resx">
+    <EmbeddedResource Include="UI.resx">
       <DependentUpon>UI.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config">
@@ -202,6 +191,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\free-delivery-man-vector.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{2bbe3967-721f-44ac-9071-f096de356cf0}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{7444c050-a853-4222-a41c-59d04ae23617}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

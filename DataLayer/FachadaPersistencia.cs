@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class FachadaPersistencia
+    public class FachadaPersistencia : IFachadaPersistencia
     {
         private IUnitOfWork iUnitOfWork;
 

@@ -7,7 +7,7 @@ using System.Net.Mail;
 
 namespace Dominio
 {
-    public class Mensaje : IMensaje
+    public class Mensaje : IMensajeDTO
     {
         #region Atributos
 

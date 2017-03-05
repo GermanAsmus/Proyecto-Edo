@@ -7,7 +7,7 @@ namespace Dominio
 {
     public class Smtp : Protocolo, IProtocoloTransmision
     {
-        public void Enviar(IMensaje pMensaje, string pDireccion, string pContraseña)
+        public void Enviar(IMensajeDTO pMensaje, string pDireccion, string pContraseña)
         {
             if (pMensaje == null)
                 throw new ArgumentNullException(nameof(pMensaje));

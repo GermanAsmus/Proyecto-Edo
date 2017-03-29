@@ -13,9 +13,9 @@ namespace Dominio
         #region propiedades
         public byte Id { get; set; }
 
-        public byte DireccionId { get; set; }
+        public byte DireccionDeCorreoId { get; set; }
 
-        public IDireccionCorreo DireccionDeCorreo { get; set; }
+        public DireccionCorreo DireccionDeCorreo { get; set; }
 
         public IServidor Servidor { get; set; }
 
@@ -46,7 +46,7 @@ namespace Dominio
             if (this.DireccionDeCorreo == null)
                 throw new ArgumentNullException(nameof(pDireccion));
 
-            this.DireccionDeCorreo = pDireccion;
+            this.DireccionDeCorreo = (DireccionCorreo)pDireccion;
                 string host = DireccionCorreo.ObtenerHost(this.DireccionDeCorreo);
             this.Servidor = CreadorServidor.CrearServidor(host);
         }
@@ -88,7 +88,7 @@ namespace Dominio
             IMensajeDTO aMensaje = this.DireccionDeCorreo.MensajesRemitente.First(m => m.Id == pIdMensaje);
             //puede ocurrir que el mensaje no esté en la bbdd
             if (aMensaje!=null)
-                this.DireccionDeCorreo.MensajesRemitente.Remove(aMensaje);
+                this.DireccionDeCorreo.MensajesRemitente.Remove((Mensaje)aMensaje);
 
             //se elimina del servidor
             Pop3 aProtocolo = (Pop3)this.Servidor.ObtenerProtocoloRecepcion();
@@ -98,7 +98,7 @@ namespace Dominio
         public void EnviarMensaje(string pAsunto, ICollection<IDireccionCorreo> pDestinatario, string pContenido = "")
         {
             IMensajeDTO aMensaje = CreadorMensajes.CrearMensaje(this.DireccionDeCorreo, pAsunto, pDestinatario, pContenido);
-            this.DireccionDeCorreo.MensajesRemitente.Add(aMensaje);
+            this.DireccionDeCorreo.MensajesRemitente.Add((Mensaje)aMensaje);
             this.EnviarMensaje(aMensaje);
         }
         private void EnviarMensaje(IMensajeDTO pMensaje)

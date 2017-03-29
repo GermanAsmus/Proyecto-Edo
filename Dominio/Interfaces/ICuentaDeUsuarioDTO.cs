@@ -11,12 +11,12 @@ namespace Dominio
         /// <summary>
         /// Refiere a la dirección de correo de la cuenta del usuario.
         /// </summary>
-        IDireccionCorreo DireccionDeCorreo { get; set; }
+        DireccionCorreo DireccionDeCorreo { get; set; }
 
         /// <summary>
         /// Identificador de la dirección de correo de la cuenta del usuario.
         /// </summary>
-        byte DireccionId { get; set; }
+        byte DireccionDeCorreoId { get; set; }
 
         /// <summary>
         /// Contraseña de la cuenta del usuario

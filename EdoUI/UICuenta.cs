@@ -13,54 +13,27 @@ namespace EdoUI
 {
     public partial class UICuenta : Form
     {
-        private ICuentaDeUsuario iCuenta;
+        private ICuentaDeUsuarioDTO iCuenta;
         private IFachadaDominio iFachadaDominio;
+        public int iCantidadMensajesPorDescarga = 0;
 
-        public UICuenta(ICuentaDeUsuario pCuenta, ref IFachadaDominio pFachadaDominio)
+        public UICuenta(ICuentaDeUsuarioDTO pCuenta, ref IFachadaDominio pFachadaDominio)
         {
             InitializeComponent();
             this.iFachadaDominio = pFachadaDominio;
             this.iCuenta = pCuenta;
-            this.Actualizar();
+            this.InicializarDataGridView();
         }
 
         private void InicializarDataGridView()
         {
-            ////create datatable and columns,
-            //DataTable dtable = new DataTable();
-            //dtable.Columns.Add(new DataColumn("Remitente"));
-            //dtable.Columns.Add(new DataColumn("Asunto"));
-
-            //mensajesDataGridView.DataSource = dtable;
-           
+           IEnumerable<IMensajeDTO> aMensajes = this.iFachadaDominio.ObtenerMensajes(this.iCuenta);
+           this.MessagesDataGrid.DataSource = aMensajes;
         }
-        private void AgregarMensajes(object[] RowValues)
+        private void ActualizarDataGridView()
         {
-            ////create datatable and columns,
-            //DataTable dtable = new DataTable();
-            //dtable.Columns.Add(new DataColumn("Remitente"));
-            //dtable.Columns.Add(new DataColumn("Asunto"));
-
-            //mensajesDataGridView.DataSource = dtable;
-
-            //DataRow dRow;
-            //dRow = dtable.Rows.Add(RowValues);
-            //dtable.AcceptChanges();
-
-            //mensajesDataGridView.DataSource = dtable;
-        }
-
-        private void Actualizar()
-        {
-            //IEnumerable<MensajeDTO> aCabeceras = ControladorFachada.DescargarCabeceras(this.iCuenta);
-            //if (aCabeceras.Count() > 0)
-            //{
-            //    foreach (MensajeDTO aMensaje in aCabeceras)
-            //    {
-            //        AgregarMensajes(new object[] { aMensaje.Remitente.DireccionDeCorreo, aMensaje.Asunto});
-            //    }
-            //}
-                
+            IEnumerable<IMensajeDTO> aMensajes = this.iFachadaDominio.DescargarMensajes(this.iCuenta, iCantidadMensajesPorDescarga);
+            this.MessagesDataGrid.DataSource = aMensajes;
         }
 
         private void redactarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -80,6 +53,11 @@ namespace EdoUI
                 }
 
             }
+        }
+
+        private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ActualizarDataGridView();
         }
     }
 }

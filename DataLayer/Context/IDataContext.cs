@@ -6,7 +6,7 @@ namespace DataLayer
 {
     internal interface IDataContext : IDisposable
     {
-        EF_Context Context { get; }
+        EdoDatabaseContext Context { get; }
         int Commit();
     }
 }

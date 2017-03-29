@@ -5,16 +5,16 @@ using Dominio;
 
 namespace DataLayer
 {
-    public class EF_Context : DbContext
+    public class EdoDatabaseContext : DbContext
     {
-        public IDbSet<CuentaDeUsuario> CuentasDeUsuario { get; set; }
-        public IDbSet<DireccionCorreo> DireccionesDeCorreo { get; set; }
-        public IDbSet<Mensaje> Mensajes { get; set; }
+        public DbSet<CuentaDeUsuario> CuentasDeUsuario { get; set; }
+        public DbSet<DireccionCorreo> DireccionesDeCorreo { get; set; }
+        public DbSet<Mensaje> Mensajes { get; set; }
 
-        public EF_Context()
-            : base("DataBase")
+        public EdoDatabaseContext()
+            : base("EdoDatabase")
         {
-            Database.SetInitializer<EF_Context>(new DropCreateDatabaseIfModelChanges<EF_Context>());
+            Database.SetInitializer<EdoDatabaseContext>(new DropCreateDatabaseIfModelChanges<EdoDatabaseContext>());
             var type = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
             if (type == null)
                 throw new Exception("Do not remove, ensures static reference to System.Data.Entity.SqlServer");
@@ -27,9 +27,9 @@ namespace DataLayer
 
             modelBuilder.Entity<CuentaDeUsuario>().ToTable("Cuentas");
             modelBuilder.Entity<CuentaDeUsuario>().HasKey<int>(x => x.Id);
-            modelBuilder.Entity<CuentaDeUsuario>().Property(x => x.DireccionId).IsRequired();
+            modelBuilder.Entity<CuentaDeUsuario>().HasRequired(x => x.DireccionDeCorreo).WithRequiredPrincipal();
+            modelBuilder.Entity<CuentaDeUsuario>().Property(x => x.DireccionDeCorreoId).IsRequired();
             //modelBuilder.Entity<ICuenta>().HasRequired(x => x.ServidorDAO).WithMany(y => y.ICuenta).HasForeignKey(z => z.ServidorId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<CuentaDeUsuario>().HasRequired(x => x.DireccionDeCorreo).WithOptional();
 
             modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionesDeCorreo");
             modelBuilder.Entity<DireccionCorreo>().HasKey<int>(x => x.Id);

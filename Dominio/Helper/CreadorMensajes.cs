@@ -11,7 +11,7 @@ namespace Dominio.Helper
 
         private static IMensajeDTO AgregarDestinatarios(IMensajeDTO pMensajeDTO, ICollection<IDireccionCorreo> pDestinatario)
         {
-            foreach (IDireccionCorreo destinatario in pDestinatario)
+            foreach (DireccionCorreo destinatario in pDestinatario)
             {
                 pMensajeDTO.Destinatario.Add(destinatario);
             }
@@ -23,7 +23,7 @@ namespace Dominio.Helper
         {
             IMensajeDTO iMensajeCompletoDTO = new Mensaje()
             {
-                Remitente = pRemitente,
+                Remitente = (DireccionCorreo)pRemitente,
                 Asunto = pAsunto,
                 Contenido = pContenido,
             };

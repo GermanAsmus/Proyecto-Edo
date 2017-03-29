@@ -37,14 +37,19 @@ namespace EdoUI
         private void CreateNewAccount(object sender, EventArgs e)
         {
             FormNuevaCuenta aNewAccount = new FormNuevaCuenta();
-            aNewAccount.ShowDialog(this);
-            this.UpdateDataGrid();
+            DialogResult aResult = aNewAccount.ShowDialog(this);
+            if(aResult == DialogResult.OK)
+            {
+                this.iFachadaDominio.NuevaCuentaDeUsuario(aNewAccount.Nombre, aNewAccount.Direccion, aNewAccount.Contrasenia);
+                this.UpdateDataGrid();
+            }
         }
 
         private void AccountsDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             ICuentaDeUsuario aSelectedAccount = (ICuentaDeUsuario)(sender as DataGridView).SelectedRows[e.RowIndex].DataBoundItem;
             UICuenta aNewUICuenta = new UICuenta(aSelectedAccount,ref this.iFachadaDominio);
+            aNewUICuenta.Show();
         }
     }
 }

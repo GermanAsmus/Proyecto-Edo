@@ -17,11 +17,15 @@ namespace Dominio
         //Direccion de correo real de la entidad. Ej: miCorreo@correo.com
         public string DireccionDeCorreo { get; set; }
         //Colección de mensajes en los que la dirección de correo está asociada como dirección de correo destinatario.
-        public virtual ICollection<IMensajeDTO> MensajesDestinatario { get; set; }
+        public virtual ICollection<Mensaje> MensajesDestinatario { get; set; }
         //Colección de mensajes en los que la dirección de correo está asociada como dirección de correo remitente.
-        public virtual ICollection<IMensajeDTO> MensajesRemitente { get; set; }
+        public virtual ICollection<Mensaje> MensajesRemitente { get; set; }
+
+        public byte CuentaDeUsuarioId { get; set; }
+
+        public ICuentaDeUsuarioDTO CuentaDeUsuario { get; set; }
         #endregion
-        
+
         public DireccionCorreo(string pDireccionDeCorreo)
         {
             if (string.IsNullOrEmpty(pDireccionDeCorreo))
@@ -36,8 +40,8 @@ namespace Dominio
                 throw new FormatException("El formato de la direccion de correo no es valida", ex);
             }
 
-            MensajesRemitente = new List<IMensajeDTO>();
-            MensajesDestinatario = new List<IMensajeDTO>();
+            MensajesRemitente = new List<Mensaje>();
+            MensajesDestinatario = new List<Mensaje>();
         }
 
         public static string ObtenerHost(IDireccionCorreo pDireccion)

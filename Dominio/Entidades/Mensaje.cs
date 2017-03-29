@@ -15,11 +15,11 @@ namespace Dominio
 
         public string Asunto { get; set; }
 
-        public IDireccionCorreo Remitente { get; set; }
+        public DireccionCorreo Remitente { get; set; }
 
         public byte RemitenteId { get; set; }
 
-        public ICollection<IDireccionCorreo> Destinatario { get; set; }
+        public ICollection<DireccionCorreo> Destinatario { get; set; }
 
         public string Contenido { get; set; }
 
@@ -30,7 +30,7 @@ namespace Dominio
         /// </summary>
         public Mensaje()
         {
-            this.Destinatario = new List<IDireccionCorreo>();
+            this.Destinatario = new List<DireccionCorreo>();
             this.Contenido = string.Empty;
         }
         public Mensaje(MailMessage pMailMessage)
@@ -38,7 +38,7 @@ namespace Dominio
             if (pMailMessage == null)
                 throw new ArgumentNullException(nameof(pMailMessage));
 
-            this.Destinatario = new List<IDireccionCorreo>();
+            this.Destinatario = new List<DireccionCorreo>();
 
             this.Asunto = pMailMessage.Subject;
             this.Remitente = new DireccionCorreo(pMailMessage.From.Address);

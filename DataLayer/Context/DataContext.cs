@@ -5,11 +5,11 @@ namespace DataLayer
 {
     internal class DataContext : IDataContext
     {
-        public EF_Context Context { get; set; }
+        public EdoDatabaseContext Context { get; set; }
 
         public DataContext()
         {
-            this.Context = new EF_Context();
+            this.Context = new EdoDatabaseContext();
         }
 
         public int Commit()

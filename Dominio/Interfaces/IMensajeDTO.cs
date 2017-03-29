@@ -11,10 +11,10 @@ namespace Dominio
         //Asunto del mensaje.
         string Asunto { get; set; }
 
-        IDireccionCorreo Remitente { get; set; }
+        DireccionCorreo Remitente { get; set; }
         byte RemitenteId { get; set; }
 
-        ICollection<IDireccionCorreo> Destinatario { get; set; }
+        ICollection<DireccionCorreo> Destinatario { get; set; }
 
         string Contenido { get; set; }
 

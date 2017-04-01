@@ -11,14 +11,15 @@ namespace DataLayer
         public DbSet<DireccionCorreo> DireccionesDeCorreo { get; set; }
         public DbSet<Mensaje> Mensajes { get; set; }
 
-        public EdoDatabaseContext()
-            : base("EdoDatabase")
+        public EdoDatabaseContext() :
+           base("DataBase")
         {
-            Database.SetInitializer<EdoDatabaseContext>(new DropCreateDatabaseIfModelChanges<EdoDatabaseContext>());
+            //Database.SetInitializer<Contexto>(new DropCreateDatabaseIfModelChanges<Contexto>());
             var type = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
             if (type == null)
                 throw new Exception("Do not remove, ensures static reference to System.Data.Entity.SqlServer");
         }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -34,7 +35,7 @@ namespace DataLayer
             modelBuilder.Entity<DireccionCorreo>().ToTable("DireccionesDeCorreo");
             modelBuilder.Entity<DireccionCorreo>().HasKey<int>(x => x.Id);
             modelBuilder.Entity<DireccionCorreo>().Property(x => x.DireccionDeCorreo).IsRequired();
-            modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesRemitente).WithRequired().HasForeignKey(z => z.RemitenteId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesRemitente).WithRequired().HasForeignKey(z => z.RemitenteId).WillCascadeOnDelete(true);
             modelBuilder.Entity<DireccionCorreo>().HasMany(x => x.MensajesDestinatario).WithMany();
             //(y => y.Destinatario.Select(d => d.DireccionCorreo)).Map(t => { t.ToTable("DireccionDeCorreoMensaje"); });
 

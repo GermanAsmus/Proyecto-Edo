@@ -40,7 +40,7 @@ namespace EdoUI
             DialogResult aResult = aNewAccount.ShowDialog(this);
             if(aResult == DialogResult.OK)
             {
-                this.iFachadaDominio.NuevaCuentaDeUsuario(aNewAccount.Nombre, aNewAccount.Direccion, aNewAccount.Contrasenia);
+                //this.iFachadaDominio.NuevaCuentaDeUsuario(aNewAccount.Nombre, aNewAccount.Direccion, aNewAccount.Contrasenia);
                 this.UpdateDataGrid();
             }
         }

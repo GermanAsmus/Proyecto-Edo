@@ -28,12 +28,12 @@ namespace EdoUI
         private void InicializarDataGridView()
         {
            IEnumerable<IMensajeDTO> aMensajes = this.iFachadaDominio.ObtenerMensajes(this.iCuenta);
-           this.MessagesDataGrid.DataSource = aMensajes;
+           //this.MessagesDataGrid.DataSource = aMensajes;
         }
         private void ActualizarDataGridView()
         {
             IEnumerable<IMensajeDTO> aMensajes = this.iFachadaDominio.DescargarMensajes(this.iCuenta, iCantidadMensajesPorDescarga);
-            this.MessagesDataGrid.DataSource = aMensajes;
+            //this.MessagesDataGrid.DataSource = aMensajes;
         }
 
         private void redactarToolStripMenuItem_Click(object sender, EventArgs e)

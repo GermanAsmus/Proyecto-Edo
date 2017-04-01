@@ -33,9 +33,10 @@ namespace DataLayer
 
         public IEnumerable<TEntity> ObtenerTodos(Expression<Func<TEntity, bool>> criterio = null)
         {
+            IQueryable<TEntity> mCopy = this.iDbSet;
             if (criterio == null)
-                return this.iDbSet;
-            return this.iDbSet.Where(criterio);
+                return mCopy;
+            return mCopy.Where(criterio);
         }
 
         public TEntity ObtenerUno(Expression<Func<TEntity, bool>> criterio = null)

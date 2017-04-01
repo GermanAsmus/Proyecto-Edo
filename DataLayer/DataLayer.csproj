@@ -69,6 +69,11 @@
     <Compile Include="Context\EdoDatabaseContext.cs" />
     <Compile Include="Context\IDataContext.cs" />
     <Compile Include="FachadaPersistencia.cs" />
+    <Compile Include="Migrations\201704011640504_InitialMigration.cs" />
+    <Compile Include="Migrations\201704011640504_InitialMigration.Designer.cs">
+      <DependentUpon>201704011640504_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -107,6 +112,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704011640504_InitialMigration.resx">
+      <DependentUpon>201704011640504_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
